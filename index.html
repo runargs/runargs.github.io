@@ -3,26 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexa's Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Your Name - Multipassionate Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=supreme@400,500,700&f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #F5F1E8;
+            --warm-white: #FFFBF5;
+            --sage: #A8B5A0;
+            --dusty-rose: #D4A5A5;
+            --burgundy: #6B4747;
+            --ink: #2C2C2C;
+            --gold: #C9A961;
+            --jade: #7A9D8F;
+            --border-radius-sm: 16px;
+            --border-radius-md: 24px;
+            --border-radius-lg: 32px;
+            --border-radius-xl: 48px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--warm-white);
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Grain Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.03"/></svg>');
+            opacity: 0.5;
+            z-index: 9999;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            max-width: 1400px;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 251, 245, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius-xl);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            box-shadow: 0 8px 32px rgba(107, 71, 71, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav:hover {
+            background: rgba(255, 251, 245, 0.9);
+        }
+        
+        .logo {
+            font-family: 'Tangerine', cursive;
+            font-size: 3rem;
+            color: var(--burgundy);
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-family: 'Supreme', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--dusty-rose), var(--gold));
+            border-radius: 100px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 2rem;
+            background: radial-gradient(ellipse at top right, rgba(212, 165, 165, 0.1), transparent 60%),
+                        radial-gradient(ellipse at bottom left, rgba(122, 157, 143, 0.1), transparent 60%);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+        }
+        
+        .hero h1 {
+            font-family: 'Tangerine', cursive;
+            font-size: clamp(6rem, 18vw, 15rem);
+            color: var(--burgundy);
+            margin-bottom: 2rem;
+            line-height: 0.9;
+            letter-spacing: 4px;
+        }
+        
+        .hero .intro {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            line-height: 2;
+            color: var(--burgundy);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-style: italic;
+        }
+        
+        .role-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+        
+        .tag {
+            font-family: 'Supreme', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 251, 245, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            border-radius: var(--border-radius-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .tag:hover {
+            background: rgba(255, 251, 245, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(107, 71, 71, 0.1);
+        }
+        
+        .cta-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .cta-btn {
+            font-family: 'Supreme', serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--warm-white);
+            background: var(--burgundy);
+            padding: 1.25rem 3rem;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--burgundy);
+        }
+        
+        .cta-btn:hover {
+            background: transparent;
+            color: var(--burgundy);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(107, 71, 71, 0.2);
+        }
+        
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--burgundy);
+            border: 2px solid var(--burgundy);
+        }
+        
+        .cta-btn.secondary:hover {
+            background: var(--burgundy);
+            color: var(--warm-white);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Supreme', serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            padding: 12rem 4rem;
+            background: linear-gradient(180deg, var(--warm-white), var(--cream));
+            position: relative;
+        }
+        
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .philosophy h2 {
+            font-family: 'Supreme', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            margin-bottom: 3rem;
+            font-stretch: ultra-condensed;
+        }
+        
+        .philosophy p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            line-height: 2.2;
+            color: var(--ink);
+            margin-bottom: 2rem;
+        }
+        
+        .philosophy .highlight {
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            font-style: italic;
+            margin: 3rem 0;
+        }
+        
+        /* Featured Work Teaser */
+        .featured {
+            padding: 12rem 4rem;
+            background: var(--warm-white);
+        }
+        
+        .featured h2 {
+            font-family: 'Supreme', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            text-align: center;
+            margin-bottom: 6rem;
+            font-stretch: ultra-condensed;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .featured-card {
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, var(--cream), var(--warm-white));
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 165, 165, 0.3), rgba(122, 157, 143, 0.3));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(107, 71, 71, 0.15);
+        }
+        
+        .featured-card:hover::before {
+            opacity: 1;
+        }
+        
+        .featured-card .category {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .featured-card h3 {
+            font-family: 'Supreme', serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            font-stretch: ultra-condensed;
+        }
+        
+        .featured-card p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--ink);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 6rem 4rem 4rem;
+            background: var(--cream);
+            text-align: center;
+        }
+        
+        footer .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        footer .footer-nav a {
+            font-family: 'Supreme', serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer .footer-nav a:hover {
+            color: var(--gold);
+        }
+        
+        footer p {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.85rem;
+            color: var(--burgundy);
+            opacity: 0.6;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                top: 1rem;
+                width: calc(100% - 2rem);
+                padding: 1.25rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+            
+            .philosophy,
+            .featured {
+                padding: 6rem 2rem;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-links {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="card">
-        <div class="profile">
-            <img src="profile.jpg" alt="Profile Picture">
+    <nav>
+        <div class="logo">Your Name</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="media.html">Media</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Name</h1>
+            <p class="intro">
+                Building intelligent products by day. Creating with clay, words, and flavors by night. 
+                Living proof that the future belongs to those who refuse to choose just one thing.
+            </p>
+            
+            <div class="role-tags">
+                <span class="tag">AI Product Manager</span>
+                <span class="tag">Speaker</span>
+                <span class="tag">Journalist</span>
+                <span class="tag">Ceramicist</span>
+                <span class="tag">Visual Artist</span>
+                <span class="tag">Private Chef</span>
+            </div>
+            
+            <div class="cta-links">
+                <a href="work.html" class="cta-btn">Explore Work</a>
+                <a href="about.html" class="cta-btn secondary">My Story</a>
+            </div>
         </div>
-        <div class="content">
-            <h1>Alexa</h1>
-            <p>Welcome to my personal website!</p>
-            <ul class="social-icons">
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-github"></i></a></li>
-            </ul>
+        
+        <div class="scroll-indicator">Scroll</div>
+    </section>
+    
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <h2>Philosophy</h2>
+            <p>
+                I don't believe in choosing. Not between logic and creativity. Not between technology and tradition. 
+                Not between ambition and artistry.
+            </p>
+            <p class="highlight">
+                The most innovative solutions emerge at intersections.
+            </p>
+            <p>
+                Each role I inhabit—product manager, speaker, journalist, ceramicist, artist, chef—
+                isn't a distraction from the others. They're in conversation. The precision I bring to product 
+                strategy mirrors the intentionality in my ceramics. The storytelling I practice in journalism 
+                shapes how I communicate complex AI concepts. The sensory awareness from cooking informs 
+                how I think about user experience.
+            </p>
         </div>
-    </div>
-
-    <script src="script.js"></script>
+    </section>
+    
+    <section class="featured">
+        <h2>Selected Work</h2>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <div class="category">Product Leadership</div>
+                <h3>AI Ethics Framework</h3>
+                <p>Leading the development of responsible AI guidelines adopted across enterprise teams, ensuring technology serves humanity.</p>
+            </div>
+            
+            <div class="featured-card">
+                <div class="category">Journalism</div>
+                <h3>The Renaissance Professional</h3>
+                <p>Feature article exploring how Gen Z is redefining career paths through multiplicity rather than specialization.</p>
+            </div>
+            
+            <div class="featured-card">
+                <div class="category">Ceramics</div>
+                <h3>Heritage Forms, Modern Context</h3>
+                <p>Limited edition collection exploring ancestral techniques through contemporary design language.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="work.html">Work</a>
+            <a href="media.html">Media</a>
+            <a href="mailto:your@email.com">Contact</a>
+        </div>
+        <p>© 2026 Your Name. Designed with intention.</p>
+    </footer>
+    
+    <script>
+        // Kinetic text movement
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        const ease = 0.08;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 25;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 25;
+        });
+        
+        function animate() {
+            currentX += (mouseX - currentX) * ease;
+            currentY += (mouseY - currentY) * ease;
+            
+            const heroTitle = document.querySelector('.hero h1');
+            if (heroTitle) {
+                heroTitle.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Enhanced nav on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.pageYOffset > 100) {
+                nav.style.background = 'rgba(255, 251, 245, 0.95)';
+                nav.style.boxShadow = '0 12px 48px rgba(107, 71, 71, 0.12)';
+            } else {
+                nav.style.background = 'rgba(255, 251, 245, 0.7)';
+                nav.style.boxShadow = '0 8px 32px rgba(107, 71, 71, 0.08)';
+            }
+        });
+    </script>
 </body>
 </html>
