@@ -1,4 +1,4 @@
-import { Globe, MessageCircle, Sparkles } from "lucide-react";
+import { Link as LinkIcon, Globe, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Community {
@@ -7,7 +7,7 @@ interface Community {
   role: string;
   description: string;
   members?: string;
-  url?: string; // Optional general link (talk, article, mention, etc.)
+  url?: string;
 }
 
 const communities: Community[] = [
@@ -17,6 +17,7 @@ const communities: Community[] = [
     role: "Advisory Board & Private Chef",
     description: "Community building and cultural education through food-based experiences.",
     members: "2024-Present",
+    url: "https://iknowaplace.agency/"
   },
   {
     id: "2",
@@ -30,7 +31,7 @@ const communities: Community[] = [
     id: "3",
     name: "Aid for Friends - 600+ meals provided",
     role: "Organizer - 2017",
-    description: "Partnered with Aid for Friends and organized local youth to provide nutritional meals for senion shut-ins.",
+    description: "Partnered with Aid for Friends and organized local youth to provide nutritional meals for senior shut-ins.",
     members: "2017",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   },
@@ -38,7 +39,7 @@ const communities: Community[] = [
     id: "4",
     name: "Walk to End Alzheimers - Raised $1k+",
     role: "Fundraiser/Grants Specialist",
-    description: "Partnered with Aid for Friends and organized local youth to provide nutritional meals for senion shut-ins.",
+    description: "Led fundraising efforts and grant applications to support Alzheimer's research and caregiver support.",
     members: "2017",
     url: "https://act.alz.org/"
   }
@@ -49,54 +50,61 @@ export function CommunitySection() {
     <section id="community-building" className="py-20 px-6 md:px-12 bg-sidebar/50">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Community Building</h2>
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Community</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Creating spaces where ideas flourish and connections thrive
+            Creating spaces where connections thrive
           </p>
         </div>
 
-        {/* Community cards */}
-        <div className="space-y-6 stagger-fade-in">
-          {communities.map((community, index) => (
+        {/* Compressed Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 stagger-fade-in">
+          {communities.map((community) => (
             <Card 
               key={community.id} 
-              className="card-hover border-gold-hover"
+              className="card-hover border-gold-hover group transition-all duration-300 flex flex-col h-full"
             >
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="font-serif text-xl mb-1">{community.name}</CardTitle>
-                    <CardDescription className="text-primary font-medium">
-                      {community.role}
-                    </CardDescription>
-                  </div>
-                  {community.members && (
-                    <span className="text-sm text-muted-foreground bg-sidebar-accent px-3 py-1 rounded-full">
-                      {community.members}
-                    </span>
-                  )}
+              <CardHeader className="pb-2">
+                <div className="space-y-1">
+                  {/* Reduced title size slightly for better fit */}
+                  <CardTitle className="font-serif text-lg leading-tight group-hover:text-primary transition-colors">
+                    {community.name}
+                  </CardTitle>
+                  <CardDescription className="text-primary text-xs font-semibold uppercase tracking-wide">
+                    {community.role}
+                  </CardDescription>
                 </div>
               </CardHeader>
 
-              <CardContent>
-                <p className="text-sm text-foreground/80 leading-relaxed">
+              <CardContent className="flex flex-col flex-grow">
+                {/* Community Description - smaller text for compression */}
+                <p className="text-sm text-foreground/80 leading-snug mb-4 flex-grow">
                   {community.description}
                 </p>
-              </CardContent>
+                
+                <div className="space-y-3 mt-auto">
+                  {/* Metadata moved here to save vertical space in header */}
+                  {community.members && (
+                    <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                      <Users className="h-3 w-3" />
+                      <span>{community.members}</span>
+                    </div>
+                  )}
 
-              {/* Optional CTA link */}
-                {community.url && (
-                  <a
-                    href={community.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:underline"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    Learn More
-                  </a>
-                )}
+                  {/* View Community Link */}
+                  {community.url && (
+                    <a
+                      href={community.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-muted-foreground font-bold group-hover:text-primary transition-colors pt-3 border-t border-muted w-full"
+                    >
+                      <LinkIcon className="h-3 w-3" />
+                      View Material
+                    </a>
+                  )}
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
