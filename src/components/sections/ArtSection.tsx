@@ -21,7 +21,7 @@ const artPieces: ArtPiece[] = [
   { id: "s1", title: "Gallery Tasting Series", date: "2024-2025", description: "Small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery.", gallery: "culinary", image: "/images/gallerytasting.jpeg"},
   { id: "s2", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
   // Ceramics
-  { id: "c1", title: "Organic Form I", date: "2024", description: "Hand-thrown stoneware with natural ash glaze", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
+  { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Hand-thrown stoneware with natural ash glaze", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
   // Photography
   { id: "p1", title: "TBA", date: "2026", description: "Visuals coming soon", gallery: "fashion design", image: "/images/IMG_8420.jpg"},
 ];
