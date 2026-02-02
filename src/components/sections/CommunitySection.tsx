@@ -7,29 +7,41 @@ interface Community {
   role: string;
   description: string;
   members?: string;
+  url?: string; // Optional general link (talk, article, mention, etc.)
 }
 
 const communities: Community[] = [
   {
     id: "1",
-    name: "Design Systems Collective",
-    role: "Co-founder & Organizer",
-    description: "A community of practice for design systems practitioners to share knowledge, challenges, and solutions.",
-    members: "2,000+ members",
+    name: "I Know a Place Culinary Agency",
+    role: "Advisory Board & Private Chef",
+    description: "Community building and cultural education through food-based experiences.",
+    members: "2024-Present",
   },
   {
     id: "2",
-    name: "Local Tech Meetup",
-    role: "Lead Organizer",
-    description: "Monthly gatherings bringing together designers, developers, and product folks for talks, workshops, and networking.",
-    members: "500+ active members",
+    name: "Notion Enhancement - GitHub Open Source Community",
+    role: "Core Contributor",
+    description: "Developer advocacy and #3 code contributor for notion enhancer, an all-in-one customizer for Notion workspace.",
+    members: "2020",
+    url: "https://notion-enhancer.github.io/"
   },
   {
     id: "3",
-    name: "Inclusion in Design",
-    role: "Advisory Board Member",
-    description: "Advocating for diversity and inclusion in design education and hiring practices across the industry.",
+    name: "Aid for Friends - 600+ meals provided",
+    role: "Organizer - 2017",
+    description: "Partnered with Aid for Friends and organized local youth to provide nutritional meals for senion shut-ins.",
+    members: "2017",
+    url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   },
+  {
+    id: "4",
+    name: "Walk to End Alzheimers - Raised $1k+",
+    role: "Fundraiser/Grants Specialist",
+    description: "Partnered with Aid for Friends and organized local youth to provide nutritional meals for senion shut-ins.",
+    members: "2017",
+    url: "https://act.alz.org/"
+  }
 ];
 
 export function CommunitySection() {
@@ -72,6 +84,19 @@ export function CommunitySection() {
                   {community.description}
                 </p>
               </CardContent>
+
+              {/* Optional CTA link */}
+                {community.url && (
+                  <a
+                    href={community.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:underline"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    Learn More
+                  </a>
+                )}
             </Card>
           ))}
         </div>
