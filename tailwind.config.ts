@@ -16,7 +16,7 @@ export default {
       fontFamily: {
         sans: ["Instrument Sans", "sans-serif"],
         serif: ["Instrument Serif", "serif"],
-        display: ["Romanesco", "cursive"],
+        display: ["PPMondwest-Regular", "cursive"],
         flourish: ["Miss Fajardose", "cursive"],
       },
       colors: {
