@@ -42,7 +42,8 @@ const appearances: Appearance[] = [
     venue: "INFORMS (Institute for Operations Research and the Management Sciences)",
     date: "2021",
     location: "Anaheim, CA",
-    topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"]
+    topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"],
+    url: "https://www.scranton.edu/faculty/gomaa/publications.shtml"
   },
 ];
 
