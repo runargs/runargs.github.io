@@ -5,8 +5,8 @@ import { BioSection } from "@/components/sections/BioSection";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { AccomplishmentsSection } from "@/components/sections/AccomplishmentsSection";
 import { MentorshipSection } from "@/components/sections/MentorshipSection";
-import { TalksSection } from "@/components/sections/TalksSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
+import { TalksSection } from "@/components/sections/TalksSection";
 import { SideProjectsSection } from "@/components/sections/SideProjectsSection";
 import { ArtSection } from "@/components/sections/ArtSection";
 import { ResumeSection } from "@/components/sections/ResumeSection";
@@ -71,9 +71,9 @@ const Index = () => {
         <BioSection />
         <WorkSection />
         <AccomplishmentsSection />
-        <MentorshipSection />
         <TalksSection />
         <CommunitySection />
+        <MentorshipSection />
         <ArtSection />
         <SideProjectsSection />
         <ResumeSection />
@@ -84,7 +84,7 @@ const Index = () => {
             <span className="font-flourish text-3xl text-primary/40">❧</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Created by Alexa, Assisted by Lovable AI · © 2026
+            Crafted with care · © 2024
           </p>
         </footer>
       </main>
