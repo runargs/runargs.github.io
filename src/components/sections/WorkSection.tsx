@@ -236,14 +236,21 @@ export function WorkSection() {
                   </div>
                 )}
 
-                <div className="pt-4 border-t border-muted/20 flex flex-wrap gap-2">
+                {/* RESTORED PILL BADGES */}
+                <div className="pt-4 border-t border-muted/20 flex flex-wrap gap-1.5">
                   {exp.skills.map(s => (
-                    <span key={s} className={cn(
-                      "text-[9px] font-bold uppercase tracking-tighter transition-colors",
-                      activeFilter === s ? "text-primary scale-110" : "text-muted-foreground/40"
-                    )}>
-                      #{s.replace(/\s+/g, '')}
-                    </span>
+                    <Badge 
+                      key={s} 
+                      variant="outline" 
+                      className={cn(
+                        "rounded-full px-2.5 py-0.5 text-[9px] font-semibold transition-all",
+                        activeFilter === s 
+                          ? "bg-primary text-primary-foreground border-primary shadow-sm" 
+                          : "border-muted-foreground/10 text-muted-foreground/60 hover:border-primary/30"
+                      )}
+                    >
+                      {s}
+                    </Badge>
                   ))}
                 </div>
               </CardContent>
