@@ -25,15 +25,30 @@ export function ResumeSection() {
 
           {/* Brief summary */}
           <div className="text-left space-y-4 text-sm text-foreground/80 mb-8">
-            <div className="p-4 bg-background rounded">
-              <h4 className="font-medium text-foreground mb-2">Experience Highlights</h4>
-              <ul className="space-y-1 list-disc list-inside text-muted-foreground">
-                <li>10+ years in design and product development</li>
-                <li>Led teams at Fortune 500 companies and startups</li>
-                <li>Expertise in design systems, UX strategy, and leadership</li>
-              </ul>
+              <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm">
+                <h4 className="font-serif text-lg text-primary mb-3 italic">Executive Summary</h4>
+                <ul className="space-y-2.5 text-muted-foreground leading-snug">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                    <span>
+                      4+ years bridging technical orchestration and product vision to build context-aware, intelligent systems.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                    <span>
+                      Strategic impact within global enterprises and high-growth, AI-native startups.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                    <span>
+                      Specializing in agentic strategy, multi-agent workflows, and the evolution of AI-driven systems.
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
-
             <div className="p-4 bg-background border border-border/40 rounded-lg shadow-sm">
               {/* Header: Academic & Elite Certs combined */}
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-primary/10">
@@ -47,11 +62,11 @@ export function ResumeSection() {
               {/* Compact Grid for Credentials */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                 {[
-                  { title: "Influencing with Diplomacy", org: "Wharton", date: "2025" },
-                  { title: "ML for Business", org: "Wharton", date: "2025" },
+                  { title: "Influencing with Diplomacy", org: "Wharton Exec Ed", date: "2025" },
+                  { title: "Machine Learning for Business", org: "Wharton Exec Ed", date: "2025" },
                   { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
                   { title: "Product Management E2E", org: "Mastercard", date: "2023" },
-                  { title: "PM Fundamentals", org: "Pluralsight", date: "2023" },
+                  { title: "Product Management Fundamentals", org: "Pluralsight", date: "2023" },
                   { title: "Intro to Marketing", org: "Wharton", date: "2016" },
                 ].map((cert, i) => (
                   <div key={i} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
@@ -71,11 +86,11 @@ export function ResumeSection() {
               </div>
             
               {/* Footer: Tiny Social Proof */}
-              <div className="mt-4 pt-2 border-t border-muted/20">
+              {/* <div className="mt-4 pt-2 border-t border-muted/20">
                 <p className="text-[8px] text-muted-foreground/50 uppercase tracking-[0.2em] text-center">
-                  Additional: Mental Health First Aid (USA) • Communication Focus
+                  Additional: Mental Health First Aid • Communication Focus
                 </p>
-              </div>
+              </div> */}
             </div>
                       </div>
 
@@ -92,7 +107,7 @@ export function ResumeSection() {
         {/* Contact note */}
         <p className="text-sm text-muted-foreground">
           For inquiries, please reach out via{" "}
-          <a href="mailto:hello@example.com" className="text-primary hover:underline">
+          <a href="mailto:alexa.thoennes@gmail.com" className="text-primary hover:underline">
             email
           </a>{" "}
           or{" "}
