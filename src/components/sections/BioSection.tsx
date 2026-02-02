@@ -14,7 +14,7 @@ export function BioSection() {
       {/* Hero name */}
       <div className="text-center mb-12 flex flex-col items-center">
         <img
-          src="/public/images/IMG_6147.JPG"
+          src="/images/IMG_6147.JPG"
           alt="Profile photo"
           className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mb-6"
         />
