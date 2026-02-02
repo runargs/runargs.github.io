@@ -34,14 +34,50 @@ export function ResumeSection() {
               </ul>
             </div>
 
-            <div className="p-4 bg-background rounded">
-              <h4 className="font-medium text-foreground mb-2">Education</h4>
-              <ul className="space-y-1 text-muted-foreground">
-                <li>M.S. Human-Computer Interaction</li>
-                <li>B.A. Visual Design</li>
-              </ul>
+            <div className="p-4 bg-background border border-border/40 rounded-lg shadow-sm">
+              {/* Header: Academic & Elite Certs combined */}
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-primary/10">
+                <h4 className="font-serif text-lg text-primary italic">Education & Credentials</h4>
+                <div className="text-right">
+                  <p className="text-[11px] font-bold text-foreground leading-tight">B.S. Applied Computing</p>
+                  <p className="text-[9px] text-muted-foreground uppercase tracking-tighter italic">Business Analytics • Magna Cum Laude</p>
+                </div>
+              </div>
+            
+              {/* Compact Grid for Credentials */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                {[
+                  { title: "Influencing with Diplomacy", org: "Wharton", date: "2025" },
+                  { title: "ML for Business", org: "Wharton", date: "2025" },
+                  { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
+                  { title: "Product Management E2E", org: "Mastercard", date: "2023" },
+                  { title: "PM Fundamentals", org: "Pluralsight", date: "2023" },
+                  { title: "Intro to Marketing", org: "Wharton", date: "2016" },
+                ].map((cert, i) => (
+                  <div key={i} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                        {cert.title}
+                      </p>
+                      <p className="text-[9px] text-muted-foreground/70 uppercase tracking-widest leading-none">
+                        {cert.org}
+                      </p>
+                    </div>
+                    <span className="text-[9px] font-bold text-primary/40 ml-2 tabular-nums">
+                      {cert.date}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            
+              {/* Footer: Tiny Social Proof */}
+              <div className="mt-4 pt-2 border-t border-muted/20">
+                <p className="text-[8px] text-muted-foreground/50 uppercase tracking-[0.2em] text-center">
+                  Additional: Mental Health First Aid (USA) • Communication Focus
+                </p>
+              </div>
             </div>
-          </div>
+                      </div>
 
           {/* Download button */}
           <Button 
