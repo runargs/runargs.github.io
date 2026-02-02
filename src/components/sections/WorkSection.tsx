@@ -106,8 +106,7 @@ export function WorkSection() {
                       {exp.description}
                     </p>
                 
-                    {{exp.video && (
-                      /* Added max-w-[280px] to shrink the video and mx-auto if you want it centered */
+                    {exp.video && (
                       <div className="relative aspect-video overflow-hidden rounded-lg border border-primary/10 bg-black shadow-lg max-w-[250px]">
                         <iframe
                           src={`https://play.vidyard.com/${exp.video.id}?autoplay=1&muted=1&loop=1&v=4&type=inline`}
