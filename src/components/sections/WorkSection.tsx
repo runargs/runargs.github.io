@@ -35,8 +35,7 @@ const experiences = [
     ],
     skills: ["Agentic Commerce", "AI/ML", "Roadmapping", "RAG Architecture", "SQL/Mixpanel", "GTM Strategy", "Agile Hybrid"],
     video: {
-      url: "https://mastercardservices.hubs.vidyard.com/watch/p5qGELspVKa4FTSDXezEyM",
-      thumbnail: "https://play.vidyard.com/p5qGELspVKa4FTSDXezEyM.jpg",
+      id: "p5qGELspVKa4FTSDXezEyM", // Just the ID from your link
       title: "Mastercard AI-Native Intelligence Platform"
     }
   },
@@ -110,7 +109,8 @@ export function WorkSection() {
                     {exp.video && (
                       <div className="relative aspect-video overflow-hidden rounded-lg border border-primary/10 bg-black shadow-lg">
                         <iframe
-                          src={`${exp.video.url.replace('/watch/', '/share/')}?autoplay=1&muted=1&loop=1`}
+                          // CLEAN PLAYER URL: play.vidyard.com/[ID]
+                          src={`https://play.vidyard.com/${exp.video.id}?autoplay=1&muted=1&loop=1&v=4&type=inline`}
                           allow="autoplay; fullscreen"
                           allowFullScreen
                           className="absolute inset-0 w-full h-full border-0"
