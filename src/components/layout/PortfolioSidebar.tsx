@@ -34,24 +34,24 @@ const navGroups: NavGroup[] = [
     items: [
       { id: "work", label: "Work", icon: <Briefcase className="h-4 w-4" /> },
       { id: "accomplishments", label: "Accomplishments", icon: <Award className="h-4 w-4" /> },
-      { id: "resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
+      //{ id: "resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
     ],
   },
   {
     id: "community",
     label: "Community",
     items: [
-      { id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
+      { id: "talks", label: "Speaking & Publication", icon: <Mic className="h-4 w-4" /> },
+      //{ id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
       { id: "community-building", label: "Community Building", icon: <Users className="h-4 w-4" /> },
-      { id: "talks", label: "Talks", icon: <Mic className="h-4 w-4" /> },
     ],
   },
   {
     id: "creative",
     label: "Creative",
     items: [
-      { id: "side-projects", label: "Side Projects", icon: <Rocket className="h-4 w-4" /> },
-      { id: "art", label: "Art Galleries", icon: <Palette className="h-4 w-4" /> },
+      { id: "art", label: "Artisan Gallery", icon: <Palette className="h-4 w-4" /> },
+      { id: "side-projects", label: "Projects", icon: <Rocket className="h-4 w-4" /> },
     ],
   },
 ];
