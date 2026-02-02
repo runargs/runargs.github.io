@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Github, ExternalLink } from "lucide-react";
-import { Card, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -40,10 +40,11 @@ const sideProjects: SideProject[] = [
   },
 ];
 
-const statusColors = {
-  active: "bg-forest/10 text-forest border-forest/30",
-  archived: "bg-muted text-muted-foreground border-muted",
-  experiment: "bg-terracotta/10 text-terracotta border-terracotta/30",
+// Ensure statusColors is defined to prevent reference errors
+const statusColors: Record<string, string> = {
+  completed: "border-green-500/50 text-green-500",
+  ongoing: "border-blue-500/50 text-blue-500",
+  planned: "border-muted text-muted-foreground",
 };
 
 export function SideProjectsSection() {
@@ -54,48 +55,33 @@ export function SideProjectsSection() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Side Projects</h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Experiments, tools, and creative explorations
-          </p>
+          <p className="text-muted-foreground text-lg">Experiments and tools</p>
         </div>
 
-        {/* Projects grid - Back to 2 columns with tiny thumbnails */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-fade-in">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {sideProjects.map((project) => (
             <Card 
               key={project.id} 
               onClick={() => setSelectedProject(project)}
               className="card-hover border-gold-hover group cursor-pointer flex flex-row items-center overflow-hidden h-28"
             >
-              {/* Small Thumbnail on the left */}
               <div className="w-24 h-full shrink-0 relative overflow-hidden bg-muted/30 border-r">
                 {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5">
+                  <div className="absolute inset-0 flex items-center justify-center">
                     <span className="font-flourish text-2xl text-primary/20">❧</span>
                   </div>
                 )}
               </div>
-
-              {/* Quick Info (Truncated) */}
               <div className="flex-1 min-w-0 p-4">
-                <CardTitle className="font-serif text-base group-hover:text-primary transition-colors truncate">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-xs line-clamp-2 mt-1">
-                  {project.description}
-                </CardDescription>
+                <CardTitle className="font-serif text-base truncate">{project.title}</CardTitle>
+                <CardDescription className="text-xs line-clamp-2 mt-1">{project.description}</CardDescription>
               </div>
             </Card>
           ))}
         </div>
 
-        {/* Project Detail Dialog (The Pop-up) */}
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
           <DialogContent className="max-w-2xl p-0 overflow-hidden bg-card border-gold">
             <VisuallyHidden>
@@ -104,62 +90,30 @@ export function SideProjectsSection() {
             
             {selectedProject && (
               <div className="flex flex-col">
-                {/* Hero Image in Dialog */}
-                <div className="aspect-video relative overflow-hidden border-b">
+                <div className="aspect-video relative overflow-hidden border-b shrink-0">
                   {selectedProject.image ? (
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
+                    <div className="absolute inset-0 flex items-center justify-center bg-muted/20">
                       <span className="font-flourish text-7xl text-primary/20">❧</span>
                     </div>
                   )}
-                  <div className="absolute top-4 right-4">
-                    <Badge className={`${statusColors[selectedProject.status]} backdrop-blur-md`}>
-                      {selectedProject.status}
-                    </Badge>
-                  </div>
                 </div>
 
-                {/* Content Area - Improved Wrapping */}
                 <div className="p-6 md:p-8">
                   <div className="flex flex-col gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                      <div className="space-y-3 max-w-full">
-                        {/* Title now wraps instead of truncating */}
-                        <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-tight break-words">
-                          {selectedProject.title}
-                        </h3>
-                        
-                        {/* Tag Container with flex-wrap */}
+                      <div className="space-y-3">
+                        <h3 className="font-serif text-2xl md:text-3xl break-words">{selectedProject.title}</h3>
                         <div className="flex flex-wrap gap-1.5">
-                          {selectedProject.tags.map((tag: string) => (
-                            <Badge 
-                              key={tag} 
-                              variant="secondary" 
-                              className="text-[10px] uppercase tracking-wider whitespace-nowrap"
-                            >
-                              {tag}
-                            </Badge>
+                          {selectedProject.tags?.map((tag: string) => (
+                            <Badge key={tag} variant="secondary" className="text-[10px] whitespace-nowrap">{tag}</Badge>
                           ))}
                         </div>
                       </div>
-                    {/* <div className="flex gap-4">
-                      <a href={selectedProject.github} target="_blank" rel="noreferrer">
-                        <Github className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                      </a>
-                      <a href={selectedProject.link} target="_blank" rel="noreferrer">
-                        <ExternalLink className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                      </a>
-                    </div> */}
+                    </div>
                   </div>
-                  
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    {selectedProject.description}
-                  </p>
+                  <p className="text-muted-foreground leading-relaxed break-words">{selectedProject.description}</p>
                 </div>
               </div>
             )}
@@ -168,4 +122,5 @@ export function SideProjectsSection() {
       </div>
     </section>
   );
+}
 }
