@@ -7,6 +7,7 @@ export function BioSection() {
       </div>
 
       {/* Hero name */}
+      <img src = "/images/placesetting.JPEG" width="150px" style="border-radius: 100%;"></img>
       <div className="text-center mb-12">
         <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
           Alexa Thoennes
