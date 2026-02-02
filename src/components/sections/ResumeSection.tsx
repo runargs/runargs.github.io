@@ -7,59 +7,58 @@ export function ResumeSection() {
       <div className="max-w-2xl mx-auto text-center">
         {/* Decorative flourish */}
         <div className="mb-8">
-          <span className="font-flourish text-4xl text-primary/30">❧</span>
+          <span className="font-flourish text-4xl text-primary/30">ꕥ</span>
         </div>
 
         {/* Section header */}
         <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Resume</h2>
         <p className="text-muted-foreground text-lg mb-12 max-w-md mx-auto">
-          A comprehensive overview of my experience, skills, and education
+          A strategic overview of my experience in technical orchestration and AI-native product leadership.
         </p>
 
         {/* Resume preview card */}
-        <div className="bg-card rounded-lg border border-border p-8 mb-8 shadow-warm">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <FileText className="h-8 w-8 text-primary" />
-            <span className="font-serif text-xl">Alexa Thoennes — Resume 2026</span>
+        <div className="bg-card rounded-lg border border-border p-6 md:p-8 mb-8 shadow-warm">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <FileText className="h-6 w-6 text-primary" />
+            <span className="font-serif text-xl">Alexa Thoennes — 2026</span>
           </div>
 
-          {/* Brief summary */}
-          <div className="text-left space-y-4 text-sm text-foreground/80 mb-8">
-              <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm">
-                <h4 className="font-serif text-lg text-primary mb-3 italic">Executive Summary</h4>
-                <ul className="space-y-2.5 text-muted-foreground leading-snug">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1.5 text-[10px]">✦</span>
-                    <span>
-                      4+ years bridging technical orchestration and product vision to build context-aware, intelligent systems.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1.5 text-[10px]">✦</span>
-                    <span>
-                      Strategic impact within global enterprises and high-growth, AI-native startups.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1.5 text-[10px]">✦</span>
-                    <span>
-                      Specializing in agentic strategy, multi-agent workflows, and the evolution of AI-driven systems.
-                    </span>
-                  </li>
-                </ul>
-              </div>
+          <div className="space-y-6 mb-10">
+            {/* Executive Summary */}
+            <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm text-left">
+              <h4 className="font-serif text-lg text-primary mb-3 italic">Executive Summary</h4>
+              <ul className="space-y-2.5 text-muted-foreground text-sm leading-snug">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                  <span>
+                    4+ years bridging technical orchestration and product vision to build context-aware, intelligent systems.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                  <span>
+                    Strategic impact within <strong>Fortune 50</strong> global enterprises and high-growth, AI-native startups.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                  <span>
+                    Specializing in agentic strategy, multi-agent workflows, and the evolution of AI-driven systems.
+                  </span>
+                </li>
+              </ul>
             </div>
-            <div className="p-4 bg-background border border-border/40 rounded-lg shadow-sm">
-              {/* Header: Academic & Elite Certs combined */}
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-primary/10">
+
+            {/* Education & Credentials */}
+            <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm text-left">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-2 border-b border-primary/10 gap-2">
                 <h4 className="font-serif text-lg text-primary italic">Education & Credentials</h4>
-                <div className="text-right">
+                <div className="md:text-right">
                   <p className="text-[11px] font-bold text-foreground leading-tight">B.S. Applied Computing</p>
                   <p className="text-[9px] text-muted-foreground uppercase tracking-tighter italic">Business Analytics • Magna Cum Laude</p>
                 </div>
               </div>
-            
-              {/* Compact Grid for Credentials */}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                 {[
                   { title: "Influencing with Diplomacy", org: "Wharton Exec Ed", date: "2025" },
@@ -84,34 +83,40 @@ export function ResumeSection() {
                   </div>
                 ))}
               </div>
-            
-              {/* Footer: Tiny Social Proof */}
-              {/* <div className="mt-4 pt-2 border-t border-muted/20">
-                <p className="text-[8px] text-muted-foreground/50 uppercase tracking-[0.2em] text-center">
-                  Additional: Mental Health First Aid • Communication Focus
-                </p>
-              </div> */}
             </div>
-                      </div>
+          </div>
 
-          {/* Download button */}
-          <Button 
-            size="lg" 
-            className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
+          {/* PDF DOWNLOAD LINK AREA */}
+          <a 
+            href="/public/Alexa_Thoennes_Resume.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            download="Alexa_Thoennes_Resume_2026.pdf"
+            className="inline-block w-full md:w-auto"
           >
-            <Download className="h-5 w-5" />
-            Download PDF
-          </Button>
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 w-full md:w-auto shadow-md active:scale-95 transition-transform"
+            >
+              <Download className="h-5 w-5" />
+              Download PDF
+            </Button>
+          </a>
         </div>
 
         {/* Contact note */}
         <p className="text-sm text-muted-foreground">
           For inquiries, please reach out via{" "}
-          <a href="mailto:alexa.thoennes@gmail.com" className="text-primary hover:underline">
+          <a href="mailto:alexa.thoennes@gmail.com" className="text-primary hover:underline font-medium">
             email
           </a>{" "}
           or{" "}
-          <a href="#" className="text-primary hover:underline">
+          <a 
+            href="https://linkedin.com/in/alexathoennes" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-primary hover:underline font-medium"
+          >
             LinkedIn
           </a>
         </p>
