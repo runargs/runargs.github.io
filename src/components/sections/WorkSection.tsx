@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Zap, MapPin, Calendar, Code2, Sparkles, Play } from "lucide-react";
+import React, { useState, useMemo } from "react";
+import { Zap, MapPin, Calendar, Sparkles, X, Filter } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -19,17 +19,14 @@ const experiences = [
       "Achieved 80 NPS while scaling the platform portfolio by 50%."
     ],
     skills: ["AI/ML", "RAG Architecture", "Agentic Systems", "Roadmapping", "SQL/Mixpanel", "GTM Strategy", "Agile Hybrid"],
-    video: {
-      id: "p5qGELspVKa4FTSDXezEyM",
-      title: "Mastercard AI-Native Intelligence Platform"
-    }
+    video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard AI-Native Intelligence Platform" }
   },
   {
     id: "mc-devops",
     company: "Mastercard",
     role: "Automation Engineer",
     location: "New York, NY",
-    duration: "Jan 2022 - Jan 2024",
+    duration: "2022 - 2024",
     description: "Architected CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
     impact: [
       "Reduced deployment time by ~50% via optimized automation pipelines.",
@@ -78,37 +75,51 @@ const experiences = [
   }
 ];
 
-// Deduplicated skills for the cloud
 const globalSkills = Array.from(new Set(experiences.flatMap(e => e.skills))).sort();
 
 export function WorkSection() {
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const filteredExperiences = useMemo(() => {
+    if (!activeFilter) return experiences;
+    return experiences.filter(exp => exp.skills.includes(activeFilter));
+  }, [activeFilter]);
 
   return (
     <section id="work" className="py-20 px-6 md:px-12 bg-background">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Experience</h2>
-          <p className="font-serif text-base md:text-lg text-muted-foreground italic leading-tight">
-            Connecting technical orchestration to AI-driven product strategy.
+          <p className="font-serif text-base text-muted-foreground italic">
+            Click a skill to filter my career journey by expertise.
           </p>
         </div>
 
-        {/* INTERACTIVE SKILL CLOUD */}
-        <div className="mb-12 p-6 bg-card/30 border border-border/40 rounded-xl shadow-sm">
-          <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-4">
-            <Sparkles className="h-3 w-3" /> Skill Experience Matrix
+        {/* INTERACTIVE SKILL FILTER */}
+        <div className="mb-10 p-6 bg-card/30 border border-border/40 rounded-xl shadow-sm relative overflow-hidden">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.3em]">
+              <Filter className="h-3 w-3" /> Skill Directory
+            </div>
+            {activeFilter && (
+              <button 
+                onClick={() => setActiveFilter(null)}
+                className="flex items-center gap-1 text-[10px] font-bold text-primary hover:text-primary/70 transition-colors"
+              >
+                <X className="h-3 w-3" /> CLEAR FILTER
+              </button>
+            )}
           </div>
+          
           <div className="flex flex-wrap gap-2">
             {globalSkills.map((skill) => (
               <button
                 key={skill}
-                onMouseEnter={() => setHoveredSkill(skill)}
-                onMouseLeave={() => setHoveredSkill(null)}
+                onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[9px] md:text-[10px] font-medium transition-all duration-300 border",
-                  hoveredSkill === skill 
-                    ? "bg-primary text-primary-foreground border-primary scale-105 shadow-md"
+                  "px-3 py-1 rounded-full text-[10px] font-medium transition-all duration-300 border",
+                  activeFilter === skill 
+                    ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
                     : "bg-background text-muted-foreground border-border/60 hover:border-primary/40"
                 )}
               >
@@ -118,25 +129,18 @@ export function WorkSection() {
           </div>
         </div>
 
-        {/* EXPERIENCE CARDS */}
-        <div className="space-y-6">
-          {experiences.map((exp) => {
-            const isHighlighted = hoveredSkill ? exp.skills.includes(hoveredSkill) : true;
-            const isDimmed = hoveredSkill && !exp.skills.includes(hoveredSkill);
-
-            return (
+        {/* EXPERIENCE CARDS - Filtered items move to top */}
+        <div className="space-y-8 min-h-[400px]">
+          {filteredExperiences.length > 0 ? (
+            filteredExperiences.map((exp) => (
               <Card 
                 key={exp.id} 
-                className={cn(
-                  "transition-all duration-500 bg-card/50 overflow-hidden border-border/40",
-                  isHighlighted && hoveredSkill ? "border-primary/60 ring-1 ring-primary/20 shadow-lg scale-[1.01] bg-primary/[0.01]" : "",
-                  isDimmed ? "opacity-25 grayscale-[0.8] scale-[0.99]" : "opacity-100"
-                )}
+                className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-card/50 overflow-hidden border-border/40 hover:border-primary/20 transition-all shadow-sm"
               >
                 <CardHeader className="pb-4">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-2">
                     <div className="space-y-1">
-                      <CardTitle className="font-serif text-xl md:text-2xl group-hover:text-primary transition-colors tracking-tight">
+                      <CardTitle className="font-serif text-xl md:text-2xl tracking-tight">
                         {exp.role}
                       </CardTitle>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -174,7 +178,7 @@ export function WorkSection() {
                   
                     <div className="space-y-3">
                       <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.2em] opacity-80">
-                        <Zap className="h-3 w-3" /> Impact
+                        <Zap className="h-3 w-3" /> Key Outcomes
                       </div>
                       <ul className="space-y-2">
                         {exp.impact.map((point, i) => (
@@ -192,8 +196,8 @@ export function WorkSection() {
                         key={s} 
                         variant="outline" 
                         className={cn(
-                          "rounded-full px-2 py-0 text-[9px] transition-all duration-300",
-                          hoveredSkill === s 
+                          "rounded-full px-2 py-0 text-[9px] transition-all",
+                          activeFilter === s 
                             ? "bg-primary text-primary-foreground border-primary" 
                             : "border-muted-foreground/20 text-muted-foreground"
                         )}
@@ -204,8 +208,12 @@ export function WorkSection() {
                   </div>
                 </CardContent>
               </Card>
-            );
-          })}
+            ))
+          ) : (
+            <div className="text-center py-20 text-muted-foreground italic">
+              No matching experiences found for this specific lens.
+            </div>
+          )}
         </div>
       </div>
     </section>
