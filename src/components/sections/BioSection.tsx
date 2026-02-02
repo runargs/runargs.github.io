@@ -3,11 +3,11 @@ export function BioSection() {
     <section id="bio" className="min-h-screen flex flex-col justify-center py-20 px-6 md:px-12 fade-in">
       {/* Decorative flourish */}
       <div className="text-center mb-8">
+        <img src = "/images/placesetting.JPEG" width="150px" style="border-radius: 50px;"></img>
         <span className="font-flourish text-4xl md:text-5xl text-primary/30">❧</span>
       </div>
 
       {/* Hero name */}
-      <img src = "/images/placesetting.JPEG" width="150px" style="border-radius: 100%;"></img>
       <div className="text-center mb-12">
         <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
           Alexa Thoennes
