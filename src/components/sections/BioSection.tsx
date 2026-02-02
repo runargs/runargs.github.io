@@ -8,11 +8,11 @@ export function BioSection() {
 
       {/* Hero name */}
       <div className="text-center mb-12">
-        <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
-          Your Name
+        <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
+          Alexa Thoennes
         </h1>
         <p className="font-serif text-xl md:text-2xl text-muted-foreground italic">
-          Designer · Developer · Creator
+          Product · Artist · Empiricist
         </p>
       </div>
 
