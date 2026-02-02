@@ -20,12 +20,11 @@ const appearances: Appearance[] = [
   {
     id: "1",
     type: "video",
-    title: "Mastery Learning and Career Outcomes",
+    title: "Mastery Learning and Profesional Outcomes",
     venue: "21st Century Cyber Charter",
     date: "February 2026",
     location: "Downingtown, PA",
-    topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"],
-    url: "https://youtube.com/watch?v=example",
+    topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"]
   },
   {
     id: "2",
@@ -34,8 +33,7 @@ const appearances: Appearance[] = [
     venue: "Bucks County Community College - Hosted by Women in STEM",
     date: "2024",
     location: "Newtown, PA",
-    topics: ["Mentorship", "Career Guidance", "Women in Tech"],
-    url: "https://example.com/paper",
+    topics: ["Mentorship", "Career Guidance", "Women in Tech"]
   },
   {
     id: "3",
@@ -44,8 +42,7 @@ const appearances: Appearance[] = [
     venue: "INFORMS (Institute for Operations Research and the Management Sciences)",
     date: "2021",
     location: "Anaheim, CA",
-    topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"],
-    url: "https://example.com/paper",
+    topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"]
   },
 ];
 
