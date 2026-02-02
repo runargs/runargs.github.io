@@ -37,7 +37,7 @@ const experiences = [
   {
     id: "visa",
     company: "Visa",
-    role: "Software Engineering Associate",
+    role: "Software Engineering - Intern",
     location: "Austin, TX (Remote)",
     duration: "May 2021 - Aug 2021",
     description: "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills.",
@@ -50,7 +50,7 @@ const experiences = [
   {
     id: "google",
     company: "Google Cloud",
-    role: "DevRel Engineering Resident",
+    role: "Developer Relations Engineering - Intern",
     location: "New York, NY (Remote)",
     duration: "Jun 2020 - Aug 2020",
     description: "Owned the development lifecycle for Google's open-source API management tooling (Synthtool).",
@@ -82,7 +82,7 @@ const experiences = [
   {
     id: "nexus",
     company: "Nexus Valley Solutions",
-    role: "Associate Product Manager — Technical",
+    role: "Associate Product Manager - Technical",
     location: "Scranton, PA",
     duration: "Oct 2018 - Mar 2019",
     description: "Foundational technical product role focused on STEAM education platform design and award-winning product strategy.",
@@ -96,7 +96,7 @@ const experiences = [
     id: "manila-design",
     company: "Manila Science Alumni Org",
     role: "Graphic Designer",
-    location: "Remote",
+    location: "Philippines",
     duration: "July 2015",
     description: "Visual communication for scientific laboratory initiatives.",
     impact: [
