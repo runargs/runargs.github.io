@@ -50,51 +50,62 @@ export function SideProjectsSection() {
           {sideProjects.map((project) => (
             <Card 
               key={project.id} 
-              className="card-hover border-gold-hover group cursor-pointer"
+              className="card-hover border-gold-hover group cursor-pointer flex flex-row items-center overflow-hidden"
             >
-              {/* Decorative placeholder */}
-              <div className="aspect-[16/9] bg-gradient-to-br from-primary/5 to-accent/5 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display text-4xl text-primary/15">✦</span>
-                </div>
+              {/* Left Side Thumbnail */}
+              <div className="w-24 h-24 md:w-32 md:h-full shrink-0 relative overflow-hidden border-r bg-muted/30">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5">
+                    <span className="font-flourish text-2xl text-primary/20">❧</span>
+                  </div>
+                )}
               </div>
 
-              <CardHeader className="pb-2">
-                <div className="flex items-start justify-between">
-                  <CardTitle className="font-serif text-lg group-hover:text-primary transition-colors">
-                    {project.title}
-                  </CardTitle>
-                  <Badge 
-                    variant="outline" 
-                    className={`text-xs capitalize ${statusColors[project.status]}`}
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
-                <CardDescription className="text-sm leading-relaxed">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
+              {/* Right Side Content */}
+              <div className="flex-1 flex flex-col min-w-0">
+                <CardHeader className="pb-2 pt-4 px-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <CardTitle className="font-serif text-base md:text-lg group-hover:text-primary transition-colors truncate">
+                      {project.title}
+                    </CardTitle>
+                    <Badge 
+                      variant="outline" 
+                      className={`text-[10px] uppercase tracking-wider shrink-0 ${statusColors[project.status]}`}
+                    >
+                      {project.status}
+                    </Badge>
+                  </div>
+                  <CardDescription className="text-xs md:text-sm line-clamp-2 leading-relaxed">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
 
-              <CardContent>
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.slice(0, 2).map((tag) => (
-                      <Badge 
-                        key={tag} 
-                        variant="secondary"
-                        className="bg-sidebar-accent text-sidebar-foreground text-xs"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
+                <CardContent className="pb-4 px-4 mt-auto">
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.slice(0, 2).map((tag) => (
+                        <Badge 
+                          key={tag} 
+                          variant="secondary"
+                          className="bg-sidebar-accent text-sidebar-foreground text-[10px] px-1.5 py-0"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Github className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-pointer" />
+                      <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-pointer" />
+                    </div>
                   </div>
-                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Github className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-pointer" />
-                    <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-foreground cursor-pointer" />
-                  </div>
-                </div>
-              </CardContent>
+                </CardContent>
+              </div>
             </Card>
           ))}
         </div>
