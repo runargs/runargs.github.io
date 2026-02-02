@@ -66,7 +66,7 @@ function TypeIcon({ type }: { type: AppearanceType }) {
 /**
  * MAIN COMPONENT
  */
-export function SpeakingPublicationsSection() {
+export function TalksSection() {
   return (
     <section id="speaking-publications" className="py-20 px-6 md:px-12 bg-background">
       <div className="max-w-4xl mx-auto">
