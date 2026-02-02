@@ -14,7 +14,7 @@ export function BioSection() {
       {/* Hero name */}
       <div className="text-center mb-12 flex flex-col items-center">
         <img
-          src="/images/IMG_6147.JPG"
+          src="/images/profile.jpg"
           alt="Profile photo"
           className="w-64 max-w-full rounded-xl object-contain mb-6"
         />
@@ -22,7 +22,6 @@ export function BioSection() {
         <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
           Alexa Thoennes
         </h1>
-
         <p className="font-serif text-xl md:text-2xl text-muted-foreground italic">
           AI-Enabled Product · Artist · Empiricist
         </p>
