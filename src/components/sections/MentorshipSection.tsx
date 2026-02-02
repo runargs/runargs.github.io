@@ -12,7 +12,7 @@ export function MentorshipSection() {
   const mailtoLink = `mailto:${email}?subject=Mentorship%20Inquiry`;
 
   return (
-    <section id="mentorship" className="py-16 px-6 bg-sidebar/30">
+    <section id="mentorship" className="py-16 px-6 bg-background/30">
       <div className="max-w-3xl mx-auto border border-gold/20 rounded-2xl p-8 md:p-12 bg-card/50 backdrop-blur-sm shadow-xl">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           
