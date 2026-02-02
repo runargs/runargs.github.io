@@ -49,14 +49,17 @@
 
     --radius: 0.5rem;
 
-    /* SIDEBAR: Light Ivory Concept (High Contrast) */
-    --sidebar-background: 40 45% 95%; /* Ivory tone */
-    --sidebar-foreground: 350 70% 20%; /* Darker Red for legibility */
-    --sidebar-primary: 350 70% 25%;
+/* SIDEBAR: Dark Lacquer with High-Contrast Silk Text */
+    --sidebar-background: 350 60% 8%;   /* Deepest Oxblood/Black */
+    --sidebar-foreground: 40 50% 90%;   /* Bright Aged Silk (Accessible) */
+    --sidebar-primary: 350 70% 45%;    /* Brightened Burgundy for active states */
     --sidebar-primary-foreground: 40 50% 98%;
-    --sidebar-accent: 40 30% 90%;
-    --sidebar-accent-foreground: 350 70% 20%;
-    --sidebar-border: 40 20% 85%;
+    
+    /* Hover states on the dark sidebar */
+    --sidebar-accent: 350 60% 15%;      /* Slightly lighter lacquer */
+    --sidebar-accent-foreground: 40 50% 95%;
+    
+    --sidebar-border: 350 40% 15%;
     --sidebar-ring: 350 70% 25%;
 
     /* Legacy Token Mapping */
@@ -102,10 +105,15 @@
     border-color: hsl(var(--primary) / 0.2);
   }
 
-  /* Nav active: High-Contrast Silk Line */
-  .nav-active::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary;
+/* Ensure sidebar icons also inherit the high contrast silk color */
+  [data-sidebar="sidebar"] {
+    @apply text-[hsl(var(--sidebar-foreground))];
+  }
+
+  /* Optional: Add a subtle gold left-border to active nav items 
+     to make them pop against the dark background */
+  .nav-active-sidebar {
+    @apply relative border-l-2 border-primary pl-2;
   }
 
   .flourish::before,
