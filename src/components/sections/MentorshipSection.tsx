@@ -8,7 +8,7 @@ const initiatives = [
 ];
 
 export function MentorshipSection() {
-  const email = "your.email@example.com";
+  const email = "alexa.thoennes@gmail.com";
   const mailtoLink = `mailto:${email}?subject=Mentorship%20Inquiry`;
 
   return (
