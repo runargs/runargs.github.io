@@ -8,7 +8,7 @@ const experiences = [
   {
     id: "mc-pm",
     company: "Mastercard Insights & Intelligence",
-    role: "AI Product Manager",
+    role: "Product Manager",
     location: "Remote",
     duration: "Jan 2024 - Present",
     description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence.",
@@ -18,7 +18,11 @@ const experiences = [
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks.",
       "Achieved 80 NPS while scaling the platform portfolio by 50%."
     ],
-    skills: ["AI/ML", "RAG Architecture", "Agentic Systems", "Roadmapping", "SQL/Mixpanel", "GTM Strategy"]
+    skills: ["AI/ML", "RAG Architecture", "Agentic Systems", "Roadmapping", "SQL/Mixpanel", "GTM Strategy"],
+    video: {
+      id: "p5qGELspVKa4FTSDXezEyM",
+      title: "Mastercard Business Intelligence"
+    } 
   },
   {
     id: "mc-devops",
