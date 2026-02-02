@@ -33,7 +33,12 @@ const experiences = [
       "Streamlined product onboarding by 40% (6→3 weeks) through standardized documentation and RACI frameworks.",
       "Led integration of 10+ products, scaling the platform portfolio by 50% and achieving 80 NPS."
     ],
-    skills: ["Agentic Commerce", "AI/ML", "Roadmapping", "RAG Architecture", "SQL/Mixpanel", "GTM Strategy", "Agile Hybrid"]
+    skills: ["Agentic Commerce", "AI/ML", "Roadmapping", "RAG Architecture", "SQL/Mixpanel", "GTM Strategy", "Agile Hybrid"],
+    video: {
+      url: "https://mastercardservices.hubs.vidyard.com/watch/p5qGELspVKa4FTSDXezEyM",
+      thumbnail: "https://play.vidyard.com/p5qGELspVKa4FTSDXezEyM.jpg",
+      title: "Mastercard AI-Native Intelligence Platform"
+    }
   },
   {
     id: "mc-devops",
