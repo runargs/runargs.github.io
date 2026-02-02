@@ -80,15 +80,17 @@ const Index = () => {
 
         {/* Footer */}
         <footer className="py-12 px-6 text-center border-t border-border">
-          <div className="mb-4">
-            <span className="font-flourish text-3xl text-primary/40">❧</span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Crafted by Alexa, built with Generative AI assistance
-            <br><small><em>(Lovable, Github Copilot, Gemini, Claude, GPT-5)</em></small>
-            <br>© 2026
-          </p>
-        </footer>
+        <div className="mb-4">
+          <span className="font-flourish text-3xl text-primary/40">❧</span>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Crafted by Alexa, built with Generative AI assistance
+          <br /> 
+          <small><em>(Lovable, Github Copilot, Gemini, Claude, GPT-5)</em></small>
+          <br />
+          © 2026
+        </p>
+      </footer>
       </main>
     </div>
   );
