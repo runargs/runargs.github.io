@@ -124,19 +124,29 @@ export function SideProjectsSection() {
                   </div>
                 </div>
 
-                {/* Content in Dialog */}
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="font-serif text-3xl text-foreground mb-2">{selectedProject.title}</h3>
-                      <div className="flex gap-2">
-                        {selectedProject.tags.map((tag: string) => (
-                          <Badge key={tag} variant="secondary" className="text-[10px] uppercase tracking-wider">
-                            {tag}
-                          </Badge>
-                        ))}
+                {/* Content Area - Improved Wrapping */}
+                <div className="p-6 md:p-8">
+                  <div className="flex flex-col gap-4 mb-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                      <div className="space-y-3 max-w-full">
+                        {/* Title now wraps instead of truncating */}
+                        <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-tight break-words">
+                          {selectedProject.title}
+                        </h3>
+                        
+                        {/* Tag Container with flex-wrap */}
+                        <div className="flex flex-wrap gap-1.5">
+                          {selectedProject.tags.map((tag: string) => (
+                            <Badge 
+                              key={tag} 
+                              variant="secondary" 
+                              className="text-[10px] uppercase tracking-wider whitespace-nowrap"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
-                    </div>
                     {/* <div className="flex gap-4">
                       <a href={selectedProject.github} target="_blank" rel="noreferrer">
                         <Github className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
