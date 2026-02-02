@@ -29,19 +29,19 @@ const communities: Community[] = [
   },
   {
     id: "3",
-    name: "Aid for Friends - 600+ meals provided",
-    role: "Organizer - 2017",
-    description: "Partnered with Aid for Friends and organized local youth to provide nutritional meals for senior shut-ins.",
+    name: "Philadelphia Adaptive Rowing (PAR)",
+    role: "Able-Bodied Tandem/Coach",
+    description: "Coached and raced double scull (2x) and won first place partnering with Beth for the BAYADA Home Health Care annual regatta.",
     members: "2017",
-    url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
+    url: "https://www.facebook.com/100064163287087/posts/1444260922332590/"
   },
   {
     id: "4",
-    name: "Walk to End Alzheimers - Raised $1k+",
-    role: "Fundraiser/Grants Specialist",
-    description: "Led fundraising efforts and grant applications to support Alzheimer's research and caregiver support.",
+    name: "Fundraiser/Grants Specialist",
+    role: "Various",
+    description: "Aid for Friends - Organized locally to provide 600+ nutritional meals for senior shut-ins. | Walk to End Alzheimers - Raised $1k+ to support Alzheimer's research.",
     members: "2017",
-    url: "https://act.alz.org/"
+    url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   }
 ];
 
