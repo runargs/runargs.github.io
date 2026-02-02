@@ -47,7 +47,7 @@ const communities: Community[] = [
 
 export function CommunitySection() {
   return (
-    <section id="community-building" className="py-20 px-6 md:px-12 bg-sidebar/50">
+    <section id="community-building" className="py-20 px-6 md:px-12 bg-background/50">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
