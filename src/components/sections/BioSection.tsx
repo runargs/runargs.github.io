@@ -2,7 +2,7 @@ export function BioSection() {
   return (
     <section
       id="bio"
-      className="min-h-screen flex flex-col justify-center py-20 px-6 md:px-12 fade-in"
+      className="min-h-screen flex flex-col justify-center py-10 px-6 md:px-12 fade-in"
     >
       {/* Decorative flourish */}
       <div className="text-center mb-8">
