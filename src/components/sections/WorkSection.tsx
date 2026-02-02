@@ -99,51 +99,40 @@ export function WorkSection() {
               </CardHeader>
 
               <CardContent className="pt-5 space-y-6">
-                <p className="text-xs md:text-sm text-foreground/70 leading-relaxed border-l-2 border-primary/20 pl-4 italic">
-                  {exp.description}
-                </p>
-
-                {/* Optional Video Demo */}
-                {exp.video && (
-                  <div className="group/video relative aspect-video overflow-hidden rounded-lg border border-primary/10 bg-black max-w-2xl mx-auto">
-                    <a 
-                      href={exp.video.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block h-full w-full"
-                    >
-                      <img 
-                        src={exp.video.thumbnail} 
-                        alt={exp.video.title}
-                        className="h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover/video:scale-105 group-hover/video:opacity-100"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover/video:bg-black/30 transition-colors">
-                        <div className="flex items-center gap-2 bg-primary/95 text-primary-foreground px-4 py-2 rounded-full shadow-2xl transform transition-transform group-hover/video:scale-110">
-                          <Play className="h-3 w-3 fill-current" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest">Watch Demo</span>
-                        </div>
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                        <span className="text-[10px] text-white/90 font-medium italic">
-                          Product Showcase: {exp.video.title}
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+  
+                  {/* Left Column: Description & Video */}
+                  <div className="space-y-4">
+                    <p className="text-xs md:text-sm text-foreground/70 leading-relaxed border-l-2 border-primary/20 pl-4 italic">
+                      {exp.description}
+                    </p>
                 
-                {/* Outcomes Grid */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.2em] opacity-80">
-                    <Zap className="h-3 w-3" /> Key Outcomes
+                    {exp.video && (
+                      <div className="relative aspect-video overflow-hidden rounded-lg border border-primary/10 bg-black shadow-lg">
+                        <iframe
+                          src={`${exp.video.url.replace('/watch/', '/share/')}?autoplay=1&muted=1&loop=1`}
+                          allow="autoplay; fullscreen"
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full border-0"
+                          title={exp.video.title}
+                        />
+                      </div>
+                    )}
                   </div>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                    {exp.impact.map((point, i) => (
-                      <li key={i} className="text-[10px] md:text-[11px] text-muted-foreground leading-snug flex gap-2">
-                        <span className="text-primary/60 shrink-0">•</span> {point}
-                      </li>
-                    ))}
-                  </ul>
+                
+                  {/* Right Column: Key Outcomes */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.2em] opacity-80">
+                      <Zap className="h-3 w-3" /> Key Outcomes
+                    </div>
+                    <ul className="space-y-2">
+                      {exp.impact.map((point, i) => (
+                        <li key={i} className="text-[10px] md:text-[11px] text-muted-foreground leading-snug flex gap-2">
+                          <span className="text-primary/60 shrink-0">•</span> {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 {/* Footer Skills */}
