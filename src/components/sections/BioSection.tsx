@@ -16,7 +16,7 @@ export function BioSection() {
         <img
           src="/images/IMG_6147.JPG"
           alt="Profile photo"
-          className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mb-6"
+          className="w-64 max-w-full rounded-xl object-contain mb-6"
         />
 
         <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
