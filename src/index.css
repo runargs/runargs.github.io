@@ -25,9 +25,9 @@
     --popover: 36 43% 97%;
     --popover-foreground: 30 8% 15%;
 
-    /* Antique gold accent */
-    --primary: 43 50% 54%;
-    --primary-foreground: 36 43% 97%;
+    /* Terracotta accent */
+    --primary: 25 48% 50%;
+    --primary-foreground: 36 43% 97%; 
 
     /* Forest green secondary */
     --secondary: 135 14% 33%;
@@ -37,8 +37,8 @@
     --muted: 100 12% 55%;
     --muted-foreground: 30 8% 40%;
 
-    /* Terracotta accent */
-    --accent: 25 48% 50%;
+    /* Gold accent */
+    --accent: 43 50% 54%;
     --accent-foreground: 36 43% 97%;
 
     --destructive: 0 84.2% 60.2%;
