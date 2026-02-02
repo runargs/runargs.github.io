@@ -20,7 +20,7 @@ export function ResumeSection() {
         <div className="bg-card rounded-lg border border-border p-8 mb-8 shadow-warm">
           <div className="flex items-center justify-center gap-3 mb-6">
             <FileText className="h-8 w-8 text-primary" />
-            <span className="font-serif text-xl">Your Name — Resume 2024</span>
+            <span className="font-serif text-xl">Alexa Thoennes — Resume 2026</span>
           </div>
 
           {/* Brief summary */}
