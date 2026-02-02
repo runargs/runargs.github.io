@@ -6,7 +6,7 @@ const experiences = [
   {
     id: "mc-pm",
     company: "Mastercard Insights & Intelligence",
-    role: "Product Manager II",
+    role: "Building AI Ecosystems · Product Manager",
     location: "Remote",
     duration: "Jan 2024 - Present",
     description: "Driving product strategy for Mastercard Business Intelligence's AI ecosystem, featuring a multi-agent RAG chatbot and an AI-native CMS workflows to transformed insight generation for global market intelligence.",
@@ -21,10 +21,10 @@ const experiences = [
   {
     id: "mc-devops",
     company: "Mastercard",
-    role: "DevOps Engineer I",
+    role: "Streamlining Global Product Deployment · Automation Engineer",
     location: "Hybrid · New York, NY",
     duration: "Jan 2022 - Jan 2024",
-    description: "Standardizing delivery pipelines and documentation practices for high-scale enterprise applications.",
+    description: "Architected and managed CI/CD pipelines for core global products, ensuring stable deployment cycles and standardized automation across the enterprise.",
     impact: [
       "Optimized automation pipelines for 100+ applications, reducing deployment time by ~50%.",
       "Improved cross-team alignment time by 42% through standardized documentation practices."
@@ -36,7 +36,7 @@ const experiences = [
 const earlierExperience = [
   { company: "Visa", role: "Software Engineer", year: "2021" },
   { company: "Google", role: "Developer Relations Engineer", year: "2020" },
-  { company: "Nexus Valley Solutions", role: "Product", year: "2018" }
+  { company: "Nexus Valley Solutions", role: "Product (Startup)", year: "2018" }
 ];
 
 export function WorkSection() {
