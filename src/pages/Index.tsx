@@ -72,10 +72,10 @@ const Index = () => {
         <WorkSection />
         <AccomplishmentsSection />
         <MentorshipSection />
-        <CommunitySection />
         <TalksSection />
-        <SideProjectsSection />
+        <CommunitySection />
         <ArtSection />
+        <SideProjectsSection />
         <ResumeSection />
 
         {/* Footer */}
@@ -84,7 +84,7 @@ const Index = () => {
             <span className="font-flourish text-3xl text-primary/40">❧</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Crafted with care · © 2024
+            Created by Alexa, Assisted by Lovable AI · © 2026
           </p>
         </footer>
       </main>
