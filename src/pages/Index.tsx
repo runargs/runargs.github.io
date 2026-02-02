@@ -70,13 +70,13 @@ const Index = () => {
       <main className="flex-1 pt-14 pb-20 md:pt-0 md:pb-0">
         <BioSection />
         <WorkSection />
-        {/*<AccomplishmentsSection />*/}
+        <AccomplishmentsSection />
         <TalksSection />
         <CommunitySection />
         <MentorshipSection />
         <ArtSection />
         <SideProjectsSection />
-        {/*<ResumeSection />*/}
+        <ResumeSection />
 
         {/* Footer */}
         <footer className="py-12 px-6 text-center border-t border-border">
@@ -84,7 +84,7 @@ const Index = () => {
             <span className="font-flourish text-3xl text-primary/40">❧</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Crafted with care · © 2024
+            Crafted by Alexa, built with Lovable · © 2026
           </p>
         </footer>
       </main>
