@@ -42,8 +42,8 @@ const navGroups: NavGroup[] = [
     label: "Community",
     items: [
       { id: "talks", label: "Speaking & Publication", icon: <Mic className="h-4 w-4" /> },
-      { id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
       { id: "community-building", label: "Community Building", icon: <Users className="h-4 w-4" /> },
+      { id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
     ],
   },
   {
