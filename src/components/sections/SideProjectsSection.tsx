@@ -13,31 +13,17 @@ interface SideProject {
 const sideProjects: SideProject[] = [
   {
     id: "1",
-    title: "Color Palette Generator",
-    description: "A playful tool that generates harmonious color palettes inspired by Art Nouveau patterns and natural forms.",
-    tags: ["Web App", "Design Tool", "Open Source"],
-    status: "active",
-  },
-  {
-    id: "2",
-    title: "Daily Sketch Bot",
-    description: "A Twitter bot that posts daily creative prompts for designers, complete with reference images and challenges.",
-    tags: ["Bot", "Automation", "Community"],
-    status: "active",
-  },
-  {
-    id: "3",
-    title: "Typography Experiments",
-    description: "A collection of kinetic typography experiments exploring motion, interaction, and legibility on the web.",
-    tags: ["Animation", "Typography", "WebGL"],
+    title: "Haruhay Studio",
+    description: "Creative and culinary explorations. IG: @haruhay.studio",
+    tags: ["Ceramic art", "Culinary", "Portfolio"],
     status: "experiment",
   },
   {
-    id: "4",
-    title: "Ceramic Glaze Calculator",
-    description: "A specialized tool for ceramicists to calculate and adjust glaze recipes based on available materials.",
-    tags: ["Utility", "Ceramics", "Niche"],
-    status: "archived",
+    id: "2",
+    title: "Portfolio Management Hub & Ledger",
+    description: "Proactive, zero-based budgeting application and comprehensive net worth tracking, supporting complex asset-weighted portfolio forecasting simulations (Monte Carlo), alternative assets, itemized payslip tracking, connector imports. Postgres + Supabase for backend, Grafana for intuitive visualizations.",
+    tags: ["Bot", "Automation", "Community"],
+    status: "active",
   },
 ];
 
