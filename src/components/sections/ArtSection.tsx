@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-type GalleryType = "ceramics" | "sketch" | "photography";
+type GalleryType = "culinary" | "ceramics" | "fashion design";
 
 interface ArtPiece {
   id: string;
@@ -13,34 +13,26 @@ interface ArtPiece {
   date: string;
   description?: string;
   gallery: GalleryType;
+  image?: string;
 }
 
 const artPieces: ArtPiece[] = [
+  // Culinary
+  { id: "s1", title: "Urban Lines", date: "2024", description: "Ink on paper, architectural study", gallery: "culinary", image: "/images/gallerytasting.jpeg"},
   // Ceramics
-  { id: "c1", title: "Organic Form I", date: "2024", description: "Hand-thrown stoneware with natural ash glaze", gallery: "ceramics" },
-  { id: "c2", title: "Botanical Bowl", date: "2024", description: "Porcelain with carved leaf patterns", gallery: "ceramics" },
-  { id: "c3", title: "Earth Vessel", date: "2023", description: "Coil-built terracotta with burnished surface", gallery: "ceramics" },
-  { id: "c4", title: "Flow Series", date: "2023", description: "Experimental glaze studies on stoneware", gallery: "ceramics" },
-  // Sketches
-  { id: "s1", title: "Urban Lines", date: "2024", description: "Ink on paper, architectural study", gallery: "sketch" },
-  { id: "s2", title: "Portrait Study", date: "2024", description: "Graphite, observational drawing", gallery: "sketch" },
-  { id: "s3", title: "Botanical Forms", date: "2023", description: "Mixed media, nature-inspired", gallery: "sketch" },
-  { id: "s4", title: "Abstract Motion", date: "2023", description: "Charcoal, gestural exploration", gallery: "sketch" },
+  { id: "c1", title: "Organic Form I", date: "2024", description: "Hand-thrown stoneware with natural ash glaze", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
   // Photography
-  { id: "p1", title: "Golden Hour, Kyoto", date: "2024", description: "Temple gardens at sunset", gallery: "photography" },
-  { id: "p2", title: "Market Colors", date: "2024", description: "Marrakech spice market", gallery: "photography" },
-  { id: "p3", title: "Nordic Light", date: "2023", description: "Arctic landscape, Norway", gallery: "photography" },
-  { id: "p4", title: "Street Rhythm", date: "2023", description: "Urban life in Tokyo", gallery: "photography" },
+  { id: "p1", title: "TBA", date: "2026", description: "Visuals coming soon", gallery: "fashion design", image: "/images/IMG_8420.jpg"},
 ];
 
 const galleries: { id: GalleryType; label: string }[] = [
+  { id: "culinary", label: "Sketch" },
   { id: "ceramics", label: "Ceramics" },
-  { id: "sketch", label: "Sketch" },
-  { id: "photography", label: "Travel Photography" },
+  { id: "fashion design", label: "Travel Photography" },
 ];
 
 export function ArtSection() {
-  const [activeGallery, setActiveGallery] = useState<GalleryType>("ceramics");
+  const [activeGallery, setActiveGallery] = useState<GalleryType>("culinary");
   const [selectedPiece, setSelectedPiece] = useState<ArtPiece | null>(null);
 
   const filteredPieces = artPieces.filter((piece) => piece.gallery === activeGallery);
@@ -50,7 +42,7 @@ export function ArtSection() {
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Art Galleries</h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Artisan Gallery</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Creative expressions beyond the screen
           </p>
@@ -83,13 +75,20 @@ export function ArtSection() {
               className="card-hover border-gold-hover cursor-pointer overflow-hidden group"
             >
               {/* Image placeholder */}
-              <div className="aspect-square bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-flourish text-3xl text-primary/20 group-hover:scale-110 transition-transform duration-300">
-                    ❧
-                  </span>
-                </div>
+              <div className="aspect-square relative overflow-hidden">
+                {piece.image ? (
+                  <img
+                    src={piece.image}
+                    alt={piece.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5">
+                    <span className="font-flourish text-3xl text-primary/20">❧</span>
+                  </div>
+                )}
               </div>
+
 
               <CardContent className="p-3">
                 <h3 className="font-serif text-sm font-medium truncate">{piece.title}</h3>
@@ -107,11 +106,18 @@ export function ArtSection() {
             </VisuallyHidden>
             {selectedPiece && (
               <div>
-                {/* Image placeholder */}
-                <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-flourish text-8xl text-primary/20">❧</span>
-                  </div>
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  {selectedPiece.image ? (
+                    <img
+                      src={selectedPiece.image}
+                      alt={selectedPiece.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
+                      <span className="font-flourish text-8xl text-primary/20">❧</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Info */}
