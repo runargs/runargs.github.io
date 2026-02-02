@@ -33,7 +33,7 @@ const navGroups: NavGroup[] = [
     label: "Professional",
     items: [
       { id: "work", label: "Work", icon: <Briefcase className="h-4 w-4" /> },
-      { id: "accomplishments", label: "Accomplishments", icon: <Award className="h-4 w-4" /> },
+      // { id: "accomplishments", label: "Accomplishments", icon: <Award className="h-4 w-4" /> },
       //{ id: "resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
     ],
   },
@@ -42,7 +42,7 @@ const navGroups: NavGroup[] = [
     label: "Community",
     items: [
       { id: "talks", label: "Speaking & Publication", icon: <Mic className="h-4 w-4" /> },
-      //{ id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
+      { id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
       { id: "community-building", label: "Community Building", icon: <Users className="h-4 w-4" /> },
     ],
   },
