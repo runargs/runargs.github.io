@@ -2,138 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/*  VINTAGE: IVORY & OXBLOOD EDITION
+/* VINTAGE: INKY SILK EDITION
+  - Sidebar: Deep Sumi-Ink (Professional & Grounded)
+  - Content: Polished Ivory/Silk (Clean & Elegant)
+  - No color leakage between sections
 */
-
-@font-face {
-  font-family: "PPMondwest-Regular";
-  src: url("/fonts/PPMondwest-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 @layer base {
   :root {
-    /* BACKGROUND: Bright Ivory / Polished Silk (No more grey) */
+    /* MAIN CONTENT: Ivory & Burgundy */
     --background: 40 50% 98%; 
     --foreground: 350 60% 12%; 
 
-    /* CARDS: Warm Parchment */
     --card: 40 40% 96%;
     --card-foreground: 350 60% 12%;
 
-    --popover: 40 50% 98%;
-    --popover-foreground: 350 60% 12%;
-
-    /* PRIMARY: Deep High-Contrast Burgundy */
+    /* PRIMARY ACCENT: The Burgundy */
     --primary: 350 70% 25%; 
     --primary-foreground: 40 50% 98%; 
 
-    /* SECONDARY: Muted Bronze-Ink */
-    --secondary: 35 20% 20%;
-    --secondary-foreground: 40 50% 98%;
-
-    /* MUTED: Soft Tea-Stain */
-    --muted: 40 20% 90%;
-    --muted-foreground: 350 10% 40%;
-
-    /* ACCENT: Antiqued Gold */
-    --accent: 38 40% 45%;
-    --accent-foreground: 40 50% 98%;
-
-    /* BORDERS: Delicate Silk Thread */
     --border: 40 25% 88%;
-    --input: 40 25% 88%;
-    --ring: 350 70% 25%;
-
     --radius: 0.5rem;
 
-/* SIDEBAR: Dark Lacquer with High-Contrast Silk Text */
-    --sidebar-background: 350 60% 8%;   /* Deepest Oxblood/Black */
-    --sidebar-foreground: 40 50% 90%;   /* Bright Aged Silk (Accessible) */
-    --sidebar-primary: 350 70% 45%;    /* Brightened Burgundy for active states */
+    /* SIDEBAR: The Professional "Inky" Look (Back to Charcoal) */
+    --sidebar-background: 210 10% 8%;   /* Deep Inky Charcoal (Not Red) */
+    --sidebar-foreground: 40 30% 92%;   /* High-Contrast Champagne Silk */
+    --sidebar-primary: 350 70% 45%;    /* Pop of Burgundy for active icons */
     --sidebar-primary-foreground: 40 50% 98%;
     
-    /* Hover states on the dark sidebar */
-    --sidebar-accent: 350 60% 15%;      /* Slightly lighter lacquer */
-    --sidebar-accent-foreground: 40 50% 95%;
+    --sidebar-accent: 210 10% 15%;      /* Subtle lighter ink for hover */
+    --sidebar-accent-foreground: 40 50% 98%;
     
-    --sidebar-border: 350 40% 15%;
+    --sidebar-border: 210 10% 15%;
     --sidebar-ring: 350 70% 25%;
 
-    /* Legacy Token Mapping */
+    /* Legacy Token Mappings */
     --gold: 38 40% 45%;
-    --forest: 165 20% 25%;
-    --terracotta: 350 70% 25%;
     --cream: 40 50% 98%;
-    --charcoal: 350 60% 10%;
+    --charcoal: 210 10% 8%;
   }
 
+  /* Dark mode logic remains consistent but shifted to lacquer tones */
   .dark {
-    /* "Night Lacquer" mode */
-    --background: 350 60% 5%;
+    --background: 210 10% 5%;
     --foreground: 40 30% 90%;
-    --card: 350 60% 8%;
-    --card-foreground: 40 30% 90%;
+    --card: 210 10% 8%;
     --primary: 350 70% 40%;
-    --primary-foreground: 350 60% 5%;
-    --border: 350 40% 15%;
   }
-}
-
-@layer base {
-  * { @apply border-border; }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Instrument Sans', sans-serif;
-  }
-  h1, h2, h3, h4, h5, h6 { font-family: 'Instrument Serif', serif; }
-  .font-display { font-family: 'PPMondwest-Regular', cursive; }
-  .font-serif { font-family: 'Instrument Serif', serif; }
 }
 
 @layer components {
-  /* Card hover: Subtle lift with a warm shadow */
-  .card-hover {
-    @apply transition-all duration-500 ease-out border border-transparent;
-  }
-
+  /* This prevents the sidebar colors from affecting the main cards */
   .card-hover:hover {
-    @apply scale-[1.01] bg-card/80;
+    @apply scale-[1.01] bg-card;
     box-shadow: 0 15px 40px -12px hsl(350 70% 25% / 0.12);
     border-color: hsl(var(--primary) / 0.2);
   }
 
-/* Ensure sidebar icons also inherit the high contrast silk color */
-  [data-sidebar="sidebar"] {
-    @apply text-[hsl(var(--sidebar-foreground))];
-  }
-
-  /* Optional: Add a subtle gold left-border to active nav items 
-     to make them pop against the dark background */
-  .nav-active-sidebar {
-    @apply relative border-l-2 border-primary pl-2;
-  }
-
-  .flourish::before,
-  .flourish::after {
+  /* Navigation Flourish */
+  .flourish::before, .flourish::after {
     content: 'ꕥ';
     @apply text-primary/80 mx-2;
-  }
-
-  .section-divider::before,
-  .section-divider::after {
-    content: '';
-    @apply flex-1 h-[0.5px] bg-gradient-to-r from-transparent via-primary/30 to-transparent;
   }
 }
 
 @layer utilities {
+  /* THE BURGUNDY GRADIENT */
   .text-gold-gradient {
     background: linear-gradient(
       135deg, 
-      hsl(350, 80%, 15%) 0%,  /* Deepest Oxblood */
+      hsl(350, 80%, 15%) 0%,  /* Deep Oxblood */
       hsl(350, 60%, 35%) 100% /* Vivid Burgundy */
     );
     -webkit-background-clip: text;
@@ -141,10 +79,7 @@
     background-clip: text;
   }
 
-  .shadow-warm {
-    box-shadow: 0 10px 30px -10px hsl(350 70% 20% / 0.1);
-  }
-
+  /* Refined Border Hover */
   .border-gold-hover:hover {
     border-color: hsl(var(--primary));
   }
