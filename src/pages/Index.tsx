@@ -84,7 +84,9 @@ const Index = () => {
             <span className="font-flourish text-3xl text-primary/40">❧</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Crafted by Alexa, built with Generative AI assistance<small><em>(Lovable, Github Copilot, Gemini, Claude, GPT-5)</em></small> · © 2026
+            Crafted by Alexa, built with Generative AI assistance
+            <br><small><em>(Lovable, Github Copilot, Gemini, Claude, GPT-5)</em></small>
+            <br>© 2026
           </p>
         </footer>
       </main>
