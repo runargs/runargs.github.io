@@ -37,7 +37,7 @@ export function ResumeSection() {
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1.5 text-[10px]">✦</span>
                   <span>
-                    Strategic impact within <strong>Fortune 50</strong> global enterprises and high-growth, AI-native startups.
+                    Strategic impact within both innovation hubs of global enterprises and agile startups.
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -61,12 +61,12 @@ export function ResumeSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                 {[
-                  { title: "Influencing with Diplomacy", org: "Wharton Exec Ed", date: "2025" },
-                  { title: "Machine Learning for Business", org: "Wharton Exec Ed", date: "2025" },
+                  { title: "Influencing with Diplomacy", org: "Wharton Executive Education", date: "2025" },
+                  { title: "Machine Learning for Business", org: "Wharton Executive Education", date: "2025" },
                   { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
                   { title: "Product Management E2E", org: "Mastercard", date: "2023" },
                   { title: "Product Management Fundamentals", org: "Pluralsight", date: "2023" },
-                  { title: "Intro to Marketing", org: "Wharton", date: "2016" },
+                  { title: "Intro to Marketing", org: "Wharton Executive Education", date: "2016" },
                 ].map((cert, i) => (
                   <div key={i} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
                     <div className="min-w-0">
