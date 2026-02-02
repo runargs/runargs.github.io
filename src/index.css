@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* VINTAGE DESIGN SYSTEM 
-  Redefining the legacy Art Nouveau tokens for a Lacquered Burgundy & Inky Ink aesthetic.
-  Backwards compatible: No JS/TSX changes required.
+/*  VINTAGE: IVORY & OXBLOOD EDITION
 */
 
 @font-face {
@@ -17,147 +15,109 @@
 
 @layer base {
   :root {
-    /* Background: Aged Silk / Pale Parchment */
-    --background: 36 30% 96%;
-    --foreground: 350 60% 10%; /* Inky Burgundy Black */
+    /* BACKGROUND: Bright Ivory / Polished Silk (No more grey) */
+    --background: 40 50% 98%; 
+    --foreground: 350 60% 12%; 
 
-    /* Cards: Polished Silk */
-    --card: 36 25% 94%;
+    /* CARDS: Warm Parchment */
+    --card: 40 40% 96%;
     --card-foreground: 350 60% 12%;
 
-    --popover: 36 30% 96%;
-    --popover-foreground: 350 60% 10%;
+    --popover: 40 50% 98%;
+    --popover-foreground: 350 60% 12%;
 
-    /* PRIMARY: Vintage Oxblood Burgundy (Replaces Terracotta) */
-    --primary: 355 45% 35%;
-    --primary-foreground: 36 43% 97%; 
+    /* PRIMARY: Deep High-Contrast Burgundy */
+    --primary: 350 70% 25%; 
+    --primary-foreground: 40 50% 98%; 
 
-    /* SECONDARY: Sumi-e Ink Charcoal (Replaces Forest Green) */
-    --secondary: 210 10% 12%;
-    --secondary-foreground: 36 43% 97%;
+    /* SECONDARY: Muted Bronze-Ink */
+    --secondary: 35 20% 20%;
+    --secondary-foreground: 40 50% 98%;
 
-    /* MUTED: Dusty Rose / Aged Paper */
-    --muted: 350 10% 65%;
-    --muted-foreground: 350 15% 40%;
+    /* MUTED: Soft Tea-Stain */
+    --muted: 40 20% 90%;
+    --muted-foreground: 350 10% 40%;
 
-    /* ACCENT: Muted Imperial Gold / Antiqued Brass */
+    /* ACCENT: Antiqued Gold */
     --accent: 38 40% 45%;
-    --accent-foreground: 36 43% 97%;
+    --accent-foreground: 40 50% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    /* Warm Borders: Muted Tea-Stain */
-    --border: 36 20% 88%;
-    --input: 36 20% 88%;
-    --ring: 355 45% 35%;
+    /* BORDERS: Delicate Silk Thread */
+    --border: 40 25% 88%;
+    --input: 40 25% 88%;
+    --ring: 350 70% 25%;
 
     --radius: 0.5rem;
 
-    /* Sidebar: Deep Ink / Lacquer */
-    --sidebar-background: 210 10% 9%;
-    --sidebar-foreground: 36 30% 90%;
-    --sidebar-primary: 355 45% 35%;
-    --sidebar-primary-foreground: 36 43% 97%;
-    --sidebar-accent: 355 45% 20%;
-    --sidebar-accent-foreground: 36 43% 97%;
-    --sidebar-border: 210 10% 15%;
-    --sidebar-ring: 355 45% 35%;
+    /* SIDEBAR: Light Ivory Concept (High Contrast) */
+    --sidebar-background: 40 45% 95%; /* Ivory tone */
+    --sidebar-foreground: 350 70% 20%; /* Darker Red for legibility */
+    --sidebar-primary: 350 70% 25%;
+    --sidebar-primary-foreground: 40 50% 98%;
+    --sidebar-accent: 40 30% 90%;
+    --sidebar-accent-foreground: 350 70% 20%;
+    --sidebar-border: 40 20% 85%;
+    --sidebar-ring: 350 70% 25%;
 
-    /* Legacy Token Mapping (For backward compatibility) */
+    /* Legacy Token Mapping */
     --gold: 38 40% 45%;
-    --forest: 165 15% 25%; /* Deep Jade */
-    --terracotta: 355 45% 35%; /* Now Burgundy */
-    --sage: 38 15% 60%;
-    --cream: 36 30% 96%;
-    --charcoal: 210 10% 10%;
+    --forest: 165 20% 25%;
+    --terracotta: 350 70% 25%;
+    --cream: 40 50% 98%;
+    --charcoal: 350 60% 10%;
   }
 
   .dark {
-    --background: 350 60% 5%; /* Deep Lacquer Black */
-    --foreground: 36 30% 88%;
-
-    --card: 350 60% 7%;
-    --card-foreground: 36 30% 88%;
-
-    --primary: 355 45% 45%;
+    /* "Night Lacquer" mode */
+    --background: 350 60% 5%;
+    --foreground: 40 30% 90%;
+    --card: 350 60% 8%;
+    --card-foreground: 40 30% 90%;
+    --primary: 350 70% 40%;
     --primary-foreground: 350 60% 5%;
-
-    --secondary: 165 15% 15%; /* Dark Jade */
-    --secondary-foreground: 36 30% 90%;
-
-    --muted: 350 20% 20%;
-    --muted-foreground: 350 10% 60%;
-
-    --border: 350 40% 12%;
-    --ring: 355 45% 45%;
+    --border: 350 40% 15%;
   }
 }
 
 @layer base {
   * { @apply border-border; }
-  html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Instrument Sans', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 { font-family: 'Instrument Serif', serif; }
   .font-display { font-family: 'PPMondwest-Regular', cursive; }
-  .font-flourish { font-family: 'Miss Fajardose', cursive; }
   .font-serif { font-family: 'Instrument Serif', serif; }
-  .font-sans { font-family: 'Instrument Sans', sans-serif; }
 }
 
 @layer components {
-  /* Chinoiserie card hover: Subtle lacquer lift */
+  /* Card hover: Subtle lift with a warm shadow */
   .card-hover {
-    @apply transition-all duration-500 ease-out;
+    @apply transition-all duration-500 ease-out border border-transparent;
   }
 
   .card-hover:hover {
-    @apply scale-[1.01] shadow-2xl;
-    box-shadow: 0 20px 50px -15px hsl(var(--primary) / 0.15);
+    @apply scale-[1.01] bg-card/80;
+    box-shadow: 0 15px 40px -12px hsl(350 70% 25% / 0.12);
+    border-color: hsl(var(--primary) / 0.2);
   }
 
-  /* Nav active: Burgundy Silk Underline */
-  .nav-active { @apply relative; }
+  /* Nav active: High-Contrast Silk Line */
   .nav-active::after {
     content: '';
     @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary;
   }
 
-  /* Botanical flourish decorations: Replaced with calligraphic flair */
-  .flourish { @apply relative; }
   .flourish::before,
   .flourish::after {
-    content: 'ꕥ'; /* Calligraphic Flower */
-    @apply text-primary opacity-70 mx-2;
+    content: 'ꕥ';
+    @apply text-primary/80 mx-2;
   }
 
-  .fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .stagger-fade-in > * {
-    opacity: 0;
-    animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
-
-  /* Divider: Silk Thread motif */
-  .section-divider {
-    @apply flex items-center justify-center gap-4 py-12;
-  }
   .section-divider::before,
   .section-divider::after {
     content: '';
-    @apply flex-1 h-[0.5px] bg-gradient-to-r from-transparent via-primary/40 to-transparent;
+    @apply flex-1 h-[0.5px] bg-gradient-to-r from-transparent via-primary/30 to-transparent;
   }
 }
 
@@ -165,23 +125,16 @@
   .text-gold-gradient {
     background: linear-gradient(
       135deg, 
-      hsl(350, 60% , 15%) 0%,  /* Deep Oxblood */
-      hsl(355, 45%, 40%) 100% /* Vintage Silk Burgundy */
+      hsl(350, 80%, 15%) 0%,  /* Deepest Oxblood */
+      hsl(350, 60%, 35%) 100% /* Vivid Burgundy */
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.05));
   }
 
-  /* Deep Lacquer Shadow */
   .shadow-warm {
-    box-shadow: 0 10px 30px -10px hsl(350 60% 10% / 0.15);
-  }
-
-  /* Redefined border hover to Burgundy */
-  .border-gold-hover {
-    @apply border-border transition-all duration-300;
+    box-shadow: 0 10px 30px -10px hsl(350 70% 20% / 0.1);
   }
 
   .border-gold-hover:hover {
