@@ -59,7 +59,7 @@ export function SideProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
   return (
-    <section id="side-projects" className="py-20 px-6 md:px-12 bg-sidebar/50">
+    <section id="side-projects" className="py-20 px-6 md:px-12 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Side Projects</h2>
