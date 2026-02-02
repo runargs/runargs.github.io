@@ -31,7 +31,7 @@ export function ResumeSection() {
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1.5 text-[10px]">✦</span>
                   <span>
-                    4+ years bridging technical orchestration and product vision to build context-aware, intelligent systems.
+                    4+ years bridging execution, orchestration and product vision to build and ship technical products.
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
