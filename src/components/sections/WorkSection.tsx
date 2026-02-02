@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Zap, MapPin, Calendar, Sparkles, X, Filter, Quote, Heart, Palette, Play } from "lucide-react";
+import { Zap, MapPin, Calendar, Sparkles, X, Quote, Play, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -17,8 +17,12 @@ const experiences = [
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
     ],
-    skills: ["AI/ML", "Strategy", "Data Analysis", "Product Management", "Web Development"],
-    video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" } 
+    skills: [
+      "Product Strategy", "AI/ML", "RAG Architecture", "Data Analysis", 
+      "GTM Strategy", "UX Design", "Enterprise Scale", "Stakeholder Management"
+    ],
+    video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
+    featured: true
   },
   {
     id: "mc-devops",
@@ -29,10 +33,29 @@ const experiences = [
     description: "Architected CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
     impact: [
       "Reduced deployment time by ~50% via optimized automation pipelines.",
-      "Improved cross-team alignment by 42% through standardized documentation.",
-      "Standardized automation scripts to support high-availability global services."
+      "Improved cross-team alignment by 42% through standardized documentation."
     ],
-    skills: ["Automation", "CI/CD", "Infrastructure", "Python", "Web Development", "Strategy"]
+    skills: [
+      "Automation", "Infrastructure", "CI/CD", "Product Strategy", 
+      "Python", "Enterprise Scale", "Technical Writing"
+    ],
+    featured: true
+  },
+  {
+    id: "u-scranton",
+    company: "University of Scranton",
+    role: "Enterprise Web Developer",
+    location: "Scranton, PA",
+    duration: "Aug 2020 - 2022",
+    description: "Architected digital solutions servicing 6,000+ students and 100k+ monthly visitors.",
+    impact: [
+      "Migrated CV Creator Application from legacy ASP/Access to a modern PowerApps/SQL Server stack.",
+      "Implemented automation scripts and widgets using Acalog API and Python to streamline site content."
+    ],
+    skills: [
+      "Web Development", "SQL", "Python", "Automation", 
+      "UX Design", "Full Stack", "Data Analysis"
+    ]
   },
   {
     id: "visa",
@@ -43,9 +66,13 @@ const experiences = [
     description: "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills.",
     impact: [
       "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users.",
-      "Developed modular semantic search components using NLP (Elasticsearch) to optimize international site maintenance."
+      "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
-    skills: ["AI/ML", "Web Development", "UX/Design", "Architecture", "Localization"]
+    skills: [
+      "Web Development", "AI/ML", "UX Design", "Architecture", 
+      "Localization", "Enterprise Scale", "Full Stack"
+    ],
+    featured: true
   },
   {
     id: "google",
@@ -63,108 +90,61 @@ const experiences = [
       author: "Billy Jacobson",
       title: "Senior Developer Advocate"
     },
-    skills: ["Automation", "Strategy", "Web Development", "Open Source", "User Research"]
-  },
-  {
-    id: "u-scranton",
-    company: "University of Scranton",
-    role: "Enterprise Web Developer",
-    location: "Scranton, PA",
-    duration: "Aug 2020 - 2022",
-    description: "Architected digital solutions servicing 6,000+ students and 100k+ monthly visitors.",
-    impact: [
-      "Migrated CV Creator Application from legacy ASP/Access to a modern PowerApps/SQL Server stack.",
-      "Implemented automation scripts and widgets using Acalog API and Python to streamline site content.",
-      "Resolved high-volume IT support tickets, balancing technical maintenance with feature development."
+    skills: [
+      "Technical Writing", "Automation", "Open Source", "User Research", 
+      "Python", "Web Development", "Product Strategy"
     ],
-    skills: ["Web Development", "Python", "SQL", "Automation", "Technical Support"]
+    featured: true
   },
   {
     id: "nexus",
     company: "Nexus Valley Solutions",
-    role: "Associate Product Manager - Technical",
+    role: "Associate Product Manager — Technical",
     location: "Scranton, PA",
     duration: "Oct 2018 - Mar 2019",
     description: "Foundational technical product role focused on STEAM education platform design and award-winning product strategy.",
     impact: [
-      "Designed and launched a STEAM platform with an agile team, translating classroom needs into an award-winning product concept.",
-      "Recipient of the <strong>tecBRIDGE radio Business Plan Award</strong> for excellence in product strategy."
+      "Designed and launched a STEAM platform with an agile team, turning a classroom need into an award-winning concept.",
+      "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
-    skills: ["Product Management", "Strategy", "UX/Design", "Agile"]
-  },
-  {
-    id: "manila-design",
-    company: "Manila Science Alumni Org",
-    role: "Graphic Designer",
-    location: "Philippines",
-    duration: "July 2015",
-    description: "Visual communication for scientific laboratory initiatives.",
-    impact: [
-      "Identified stakeholder needs through virtual collaboration for technical research posters.",
-      "Translated complex project specifications into high-impact visual narratives."
-    ],
-    skills: ["UX/Design", "Visual Communication"],
-    type: "secondary"
-  },
-  {
-    id: "jefferson-volunteer",
-    company: "Thomas Jefferson University Hospital",
-    role: "Patient Assistance Volunteer",
-    location: "Philadelphia, PA",
-    duration: "2016",
-    description: "Front-line patient advocacy and hospital policy guidance.",
-    impact: [
-      "Guided patients and families through hospital policies and surgical waiting room procedures.",
-      "Facilitated empathetic communication between medical staff and patient families."
-    ],
-    skills: ["Humanist", "User Research", "Advocacy"],
-    type: "secondary"
+    skills: [
+      "Product Strategy", "UX Design", "Agile", "User Research", 
+      "GTM Strategy", "Stakeholder Management"
+    ]
   }
 ];
 
-const globalSkills = Array.from(new Set(experiences.flatMap(e => e.skills))).sort();
-
 export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const globalSkills = Array.from(new Set(experiences.flatMap(e => e.skills))).sort();
 
   const filteredExperiences = useMemo(() => {
-    // Show secondary roles ONLY when their specific skills are clicked
-    if (!activeFilter) return experiences.filter(e => e.type !== "secondary");
+    if (!activeFilter) return experiences;
     return experiences.filter(exp => exp.skills.includes(activeFilter));
   }, [activeFilter]);
 
   return (
-    <section id="work" className="py-20 px-6 md:px-12 bg-background">
+    <section id="work" className="py-24 px-6 md:px-12 bg-background">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4 italic">Experience</h2>
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4 italic">Professional Journey</h2>
           <p className="text-muted-foreground text-sm uppercase tracking-widest font-medium">
-            Bridging technical orchestration and human-centered strategy.
+            Engineering scale. Defining strategy. Delivering impact.
           </p>
         </div>
 
-        {/* SKILL DIRECTORY */}
-        <div className="mb-10 p-6 bg-card/30 border border-border/40 rounded-xl shadow-sm">
-          <div className="flex items-center justify-between mb-6">
-             <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.3em]">
-              <Sparkles className="h-3 w-3" /> Skill Experience Matrix
-            </div>
-            {activeFilter && (
-              <button onClick={() => setActiveFilter(null)} className="text-[10px] font-bold text-primary flex items-center gap-1">
-                <X className="h-3 w-3" /> CLEAR FILTER
-              </button>
-            )}
-          </div>
+        {/* PILL-BASED FILTER */}
+        <div className="mb-12 p-6 bg-card/30 border border-border/40 rounded-2xl shadow-sm">
           <div className="flex flex-wrap gap-2">
             {globalSkills.map((skill) => (
               <button
                 key={skill}
                 onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-medium transition-all border",
+                  "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border",
                   activeFilter === skill 
-                    ? "bg-primary text-primary-foreground border-primary scale-105"
-                    : "bg-background text-muted-foreground border-border/60 hover:border-primary/40"
+                    ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
+                    : "bg-background text-muted-foreground border-border/60 hover:border-primary/40 hover:text-primary"
                 )}
               >
                 {skill}
@@ -173,38 +153,49 @@ export function WorkSection() {
           </div>
         </div>
 
-        {/* LIST */}
-        <div className="space-y-8 min-h-[600px]">
+        {/* EXPERIENCE LIST */}
+        <div className="space-y-12">
           {filteredExperiences.map((exp) => (
-            <Card key={exp.id} className="animate-in fade-in slide-in-from-bottom-4 duration-500 bg-card/40 border-border/40 shadow-sm">
+            <Card key={exp.id} className="relative animate-in fade-in slide-in-from-bottom-6 duration-700 bg-card/40 border-border/40 hover:border-primary/20 transition-all group shadow-none">
+              
+              {/* FEATURED RIBBON */}
+              {exp.featured && (
+                <div className="absolute -top-3 -right-3">
+                  <Badge className="bg-primary/10 text-primary border-primary/20 backdrop-blur-md flex gap-1 items-center px-3 py-1">
+                    <Star className="h-3 w-3 fill-primary/20" />
+                    <span className="text-[9px] uppercase tracking-tighter font-bold">Key Tenure</span>
+                  </Badge>
+                </div>
+              )}
+
               <CardHeader className="pb-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="font-serif text-xl md:text-2xl">{exp.role}</CardTitle>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
-                      <span className="text-primary font-bold text-[11px] uppercase tracking-widest">{exp.company}</span>
-                      <span className="text-[10px] text-muted-foreground flex items-center gap-1">
-                        <Calendar className="h-3 w-3" /> {exp.duration}
-                      </span>
-                      <span className="text-[10px] text-muted-foreground flex items-center gap-1">
-                        <MapPin className="h-3 w-3" /> {exp.location}
-                      </span>
+                    <CardTitle className="font-serif text-2xl md:text-3xl mb-1 group-hover:text-primary transition-colors">
+                      {exp.role}
+                    </CardTitle>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
+                      <span className="text-primary font-bold text-xs uppercase tracking-[0.15em]">{exp.company}</span>
+                      <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium">
+                        <Calendar className="h-3.5 w-3.5" /> {exp.duration}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium">
+                        <MapPin className="h-3.5 w-3.5" /> {exp.location}
+                      </div>
                     </div>
                   </div>
-                  {exp.type === "secondary" && (
-                     <Badge variant="outline" className="text-[8px] uppercase border-primary/30 text-primary">Hidden Context</Badge>
-                  )}
                 </div>
               </CardHeader>
 
-              <CardContent className="space-y-6 pt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                  <div className="space-y-4">
-                    <p className="text-xs md:text-sm text-foreground/70 leading-relaxed italic border-l-2 border-primary/20 pl-4">
+              <CardContent className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                  <div className="space-y-6">
+                    <p className="text-sm text-foreground/80 leading-relaxed italic border-l-4 border-primary/10 pl-5">
                       {exp.description}
                     </p>
+                    
                     {exp.video && (
-                      <div className="relative aspect-video overflow-hidden rounded-lg border border-primary/10 bg-black max-w-[280px]">
+                      <div className="relative aspect-video overflow-hidden rounded-xl border border-primary/10 bg-black shadow-2xl">
                         <iframe
                           src={`https://play.vidyard.com/${exp.video.id}?autoplay=1&muted=1&loop=1&v=4&type=inline`}
                           className="absolute inset-0 w-full h-full border-0"
@@ -214,14 +205,14 @@ export function WorkSection() {
                     )}
                   </div>
                 
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.2em]">
-                      <Zap className="h-3 w-3" /> Impact
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.25em]">
+                      <Zap className="h-4 w-4" /> Strategic Impact
                     </div>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-4">
                       {exp.impact.map((point, i) => (
-                        <li key={i} className="text-[10px] md:text-[11px] text-muted-foreground flex gap-2">
-                          <span className="text-primary/60 shrink-0 mt-1 text-[8px]">✦</span>
+                        <li key={i} className="text-[11px] md:text-xs text-muted-foreground leading-snug flex gap-3">
+                          <span className="text-primary mt-1 select-none">✦</span>
                           <span dangerouslySetInnerHTML={{ __html: point }} />
                         </li>
                       ))}
@@ -230,23 +221,23 @@ export function WorkSection() {
                 </div>
 
                 {exp.testimonial && (
-                  <div className="p-4 bg-primary/[0.03] border-l-2 border-primary/30 italic rounded-r-lg">
-                    <p className="text-[11px] md:text-xs text-foreground/80 mb-2">"{exp.testimonial.text}"</p>
-                    <cite className="text-[10px] not-italic font-bold text-primary">— {exp.testimonial.author}, {exp.testimonial.title}</cite>
+                  <div className="p-6 bg-primary/[0.03] border-l-4 border-primary/40 rounded-r-2xl italic">
+                    <p className="text-xs md:text-sm text-foreground/90 leading-relaxed mb-4">"{exp.testimonial.text}"</p>
+                    <cite className="text-[10px] not-italic font-extrabold text-primary uppercase tracking-widest">— {exp.testimonial.author}, {exp.testimonial.title}</cite>
                   </div>
                 )}
 
                 {/* RESTORED PILL BADGES */}
-                <div className="pt-4 border-t border-muted/20 flex flex-wrap gap-1.5">
+                <div className="pt-6 border-t border-muted/20 flex flex-wrap gap-2">
                   {exp.skills.map(s => (
                     <Badge 
                       key={s} 
                       variant="outline" 
                       className={cn(
-                        "rounded-full px-2.5 py-0.5 text-[9px] font-semibold transition-all",
+                        "rounded-full px-3 py-1 text-[9px] font-bold uppercase transition-all duration-300",
                         activeFilter === s 
-                          ? "bg-primary text-primary-foreground border-primary shadow-sm" 
-                          : "border-muted-foreground/10 text-muted-foreground/60 hover:border-primary/30"
+                          ? "bg-primary text-primary-foreground border-primary scale-110" 
+                          : "border-muted-foreground/20 text-muted-foreground/50 hover:border-primary/40"
                       )}
                     >
                       {s}
