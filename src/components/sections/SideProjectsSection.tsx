@@ -36,7 +36,6 @@ const sideProjects: SideProject[] = [
     status: "active"
   },
 ];
-];
 
 const statusColors = {
   active: "bg-forest/10 text-forest border-forest/30",
