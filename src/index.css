@@ -4,6 +4,14 @@
 
 /* Art Nouveau Design System - Warm & Earthy Palette */
 
+@font-face {
+  font-family: "PPMondwest-Regular";
+  src: url("/fonts/PPMondwest-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     /* Warm cream/ivory background */
