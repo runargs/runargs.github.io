@@ -25,7 +25,7 @@ export function ResumeSection() {
 
           {/* Brief summary */}
           <div className="text-left space-y-4 text-sm text-foreground/80 mb-8">
-            <div className="p-4 bg-sidebar/50 rounded">
+            <div className="p-4 bg-background rounded">
               <h4 className="font-medium text-foreground mb-2">Experience Highlights</h4>
               <ul className="space-y-1 list-disc list-inside text-muted-foreground">
                 <li>10+ years in design and product development</li>
@@ -34,7 +34,7 @@ export function ResumeSection() {
               </ul>
             </div>
 
-            <div className="p-4 bg-sidebar/50 rounded">
+            <div className="p-4 bg-background rounded">
               <h4 className="font-medium text-foreground mb-2">Education</h4>
               <ul className="space-y-1 text-muted-foreground">
                 <li>M.S. Human-Computer Interaction</li>
