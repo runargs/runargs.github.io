@@ -32,7 +32,15 @@ const sideProjects: SideProject[] = [
     image: "/images/finance.JPG",
   },
   {
-    id: "3",
+    id: "4",
+    title: "Traveler & Hiker",
+    description: "Sometimes with my dog. Norway, Sweden, Netherlands, Iceland, New Zealand, Austalia.",
+    tags: ["Globetrotter"],
+    status: "active",
+    image: "/images/puppy.jpg",
+  },
+  {
+    id: "5",
     title: "This Website",
     description: "Quite meta.",
     tags: ["Lovable AI", "Web Development"],
