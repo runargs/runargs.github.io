@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export function ResumeSection() {
   return (
-    <section id="resume" className="py-20 px-6 md:px-12 bg-sidebar/5">
+    <section id="resume" className="py-20 px-6 md:px-12 bg-background">
       <div className="max-w-2xl mx-auto text-center">
         {/* Decorative flourish */}
         <div className="mb-8">
