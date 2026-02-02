@@ -1,127 +1,192 @@
-import React, { useState, useMemo } from "react";
-import { Award, Star, Trophy, Sparkles, X, Target, Cpu, GraduationCap, Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
+import React, { useState } from 'react';
+import { Trophy, Star, Award } from 'lucide-react';
 
-interface Accomplishment {
-  id: string;
-  title: string;
-  organization: string;
-  year: string;
-  icon: "award" | "star" | "trophy";
-  category: "Technical" | "Strategy" | "Leadership" | "Academic";
-}
-
-const accomplishments: Accomplishment[] = [
-  { id: "1", title: "Strategic Business Plan Award", organization: "tecBRIDGE radio", year: "2018", icon: "award", category: "Strategy" },
-  { id: "2", title: "Excellence in Applied Computing (Magna Cum Laude)", organization: "University of Scranton", year: "2021", icon: "award", category: "Technical" },
-  { id: "3", title: "First Place: Autonomous Maze-Solving Robotics", organization: "University of Scranton", year: "2018", icon: "trophy", category: "Technical" },
-  { id: "4", title: "Technical Finalist: SumoBot Engineering", organization: "IEEE Hackathon", year: "2019", icon: "star", category: "Technical" },
-  { id: "5", title: "Ronald Reagan Leadership Award", organization: "Reagan Foundation", year: "2015", icon: "star", category: "Leadership" },
-  { id: "6", title: "Grand Champion Fundraiser", organization: "Walk to End Alzheimer’s", year: "2017", icon: "trophy", category: "Leadership" },
-  { id: "7", title: "Exemplary Leadership Award", organization: "21st Century Cyber Charter", year: "2018", icon: "star", category: "Leadership" },
-  { id: "8", title: "Regional Leadership Recognition", organization: "NBC10 / Widener University", year: "2018", icon: "award", category: "Leadership" },
-  { id: "9", title: "Graphic Design Competition Runner-Up", organization: "Instructables.com", year: "2015", icon: "star", category: "Strategy" },
-  { id: "10", title: "Scholastic Art & Writing Silver Key", organization: "Greater Philadelphia Region", year: "2015", icon: "award", category: "Strategy" },
-  { id: "11", title: "Academic Excellence: Top 3% of Class", organization: "21st Century Cyber Charter", year: "2018", icon: "star", category: "Academic" },
-  { id: "12", title: "Dean’s List for Academic Achievement", organization: "University of Scranton", year: "2021", icon: "star", category: "Academic" },
-  { id: "13", title: "University Merit Grant", organization: "University of Scranton", year: "2018", icon: "award", category: "Academic" },
-  { id: "14", title: "Freedom Credit Union Grant", organization: "Freedom Credit Union", year: "2018", icon: "award", category: "Academic" },
-  { id: "15", title: "Cecilia Moy Yep Award", organization: "Asian American Women's Coalition", year: "2018", icon: "award", category: "Leadership" }
+// Data strictly organized by PM relevance (Strategy & Tech first)
+const accomplishments = [
+  { 
+    id: "1", 
+    title: "Strategic Business Plan Award", 
+    organization: "tecBRIDGE radio", 
+    year: "2018", 
+    icon: "award" 
+  },
+  { 
+    id: "2", 
+    title: "Award for Excellence in Applied Computing (Magna Cum Laude)", 
+    organization: "University of Scranton", 
+    year: "2021", 
+    icon: "award" 
+  },
+  { 
+    id: "3", 
+    title: "First Place: Autonomous Maze-Solving Robotics Competition", 
+    organization: "University of Scranton", 
+    year: "2018", 
+    icon: "trophy" 
+  },
+  { 
+    id: "4", 
+    title: "Technical Competition Finalist: SumoBot Engineering", 
+    organization: "IEEE Hackathon", 
+    year: "2019", 
+    icon: "star" 
+  },
+  { 
+    id: "5", 
+    title: "Ronald Reagan Leadership Award", 
+    organization: "The Ronald Reagan Presidential Foundation & Institute", 
+    year: "2015", 
+    icon: "star" 
+  },
+  { 
+    id: "6", 
+    title: "Philanthropic Leadership: Grand Champion Fundraiser", 
+    organization: "Walk to End Alzheimer’s", 
+    year: "2017", 
+    icon: "trophy" 
+  },
+  { 
+    id: "7", 
+    title: "Exemplary Leadership Award", 
+    organization: "21st Century Cyber Charter", 
+    year: "2018", 
+    icon: "star" 
+  },
+  { 
+    id: "8", 
+    title: "Regional Leadership Recognition", 
+    organization: "NBC10 / Widener University", 
+    year: "2018", 
+    icon: "award" 
+  },
+  { 
+    id: "9", 
+    title: "Graphic Design Competition Runner-Up", 
+    organization: "Instructables.com", 
+    year: "2015", 
+    icon: "star" 
+  },
+  { 
+    id: "10", 
+    title: "Scholastic Art & Writing Silver Key", 
+    organization: "Greater Philadelphia Region", 
+    year: "2015", 
+    icon: "award" 
+  },
+  { 
+    id: "11", 
+    title: "Academic Excellence: Top 3% of Class (3.98 GPA)", 
+    organization: "21st Century Cyber Charter", 
+    year: "2018", 
+    icon: "star" 
+  },
+  { 
+    id: "12", 
+    title: "Dean’s List for Academic Achievement", 
+    organization: "University of Scranton", 
+    year: "2021", 
+    icon: "star" 
+  },
+  { 
+    id: "13", 
+    title: "University Merit Grant", 
+    organization: "University of Scranton", 
+    year: "2018", 
+    icon: "award" 
+  },
+  { 
+    id: "14", 
+    title: "Freedom Credit Union Grant", 
+    organization: "Freedom Credit Union", 
+    year: "2018", 
+    icon: "award" 
+  },
+  { 
+    id: "15", 
+    title: "Cecilia Moy Yep Award", 
+    organization: "AAWC (Asian American Women's Coalition)", 
+    year: "2018", 
+    icon: "award" 
+  }
 ];
 
-const iconMap = { award: Award, star: Star, trophy: Trophy };
-const categories = ["Technical", "Strategy", "Leadership", "Academic"] as const;
+const iconMap = {
+  trophy: Trophy,
+  star: Star,
+  award: Award,
+};
 
 export function AccomplishmentsSection() {
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const filteredItems = useMemo(() => {
-    return activeFilter 
-      ? accomplishments.filter(item => item.category === activeFilter)
-      : accomplishments;
-  }, [activeFilter]);
+  // Configuration
+  const initialLimit = 6;
+  const visibleList = isExpanded ? accomplishments : accomplishments.slice(0, initialLimit);
+  
+  // Dynamic Calculations
+  const totalCount = accomplishments.length;
+  const remainingCount = totalCount - initialLimit;
+  const yearSpan = new Set(accomplishments.map(a => a.year)).size;
 
   return (
-    <section id="accomplishments" className="py-24 px-6 md:px-12 bg-background">
+    <section id="accomplishments" className="py-20 px-6 md:px-12 bg-background">
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4 italic">Honors & Recognition</h2>
-          <p className="text-muted-foreground text-sm uppercase tracking-widest font-medium">
-            Milestones in leadership, technical excellence, and strategic thinking.
-          </p>
-        </div>
+        
+        {/* Header with Dynamic Metadata */}
+        <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">
+              Honors & Recognition
+            </h2>
+            <p className="text-muted-foreground text-sm mt-2 opacity-80">
+              Technical excellence and leadership across {yearSpan} years
+            </p>
+          </div>
+          <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60 border-l border-muted pl-4">
+            {totalCount} Total Recognitions
+          </div>
+        </header>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(activeFilter === cat ? null : cat)}
-              className={cn(
-                "px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border",
-                activeFilter === cat
-                  ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                  : "bg-transparent text-muted-foreground border-border hover:border-primary/40"
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-          {activeFilter && (
-            <button 
-              onClick={() => setActiveFilter(null)}
-              className="px-2 py-1.5 text-[10px] font-bold text-primary flex items-center gap-1 hover:opacity-70"
-            >
-              <X className="h-3 w-3" /> RESET
-            </button>
-          )}
-        </div>
-
-        {/* List */}
-        <div className="relative border-t border-muted/60">
-          {filteredItems.length > 0 ? (
-            filteredItems.map((item) => {
-              const Icon = iconMap[item.icon];
-              return (
-                <div 
-                  key={item.id} 
-                  className="group flex items-center justify-between py-5 border-b border-muted/30 hover:bg-primary/[0.01] transition-all duration-300 px-2 animate-in fade-in slide-in-from-left-2"
-                >
-                  <div className="flex items-center gap-6 min-w-0">
-                    <span className="text-[10px] font-bold text-primary/60 tabular-nums w-10 shrink-0">
+        {/* Accomplishments List */}
+        <div className="border-t border-muted/40">
+          {visibleList.map((item) => {
+            const Icon = iconMap[item.icon as keyof typeof iconMap];
+            return (
+              <div 
+                key={item.id} 
+                className="group flex items-center justify-between py-4 border-b border-muted/20 hover:bg-muted/5 transition-all duration-300 px-1"
+              >
+                <div className="flex flex-col min-w-0 pr-4">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-medium text-[14px] md:text-base text-foreground group-hover:text-primary transition-colors">
+                      {item.title}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground/50 font-mono tracking-tighter">
                       {item.year}
                     </span>
-                    <div className="flex flex-col min-w-0">
-                      <span className="font-medium text-[13px] md:text-sm text-foreground group-hover:text-primary transition-colors">
-                        {item.title}
-                      </span>
-                      <span className="text-[10px] uppercase tracking-wide text-muted-foreground/60 mt-0.5">
-                        {item.organization}
-                      </span>
-                    </div>
                   </div>
-                  
-                  <div className="flex items-center gap-4 ml-4 shrink-0">
-                    <span className="hidden group-hover:block text-[9px] font-bold text-primary/40 uppercase tracking-tighter transition-all">
-                      {item.category}
-                    </span>
-                    <Icon className="h-4 w-4 text-muted-foreground/20 group-hover:text-primary group-hover:scale-110 transition-all" />
-                  </div>
+                  <span className="text-xs text-muted-foreground/70 mt-0.5">
+                    {item.organization}
+                  </span>
                 </div>
-              );
-            })
-          ) : (
-            <div className="py-10 text-center text-muted-foreground italic text-sm">
-              No matching honors found.
-            </div>
-          )}
+                
+                <Icon className="h-4 w-4 text-muted-foreground/20 group-hover:text-primary/60 transition-colors shrink-0" />
+              </div>
+            );
+          })}
         </div>
 
-        {/* Subtle Footer Note */}
-        <p className="mt-8 text-[10px] text-muted-foreground/40 italic text-center">
-          * Additional regional awards and academic grants available upon request.
-        </p>
+        {/* Professional Minimalist Footer */}
+        {!isExpanded && remainingCount > 0 && (
+          <div className="mt-12 flex justify-center">
+            <button 
+              onClick={() => setIsExpanded(true)}
+              className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all py-3 px-8 border border-muted/60 hover:border-foreground rounded-full"
+            >
+              Show {remainingCount} Additional Milestones
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
