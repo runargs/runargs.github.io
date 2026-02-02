@@ -33,8 +33,8 @@ const navGroups: NavGroup[] = [
     label: "Professional",
     items: [
       { id: "work", label: "Work", icon: <Briefcase className="h-4 w-4" /> },
-      // { id: "accomplishments", label: "Accomplishments", icon: <Award className="h-4 w-4" /> },
-      //{ id: "resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
+      { id: "accomplishments", label: "Accomplishments", icon: <Award className="h-4 w-4" /> },
+      { id: "resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
     ],
   },
   {
