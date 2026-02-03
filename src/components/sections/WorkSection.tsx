@@ -10,7 +10,7 @@ const experiences = [
     company: "Mastercard Insights & Intelligence",
     role: "Product Manager",
     location: "Remote",
-    duration: "Jan 2024 - Present",
+    duration: "2024 - Present",
     description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence.",
     impact: [
       "Launched AI-assisted research tools and enhanced search using vector embeddings.",
@@ -27,11 +27,11 @@ const experiences = [
     role: "Automation Engineer",
     location: "New York, NY",
     duration: "2022 - 2024",
-    description: "Architected CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
+    description: "Automated CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
     impact: [
       "Reduced deployment time by ~50% via optimized automation pipelines.",
       "Improved cross-team alignment by 42% through standardized documentation.",
-      "Standardized automation scripts to support high-availability global services."
+      "Crafted automation scripts to support high-availability global services."
     ],
     skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Agile", "Technical Writing"]
   },
@@ -58,7 +58,7 @@ const experiences = [
     duration: "May 2021 - Aug 2021",
     description: "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills which offers interactive tools and educational resources to help individuals and communities build stronger financial futures.",
     impact: [
-      "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users using Java.",
+      "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
     skills: ["Web Development", "Semantic Search", "UX Design", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
@@ -69,7 +69,7 @@ const experiences = [
     role: "DevRel Engineer",
     location: "New York, NY (Remote)",
     duration: "Jun 2020 - Aug 2020",
-    description: "Owned the development lifecycle for Google's open-source client library (SDKs) management tooling (Synthtool).",
+    description: "Owned the development lifecycle for documentation creation feature for Google's open-source client library (SDKs) management tooling (Synthtool).",
     impact: [
       "Owned full dev-cycle of a feature from user research through coding and open-source release.",
       "Automated library documentation updates for hundreds of APIs via GAPIC (Generated API Client) Generator, significantly reducing manual effort."
@@ -87,7 +87,7 @@ const experiences = [
     company: "Nexus Valley Solutions",
     role: "Associate Technical Product Manager",
     location: "Scranton, PA",
-    duration: "Oct 2018 - Mar 2019",
+    duration: "2018 - 2019",
     description: "Foundational technical product role focused on STEAM education platform design and award-winning product strategy.",
     impact: [
       "Designed and launched a STEAM curriculum, translating classroom needs into an award-winning concept.",
@@ -101,7 +101,7 @@ const experiences = [
     company: "Manila Science Alumni Org",
     role: "Graphic Designer",
     location: "Manila, Philippines",
-    duration: "July 2015",
+    duration: "2015",
     description: "Visual communication for scientific laboratory initiatives.",
     impact: [
       "Identified stakeholder needs through collaboration for technical research posters.",
