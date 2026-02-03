@@ -64,7 +64,7 @@ export function TalksSection() {
       <div className="max-w-4xl mx-auto">
         {/* Section header - Restored font styles */}
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">
             Talks & Publications
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
