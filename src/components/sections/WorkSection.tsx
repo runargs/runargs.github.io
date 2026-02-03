@@ -69,10 +69,10 @@ const experiences = [
     role: "DevRel Engineer",
     location: "New York, NY (Remote)",
     duration: "Jun 2020 - Aug 2020",
-    description: "Owned the development lifecycle for Google's open-source API management tooling (Synthtool).",
+    description: "Owned the development lifecycle for Google's open-source client library (SDKs) management tooling (Synthtool).",
     impact: [
       "Owned full dev-cycle of a feature from user research through coding and open-source release.",
-      "Automated library documentation updates for hundreds of APIs, significantly reducing manual effort."
+      "Automated library documentation updates for hundreds of APIs via GAPIC (Generated API Client) Generator, significantly reducing manual effort."
     ],
     skills: ["Technical Writing", "Automation", "Open Source", "GitHub", "User Research", "Web Development", "Product Strategy", "Developer Advocacy"],
     testimonial: {
