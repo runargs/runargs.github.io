@@ -88,7 +88,7 @@ export function ResumeSection() {
 
           {/* PDF DOWNLOAD LINK AREA */}
           <a 
-            href="/public/Alexa_Thoennes_Resume.pdf" 
+            href="/Alexa_Thoennes_Resume.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
             download="Alexa_Thoennes_Resume_2026.pdf"
