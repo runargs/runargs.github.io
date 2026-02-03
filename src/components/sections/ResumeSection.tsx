@@ -65,8 +65,8 @@ export function ResumeSection() {
                   { title: "Machine Learning for Business", org: "Wharton Executive Education", date: "2025" },
                   { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
                   { title: "Product Management E2E", org: "Mastercard", date: "2023" },
-                  { title: "Product Management Fundamentals", org: "Pluralsight", date: "2023" },
-                  { title: "Intro to Marketing", org: "Wharton Executive Education", date: "2016" },
+                  { title: "Product Management Fundamentals", org: "Matthew Pizzi", date: "2023" },
+                  { title: "Intro to Marketing", org: "Wharton Penn Online Learning", date: "2016" },
                 ].map((cert, i) => (
                   <div key={i} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
                     <div className="min-w-0">
