@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Zap, MapPin, Calendar, Sparkles, X, Quote, Play, Star } from "lucide-react";
+import { Zap, MapPin, Calendar, Sparkles, X, Quote, Star, Info } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -17,10 +17,7 @@ const experiences = [
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
     ],
-    skills: [
-      "Product Strategy", "AI/ML", "RAG Architecture", "Data Analysis", 
-      "GTM Strategy", "UX Design", "Enterprise Scale", "Stakeholder Management"
-    ],
+    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Data Analysis", "GTM Strategy", "UX Design", "Enterprise Scale", "Stakeholder Management"],
     video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
     featured: true
   },
@@ -33,13 +30,10 @@ const experiences = [
     description: "Architected CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
     impact: [
       "Reduced deployment time by ~50% via optimized automation pipelines.",
-      "Improved cross-team alignment by 42% through standardized documentation."
+      "Improved cross-team alignment by 42% through standardized documentation.",
+      "Standardized automation scripts to support high-availability global services."
     ],
-    skills: [
-      "Automation", "Infrastructure", "CI/CD", "Product Strategy", 
-      "Python", "Enterprise Scale", "Technical Writing"
-    ],
-    featured: true
+    skills: ["Automation", "Infrastructure", "CI/CD", "Product Strategy", "Python", "Enterprise Scale", "Technical Writing"]
   },
   {
     id: "u-scranton",
@@ -50,12 +44,10 @@ const experiences = [
     description: "Architected digital solutions servicing 6,000+ students and 100k+ monthly visitors.",
     impact: [
       "Migrated CV Creator Application from legacy ASP/Access to a modern PowerApps/SQL Server stack.",
-      "Implemented automation scripts and widgets using Acalog API and Python to streamline site content."
+      "Implemented automation scripts and widgets using Acalog API and Python to streamline site content.",
+      "Resolved high-volume IT support tickets, balancing technical maintenance with feature development."
     ],
-    skills: [
-      "Web Development", "SQL", "Python", "Automation", 
-      "UX Design", "Full Stack", "Data Analysis"
-    ]
+    skills: ["Web Development", "SQL", "Python", "Automation", "UX Design", "Full Stack", "Data Analysis"]
   },
   {
     id: "visa",
@@ -68,16 +60,12 @@ const experiences = [
       "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
-    skills: [
-      "Web Development", "AI/ML", "UX Design", "Architecture", 
-      "Localization", "Enterprise Scale", "Full Stack"
-    ],
-    featured: true
+    skills: ["Web Development", "AI/ML", "UX Design", "Architecture", "Localization", "Enterprise Scale", "Full Stack"]
   },
   {
     id: "google",
     company: "Google Cloud",
-    role: "Developer Relations Engineering - Intern",
+    role: "DevRel Engineering - Intern",
     location: "New York, NY (Remote)",
     duration: "Jun 2020 - Aug 2020",
     description: "Owned the development lifecycle for Google's open-source API management tooling (Synthtool).",
@@ -85,41 +73,69 @@ const experiences = [
       "Owned full dev-cycle of a feature from user research through coding and open-source release.",
       "Automated library documentation updates for hundreds of APIs, significantly reducing manual effort."
     ],
+    skills: ["Technical Writing", "Automation", "Open Source", "User Research", "Python", "Web Development", "Product Strategy"],
     testimonial: {
       text: "She is an excellent technical communicator... Alexa was great to have as a team member and I would happily recommend her for any position.",
       author: "Billy Jacobson",
       title: "Senior Developer Advocate"
     },
-    skills: [
-      "Technical Writing", "Automation", "Open Source", "User Research", 
-      "Python", "Web Development", "Product Strategy"
-    ],
     featured: true
   },
   {
     id: "nexus",
     company: "Nexus Valley Solutions",
-    role: "Associate Product Manager — Technical",
+    role: "Associate Product Manager - Technical",
     location: "Scranton, PA",
     duration: "Oct 2018 - Mar 2019",
     description: "Foundational technical product role focused on STEAM education platform design and award-winning product strategy.",
     impact: [
-      "Designed and launched a STEAM platform with an agile team, turning a classroom need into an award-winning concept.",
+      "Designed and launched a STEAM platform with an agile team, translating classroom needs into an award-winning concept.",
       "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
-    skills: [
-      "Product Strategy", "UX Design", "Agile", "User Research", 
-      "GTM Strategy", "Stakeholder Management"
-    ]
+    skills: ["Product Management", "Product Strategy", "UX Design", "Agile", "User Research", "GTM Strategy", "Stakeholder Management"],
+    featured: true
+  },
+  {
+    id: "manila-design",
+    company: "Manila Science Alumni Org",
+    role: "Graphic Designer",
+    location: "Remote",
+    duration: "July 2015",
+    description: "Visual communication for scientific laboratory initiatives.",
+    impact: [
+      "Identified stakeholder needs through virtual collaboration for technical research posters.",
+      "Translated complex project specifications into high-impact visual narratives."
+    ],
+    skills: ["UX Design", "Visual Communication", "Product Strategy"],
+    type: "secondary"
+  },
+  {
+    id: "jefferson-volunteer",
+    company: "Thomas Jefferson University Hospital",
+    role: "Patient Assistance Volunteer",
+    location: "Philadelphia, PA",
+    duration: "2016",
+    description: "Front-line patient advocacy and hospital policy guidance.",
+    impact: [
+      "Guided patients and families through hospital policies and surgical waiting room procedures.",
+      "Facilitated empathetic communication between medical staff and patient families."
+    ],
+    skills: ["Humanist", "User Research", "Advocacy"],
+    type: "secondary"
   }
 ];
 
 export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const globalSkills = Array.from(new Set(experiences.flatMap(e => e.skills))).sort();
+
+  // Dynamically generate unique skill list from all experiences
+  const globalSkills = useMemo(() => {
+    const all = experiences.flatMap(e => e.skills);
+    return Array.from(new Set(all)).sort();
+  }, []);
 
   const filteredExperiences = useMemo(() => {
-    if (!activeFilter) return experiences;
+    if (!activeFilter) return experiences.filter(e => e.type !== "secondary");
     return experiences.filter(exp => exp.skills.includes(activeFilter));
   }, [activeFilter]);
 
@@ -129,12 +145,22 @@ export function WorkSection() {
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4 italic">Professional Journey</h2>
           <p className="text-muted-foreground text-sm uppercase tracking-widest font-medium">
-            Engineering scale. Defining strategy. Delivering impact.
+            Engineering scale. Defining strategy. Delivering impact since 2015.
           </p>
         </div>
 
-        {/* PILL-BASED FILTER */}
+        {/* DYNAMIC FILTER BAR */}
         <div className="mb-12 p-6 bg-card/30 border border-border/40 rounded-2xl shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] flex items-center gap-2">
+              <Sparkles className="h-3 w-3" /> Expertise Matrix
+            </span>
+            {activeFilter && (
+              <button onClick={() => setActiveFilter(null)} className="text-[10px] font-bold text-muted-foreground hover:text-primary flex items-center gap-1">
+                <X className="h-3 w-3" /> RESET
+              </button>
+            )}
+          </div>
           <div className="flex flex-wrap gap-2">
             {globalSkills.map((skill) => (
               <button
@@ -156,9 +182,12 @@ export function WorkSection() {
         {/* EXPERIENCE LIST */}
         <div className="space-y-12">
           {filteredExperiences.map((exp) => (
-            <Card key={exp.id} className="relative animate-in fade-in slide-in-from-bottom-6 duration-700 bg-card/40 border-border/40 hover:border-primary/20 transition-all group shadow-none">
+            <Card key={exp.id} className={cn(
+                "relative animate-in fade-in slide-in-from-bottom-6 duration-700 bg-card/40 border-border/40 hover:border-primary/20 transition-all group shadow-none",
+                exp.type === "secondary" && "border-dashed border-primary/20 bg-primary/[0.01]"
+              )}>
               
-              {/* FEATURED RIBBON */}
+              {/* KEY TENURE BADGE */}
               {exp.featured && (
                 <div className="absolute -top-3 -right-3">
                   <Badge className="bg-primary/10 text-primary border-primary/20 backdrop-blur-md flex gap-1 items-center px-3 py-1">
@@ -184,6 +213,11 @@ export function WorkSection() {
                       </div>
                     </div>
                   </div>
+                  {exp.type === "secondary" && (
+                    <div className="flex items-center gap-1 text-[9px] font-bold text-primary/60 uppercase italic">
+                      <Info className="h-3 w-3" /> Early Career Foundation
+                    </div>
+                  )}
                 </div>
               </CardHeader>
 
@@ -227,7 +261,7 @@ export function WorkSection() {
                   </div>
                 )}
 
-                {/* RESTORED PILL BADGES */}
+                {/* DYNAMIC PILL BADGES */}
                 <div className="pt-6 border-t border-muted/20 flex flex-wrap gap-2">
                   {exp.skills.map(s => (
                     <Badge 
