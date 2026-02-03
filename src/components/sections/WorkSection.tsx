@@ -61,7 +61,7 @@ const experiences = [
       "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users using Java.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
-    skills: ["Web Development", "AI/ML", "Semantic Search", "UX Design", "Architecture", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
+    skills: ["Web Development", "Semantic Search", "UX Design", "Architecture", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
   },
   {
     id: "google",
