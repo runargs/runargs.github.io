@@ -40,22 +40,23 @@ const experiences = [
     company: "University of Scranton",
     role: "Enterprise Web Developer",
     location: "Scranton, PA",
-    duration: "Aug 2020 - 2022",
+    duration: "2020 - 2022",
     description: "Architected digital solutions servicing 6,000+ students and 100k+ monthly visitors.",
     impact: [
       "Migrated CV Creator Application from legacy ASP/Access to a modern PowerApps/SQL Server stack.",
       "Implemented automation scripts and widgets using Acalog API and Python to streamline site content.",
-      "Resolved high-volume IT support tickets, balancing technical maintenance with feature development."
+      "Resolved IT support tickets, balancing technical maintenance with feature development."
     ],
-    skills: ["Web Development", "Automation", "UX Design", "Full Stack", "Data Analysis"]
+    skills: ["Web Development", "Automation", "Full Stack", "Data Analysis"],
+    type: "secondary"
   },
   {
     id: "visa",
-    company: "Visa",
-    role: "Software Engineering - Intern",
+    company: "Visa - Internship",
+    role: "Software Engineer",
     location: "Austin, TX (Remote)",
     duration: "May 2021 - Aug 2021",
-    description: "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills.",
+    description: "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills which offers interactive tools and educational resources to help individuals and communities build stronger financial futures.",
     impact: [
       "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users using Java.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
@@ -64,8 +65,8 @@ const experiences = [
   },
   {
     id: "google",
-    company: "Google Cloud",
-    role: "DevRel Engineering - Intern",
+    company: "Google (GCP) - Internship",
+    role: "DevRel Engineer",
     location: "New York, NY (Remote)",
     duration: "Jun 2020 - Aug 2020",
     description: "Owned the development lifecycle for Google's open-source API management tooling (Synthtool).",
@@ -84,12 +85,12 @@ const experiences = [
   {
     id: "nexus",
     company: "Nexus Valley Solutions",
-    role: "Associate Product Manager - Technical",
+    role: "Associate Technical Product Manager",
     location: "Scranton, PA",
     duration: "Oct 2018 - Mar 2019",
     description: "Foundational technical product role focused on STEAM education platform design and award-winning product strategy.",
     impact: [
-      "Designed and launched a STEAM platform with an agile team, translating classroom needs into an award-winning concept.",
+      "Designed and launched a STEAM curriculum, translating classroom needs into an award-winning concept.",
       "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
     skills: ["Product Management", "Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development", "Client-facing"],
@@ -120,7 +121,7 @@ const experiences = [
       "Guided patients and families through hospital policies and surgical waiting room procedures.",
       "Facilitated empathetic communication between medical staff and patient families."
     ],
-    skills: ["Humanist", "User Research", "UX Design"],
+    skills: ["Humanist", "User Research"],
     type: "secondary"
   },
   {
