@@ -21,19 +21,18 @@ const communities: Community[] = [
   },
   {
     id: "2",
+    name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Bearable + more",
+    role: "Beta Testing/Research Participation",
+    description: "Actively participating in testing, roadmap advisory and user research of both software and physical products to enhance my user perspective, communication and empathy.",
+    members: "2022-Present"
+  },
+  {
+    id: "3",
     name: "Notion Enhancement - GitHub Open Source Community",
     role: "Core Contributor",
     description: "Developer advocacy and #3 code contributor for notion enhancer, an all-in-one customizer for Notion workspace.",
     members: "2020",
     url: "https://notion-enhancer.github.io/"
-  },
-  {
-    id: "3",
-    name: "Philadelphia Adaptive Rowing (PAR)",
-    role: "Able-Bodied Tandem/Coach",
-    description: "Coached and raced double scull (2x) and won first place partnering with Beth for the BAYADA Home Health Care annual regatta.",
-    members: "2017",
-    url: "https://www.facebook.com/100064163287087/posts/1444260922332590/"
   },
   {
     id: "4",
