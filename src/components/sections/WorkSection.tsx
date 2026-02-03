@@ -17,7 +17,7 @@ const experiences = [
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
     ],
-    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Multi-Agent Systems", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation"],
+    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Multi-Agent Systems", "Semantic Search", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation", "Agile"],
     video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
     featured: true
   },
@@ -33,7 +33,7 @@ const experiences = [
       "Improved cross-team alignment by 42% through standardized documentation.",
       "Standardized automation scripts to support high-availability global services."
     ],
-    skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Technical Writing"]
+    skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Agile", "Technical Writing"]
   },
   {
     id: "u-scranton",
@@ -57,10 +57,10 @@ const experiences = [
     duration: "May 2021 - Aug 2021",
     description: "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills.",
     impact: [
-      "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users.",
+      "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users using Java.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
-    skills: ["Web Development", "AI/ML", "UX Design", "Architecture", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
+    skills: ["Web Development", "AI/ML", "Semantic Search", "UX Design", "Architecture", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
   },
   {
     id: "google",
@@ -73,7 +73,7 @@ const experiences = [
       "Owned full dev-cycle of a feature from user research through coding and open-source release.",
       "Automated library documentation updates for hundreds of APIs, significantly reducing manual effort."
     ],
-    skills: ["Technical Writing", "Automation", "Open Source", "GitHub", "User Research", "Python", "Web Development", "Product Strategy", "Developer Advocacy"],
+    skills: ["Technical Writing", "Automation", "Open Source", "GitHub", "User Research", "Web Development", "Product Strategy", "Developer Advocacy"],
     testimonial: {
       text: "She is an excellent technical communicator... Alexa was great to have as a team member and I would happily recommend her for any position.",
       author: "Billy Jacobson",
@@ -92,7 +92,7 @@ const experiences = [
       "Designed and launched a STEAM platform with an agile team, translating classroom needs into an award-winning concept.",
       "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
-    skills: ["Product Management", "Product Strategy", "UX Design", "Agile", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development"],
+    skills: ["Product Management", "Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development", "Client-facing"],
     featured: true
   },
   {
@@ -136,20 +136,6 @@ const experiences = [
       "Coded with CSS, Javascript, and Node.js."
     ],
     skills: ["Web Development", "UX Design", "GitHub", "Full Stack", "Open Source", "Developer Advocacy"],
-    type: "secondary"
-  },
-  {
-    id: "research",
-    company: "Notion Enhancer",
-    role: "Open Source Contributor & Developer Advocate",
-    location: "Global",
-    duration: "2020",
-    description: "Open source software contributor",
-    impact: [
-      "Lead research on Brave Browser blockchain product strategy and market landscape.",
-      "Reverse engineer blockchain business strategy, involving producing group research report on company’s whitepaper, ICO, social media presence, value chain, and business process."
-    ],
-    skills: ["Technical Writing", "Blockchain", "GitHub", "Full Stack", "Product Strategy"],
     type: "secondary"
   }
 ];
