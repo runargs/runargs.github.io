@@ -17,7 +17,7 @@ const experiences = [
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
     ],
-    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Multi-Agent Systems", "Semantic Search", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation", "Agile"],
+    skills: ["Product Strategy", "RAG Architecture", "Multi-Agent Systems", "Semantic Search", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation", "Agile"],
     video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
     featured: true
   },
@@ -93,7 +93,7 @@ const experiences = [
       "Designed and launched a STEAM curriculum, translating classroom needs into an award-winning concept.",
       "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
-    skills: ["Product Management", "Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development", "Client-facing"],
+    skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development", "Client-facing"],
     featured: true
   },
   {
