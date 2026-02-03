@@ -261,7 +261,7 @@ export function WorkSection() {
                     </div>
                     <ul className="space-y-4">
                       {exp.impact.map((point, i) => (
-                        <li key={i} className="text-[11px] md:text-xs text-muted-foreground leading-snug flex gap-3">
+                        <li key={i} className="text-[11px] md:text-s text-muted-foreground leading-snug flex gap-3">
                           <span className="text-primary mt-1 select-none">✦</span>
                           <span dangerouslySetInnerHTML={{ __html: point }} />
                         </li>
@@ -272,7 +272,7 @@ export function WorkSection() {
 
                 {exp.testimonial && (
                   <div className="p-6 bg-primary/[0.03] border-l-4 border-primary/40 rounded-r-2xl italic">
-                    <p className="text-xs md:text-sm text-foreground/90 leading-relaxed mb-4">"{exp.testimonial.text}"</p>
+                    <p className="text-s md:text-sm text-foreground/90 leading-relaxed mb-4">"{exp.testimonial.text}"</p>
                     <cite className="text-[10px] not-italic font-extrabold text-primary uppercase tracking-widest">— {exp.testimonial.author}, {exp.testimonial.title}</cite>
                   </div>
                 )}
