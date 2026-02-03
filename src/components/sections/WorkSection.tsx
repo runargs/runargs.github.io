@@ -17,7 +17,7 @@ const experiences = [
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
     ],
-    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Multi-Agent Systems", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management"],
+    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Multi-Agent Systems", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation"],
     video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
     featured: true
   },
@@ -33,7 +33,7 @@ const experiences = [
       "Improved cross-team alignment by 42% through standardized documentation.",
       "Standardized automation scripts to support high-availability global services."
     ],
-    skills: ["Automation", "Infrastructure", "CI/CD", "Product Strategy", "Python", "Enterprise Scale", "Technical Writing"]
+    skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Technical Writing"]
   },
   {
     id: "u-scranton",
@@ -47,7 +47,7 @@ const experiences = [
       "Implemented automation scripts and widgets using Acalog API and Python to streamline site content.",
       "Resolved high-volume IT support tickets, balancing technical maintenance with feature development."
     ],
-    skills: ["Web Development", "SQL", "Python", "Automation", "UX Design", "Full Stack", "Data Analysis"]
+    skills: ["Web Development", "Automation", "UX Design", "Full Stack", "Data Analysis"]
   },
   {
     id: "visa",
@@ -73,7 +73,7 @@ const experiences = [
       "Owned full dev-cycle of a feature from user research through coding and open-source release.",
       "Automated library documentation updates for hundreds of APIs, significantly reducing manual effort."
     ],
-    skills: ["Technical Writing", "Automation", "Open Source", "User Research", "Python", "Web Development", "Product Strategy"],
+    skills: ["Technical Writing", "Automation", "Open Source", "GitHub", "User Research", "Python", "Web Development", "Product Strategy", "Developer Advocacy"],
     testimonial: {
       text: "She is an excellent technical communicator... Alexa was great to have as a team member and I would happily recommend her for any position.",
       author: "Billy Jacobson",
@@ -99,14 +99,14 @@ const experiences = [
     id: "manila-design",
     company: "Manila Science Alumni Org",
     role: "Graphic Designer",
-    location: "Remote",
+    location: "Manila, Philippines",
     duration: "July 2015",
     description: "Visual communication for scientific laboratory initiatives.",
     impact: [
-      "Identified stakeholder needs through virtual collaboration for technical research posters.",
+      "Identified stakeholder needs through collaboration for technical research posters.",
       "Translated complex project specifications into high-impact visual narratives."
     ],
-    skills: ["UX Design", "Visual Communication", "Product Strategy"],
+    skills: ["UX Design", "Stakeholder Management", "Globalization", "Product Strategy"],
     type: "secondary"
   },
   {
@@ -120,7 +120,36 @@ const experiences = [
       "Guided patients and families through hospital policies and surgical waiting room procedures.",
       "Facilitated empathetic communication between medical staff and patient families."
     ],
-    skills: ["Humanist", "User Research", "Advocacy"],
+    skills: ["Humanist", "User Research", "UX Design"],
+    type: "secondary"
+  },
+  {
+    id: "notion-enhanced",
+    company: "Notion Enhancer",
+    role: "Open Source Contributor & Developer Advocate",
+    location: "Global",
+    duration: "2020",
+    description: "Open source software contributor",
+    impact: [
+      "Top productivity app’s customization suite: added new extensions, themes, bug fixes, community technical support Discord moderator.",
+      "Multi-faceted role as #3 ranked top contributor for this tool.",
+      "Coded with CSS, Javascript, and Node.js."
+    ],
+    skills: ["Web Development", "UX Design", "GitHub", "Full Stack", "Open Source", "Developer Advocacy"],
+    type: "secondary"
+  },
+  {
+    id: "research",
+    company: "Notion Enhancer",
+    role: "Open Source Contributor & Developer Advocate",
+    location: "Global",
+    duration: "2020",
+    description: "Open source software contributor",
+    impact: [
+      "Lead research on Brave Browser blockchain product strategy and market landscape.",
+      "Reverse engineer blockchain business strategy, involving producing group research report on company’s whitepaper, ICO, social media presence, value chain, and business process."
+    ],
+    skills: ["Technical Writing", "Blockchain", "GitHub", "Full Stack", "Product Strategy"],
     type: "secondary"
   }
 ];
@@ -215,7 +244,7 @@ export function WorkSection() {
                   </div>
                   {exp.type === "secondary" && (
                     <div className="flex items-center gap-1 text-[9px] font-bold text-primary/60 uppercase italic">
-                      <Info className="h-3 w-3" /> Early Career Foundation
+                      <Info className="h-3 w-3" /> Additional Context
                     </div>
                   )}
                 </div>
