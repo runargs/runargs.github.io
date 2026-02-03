@@ -43,7 +43,7 @@ const sideProjects: SideProject[] = [
     id: "5",
     title: "This Website",
     description: "Quite meta.",
-    tags: ["Lovable AI", "Web Development"],
+    tags: ["Lovable AI", "Typescript", "Web Development"],
     status: "active"
   },
 ];
