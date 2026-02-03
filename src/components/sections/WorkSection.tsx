@@ -15,7 +15,9 @@ const experiences = [
     impact: [
       "Launched AI-assisted research tools and enhanced search using vector embeddings.",
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
-      "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
+      "Streamlined onboarding by 40% through standardized documentation and RACI frameworks.".
+      "Collaborate across global teams to align OKRs/KPIs, and regional requirements for product
+launches. Travel periodically (~5-10%) for roadmapping workshops and stakeholder alignment."
     ],
     skills: ["Product Strategy", "RAG Architecture", "Multi-Agent Systems", "Semantic Search", "GTM Strategy", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation", "Agile"],
     video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
