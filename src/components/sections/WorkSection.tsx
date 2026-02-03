@@ -144,8 +144,8 @@ export function WorkSection() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4 italic">Professional Journey</h2>
-          <p className="text-muted-foreground text-sm uppercase tracking-widest font-medium">
-            Engineering scale. Defining strategy. Delivering impact since 2015.
+          <p className="text-muted-foreground text-sm tracking-widest font-medium">
+            Select experiences demonstrating technical expertise, humanitarian skill, and strategic design.
           </p>
         </div>
 
@@ -268,7 +268,7 @@ export function WorkSection() {
                       key={s} 
                       variant="outline" 
                       className={cn(
-                        "rounded-full px-3 py-1 text-[9px] font-bold uppercase transition-all duration-300",
+                        "rounded-full px-3 py-1 text-[9px] font-bold transition-all duration-300",
                         activeFilter === s 
                           ? "bg-primary text-primary-foreground border-primary scale-110" 
                           : "border-muted-foreground/20 text-muted-foreground/50 hover:border-primary/40"
