@@ -17,7 +17,7 @@ const experiences = [
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
       "Streamlined onboarding by 40% through standardized documentation and RACI frameworks."
     ],
-    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Data Analysis", "GTM Strategy", "UX Design", "Enterprise Scale", "Stakeholder Management"],
+    skills: ["Product Strategy", "AI/ML", "RAG Architecture", "Multi-Agent Systems", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management"],
     video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
     featured: true
   },
@@ -60,7 +60,7 @@ const experiences = [
       "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
-    skills: ["Web Development", "AI/ML", "UX Design", "Architecture", "Localization", "Enterprise Scale", "Full Stack"]
+    skills: ["Web Development", "AI/ML", "UX Design", "Architecture", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
   },
   {
     id: "google",
@@ -92,7 +92,7 @@ const experiences = [
       "Designed and launched a STEAM platform with an agile team, translating classroom needs into an award-winning concept.",
       "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
-    skills: ["Product Management", "Product Strategy", "UX Design", "Agile", "User Research", "GTM Strategy", "Stakeholder Management"],
+    skills: ["Product Management", "Product Strategy", "UX Design", "Agile", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development"],
     featured: true
   },
   {
@@ -167,7 +167,7 @@ export function WorkSection() {
                 key={skill}
                 onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all border",
+                  "px-3 py-1 rounded-full text-[10px] font-bold tracking-wider transition-all border",
                   activeFilter === skill 
                     ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
                     : "bg-background text-muted-foreground border-border/60 hover:border-primary/40 hover:text-primary"
