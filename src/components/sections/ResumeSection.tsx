@@ -37,13 +37,13 @@ export function ResumeSection() {
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1.5 text-[10px]">✦</span>
                   <span>
-                    Strategic impact within both innovation hubs of global enterprises and agile startups.
+                    Leveraging an engineering background and low-code ecosystems to prototype and validate unconventional solutions.
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1.5 text-[10px]">✦</span>
                   <span>
-                    Specializing in agentic strategy, multi-agent workflows, and the evolution of AI-driven systems.
+                    Domain expertise in agentic system design, specializing in multi-agent research tools and AI assistants tailored for high-stakes professional workflows.
                   </span>
                 </li>
               </ul>
