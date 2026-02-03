@@ -50,7 +50,7 @@ export function CommunitySection() {
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Community</h2>
+          <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">Community</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Creating spaces where connections thrive
           </p>
