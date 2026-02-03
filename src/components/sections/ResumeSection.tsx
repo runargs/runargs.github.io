@@ -88,10 +88,10 @@ export function ResumeSection() {
 
           {/* PDF DOWNLOAD LINK AREA */}
           <a 
-            href="/Alexa_Thoennes_Resume.pdf" 
+            href="/Alexa_Public_Resume.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
-            download="Alexa_Thoennes_Resume_2026.pdf"
+            download="Alexa_Public_Resume.pdf"
             className="inline-block w-full md:w-auto"
           >
             <Button 
