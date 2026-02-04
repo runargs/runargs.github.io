@@ -67,7 +67,7 @@ const experiences = [
   {
     id: "google",
     company: "Google (GCP) - Internship",
-    role: "DevRel Engineer",
+    role: "Developer Relations Engineer",
     location: "New York, NY (Remote)",
     duration: "Jun 2020 - Aug 2020",
     description: "Owned the development lifecycle for documentation creation feature for Google's open-source client library (SDKs) management tooling (Synthtool).",
