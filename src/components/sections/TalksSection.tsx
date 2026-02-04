@@ -45,7 +45,7 @@ const appearances: Appearance[] = [
     date: "2021",
     location: "Anaheim, CA",
     topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"],
-    url: "https://www.scranton.edu/faculty/gomaa/publications.shtml"
+    url: "https://meetings.informs.org/wordpress/anaheim2021/#ready"
   },
   {
     id: "4",
