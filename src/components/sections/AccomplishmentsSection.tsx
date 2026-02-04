@@ -33,9 +33,9 @@ const accomplishments = [
   },
   { 
     id: "5", 
-    title: "Ronald Reagan Leadership Award", 
+    title: "Leadership Award", 
     organization: "The Ronald Reagan Presidential Foundation & Institute", 
-    year: "2015", 
+    year: "2017", 
     icon: "star" 
   },
   { 
