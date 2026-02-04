@@ -24,7 +24,8 @@ const appearances: Appearance[] = [
     venue: "21st Century Cyber Charter",
     date: "February 2026",
     location: "Downingtown, PA",
-    topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"]
+    topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"],
+    url: "https://www.instagram.com/reel/DUViU_pCQw1/?igsh=Y3doeXRyazU2MXNn",
   },
   {
     id: "2",
@@ -33,7 +34,8 @@ const appearances: Appearance[] = [
     venue: "Bucks County Community College - Hosted by Women in STEM",
     date: "2024",
     location: "Newtown, PA",
-    topics: ["Mentorship", "Career Guidance", "Women in Tech"]
+    topics: ["Mentorship", "Career Guidance", "Women in Tech"],
+    url: "https://www.bucks.edu/"
   },
   {
     id: "3",
@@ -44,6 +46,16 @@ const appearances: Appearance[] = [
     location: "Anaheim, CA",
     topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"],
     url: "https://www.scranton.edu/faculty/gomaa/publications.shtml"
+  },
+  {
+    id: "4",
+    type: "talk",
+    title: "Colloquia Panelist",
+    venue: "University of Scranton",
+    date: "2021",
+    location: "Scranton, PA",
+    topics: ["Mentorship", "Career Guidance"],
+    url: "https://www.scranton.edu/academics/cas/computer-science/colloquia.shtml"
   },
 ];
 
