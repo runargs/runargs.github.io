@@ -21,9 +21,9 @@ const communities: Community[] = [
   },
   {
     id: "2",
-    name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Bearable + more",
+    name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Manta Sleep, Bearable + more",
     role: "Beta Testing/Research Participation",
-    description: "Actively participating in testing, roadmap advisory and user research of both software and physical products to enhance my user perspective, communication and empathy.",
+    description: "Actively participating in testing, roadmap advisory and user research of both software, physical, and health-related consumer products to enhance my user perspective, communication and empathy.",
     members: "2022-Present"
   },
   {
