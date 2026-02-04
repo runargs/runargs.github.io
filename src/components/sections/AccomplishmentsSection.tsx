@@ -103,8 +103,8 @@ const accomplishments = [
   },
   { 
     id: "15", 
-    title: "Cecilia Moy Yep Award", 
-    organization: "AAWC (Asian American Women's Coalition)", 
+    title: "AAWC Merit Award", 
+    organization: "Filipino Intercultural Society of Drexel University (FISDU) & AAWC (Asian American Women's Coalition)", 
     year: "2018", 
     icon: "award" 
   }
