@@ -24,7 +24,7 @@ export default function ResumeOnePager() {
           <p className="text-lg font-bold text-gray-800 mb-2">Product Manager | Enterprise GenAI & Platform Enablement</p>
           
           <div className="flex flex-wrap justify-center gap-x-4 text-[11px] font-medium text-gray-700">
-            <span className="flex items-center gap-1"><MapPin size={12} /> Newtown, PA / Remote</span>
+            <span className="flex items-center gap-1"><MapPin size={12} /> Open to Relocation </span>
             <span className="flex items-center gap-1"><Mail size={12} /> alexa.thoennes@gmail.com</span>
             <span className="flex items-center gap-1"><Phone size={12} /> +1 (267) 397-6790</span>
             <span className="flex items-center gap-1"><Linkedin size={12} /> linkedin.com/in/alexathoennes</span>
@@ -64,23 +64,20 @@ export default function ResumeOnePager() {
 
           {/* Mastercard PM II */}
           <div className="mb-5">
-            <div className="flex justify-between items-baseline">
+            <div className="flex justify-between items-baseline mb-0.5">
               <h3 className="font-bold text-[13px]">Product Manager II | Insights & Intelligence</h3>
               <span className="text-[11px] font-bold">Jan 2024 — Present</span>
             </div>
-            <p className="text-[11px] font-bold text-gray-700 italic mb-1">Mastercard | Remote</p>
-            <ul className="list-disc ml-4 text-[11px] space-y-1 text-gray-900">
-              <li><strong>GenAI Leadership:</strong> Led development of Mastercard's first enterprise GPT-4.1 / RAG chatbot using multi-agent architecture from ideation to global launch.</li>
-              <li>Improved data-retrieval accuracy and traceability by 30%. Implemented prompt sanitization, PII redaction, and bias monitoring to meet governance standards.</li>
-              <li>Establish semi-automated evaluation pipelines for LLM benchmarking and human-in-the-loop testing to measure model quality and policy alignment.</li>
-              <li>Implemented prompt sanitization, PII redaction, and bias monitoring to meet global enterprise standards.</li>
-              <li><strong>Platform Scale:</strong> Directing over 10 product integrations, increasing platform portfolio by 50%+. Serving ≈20K MAUs and enabling multi-million dollar annual revenue across 30+ data and analytics products.</li>
-              <li><strong>Search & Discovery:</strong> Orchestrated search redesign and repositioning leading to resulting in a +106% increase in search engagement. Launched AI-assisted editorial and semantic-search tools using vector embeddings to enhance content quality and user discovery</li>
-              <li><strong>Operational Excellence:</strong> Exceeded activation targets by 14% driving 230% YoY increase in opt-back-in. Streamlined partner onboarding by 40% (from 6 to 3 weeks) for 15+ integration teams through authoring 130+ pages of self-service documentation and templatizing analytics dashboards.</li>
-              <li>Monthly NPS increased to 79 (+18pp MoM) following platform UX and homepage improvements, indicating stronger discoverability and clarity. Streamlined partner onboarding by
-40% (6→3 weeks) for 15+ integration teams via self-service documentation, tutorials, and analytics dashboards.</li>
-              <li>Daily collaboration across global teams (Dublin, Lisbon, Prague, Rome, Singapore, U.S., etc.) to align OKRs, integration standards, and regional requirements for product launches.
-Travel periodically (5-10%) for roadmapping workshops and stakeholder alignment.</li>
+            <div className="flex justify-between text-[11px] italic text-gray-700 mb-1">
+              <span>Mastercard</span>
+              <span>Remote / Global</span>
+            </div>
+            <ul className="list-disc ml-4 text-[11px] space-y-1">
+              <li><strong>GenAI Innovation:</strong> Led development of Mastercard's first enterprise <strong>GPT-4.1 / RAG chatbot</strong> using multi-agent architecture; improved accuracy/traceability by <strong>30%</strong> and established evaluation pipelines for LLM benchmarking and human-in-the-loop testing.</li>
+              <li><strong>Portfolio Growth:</strong> Integrated 10+ products (<strong>50%+ portfolio increase</strong>) on a market intelligence platform serving <strong>20K MAU</strong> and enabling multi-million dollar annual revenue.</li>
+              <li><strong>Search Transformation:</strong> Orchestrated search redesign and vector embedding integration, resulting in <strong>+106% search engagement</strong> and increasing Monthly NPS to <strong>79 (+18pp MoM)</strong>.</li>
+              <li><strong>Operational Scale:</strong> Authored 130-page technical governance (RACI) guide; streamlined partner onboarding by <strong>40% (6 to 3 weeks)</strong> for 15+ global teams via self-service documentation.</li>
+              <li><strong>Execution:</strong> Exceeded activation targets by <strong>14%</strong>, driving a <strong>230% YoY increase</strong> in user opt-ins. Collaborate across global hubs (Singapore, Dublin, Rome) to align OKRs and regional requirements.</li>
             </ul>
           </div>
 
