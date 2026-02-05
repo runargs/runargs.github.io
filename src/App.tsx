@@ -16,12 +16,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          {/* Using 'index' instead of 'path="/"' ensures this ONLY loads at the root */}
+          <Route index element={<Index />} />
           
-          {/* Your custom PM Resume Route */}
+          {/* Ensure this path is exactly "/cv" */}
           <Route path="/cv" element={<ResumeOnePager />} />
           
-          {/* Catch-all route must be last */}
+          {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
