@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom"; 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ResumeOnePager from "./pages/ResumeOnePager";
@@ -14,18 +14,17 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      {/* Change this from BrowserRouter to Router (which is now HashRouter) */}
+      <Router>
         <Routes>
-          {/* Using 'index' instead of 'path="/"' ensures this ONLY loads at the root */}
-          <Route index element={<Index />} />
+          <Route path="/" element={<Index />} />
           
-          {/* Ensure this path is exactly "/cv" */}
+          {/* Use the relative path here */}
           <Route path="/cv" element={<ResumeOnePager />} />
           
-          {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </TooltipProvider>
   </QueryClientProvider>
 );
