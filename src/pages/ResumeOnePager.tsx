@@ -54,7 +54,7 @@ export default function ResumeOnePager() {
         <section className="mb-6">
           <h2 className="text-xs font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Professional Summary</h2>
           <p className="text-[12px] leading-relaxed italic text-gray-800">
-            Product Manager with a multidisciplinary technical background in Fullstack Engineering and DevRel. Specializing in **Enterprise GenAI orchestration**, multi-agent systems, and RAG architecture. Experienced in leading 0-to-1 MVP developments and scaling platform products for global financial institutions.
+            AI Product Manager with a multidisciplinary technical background in Fullstack Engineering and Developer Relations. Specializing in Enterprise GenAI orchestration, multi-agent systems, and RAG architecture. Experienced in leading early-phase AI initiatives to external launch, implementing intelligence layer into product in tandem with platform scaling.
           </p>
         </section>
 
@@ -70,11 +70,17 @@ export default function ResumeOnePager() {
             </div>
             <p className="text-[11px] font-bold text-gray-700 italic mb-1">Mastercard | Remote</p>
             <ul className="list-disc ml-4 text-[11px] space-y-1 text-gray-900">
-              <li><strong>GenAI Leadership:</strong> Led the development of Mastercard's first enterprise **GPT-4 / RAG chatbot** using multi-agent architecture from ideation to global launch. Improved data-retrieval accuracy and traceability by 30%.</li>
+              <li><strong>GenAI Leadership:</strong> Led development of Mastercard's first enterprise GPT-4.1 / RAG chatbot using multi-agent architecture from ideation to global launch.</li>
+              <li>Improved data-retrieval accuracy and traceability by 30%. Implemented prompt sanitization, PII redaction, and bias monitoring to meet governance standards.</li>
+              <li>Establish semi-automated evaluation pipelines for LLM benchmarking and human-in-the-loop testing to measure model quality and policy alignment.</li>
+              <li>Implemented prompt sanitization, PII redaction, and bias monitoring to meet global enterprise standards.</li>
               <li><strong>Platform Scale:</strong> Directing over 10 product integrations, increasing platform portfolio by 50%+. Serving ≈20K MAUs and enabling multi-million dollar annual revenue across 30+ data and analytics products.</li>
-              <li><strong>Search & Discovery:</strong> Orchestrated a search redesign resulting in a **+106% increase in engagement** via enhanced semantic search and vector embeddings.</li>
-              <li><strong>Operational Excellence:</strong> Streamlined partner onboarding by 40% (from 6 to 3 weeks) for 15+ integration teams through self-service documentation and automated analytics dashboards.</li>
-              <li><strong>Governance:</strong> Implemented prompt sanitization, PII redaction, and bias monitoring to meet global enterprise standards.</li>
+              <li><strong>Search & Discovery:</strong> Orchestrated search redesign and repositioning leading to resulting in a +106% increase in search engagement. Launched AI-assisted editorial and semantic-search tools using vector embeddings to enhance content quality and user discovery</li>
+              <li><strong>Operational Excellence:</strong> Exceeded activation targets by 14% driving 230% YoY increase in opt-back-in. Streamlined partner onboarding by 40% (from 6 to 3 weeks) for 15+ integration teams through authoring 130+ pages of self-service documentation and templatizing analytics dashboards.</li>
+              <li>Monthly NPS increased to 79 (+18pp MoM) following platform UX and homepage improvements, indicating stronger discoverability and clarity. Streamlined partner onboarding by
+40% (6→3 weeks) for 15+ integration teams via self-service documentation, tutorials, and analytics dashboards.</li>
+              <li>Daily collaboration across global teams (Dublin, Lisbon, Prague, Rome, Singapore, U.S., etc.) to align OKRs, integration standards, and regional requirements for product launches.
+Travel periodically (5-10%) for roadmapping workshops and stakeholder alignment.</li>
             </ul>
           </div>
 
@@ -86,7 +92,7 @@ export default function ResumeOnePager() {
             </div>
             <p className="text-[11px] font-bold text-gray-700 italic mb-1">Mastercard | New York, NY</p>
             <ul className="list-disc ml-4 text-[11px] space-y-1 text-gray-900">
-              <li>Optimized automation pipelines for **100+ applications**, reducing deployment time by ~50%.</li>
+              <li>Optimized automation pipelines for 100+ applications, reducing deployment time by ~50%.</li>
               <li>Standardized documentation and aligned requirements across global teams, reducing alignment time by 42%.</li>
             </ul>
           </div>
@@ -127,8 +133,8 @@ export default function ResumeOnePager() {
             <h2 className="text-xs font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Education</h2>
             <div className="text-[11px]">
               <p className="font-bold text-[12px]">University of Scranton</p>
-              <p>B.S. Computer Information Systems</p>
-              <p className="italic">Business Analytics Focus | Magna Cum Laude</p>
+              <p>B.S. Applied Computing</p>
+              <p className="italic">Business Analytics | Magna Cum Laude</p>
             </div>
           </section>
 
@@ -138,7 +144,6 @@ export default function ResumeOnePager() {
               <li><strong>Wharton Executive Education:</strong> Machine Learning for Business</li>
               <li><strong>Wharton Executive Education:</strong> Influencing with Diplomacy</li>
               <li><strong>Jeff Gothelf:</strong> Lean Product Management</li>
-              <li><strong>Mastercard:</strong> Product Management E2E Certification</li>
             </ul>
           </section>
         </div>
@@ -147,9 +152,8 @@ export default function ResumeOnePager() {
         <section>
           <h2 className="text-xs font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Speaking & Advisory</h2>
           <div className="text-[10px] flex justify-between">
-            <p><strong>INFORMS (2021):</strong> "AI Product Prototype" Speaker</p>
+            <p><strong>INFORMS (2021):</strong> "Amazon Product Review Matchup" Speaker</p>
             <p><strong>BCCC (2024):</strong> "Early Career Roadmapping" Speaker</p>
-            <p><strong>Open Source:</strong> #3 Contributor, Notion Enhancer</p>
           </div>
         </section>
 
@@ -162,7 +166,7 @@ export default function ResumeOnePager() {
         @media print {
           @page {
             size: letter;
-            margin: 0.5in;
+            margin: 0.25in;
           }
           body {
             -webkit-print-color-adjust: exact;
