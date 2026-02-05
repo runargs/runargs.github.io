@@ -13,18 +13,18 @@ interface Community {
 const communities: Community[] = [
   {
     id: "1",
+    name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Manta Sleep, Bearable + more",
+    role: "Beta Testing/Research Participation",
+    description: "Actively participating in testing, roadmap advisory and user research of both software, physical, and health-related consumer products to enhance my user perspective, communication and empathy.",
+    members: "2022-Present"
+  },
+  {
+    id: "2",
     name: "I Know a Place Culinary Agency",
     role: "Advisory Board & Private Chef",
     description: "Community building and cultural education through food-based experiences.",
     members: "2024-Present",
     url: "https://iknowaplace.agency/"
-  },
-  {
-    id: "2",
-    name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Manta Sleep, Bearable + more",
-    role: "Beta Testing/Research Participation",
-    description: "Actively participating in testing, roadmap advisory and user research of both software, physical, and health-related consumer products to enhance my user perspective, communication and empathy.",
-    members: "2022-Present"
   },
   {
     id: "3",
@@ -38,7 +38,7 @@ const communities: Community[] = [
     id: "4",
     name: "Fundraiser/Grants Specialist",
     role: "Various",
-    description: "Aid for Friends - Organized locally to provide 600+ nutritional meals for senior shut-ins. | Walk to End Alzheimers - Grand Champion Fundraiser to support Alzheimer's research.",
+    description: "Aid for Friends - Organized locally to provide 600+ nutritional meals for senior shut-ins. | Walk to End Alzheimers - Grand Champion Fundraiser to support research.",
     members: "2017",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   }
