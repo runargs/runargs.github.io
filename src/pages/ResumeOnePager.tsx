@@ -77,7 +77,7 @@ export default function ResumeOnePager() {
               <li><strong>Portfolio Growth:</strong> Integrated 10+ products (<strong>50%+ portfolio increase</strong>) on a market intelligence platform serving <strong>20K MAU</strong> and enabling multi-million dollar annual revenue.</li>
               <li><strong>Search Transformation:</strong> Orchestrated search redesign and vector embedding integration, resulting in <strong>+106% search engagement</strong> and increasing Monthly NPS to <strong>79 (+18pp MoM)</strong>.</li>
               <li><strong>Operational Scale:</strong> Authored 130-page technical governance (RACI) guide; streamlined partner onboarding by <strong>40% (6 to 3 weeks)</strong> for 15+ global teams via self-service documentation.</li>
-              <li><strong>Execution:</strong> Exceeded activation targets by <strong>14%</strong>, driving a <strong>230% YoY increase</strong> in user opt-ins. Collaborate across global hubs (Singapore, Dublin, Rome) to align OKRs and regional requirements.</li>
+              <li><strong>Execution:</strong> Exceeded activation targets by <strong>14%</strong>, driving a <strong>230% YoY increase</strong> in user opt-ins. Collaborate across global hubs (Dublin, London, Singapore, etc) to align OKRs and regional requirements.</li>
             </ul>
           </div>
 
@@ -147,10 +147,11 @@ export default function ResumeOnePager() {
 
         {/* ADDITIONAL */}
         <section>
-          <h2 className="text-xs font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Speaking & Advisory</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Guest Speaking</h2>
           <div className="text-[10px] flex justify-between">
-            <p><strong>INFORMS (2021):</strong> "Amazon Product Review Matchup" Speaker</p>
-            <p><strong>BCCC (2024):</strong> "Early Career Roadmapping" Speaker</p>
+            <p><strong>21CCCSS (2026)</p>
+            <p><strong>BCCC (2024)/p>
+            <p><strong>Institute for Operations Research and the Management Sciences (2021)</p>
           </div>
         </section>
 
