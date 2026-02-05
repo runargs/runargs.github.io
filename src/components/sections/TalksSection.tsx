@@ -25,7 +25,7 @@ const appearances: Appearance[] = [
     date: "February 2026",
     location: "Downingtown, PA",
     topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"],
-    url: "https://www.instagram.com/reel/DUViU_pCQw1/?igsh=Y3doeXRyazU2MXNn",
+    url: "https://www.linkedin.com/posts/alexathoennes_21cccsalumni-classof2018-alumnispotlight-activity-7424802530242506752-15Qf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
   },
   {
     id: "2",
