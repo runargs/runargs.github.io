@@ -29,21 +29,21 @@ export function ResumeSection() {
               <h4 className="font-serif text-lg text-primary mb-3 italic">Executive Summary</h4>
               <ul className="space-y-2.5 text-muted-foreground text-sm leading-snug">
                 <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                  <span className="text-primary mt-1.5 text-[11px]">✦</span>
                   <span>
-                    4+ years bridging execution, orchestration and product vision to build and ship technical products.
+                    4+ years synthesizing technical execution with product intuition to build tools that honor both utility and human intent.
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                  <span className="text-primary mt-1.5 text-[11px]">✦</span>
                   <span>
-                    Leveraging an engineering background and low-code ecosystems to prototype and validate unconventional solutions.
+                    Applying an engineering lens to low-code ecosystems to challenge digital constraints and prototype unconventional systems from first principles.
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1.5 text-[10px]">✦</span>
+                  <span className="text-primary mt-1.5 text-[11px]">✦</span>
                   <span>
-                    Domain expertise in agentic system design, specializing in multi-agent research tools and AI assistants tailored for high-stakes professional workflows.
+                    Exploring the frontier of agentic systems, with a focus on how multi-agent orchestration can augment, rather than replace, professional cognition.
                   </span>
                 </li>
               </ul>
@@ -54,30 +54,30 @@ export function ResumeSection() {
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-2 border-b border-primary/10 gap-2">
                 <h4 className="font-serif text-lg text-primary italic">Education & Credentials</h4>
                 <div className="md:text-right">
-                  <p className="text-[11px] font-bold text-foreground leading-tight">B.S. Applied Computing</p>
-                  <p className="text-[9px] text-muted-foreground uppercase tracking-tighter italic">Business Analytics • Magna Cum Laude</p>
+                  <p className="text-[12px] font-bold text-foreground leading-tight">B.S. Applied Computing</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-tighter italic">Business Analytics • Magna Cum Laude</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                 {[
+                  { title: "Compelling Data Stories", org: "UVA Darden Executive Education", date: "2026" },
                   { title: "Influencing with Diplomacy", org: "Wharton Executive Education", date: "2025" },
                   { title: "Machine Learning for Business", org: "Wharton Executive Education", date: "2025" },
                   { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
-                  { title: "Product Management E2E", org: "Mastercard", date: "2023" },
                   { title: "Product Management Fundamentals", org: "Matthew Pizzi", date: "2023" },
                   { title: "Intro to Marketing", org: "Wharton Penn Online Learning", date: "2016" },
                 ].map((cert, i) => (
                   <div key={i} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
                     <div className="min-w-0">
-                      <p className="text-[10px] font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                      <p className="text-[11px] font-medium text-foreground truncate group-hover:text-primary transition-colors">
                         {cert.title}
                       </p>
-                      <p className="text-[9px] text-muted-foreground/70 uppercase tracking-widest leading-none">
+                      <p className="text-[10px] text-muted-foreground/70 uppercase tracking-widest leading-none">
                         {cert.org}
                       </p>
                     </div>
-                    <span className="text-[9px] font-bold text-primary/40 ml-2 tabular-nums">
+                    <span className="text-[10px] font-bold text-primary/40 ml-2 tabular-nums">
                       {cert.date}
                     </span>
                   </div>
