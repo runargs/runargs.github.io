@@ -18,10 +18,10 @@ interface ArtPiece {
 
 const artPieces: ArtPiece[] = [
   // Culinary
-  { id: "s1", title: "Gallery Tasting Series", date: "2024-2025", description: "Small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery.", gallery: "culinary", image: "/images/gallerytasting.jpeg"},
+  { id: "s1", title: "Gallery Tasting Series", date: "2024-2025", description: "Filipino cuisine inspired small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery. Pictured: Adobo Tapanade Bites (V), Peach-Mango Tartlets with Coconut Glaze (V)", gallery: "culinary", image: "/images/gallerytasting.jpeg"},
   { id: "s2", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
   // Ceramics
-  { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Hand-thrown stoneware with natural ash glaze", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
+  { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
   // Photography
   { id: "p1", title: "TBA", date: "2026", description: "Visuals coming soon", gallery: "fashion design", image: "/images/IMG_8420.jpg"},
 ];
@@ -45,7 +45,7 @@ export function ArtSection() {
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">Artisan Gallery</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Creative expressions beyond the screen
+            Sharing my passion for craft, science, and my cultural roots through art.
           </p>
         </div>
 
