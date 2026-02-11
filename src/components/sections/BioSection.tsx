@@ -22,8 +22,8 @@ export function BioSection() {
         <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
           Alexa Thoennes
         </h1>
-        <p className="font-serif text-xl md:text-2xl text-muted-foreground italic">
-          AI-Enabled Product · Artist · Empiricist
+        <p className="font-serif text-lg md:text-2xl text-muted-foreground italic">
+          philosophical technologist
         </p>
       </div>
 
