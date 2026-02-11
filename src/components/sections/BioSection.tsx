@@ -30,10 +30,10 @@ export function BioSection() {
       {/* Bio content */}
       <div className="max-w-2xl mx-auto text-center">
         <p className="text-lg md:text-xl leading-relaxed text-foreground/90 mb-6">
-          I  translate complex intent into technical reality. 
+          I'm here when you need to turn complexity into action.
         </p>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-          By applying systems thinking to product development, I build tools that expand human agency—balancing technical precision with a focus on why we build in the first place.
+          People seek me out to translate ideas clearly for any audience, prototype solutions rapidly, and surface perspectives that shift how problems get solved. Across all domains.
         </p>
       </div>
 
