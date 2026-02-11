@@ -19,10 +19,10 @@ export function BioSection() {
           className="w-64 max-w-full rounded-xl object-contain mb-6"
         />
 
-        <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4">
+        <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-1">
           Alexa Thoennes
         </h1>
-        <p className="font-serif text-lg md:text-2xl text-muted-foreground italic">
+        <p className="font-serif text-lg md:text-lg text-muted-foreground italic">
           philosophical technologist
         </p>
       </div>
@@ -30,12 +30,10 @@ export function BioSection() {
       {/* Bio content */}
       <div className="max-w-2xl mx-auto text-center">
         <p className="text-lg md:text-xl leading-relaxed text-foreground/90 mb-6">
-          I help bridge the gap between concept and creation.
+          I  translate complex intent into technical reality. 
         </p>
-        
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-          Leveraging the latest empirical approaches to help humans do more while working less:
-          whether that’s through product management, artisinal pursuits, or systems building. 
+          By applying systems thinking to product development, I build tools that expand human agency—balancing technical precision with a focus on why we build in the first place.
         </p>
       </div>
 
