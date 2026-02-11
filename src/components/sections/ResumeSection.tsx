@@ -70,7 +70,7 @@ export function ResumeSection() {
                 ].map((cert, i) => (
                   <div key={i} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
                     <div className="min-w-0">
-                      <p className="text-[11px] font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                      <p className="text-[12px] font-medium text-foreground truncate group-hover:text-primary transition-colors">
                         {cert.title}
                       </p>
                       <p className="text-[10px] text-muted-foreground/70 uppercase tracking-widest leading-none">
