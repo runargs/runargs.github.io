@@ -62,7 +62,12 @@ const experiences = [
       "Built features for 18 Visa websites and 1,600+ partner sites serving ~100K monthly users.",
       "Developed modular semantic search components using NLP (Elasticsearch) to optimize maintenance."
     ],
-    skills: ["Web Development", "Semantic Search", "UX Design", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"]
+    skills: ["Web Development", "Semantic Search", "UX Design", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"],
+    testimonial: {
+      text: "All team members really enjoyed working with Alexa this summer. She was very patient [...] but also pushed to move things forward. Alexa is a very professional presenter; she explains material concisely and captured her project well.",
+      author: "Sandesh Kashikar",
+      title: "Sr. Director @ Visa"
+    }
   },
   {
     id: "google",
@@ -79,7 +84,7 @@ const experiences = [
     testimonial: {
       text: "She is an excellent technical communicator... Alexa was great to have as a team member and I would happily recommend her for any position.",
       author: "Billy Jacobson",
-      title: "Senior Developer Advocate"
+      title: "Sr. Developer Advocate @ Google"
     },
     featured: true
   },
