@@ -19,7 +19,8 @@ interface ArtPiece {
 const artPieces: ArtPiece[] = [
   // Culinary
   { id: "s1", title: "Gallery Tasting Series", date: "2024-2025", description: "Filipino cuisine inspired small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery. Pictured: Adobo Tapanade Bites (V), Peach-Mango Tartlets with Coconut Glaze (V)", gallery: "culinary", image: "/images/gallerytasting.jpeg"},
-  { id: "s2", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
+  { id: "s2", title: "Gallery Tasting Series", date: "2024-2025", description: "Filipino cuisine inspired small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery. Pictured: Adobo Tapanade Bites (V), Peach-Mango Tartlets with Coconut Glaze (V)", gallery: "culinary", image: "/images/tasting.jpeg"},
+  { id: "s3", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
   // Ceramics
   { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
   // Photography
