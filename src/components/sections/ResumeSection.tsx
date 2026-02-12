@@ -121,9 +121,6 @@ export function ResumeSection() {
                   />
                   <Key className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary/30" />
                 </div>
-                <p className="text-[10px] text-muted-foreground/50 italic">
-                  Hint: The year mentioned above.
-                </p>
               </div>
             ) : (
               <div className="animate-in fade-in zoom-in duration-500">
@@ -140,9 +137,6 @@ export function ResumeSection() {
                     Download PDF
                   </Button>
                 </a>
-                <p className="text-[10px] text-primary mt-3 font-bold uppercase tracking-widest">
-                  Access Granted
-                </p>
               </div>
             )}
           </div>
