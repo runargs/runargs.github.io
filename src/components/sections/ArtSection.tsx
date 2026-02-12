@@ -24,7 +24,7 @@ const artPieces: ArtPiece[] = [
   { id: "s4", title: "Flavors of Iloilo", date: "2025", description: "Elevated filipino cuisine and handmade ceramic plate https://www.instagram.com/p/DEv2ddPAVal/", gallery: "culinary", image: "/images/iloilo.jpg"},
   { id: "s5", title: "Grilled octopus @ Triple Sun Spirits", date: "2025", description: "Part of a mediterranean dining experience. Hosting private events at Triple Sun Spirits Distillery & Speakeasy from 30-125pax.", gallery: "culinary", image: "/images/IMG_8416.jpg"},
   { id: "s6", title: "The Bond Experience", date: "2025", description: "In collaboration with The Bond Experience and Newtown Theatre. Operation: slow down & enjoy yourself. https://www.instagram.com/p/DNe3tH2AEX1/", gallery: "culinary", image: "/images/puff.jpg"},
-  { id: "p3", title: "In-Home Private Dining", date: "2024-Present", description: "Local venue and in-home private dining", gallery: "other", image: "/images/kitchen.JPG"},
+  { id: "p3", title: "In-Home Private Dining", date: "2024-Present", description: "Local venue and in-home private dining", gallery: "culinary", image: "/images/kitchen.JPG"},
   
   // Ceramics
   { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
