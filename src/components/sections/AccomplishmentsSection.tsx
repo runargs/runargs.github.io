@@ -187,6 +187,29 @@ export function AccomplishmentsSection() {
             </button>
           </div>
         )}
+        {/* Character Spotlight - Bridging the transition from awards to personal brand */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-muted/20 pt-12">
+          
+          {/* Quote 1: Resilience/Grit */}
+          <div className="p-6 bg-primary/[0.03] border-l-2 border-primary/20 rounded-r-2xl italic">
+            <p className="text-[13px] text-foreground/80 leading-relaxed mb-4">
+              "Never one to do what is easy... Alexa instead used [challenges] as motivation to become a stronger, faster, and more focused [leader]. She is not the kind of person who simply does what is 'acceptable.'"
+            </p>
+            <cite className="text-[9px] not-italic font-bold text-muted-foreground uppercase tracking-widest">
+              — J.H., Educator
+            </cite>
+          </div>
+        
+          {/* Quote 2: Reputation/High-Performance */}
+          <div className="p-6 bg-primary/[0.03] border-l-2 border-primary/20 rounded-r-2xl italic">
+            <p className="text-[13px] text-foreground/80 leading-relaxed mb-4">
+              "[Alexa] has a reputation... as one of our best and brightest. She is known not only as a gifted [thinker], but a cooperative partner who chooses the most challenging paths."
+            </p>
+            <cite className="text-[9px] not-italic font-bold text-muted-foreground uppercase tracking-widest">
+              — K.W., Advisor
+            </cite>
+          </div>
+        </div>
       </div>
     </section>
   );
