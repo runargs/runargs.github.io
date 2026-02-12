@@ -23,13 +23,18 @@ const artPieces: ArtPiece[] = [
   // Ceramics
   { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
   // Photography
-  { id: "p1", title: "TBA", date: "2026", description: "Visuals coming soon", gallery: "fashion design", image: "/images/IMG_8420.jpg"},
+  { id: "p1", title: "modeling | @visualsbykaitlyn", date: "-", description: "https://www.instagram.com/p/CNH3F4GHG8P/", gallery: "other", image: "/images/photoshoot1.jpg"},
+  { id: "p2", title: "modeling | @visualsbykaitlyn", date: "-", description: "https://www.instagram.com/p/CNAOVNKn4DJ/", gallery: "other", image: "/images/photoshoot2.jpg"},
+  { id: "p3", title: "modeling | @photography_by_nadia", date: "-", description: "@photography_by_nadia", gallery: "other", image: "/images/photoshoot3.jpg"},
+  { id: "p4", title: "modeling | @delarosa_jr", date: "-", description: "for I Know a Place Agency", gallery: "other", image: "/images/placesetting.JPEG"},
+  { id: "p5", title: "modeling | @delarosa_jr", date: "-", description: "for I Know a Place Agency", gallery: "other", image: "/images/herbs.JPEG"},
+  { id: "p6", title: "modeling | @delarosa_jr", date: "-", description: "for I Know a Place Agency", gallery: "other", image: "/images/solo.JPG"},
 ];
 
 const galleries: { id: GalleryType; label: string }[] = [
   { id: "culinary", label: "Culinary" },
   { id: "ceramics", label: "Ceramic" },
-  { id: "fashion design", label: "Other" },
+  { id: "other", label: "Other" },
 ];
 
 export function ArtSection() {
