@@ -20,6 +20,14 @@ const communities: Community[] = [
   },
   {
     id: "2",
+    name: "Moral Ambition Community",
+    role: "Member",
+    description: "A global network of ambitious idealists. Moral ambition redefines success: not by what we accumulate, but by what we contribute.",
+    members: "2026-Present",
+    url: "https://www.moralambition.org/"
+  },
+  {
+    id: "3",
     name: "I Know a Place Culinary Agency",
     role: "Advisory Board & Private Chef",
     description: "Community building and cultural education through food-based experiences.",
@@ -27,19 +35,11 @@ const communities: Community[] = [
     url: "https://iknowaplace.agency/"
   },
   {
-    id: "3",
-    name: "Notion Enhancement - GitHub Open Source Community",
-    role: "Core Contributor",
-    description: "Developer advocacy and #3 code contributor for notion enhancer, an all-in-one customizer for Notion workspace.",
-    members: "2020",
-    url: "https://notion-enhancer.github.io/"
-  },
-  {
     id: "4",
     name: "Fundraiser/Grants Specialist",
     role: "Various",
     description: "Aid for Friends - Organized locally to provide 600+ nutritional meals for senior shut-ins. | Walk to End Alzheimers - Grand Champion Fundraiser to support research.",
-    members: "2017",
+    members: "2015-2018",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   }
 ];
