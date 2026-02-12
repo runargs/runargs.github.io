@@ -23,7 +23,7 @@ const artPieces: ArtPiece[] = [
   { id: "s3", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
   { id: "s4", title: "Flavors of Iloilo", date: "2025", description: "Elevated filipino cuisine and handmade ceramic plate https://www.instagram.com/p/DEv2ddPAVal/", gallery: "culinary", image: "/images/iloilo.jpg"},
   { id: "s5", title: "Grilled octopus @ Triple Sun Spirits", date: "2025", description: "Part of a mediterranean dining experience. Hosting private events at Triple Sun Spirits Distillery & Speakeasy from 30-125pax.", gallery: "culinary", image: "/images/IMG_8416.jpg"},
-  { id: "s5", title: "The Bond Experience", date: "2025", description: "In collaboration with The Bond Experience and Newtown Theatre. Operation: slow down & enjoy yourself. https://www.instagram.com/p/DNe3tH2AEX1/", gallery: "culinary", image: "/images/puff.jpg"},
+  { id: "s6", title: "The Bond Experience", date: "2025", description: "In collaboration with The Bond Experience and Newtown Theatre. Operation: slow down & enjoy yourself. https://www.instagram.com/p/DNe3tH2AEX1/", gallery: "culinary", image: "/images/puff.jpg"},
   
   // Ceramics
   { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
@@ -32,12 +32,12 @@ const artPieces: ArtPiece[] = [
   { id: "c4", title: "Mixed Pottery", date: "2025", description: "https://www.instagram.com/p/DN6Akntjo3y/", gallery: "ceramics", image: "/images/comp_pottery2.jpg"},
   
   // Photography
-  { id: "p4", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/placesetting.JPEG"},
-  { id: "p5", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/herbs.JPEG"},
-  { id: "p6", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/kitchen.JPG"},
-  { id: "p1", title: "modeling", date: "@visualsbykaitlyn", description: "https://www.instagram.com/p/CNH3F4GHG8P/", gallery: "other", image: "/images/photoshoot1.jpg"},
-  { id: "p2", title: "modeling", date: "@visualsbykaitlyn", description: "https://www.instagram.com/p/CNAOVNKn4DJ/", gallery: "other", image: "/images/photoshoot2.jpg"},
-  { id: "p3", title: "modeling", date: "@photography_by_nadia", description: "@photography_by_nadia", gallery: "other", image: "/images/photoshoot3.jpg"},
+  { id: "p1", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/placesetting.JPEG"},
+  { id: "p2", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/herbs.JPEG"},
+  { id: "p3", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/kitchen.JPG"},
+  { id: "p4", title: "modeling", date: "@visualsbykaitlyn", description: "https://www.instagram.com/p/CNH3F4GHG8P/", gallery: "other", image: "/images/photoshoot1.jpg"},
+  { id: "p5", title: "modeling", date: "@visualsbykaitlyn", description: "https://www.instagram.com/p/CNAOVNKn4DJ/", gallery: "other", image: "/images/photoshoot2.jpg"},
+  { id: "p6", title: "modeling", date: "@photography_by_nadia", description: "@photography_by_nadia", gallery: "other", image: "/images/photoshoot3.jpg"},
   { id: "p7", title: "modeling", date: "@alexander.aperture", description: "https://www.instagram.com/p/DCiDW_cJwZR/", gallery: "other", image: "/images/sf.jpg"},
 ];
 
