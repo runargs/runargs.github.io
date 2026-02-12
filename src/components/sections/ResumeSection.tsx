@@ -1,7 +1,25 @@
-import { Download, FileText } from "lucide-react";
+import React, { useState } from "react";
+import { Download, FileText, Key, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function ResumeSection() {
+  const [keyInput, setKeyInput] = useState("");
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
+  // The "Soft Barrier" Key - Congrats, you found it!
+  const ACCESS_KEY = "2026";
+
+  const handleKeyEntry = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setKeyInput(value);
+
+    // Auto-unlocks the moment the correct key is typed
+    if (value.toUpperCase() === ACCESS_KEY) {
+      setIsUnlocked(true);
+    }
+  };
+
   return (
     <section id="resume" className="py-20 px-6 md:px-12 bg-background">
       <div className="max-w-2xl mx-auto text-center">
@@ -86,22 +104,48 @@ export function ResumeSection() {
             </div>
           </div>
 
-          {/* PDF DOWNLOAD LINK AREA */}
-          <a 
-            href="/Alexa_Public_Resume.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            download="Alexa_Public_Resume.pdf"
-            className="inline-block w-full md:w-auto"
-          >
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 w-full md:w-auto shadow-md active:scale-95 transition-transform"
-            >
-              <Download className="h-5 w-5" />
-              Download PDF
-            </Button>
-          </a>
+          {/* ACCESS CONTROL AREA */}
+          <div className="max-w-xs mx-auto pt-6 border-t border-border/50">
+            {!isUnlocked ? (
+              <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                  Enter Key for PDF Access
+                </p>
+                <div className="relative">
+                  <Input
+                    type="text"
+                    placeholder="••••"
+                    value={keyInput}
+                    onChange={handleKeyEntry}
+                    className="text-center bg-muted/20 border-dashed border-primary/20 focus-visible:ring-primary/40 uppercase tracking-widest"
+                  />
+                  <Key className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary/30" />
+                </div>
+                <p className="text-[10px] text-muted-foreground/50 italic">
+                  Hint: The year mentioned above.
+                </p>
+              </div>
+            ) : (
+              <div className="animate-in fade-in zoom-in duration-500">
+                <a 
+                  href="/Alexa_Public_Resume.pdf" 
+                  download="Alexa_Thoennes_Resume.pdf"
+                  className="inline-block w-full md:w-auto"
+                >
+                  <Button 
+                    size="lg" 
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 w-full md:w-auto shadow-md active:scale-95 transition-all"
+                  >
+                    <CheckCircle2 className="h-5 w-5 opacity-80" />
+                    Download PDF
+                  </Button>
+                </a>
+                <p className="text-[10px] text-primary mt-3 font-bold uppercase tracking-widest">
+                  Access Granted
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Contact note */}
