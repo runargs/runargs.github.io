@@ -120,7 +120,7 @@ const Index = () => {
             </button>
 
             <p className="pr-2">
-              It looks like you're exploring this portfolio. Would you like to get in touch?
+              It looks like you're enjoying exploring this portfolio. Would you like to get in touch?
             </p>
             <a 
               href="mailto:alexa.thoennes@gmail.com" 
@@ -137,7 +137,7 @@ const Index = () => {
           <img 
             src="/images/clippy-karl-klammer.gif" 
             alt="Clippy" 
-            className="w-16 h-16 object-contain"
+            className="w-18 h-18 object-contain"
           />
         </div>
       )}
