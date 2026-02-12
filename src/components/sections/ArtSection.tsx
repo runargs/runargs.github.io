@@ -29,7 +29,7 @@ const artPieces: ArtPiece[] = [
   // Ceramics
   { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
   { id: "c2", title: "Teapot", date: "2025", description: "https://www.instagram.com/p/DOH53lpDoK2/", gallery: "ceramics", image: "/images/teapot.jpg"},
-  { id: "c3", title: "Mixed Pottery", date: "2025", description: "https://www.instagram.com/p/DN6Akntjo3y/", gallery: "ceramics", image: "/images/comp_pottery2.jpg"},
+  { id: "c3", title: "Mixed Pottery", date: "2025", description: "https://www.instagram.com/p/DN6Akntjo3y/", gallery: "ceramics", image: "/images/comp_pottery1.jpg"},
   { id: "c4", title: "Mixed Pottery", date: "2025", description: "https://www.instagram.com/p/DN6Akntjo3y/", gallery: "ceramics", image: "/images/comp_pottery2.jpg"},
   
   // Photography
