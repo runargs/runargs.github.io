@@ -19,14 +19,14 @@ export default function ResumeOnePager() {
         {/* HEADER - Compressed padding */}
         <header className="text-center border-b-2 border-black pb-2 mb-3">
           <h1 className="text-3xl font-bold uppercase tracking-tight mb-0.5">Alexa Thoennes</h1>
-          <p className="text-md font-bold text-gray-800 mb-1.5">Product Manager | Enterprise GenAI & Platform Enablement</p>
+          <p className="text-md font-bold text-gray-800 mb-1.5">Renaissance Technologist | Product Manager | GenAI & 0-to-1 prototyping </p>
           
           <div className="flex flex-wrap justify-center gap-x-4 text-[10px] font-medium text-gray-700">
             <span className="flex items-center gap-1"><MapPin size={10} /> Open to Relocation </span>
             <span className="flex items-center gap-1"><Mail size={10} /> alexa.thoennes@gmail.com</span>
             <span className="flex items-center gap-1"><Phone size={10} /> +1 (267) 397-6790</span>
             <span className="flex items-center gap-1"><Linkedin size={10} /> linkedin.com/in/alexathoennes</span>
-            <span className="flex items-center gap-1"><Globe size={10} /> alexathoennes.com</span>
+            <span className="flex items-center gap-1"><Globe size={10} /> runargs.github.io</span>
           </div>
         </header>
 
@@ -35,11 +35,11 @@ export default function ResumeOnePager() {
           <div className="grid grid-cols-3 gap-2 text-center border border-gray-200 p-2 rounded-sm bg-gray-50/50">
             <div>
               <p className="text-lg font-bold">≈20K</p>
-              <p className="text-[9px] uppercase text-gray-600 font-bold leading-tight text-balance">Monthly Active Users on GenAI Platform</p>
+              <p className="text-[9px] uppercase text-gray-600 font-bold leading-tight text-balance">Monthly Active Users on Market Intelligence Platform</p>
             </div>
             <div className="border-x border-gray-200 px-1">
               <p className="text-lg font-bold">+30%</p>
-              <p className="text-[9px] uppercase text-gray-600 font-bold leading-tight text-balance">Accuracy & Traceability Gain in RAG Chatbot</p>
+              <p className="text-[9px] uppercase text-gray-600 font-bold leading-tight text-balance">Accuracy & Traceability Gain with RAG Chatbot</p>
             </div>
             <div>
               <p className="text-lg font-bold">+106%</p>
@@ -63,11 +63,11 @@ export default function ResumeOnePager() {
           {/* Mastercard PM II */}
           <div className="mb-3.5">
             <div className="flex justify-between items-baseline mb-0.5">
-              <h3 className="font-bold text-[12px]">Product Manager II | Insights & Intelligence</h3>
+              <h3 className="font-bold text-[12px]">Global Product Manager II</h3>
               <span className="text-[10px] font-bold">Jan 2024 — Present</span>
             </div>
             <div className="flex justify-between text-[10px] italic text-gray-700 mb-0.5 font-semibold">
-              <span>Mastercard</span>
+              <span>Mastercard Insights & Intelligence</span>
               <span>Remote / Global</span>
             </div>
             <ul className="list-disc ml-4 text-[10px] space-y-0.5 text-gray-900 leading-tight">
@@ -82,7 +82,7 @@ export default function ResumeOnePager() {
           {/* Mastercard DevOps */}
           <div className="mb-3">
             <div className="flex justify-between items-baseline mb-0.5">
-              <h3 className="font-bold text-[12px]">DevOps Engineer I</h3>
+              <h3 className="font-bold text-[12px]">Automation Engineer (BizOps)</h3>
               <span className="text-[10px] font-bold">Jan 2022 — Jan 2024</span>
             </div>
             <p className="text-[10px] font-bold text-gray-700 italic mb-0.5">Mastercard | New York, NY</p>
@@ -96,9 +96,9 @@ export default function ResumeOnePager() {
           <div className="mb-2">
             <h4 className="text-[10px] font-bold border-b border-gray-100 mb-1 uppercase text-gray-500">Previous Experience</h4>
             <div className="grid grid-cols-1 gap-0.5 text-[10px]">
-              <p><strong>Visa:</strong> Software Engineer (2021) — Built multilingual React SPA deployed across 1,600+ partner sites.</p>
-              <p><strong>Google:</strong> DevRel Engineer Intern (2020) — Contributed to open-source Python automation (Synthtool) and UX research.</p>
-              <p><strong>Nexus Valley Solutions:</strong> Product (2018-2019) — EdTech startup involving robotics curriculum.</p>
+              <p><strong>Visa:</strong> Software Engineer Internship (2021) — Built multilingual React SPA deployed across 1,600+ partner sites.</p>
+              <p><strong>Google:</strong> Developer Relations Engineer Internship (2020) — Contributed to open-source Python automation (Synthtool) and UX research.</p>
+              <p><strong>Nexus Valley Solutions:</strong> Product (2018-2019) — EdTech startup involving robotics curriculum. tecBridge Strategic Business Plan Award 2018</p>
             </div>
           </div>
         </section>
@@ -136,7 +136,7 @@ export default function ResumeOnePager() {
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Executive Education</h2>
             <ul className="text-[10px] space-y-0.5">
-              <li><strong>Wharton Executive Education:</strong> Machine Learning for Business</li>
+              <li><strong>UVA Darden Executive Education:</strong> Compelling Data Stories</li>
               <li><strong>Wharton Executive Education:</strong> Influencing with Diplomacy</li>
               <li><strong>Jeff Gothelf:</strong> Lean Product Management</li>
             </ul>
@@ -145,11 +145,11 @@ export default function ResumeOnePager() {
 
         {/* ADDITIONAL */}
         <section>
-          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Guest Speaking</h2>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Appearances & Speaking</h2>
           <div className="text-[9px] flex justify-between font-medium">
             <p><strong>21CCCS (2026):</strong> Mastery Learning Outcomes</p>
             <p><strong>BCCC (2024):</strong> Early Career Roadmapping</p>
-            <p><strong>INFORMS (2021):</strong> Forecasting Product Match</p>
+            <p><strong>INFORMS (2021):</strong> Forecasting Product Matches</p>
           </div>
         </section>
 
