@@ -37,7 +37,7 @@ const Index = () => {
       setIsRendered(true);
       // Small micro-delay to allow the DOM to catch up before changing opacity
       setTimeout(() => setIsVisible(true), 50);
-    }, 3000);
+    }, 10000);
 
     return () => clearTimeout(appearanceTimer);
   }, []);
