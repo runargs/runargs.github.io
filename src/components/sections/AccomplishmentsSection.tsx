@@ -193,7 +193,8 @@ export function AccomplishmentsSection() {
           {/* Quote 1: Resilience/Grit (Jessica) */}
           <div className="p-6 bg-primary/[0.03] border-l-2 border-primary/20 rounded-r-2xl italic">
             <p className="text-[13px] text-foreground/80 leading-relaxed mb-4">
-              "[Alexa] has a reputation as one of our best and brightest. Never one to do what is easy [...] She is not the kind of person who simply does what is 'acceptable.'"
+              "[Alexa] has a reputation as one of our best and brightest.<br /><br />
+              Never one to do what is easy [...] She is not the kind of person who simply does what is 'acceptable.'"
             </p>
             <cite className="text-[9px] not-italic font-bold text-muted-foreground uppercase tracking-widest">
               — J.H., Educator
