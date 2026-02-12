@@ -40,7 +40,6 @@ const artPieces: ArtPiece[] = [
   { id: "p3", title: "modeling", date: "@photography_by_nadia", description: "@photography_by_nadia", gallery: "other", image: "/images/photoshoot3.jpg"},
   { id: "p7", title: "modeling", date: "@alexander.aperture", description: "https://www.instagram.com/p/DCiDW_cJwZR/", gallery: "other", image: "/images/sf.jpg"},
 ];
-];
 
 const galleries: { id: GalleryType; label: string }[] = [
   { id: "culinary", label: "Culinary" },
