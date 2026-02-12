@@ -23,7 +23,7 @@ const artPieces: ArtPiece[] = [
   { id: "s3", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
   { id: "s4", title: "Flavors of Iloilo", date: "2025", description: "Elevated filipino cuisine and handmade ceramic plate https://www.instagram.com/p/DEv2ddPAVal/", gallery: "culinary", image: "/images/iloilo.JPG"},
   { id: "s5", title: "Grilled octopus @ Triple Sun Spirits", date: "2025", description: "Part of a mediterranean dining experience. Hosting private events at Triple Sun Spirits Distillery & Speakeasy from 30-125pax.", gallery: "culinary", image: "/images/IMG_8416.jpg"},
-  { id: "s5", title: "The Bond Experience", date: "2025", description: "In collaboration with The Bond Experience and Newtown Theatre. Operation: slow down & enjoy yourself.", gallery: "culinary", image: "/images/puff.jpg"},
+  { id: "s5", title: "The Bond Experience", date: "2025", description: "In collaboration with The Bond Experience and Newtown Theatre. Operation: slow down & enjoy yourself. https://www.instagram.com/p/DNe3tH2AEX1/", gallery: "culinary", image: "/images/puff.jpg"},
   
   // Ceramics
   { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
