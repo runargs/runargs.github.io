@@ -188,7 +188,9 @@ export function AccomplishmentsSection() {
           </div>
         )}
         {/* Character Spotlight - Bridging the transition from awards to personal brand */}
-          {/* Quote 1: Resilience/Grit */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-muted/20 pt-12">
+          
+          {/* Quote 1: Resilience/Grit (Jessica) */}
           <div className="p-6 bg-primary/[0.03] border-l-2 border-primary/20 rounded-r-2xl italic">
             <p className="text-[13px] text-foreground/80 leading-relaxed mb-4">
               "[Alexa] has a reputation as one of our best and brightest. Never one to do what is easy [...] She is not the kind of person who simply does what is 'acceptable.'"
@@ -198,7 +200,7 @@ export function AccomplishmentsSection() {
             </cite>
           </div>
         
-          {/* Quote 2: Reputation/High-Performance */}
+          {/* Quote 2: Reputation/High-Performance (Kate) */}
           <div className="p-6 bg-primary/[0.03] border-l-2 border-primary/20 rounded-r-2xl italic">
             <p className="text-[13px] text-foreground/80 leading-relaxed mb-4">
               "Distinguished, enthusiastic, and charitable are all words I’d use to describe Alexa. [...] Her ability to manage a rigorous [roadmap] on top of her many responsibilities is truly exemplary. [...] Her leadership and enthusiasm will be greatly missed."
@@ -207,7 +209,7 @@ export function AccomplishmentsSection() {
               — K.W., Advisor
             </cite>
           </div>
-        </div>
+        </div> 
       </div>
     </section>
   );
