@@ -188,8 +188,6 @@ export function AccomplishmentsSection() {
           </div>
         )}
         {/* Character Spotlight - Bridging the transition from awards to personal brand */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-muted/20 pt-12">
-          
           {/* Quote 1: Resilience/Grit */}
           <div className="p-6 bg-primary/[0.03] border-l-2 border-primary/20 rounded-r-2xl italic">
             <p className="text-[13px] text-foreground/80 leading-relaxed mb-4">
