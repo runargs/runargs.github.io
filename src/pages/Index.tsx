@@ -26,7 +26,21 @@ const sectionIds = [
 const Index = () => {
   const [activeSection, setActiveSection] = useState("bio");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showClippy, setShowClippy] = useState(true); // State for dismissal
+  
+  // States for timing and visibility
+  const [isRendered, setIsRendered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Handle the delay and fade-in
+  useEffect(() => {
+    const appearanceTimer = setTimeout(() => {
+      setIsRendered(true);
+      // Small micro-delay to allow the DOM to catch up before changing opacity
+      setTimeout(() => setIsVisible(true), 50);
+    }, 3000);
+
+    return () => clearTimeout(appearanceTimer);
+  }, []);
 
   // Track active section based on scroll position
   useEffect(() => {
@@ -51,7 +65,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex w-full relative">
-      {/* Desktop sidebar */}
       <div className="hidden md:block w-64 shrink-0 sticky top-0 h-screen">
         <PortfolioSidebar 
           activeSection={activeSection} 
@@ -59,7 +72,6 @@ const Index = () => {
         />
       </div>
 
-      {/* Mobile navigation */}
       <MobileNav
         activeSection={activeSection}
         onSectionChange={setActiveSection}
@@ -67,7 +79,6 @@ const Index = () => {
         onSidebarOpenChange={setSidebarOpen}
       />
 
-      {/* Main content */}
       <main className="flex-1 pt-14 pb-20 md:pt-0 md:pb-0">
         <BioSection />
         <WorkSection />
@@ -79,7 +90,6 @@ const Index = () => {
         <SideProjectsSection />
         <ResumeSection />
 
-        {/* Footer */}
         <footer className="py-12 px-6 text-center border-t border-border">
           <div className="mb-4">
             <span className="font-flourish text-3xl text-primary/40">❧</span>
@@ -94,14 +104,16 @@ const Index = () => {
         </footer>
       </main>
 
-      {/* Clippy Widget */}
-      {showClippy && (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
-          {/* Tooltip Wrapper */}
+      {/* Clippy Component */}
+      {isRendered && (
+        <div 
+          className={`fixed bottom-6 right-6 z-50 hidden md:flex flex-col items-end pointer-events-none transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        >
+          {/* Tooltip */}
           <div className="pointer-events-auto mb-2 relative bg-[#ffffcc] border border-black p-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] max-w-[180px] text-[11px] font-sans text-black leading-tight">
-            {/* Retro Close Button */}
             <button 
-              onClick={() => setShowClippy(false)}
+              onClick={() => setIsVisible(false)} // Fade out first
+              onTransitionEnd={() => !isVisible && setIsRendered(false)} // Remove from DOM after fade
               className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-[#c0c0c0] border-t-white border-l-white border-b-gray-700 border-r-gray-700 border text-[10px] hover:bg-[#d0d0d0] active:border-t-gray-700 active:border-l-gray-700 active:border-b-white active:border-r-white"
             >
               ✕
@@ -117,15 +129,13 @@ const Index = () => {
               Click here to contact.
             </a>
             
-            {/* Speech Bubble Tail */}
             <div className="absolute -bottom-[9px] right-6 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black">
                <div className="absolute -top-[9px] -left-[7px] w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-[7px] border-t-[#ffffcc]" />
             </div>
           </div>
 
-          {/* Clippy GIF */}
           <img 
-            src="/images/clippy.gif" 
+            src="/images/clippy-karl-klammer.gif" 
             alt="Clippy" 
             className="w-16 h-16 object-contain"
           />
