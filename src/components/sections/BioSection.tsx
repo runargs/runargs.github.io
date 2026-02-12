@@ -23,7 +23,7 @@ export function BioSection() {
           Alexa Thoennes
         </h1>
         <p className="font-serif text-lg md:text-lg text-muted-foreground italic">
-          philosophical technologist
+          renaissance technologist
         </p>
       </div>
 
