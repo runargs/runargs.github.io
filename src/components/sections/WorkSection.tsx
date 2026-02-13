@@ -8,7 +8,7 @@ const experiences = [
   {
     id: "mc-pm",
     company: "Mastercard Insights & Intelligence",
-    role: "Product Manager",
+    role: "Global Product Manager II - AI, Platform, Market Intelligence",
     location: "Remote",
     duration: "2024 - Present",
     description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence.",
@@ -25,7 +25,7 @@ const experiences = [
   {
     id: "mc-devops",
     company: "Mastercard",
-    role: "Automation Engineer",
+    role: "Automation/DevOps Engineer I",
     location: "New York, NY",
     duration: "2022 - 2024",
     description: "Automated CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
