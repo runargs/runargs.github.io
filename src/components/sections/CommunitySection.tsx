@@ -15,14 +15,14 @@ const communities: Community[] = [
     id: "1",
     name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Manta Sleep, Bearable + more",
     role: "Beta Testing/Research Participation",
-    description: "Actively participating in testing, roadmap advisory and user research of both software, physical, and health-related consumer products to enhance my user perspective, communication and empathy.",
+    description: "Bridging the gap between product and customer by acting as a power-user and research subject for leading software and hardware. Immersing myself in these feedback loops (from technical beta testing to deep-dive interviews) refines my ability to spot friction and advocate for the user, ensuring my own PM practice remains grounded in a customer-first perspective.",
     members: "2022-Present"
   },
   {
     id: "2",
     name: "Moral Ambition Community",
     role: "Member",
-    description: "A global network of ambitious idealists. Moral ambition redefines success: not by what we accumulate, but by what we contribute.",
+    description: "Engaging with a global network of social entrepreneurs to redefine success through societal contribution. Focused on applying moral ambitiom to product ethics, ensuring that building for the user also means building for the greater good. Moral ambition redefines success: not by what we accumulate, but by what we contribute.",
     members: "2026-Present",
     url: "https://www.moralambition.org/"
   },
@@ -30,7 +30,7 @@ const communities: Community[] = [
     id: "3",
     name: "I Know a Place Culinary Agency",
     role: "Advisory Board & Private Chef",
-    description: "Community building and cultural education through food-based experiences.",
+    description: "Driving community engagement and cultural education through curated culinary experiences. Leveraging sensory storytelling and hospitality to understand diverse human needs.",
     members: "2024-Present",
     url: "https://iknowaplace.agency/"
   },
@@ -38,7 +38,7 @@ const communities: Community[] = [
     id: "4",
     name: "Fundraiser/Grants Specialist",
     role: "Various",
-    description: "Aid for Friends - Organized locally to provide 600+ nutritional meals for senior shut-ins. | Walk to End Alzheimers - Grand Champion Fundraiser to support research.",
+    description: "Scaled local aid operations to deliver 600+ nutritional meals to homebound seniors and achieved "Grand Champion" status for Alzheimer’s research fundraising. Proven record of mobilizing resources and advocating for those vulnerable in our communities while under tight constraints.",
     members: "2015-2018",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   }
