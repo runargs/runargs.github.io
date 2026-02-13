@@ -38,7 +38,7 @@ const communities: Community[] = [
     id: "4",
     name: "Fundraiser/Grants Specialist",
     role: "Various",
-    description: "Scaled local aid operations to deliver 600+ nutritional meals to homebound seniors and achieved "Grand Champion" status for Alzheimer’s research fundraising. Proven record of mobilizing resources and advocating for those vulnerable in our communities while under tight constraints.",
+    description: "Scaled local aid operations to deliver 600+ nutritional meals to homebound seniors and achieved Grand Champion status for Alzheimer’s research fundraising. Proven record of mobilizing resources and advocating for those vulnerable in our communities while under tight constraints.",
     members: "2015-2018",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   }
