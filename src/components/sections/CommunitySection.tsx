@@ -15,14 +15,14 @@ const communities: Community[] = [
     id: "1",
     name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Manta Sleep, Bearable + more",
     role: "Beta Testing/Research Participation",
-    description: "Bridging the gap between product and customer by acting as a power-user and research subject for leading software and hardware. Immersing myself in these feedback loops (from technical beta testing to deep-dive interviews) refines my ability to spot friction and advocate for the user, ensuring my own PM practice remains grounded in a customer-first perspective.",
+    description: "Bridging the gap between product and customer by acting as a power-user and research subject for leading software and hardware. Immersing myself in feedback loops to spot friction and advocate for the user.",
     members: "2022-Present"
   },
   {
     id: "2",
     name: "Moral Ambition Community",
     role: "Member",
-    description: "Engaging with a global network of social entrepreneurs to redefine success through societal contribution. Focused on applying moral ambitiom to product ethics, ensuring that building for the user also means building for the greater good. Moral ambition redefines success: not by what we accumulate, but by what we contribute.",
+    description: "Engaging with a global network of social entrepreneurs. Focused on applying moral ambitiom to product ethics, ensuring that building for the user also means building for the greater good.",
     members: "2026-Present",
     url: "https://www.moralambition.org/"
   },
@@ -38,7 +38,7 @@ const communities: Community[] = [
     id: "4",
     name: "Fundraiser/Grants Specialist",
     role: "Various",
-    description: "Scaled local aid operations to deliver 600+ nutritional meals to homebound seniors and achieved Grand Champion status for Alzheimer’s research fundraising. Proven record of mobilizing resources and advocating for those vulnerable in our communities while under tight constraints.",
+    description: "Scaled local aid operations to deliver 600+ nutritional meals to homebound seniors and achieved Grand Champion status for Alzheimer’s research fundraising.",
     members: "2015-2018",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
   }
