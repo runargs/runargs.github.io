@@ -19,7 +19,7 @@ export default function ResumeOnePager() {
         {/* HEADER - Compressed padding */}
         <header className="text-center border-b-2 border-black pb-2 mb-3">
           <h1 className="text-3xl font-bold uppercase tracking-tight mb-0.5">Alexa Thoennes</h1>
-          <p className="text-md font-bold text-gray-800 mb-1.5">Renaissance Technologist | Product Manager | GenAI & 0-to-1 prototyping </p>
+          <p className="text-md font-bold text-gray-800 mb-1.5">Product Manager | GenAI & 0-to-1 prototyping </p>
           
           <div className="flex flex-wrap justify-center gap-x-4 text-[10px] font-medium text-gray-700">
             <span className="flex items-center gap-1"><MapPin size={10} /> Open to Relocation </span>
@@ -50,15 +50,14 @@ export default function ResumeOnePager() {
 
         {/* SUMMARY */}
         <section className="mb-4">
-          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Professional Summary</h2>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Summary</h2>
           <p className="text-[11px] leading-snug italic text-gray-800">
-            AI Product Manager with a multidisciplinary technical background in Fullstack Engineering and Developer Relations. Specializing in Enterprise GenAI orchestration, multi-agent systems, and RAG architecture. Experienced in leading early-phase AI initiatives to external launch, implementing intelligence layers into product in tandem with platform scaling.
-          </p>
+            Product Manager with a full-stack and Developer Relations background, leading 0→1 enterprise GenAI products and features. Launched a net-new GPT 4.1 chatbot with 80+ enterprise organizations requesting early access pre-GA. Experienced with multi-agent systems, RAG architecture, and LLM governance in production, including hallucination mitigation via RAG.</p>
         </section>
 
         {/* EXPERIENCE */}
         <section className="mb-4">
-          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Professional Experience</h2>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-2 pb-0.5">Experience</h2>
 
           {/* Mastercard PM II */}
           <div className="mb-3.5">
@@ -82,7 +81,7 @@ export default function ResumeOnePager() {
           {/* Mastercard DevOps */}
           <div className="mb-3">
             <div className="flex justify-between items-baseline mb-0.5">
-              <h3 className="font-bold text-[12px]">Automation Engineer (BizOps)</h3>
+              <h3 className="font-bold text-[12px]">Automation Engineer I (BizOps/DevOps)</h3>
               <span className="text-[10px] font-bold">Jan 2022 — Jan 2024</span>
             </div>
             <p className="text-[10px] font-bold text-gray-700 italic mb-0.5">Mastercard | New York, NY</p>
@@ -113,7 +112,7 @@ export default function ResumeOnePager() {
             </div>
             <div>
               <p className="font-bold uppercase text-gray-600 mb-0.5">Technical</p>
-              <p>GenAI, Multi-Agent Systems, RAG, Vector Databases, Python, SQL, React, APIs, CI/CD, LLM Benchmarking, Prompt Engineering.</p>
+              <p>GenAI, RAG, Vector Databases, Python, SQL, React, CI/CD, LLM Benchmarking, Prompt Engineering, "Vibe coding", Lovable, Multi-Agent Systems.</p>
             </div>
             <div>
               <p className="font-bold uppercase text-gray-600 mb-0.5">Tools</p>
@@ -135,7 +134,8 @@ export default function ResumeOnePager() {
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Executive Education</h2>
-            <ul className="text-[10px] space-y-0.5">
+            <ul className="text-[10px] space-y-0.5"> (Course In Progress)
+              <li>(WIP) <strong>ETH Zürich ETHx:</strong> Beyond Systems Thinking</li>
               <li><strong>UVA Darden Executive Education:</strong> Compelling Data Stories</li>
               <li><strong>Wharton Executive Education:</strong> Influencing with Diplomacy</li>
               <li><strong>Jeff Gothelf:</strong> Lean Product Management</li>
@@ -145,11 +145,11 @@ export default function ResumeOnePager() {
 
         {/* ADDITIONAL */}
         <section>
-          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Appearances & Speaking</h2>
+          <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Appearances</h2>
           <div className="text-[9px] flex justify-between font-medium">
             <p><strong>21CCCS (2026):</strong> Mastery Learning Outcomes</p>
             <p><strong>BCCC (2024):</strong> Early Career Roadmapping</p>
-            <p><strong>INFORMS (2021):</strong> Forecasting Product Matches</p>
+            <p><strong>INFORMS (2021):</strong> Forecasting Product Matches (AI/ML)</p>
           </div>
         </section>
 
