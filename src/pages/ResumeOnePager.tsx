@@ -112,11 +112,11 @@ export default function ResumeOnePager() {
             </div>
             <div>
               <p className="font-bold uppercase text-gray-600 mb-0.5">Technical</p>
-              <p>GenAI, RAG, Vector Databases, Python, SQL, React, CI/CD, LLM Benchmarking, Prompt Engineering, "Vibe coding", Lovable, Multi-Agent Systems.</p>
+              <p>GenAI, RAG, Python, SQL, React, CI/CD, LLM Benchmarking, Prompt Engineering, Semantic Search (Vector Embeddings), "Vibe coding", Multi-Agent Systems.</p>
             </div>
             <div>
               <p className="font-bold uppercase text-gray-600 mb-0.5">Tools</p>
-              <p>Azure AI, OpenAI, Jira, Git, Mixpanel, Figma, Qualtrics, Salesforce, Elasticsearch, Jinja, Google Cloud Platform.</p>
+              <p>Azure AI, OpenAI, Gemini, Claude, Lovable, Jira, Git, Mixpanel, Figma (Incl. Make), Qualtrics, Salesforce, Elasticsearch, Jinja, Google Cloud Platform.</p>
             </div>
           </div>
         </section>
@@ -127,14 +127,14 @@ export default function ResumeOnePager() {
             <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Education</h2>
             <div className="text-[10px]">
               <p className="font-bold">University of Scranton</p>
-              <p>B.S. Applied Computing (Business Analytics focus)</p>
+              <p>B.S. Applied Computing (Business Analytics)</p>
               <p className="italic font-semibold text-gray-700">Magna Cum Laude</p>
             </div>
           </section>
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-widest border-b border-black mb-1.5 pb-0.5">Executive Education</h2>
-            <ul className="text-[10px] space-y-0.5"> (Course In Progress)
+            <ul className="text-[10px] space-y-0.5">
               <li>(WIP) <strong>ETH Zürich ETHx:</strong> Beyond Systems Thinking</li>
               <li><strong>UVA Darden Executive Education:</strong> Compelling Data Stories</li>
               <li><strong>Wharton Executive Education:</strong> Influencing with Diplomacy</li>
