@@ -11,7 +11,7 @@ const experiences = [
     role: "Global Product Manager II - AI, Platform, Market Intelligence",
     location: "Remote",
     duration: "2024 - Present",
-    description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence.",
+    description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence. <a href='https://mbi.mastercardservices.com/'>Explore the Live Platform.</a>",
     impact: [
       "Launched AI-assisted research tools and enhanced search using vector embeddings.",
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
@@ -247,7 +247,7 @@ export function WorkSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                   <div className="space-y-6">
                     <p className="text-sm text-foreground/80 leading-relaxed italic border-l-4 border-primary/10 pl-5">
-                      {exp.description}
+                      <span dangerouslySetInnerHTML={{ __html: exp.description }} />
                     </p>
                     
                     {exp.video && (
