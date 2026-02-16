@@ -11,7 +11,7 @@ const experiences = [
     role: "Global Product Manager II - AI, Platform, Market Intelligence",
     location: "Remote",
     duration: "2024 - Present",
-    description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence. <a href='https://mbi.mastercardservices.com/'>Explore the Live Platform.</a>",
+    description: "Driving product strategy for a multi-agent RAG chatbot and AI-native CMS workflows to transform global market intelligence. <strong><a href='https://mbi.mastercardservices.com/'>Explore the Live Platform.</a></strong>",
     impact: [
       "Launched AI-assisted research tools and enhanced search using vector embeddings.",
       "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
