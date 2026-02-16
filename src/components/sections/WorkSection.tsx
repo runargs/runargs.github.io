@@ -65,7 +65,7 @@ const experiences = [
     skills: ["Web Development", "Semantic Search", "UX Design", "Globalization", "Humanist", "Enterprise Scale", "Full Stack"],
     testimonial: {
       text: "All team members really enjoyed working with Alexa this summer. She was very patient [...] but also pushed to move things forward. Alexa is a very professional presenter; she explains material concisely and captured her project well.",
-      author: "Sandesh Kashikar",
+      author: "Sandesh K.",
       title: "Sr. Director @ Visa"
     }
   },
@@ -83,7 +83,7 @@ const experiences = [
     skills: ["Technical Writing", "Automation", "Open Source", "GitHub", "User Research", "Web Development", "Product Strategy", "Developer Advocacy"],
     testimonial: {
       text: "She is an excellent technical communicator... Alexa was great to have as a team member and I would happily recommend her for any position.",
-      author: "Billy Jacobson",
+      author: "Billy J.",
       title: "Sr. Developer Advocate @ Google"
     },
     featured: true
