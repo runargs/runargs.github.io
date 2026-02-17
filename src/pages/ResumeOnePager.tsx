@@ -13,7 +13,6 @@ export default function ResumeOnePager() {
     <div className="min-h-screen bg-white text-black leading-normal" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <div className="max-w-[8.5in] mx-auto p-6 md:p-10 print:p-0 print:max-w-full">
 
-        {/* HEADER — name title-case in DOM + CSS uppercase (Workday caps fix) */}
         <header className="text-center border-b-2 border-black pb-2 mb-3">
           <h1 className="text-3xl font-bold mb-0.5">Alexa Thoennes</h1>
           <p className="text-md font-bold text-gray-800 mb-1">Product Manager | GenAI & 0-to-1 Prototyping</p>
@@ -22,7 +21,6 @@ export default function ResumeOnePager() {
           </p>
         </header>
 
-        {/* KEY IMPACT HIGHLIGHTS */}
         <section className="mb-3">
           <div className="grid grid-cols-3 gap-2 text-center border border-gray-200 p-2 rounded-sm bg-gray-50/50">
             <div>
@@ -40,18 +38,16 @@ export default function ResumeOnePager() {
           </div>
         </section>
 
-        {/* SUMMARY */}
         <section className="mb-3">
           <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Summary</h2>
           <p className="text-[11px] leading-snug italic text-gray-800">
             Product Manager with a full-stack and Developer Relations background, leading 0-to-1 enterprise GenAI products and features. Launched a net-new GPT-4.1 chatbot with 80+ enterprise organizations requesting early access pre-GA. Experienced with multi-agent systems, RAG architecture, and LLM governance in production, including hallucination mitigation via RAG.
           </p>
         </section>
-        
+
         <section className="mb-3">
           <h2 className="text-[11px] font-bold border-b border-black mb-1.5 pb-0.5">Experience</h2>
 
-          {/* Mastercard PM II */}
           <div className="mb-2.5">
             <div className="flex justify-between items-baseline mb-0">
               <h3 className="font-bold text-[12px]">Global Product Manager II</h3>
@@ -70,7 +66,6 @@ export default function ResumeOnePager() {
             </ul>
           </div>
 
-          {/* Mastercard DevOps */}
           <div className="mb-2.5">
             <div className="flex justify-between items-baseline mb-0">
               <h3 className="font-bold text-[12px]">Automation Engineer I (BizOps/DevOps)</h3>
@@ -89,22 +84,14 @@ export default function ResumeOnePager() {
           <div>
             <h4 className="text-[10px] font-bold border-b border-gray-200 mb-1 text-gray-500">Previous Experience</h4>
             <div className="text-[10px] space-y-0.5 leading-tight">
-              <p>
-                <strong>Software Engineer Intern</strong>, Visa — 2021, United States.
-                Built multilingual React SPA deployed across 1,600+ partner sites.
-              </p>
-              <p>
-                <strong>Developer Relations Engineer Intern</strong>, Google — 2020, United States.
-                Contributed to open-source Python automation (Synthtool) and UX research.
-              </p>
-              <p>
-                <strong>Product Manager</strong>, Nexus Valley Solutions — 2018-2019, United States.
-                EdTech startup; robotics curriculum. tecBridge Strategic Business Plan Award 2018.
-              </p>
+              <p><strong>Software Engineer Intern</strong>, Visa — 2021, United States. Built multilingual React SPA deployed across 1,600+ partner sites.</p>
+              <p><strong>Developer Relations Engineer Intern</strong>, Google — 2020, United States. Contributed to open-source Python automation (Synthtool) and UX research.</p>
+              <p><strong>Product Manager</strong>, Nexus Valley Solutions — 2018-2019, United States. EdTech startup; robotics curriculum. tecBridge Strategic Business Plan Award 2018.</p>
             </div>
           </div>
         </section>
-        
+
+        <section className="mb-3">
           <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Technical Skills & Competencies</h2>
           <div className="grid grid-cols-3 gap-3 text-[9px] leading-tight">
             <div>
@@ -126,14 +113,11 @@ export default function ResumeOnePager() {
           <section>
             <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Education</h2>
             <div className="text-[10px]">
-              <div className="flex justify-between items-baseline">
-                <p className="font-bold">University of Scranton</p>
-              </div>
+              <p className="font-bold">University of Scranton</p>
               <p>B.S. Applied Computing (Business Analytics)</p>
               <p className="italic font-semibold text-gray-700">Magna Cum Laude</p>
             </div>
           </section>
-
           <section>
             <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Executive Education</h2>
             <ul className="text-[10px] space-y-0">
