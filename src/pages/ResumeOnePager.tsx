@@ -17,7 +17,7 @@ export default function ResumeOnePager() {
           <h1 className="text-3xl font-bold mb-0.5">Alexa Thoennes</h1>
           <p className="text-md font-bold text-gray-800 mb-1">Product Manager | GenAI & 0-to-1 Prototyping</p>
           <p className="text-[10px] font-medium text-gray-700">
-            Open to Relocation &nbsp;|&nbsp; alexa.thoennes@gmail.com &nbsp;|&nbsp; (267) 397-6790 &nbsp;|&nbsp; linkedin.com/in/alexathoennes &nbsp;|&nbsp; runargs.github.io
+            Open to Relocation &nbsp;|&nbsp; alexa.thoennes@gmail.com &nbsp;|&nbsp; +1 (267) 397-6790 &nbsp;|&nbsp; linkedin.com/in/alexathoennes &nbsp;|&nbsp; runargs.github.io
           </p>
         </header>
 
@@ -55,7 +55,7 @@ export default function ResumeOnePager() {
             </div>
             <div className="flex justify-between text-[10px] italic text-gray-700 mb-0.5 font-semibold">
               <span>Mastercard Insights & Intelligence</span>
-              <span>Newtown, PA, United States (Remote)</span>
+              <span>Pennsylvania, United States (Remote)</span>
             </div>
             <ul className="list-disc ml-4 text-[10px] space-y-0 text-gray-900 leading-tight">
               <li><strong>GenAI Innovation:</strong> Led development of Mastercard's first enterprise <strong>GPT-4.1 / RAG chatbot</strong> using multi-agent architecture; improved accuracy/traceability by <strong>30%</strong> and established evaluation pipelines for LLM benchmarking and human-in-the-loop testing.</li>
@@ -84,9 +84,9 @@ export default function ResumeOnePager() {
           <div>
             <h4 className="text-[10px] font-bold border-b border-gray-200 mb-1 text-gray-500">Previous Experience</h4>
             <div className="text-[10px] space-y-0.5 leading-tight">
-              <p><strong>Software Engineer Intern</strong>, Visa, Austin, TX. <span className="ats-only">May 2021 - Aug 2021.</span> Built multilingual React SPA deployed across 1,600+ partner sites.</p>
-              <p><strong>Developer Relations Engineer Intern</strong>, Google, New York, NY. <span className="ats-only">Jun 2020 - Aug 2020.</span> Contributed to open-source Python automation (Synthtool) and UX research.</p>
-              <p><strong>Product Manager</strong>, Nexus Valley Solutions, United States. <span className="ats-only">Oct 2018 - Mar 2019.</span> EdTech startup; robotics curriculum. tecBridge Strategic Business Plan Award 2018.</p>
+              <p><strong>Software Engineer Intern</strong>, Visa, Austin, TX. May 2021 - Aug 2021. Built multilingual React SPA deployed across 1,600+ partner sites.</p>
+              <p><strong>Developer Relations Engineer Intern</strong>, Google, New York, NY. Jun 2020 - Aug 2020. Contributed to open-source Python automation (Synthtool) and UX research.</p>
+              <p><strong>Product Manager</strong>, Nexus Valley Solutions, United States. Oct 2018 - Mar 2019. EdTech startup; robotics curriculum. tecBridge Strategic Business Plan Award 2018.</p>
             </div>
           </div>
         </section>
@@ -152,7 +152,6 @@ export default function ResumeOnePager() {
             text-rendering: optimizeLegibility !important;
           }
           .min-h-screen { padding: 0 !important; }
-          .ats-only { font-size: 0 !important; line-height: 0 !important; display: inline !important; }
           * {
             letter-spacing: normal !important;
             line-height: 1.4 !important;
