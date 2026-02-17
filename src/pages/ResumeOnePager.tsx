@@ -10,7 +10,7 @@ export default function ResumeOnePager() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans leading-normal">
+    <div className="min-h-screen bg-white text-black leading-normal" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
       <div className="max-w-[8.5in] mx-auto p-6 md:p-10 print:p-0 print:max-w-full">
 
         {/* HEADER — name title-case in DOM + CSS uppercase (Workday caps fix) */}
@@ -47,7 +47,7 @@ export default function ResumeOnePager() {
             Product Manager with a full-stack and Developer Relations background, leading 0-to-1 enterprise GenAI products and features. Launched a net-new GPT-4.1 chatbot with 80+ enterprise organizations requesting early access pre-GA. Experienced with multi-agent systems, RAG architecture, and LLM governance in production, including hallucination mitigation via RAG.
           </p>
         </section>
-
+        
         <section className="mb-3">
           <h2 className="text-[11px] font-bold border-b border-black mb-1.5 pb-0.5">Experience</h2>
 
@@ -104,8 +104,7 @@ export default function ResumeOnePager() {
             </div>
           </div>
         </section>
-
-        <section className="mb-3">
+        
           <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Technical Skills & Competencies</h2>
           <div className="grid grid-cols-3 gap-3 text-[9px] leading-tight">
             <div>
@@ -165,10 +164,17 @@ export default function ResumeOnePager() {
           }
           body {
             -webkit-print-color-adjust: exact;
+            font-synthesis: none !important;
+            text-rendering: optimizeLegibility !important;
           }
           .min-h-screen { padding: 0 !important; }
           * {
             letter-spacing: normal !important;
+            line-height: 1.4 !important;
+            text-shadow: none !important;
+            -webkit-font-smoothing: antialiased !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            print-color-adjust: exact;
           }
         }
       `}} />
