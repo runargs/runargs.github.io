@@ -15,7 +15,7 @@ export default function ResumeOnePager() {
 
         {/* HEADER — name title-case in DOM + CSS uppercase (Workday caps fix) */}
         <header className="text-center border-b-2 border-black pb-2 mb-3">
-          <h1 className="text-3xl font-bold uppercase mb-0.5">Alexa Thoennes</h1>
+          <h1 className="text-3xl font-bold mb-0.5">Alexa Thoennes</h1>
           <p className="text-md font-bold text-gray-800 mb-1">Product Manager | GenAI & 0-to-1 Prototyping</p>
           <p className="text-[10px] font-medium text-gray-700">
             Open to Relocation &nbsp;|&nbsp; alexa.thoennes@gmail.com &nbsp;|&nbsp; (267) 397-6790 &nbsp;|&nbsp; linkedin.com/in/alexathoennes &nbsp;|&nbsp; runargs.github.io
@@ -42,14 +42,14 @@ export default function ResumeOnePager() {
 
         {/* SUMMARY */}
         <section className="mb-3">
-          <h2 className="text-[11px] font-bold uppercase border-b border-black mb-1 pb-0.5">Summary</h2>
+          <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Summary</h2>
           <p className="text-[11px] leading-snug italic text-gray-800">
             Product Manager with a full-stack and Developer Relations background, leading 0-to-1 enterprise GenAI products and features. Launched a net-new GPT-4.1 chatbot with 80+ enterprise organizations requesting early access pre-GA. Experienced with multi-agent systems, RAG architecture, and LLM governance in production, including hallucination mitigation via RAG.
           </p>
         </section>
 
         <section className="mb-3">
-          <h2 className="text-[11px] font-bold uppercase border-b border-black mb-1.5 pb-0.5">Experience</h2>
+          <h2 className="text-[11px] font-bold border-b border-black mb-1.5 pb-0.5">Experience</h2>
 
           {/* Mastercard PM II */}
           <div className="mb-2.5">
@@ -87,7 +87,7 @@ export default function ResumeOnePager() {
           </div>
 
           <div>
-            <h4 className="text-[10px] font-bold uppercase border-b border-gray-200 mb-1 text-gray-500">Previous Experience</h4>
+            <h4 className="text-[10px] font-bold border-b border-gray-200 mb-1 text-gray-500">Previous Experience</h4>
             <div className="text-[10px] space-y-0.5 leading-tight">
               <p>
                 <strong>Software Engineer Intern</strong>, Visa — 2021, United States.
@@ -104,20 +104,20 @@ export default function ResumeOnePager() {
             </div>
           </div>
         </section>
-        
+
         <section className="mb-3">
-          <h2 className="text-[11px] font-bold uppercase border-b border-black mb-1 pb-0.5">Technical Skills & Competencies</h2>
+          <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Technical Skills & Competencies</h2>
           <div className="grid grid-cols-3 gap-3 text-[9px] leading-tight">
             <div>
-              <p className="font-bold uppercase text-gray-600 mb-0.5">Product</p>
+              <p className="font-bold text-gray-600 mb-0.5">Product</p>
               <p>GTM Strategy, User Analytics, MVP Development, Roadmap Planning, OKRs/KPIs, Market Research, Agile, Stakeholder Management.</p>
             </div>
             <div>
-              <p className="font-bold uppercase text-gray-600 mb-0.5">Technical</p>
+              <p className="font-bold text-gray-600 mb-0.5">Technical</p>
               <p>GenAI, RAG, Python, SQL, React, CI/CD, LLM Benchmarking, Prompt Engineering, Semantic Search (Vector Embeddings), Vibe Coding, Multi-Agent Systems.</p>
             </div>
             <div>
-              <p className="font-bold uppercase text-gray-600 mb-0.5">Tools</p>
+              <p className="font-bold text-gray-600 mb-0.5">Tools</p>
               <p>Azure AI, OpenAI, Gemini, Claude, Lovable, Jira, Git, Mixpanel, Figma (Incl. Make), Qualtrics, Salesforce, Elasticsearch, Jinja, Google Cloud Platform.</p>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function ResumeOnePager() {
 
         <div className="grid grid-cols-2 gap-6 mb-3">
           <section>
-            <h2 className="text-[11px] font-bold uppercase border-b border-black mb-1 pb-0.5">Education</h2>
+            <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Education</h2>
             <div className="text-[10px]">
               <div className="flex justify-between items-baseline">
                 <p className="font-bold">University of Scranton</p>
@@ -136,7 +136,7 @@ export default function ResumeOnePager() {
           </section>
 
           <section>
-            <h2 className="text-[11px] font-bold uppercase border-b border-black mb-1 pb-0.5">Executive Education</h2>
+            <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Executive Education</h2>
             <ul className="text-[10px] space-y-0">
               <li>(WIP) <strong>ETH Zürich ETHx:</strong> Beyond Systems Thinking</li>
               <li><strong>UVA Darden:</strong> Compelling Data Stories</li>
@@ -147,7 +147,7 @@ export default function ResumeOnePager() {
         </div>
 
         <section>
-          <h2 className="text-[11px] font-bold uppercase border-b border-black mb-1 pb-0.5">Appearances</h2>
+          <h2 className="text-[11px] font-bold border-b border-black mb-1 pb-0.5">Appearances</h2>
           <div className="text-[9px] font-medium flex justify-between">
             <p><strong>21CCCS (2026):</strong> Mastery Learning Outcomes</p>
             <p><strong>BCCC (2024):</strong> Early Career Roadmapping</p>
