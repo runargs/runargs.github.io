@@ -55,7 +55,7 @@ export default function ResumeOnePager() {
             </div>
             <div className="flex justify-between text-[10px] italic text-gray-700 mb-0.5 font-semibold">
               <span>Mastercard Insights & Intelligence</span>
-              <span>Remote / Global</span>
+              <span>Newtown, PA, United States (Remote)</span>
             </div>
             <ul className="list-disc ml-4 text-[10px] space-y-0 text-gray-900 leading-tight">
               <li><strong>GenAI Innovation:</strong> Led development of Mastercard's first enterprise <strong>GPT-4.1 / RAG chatbot</strong> using multi-agent architecture; improved accuracy/traceability by <strong>30%</strong> and established evaluation pipelines for LLM benchmarking and human-in-the-loop testing.</li>
@@ -73,7 +73,7 @@ export default function ResumeOnePager() {
             </div>
             <div className="flex justify-between text-[10px] italic text-gray-700 mb-0.5 font-semibold">
               <span>Mastercard</span>
-              <span>New York, NY</span>
+              <span>New York, NY, United States</span>
             </div>
             <ul className="list-disc ml-4 text-[10px] space-y-0 leading-tight">
               <li>Optimized automation pipelines for 100+ applications, reducing deployment time by <strong>~50%</strong>.</li>
@@ -84,9 +84,9 @@ export default function ResumeOnePager() {
           <div>
             <h4 className="text-[10px] font-bold border-b border-gray-200 mb-1 text-gray-500">Previous Experience</h4>
             <div className="text-[10px] space-y-0.5 leading-tight">
-              <p><strong>Software Engineer Intern</strong>, Visa — 2021, United States. Built multilingual React SPA deployed across 1,600+ partner sites.</p>
-              <p><strong>Developer Relations Engineer Intern</strong>, Google — 2020, United States. Contributed to open-source Python automation (Synthtool) and UX research.</p>
-              <p><strong>Product Manager</strong>, Nexus Valley Solutions — 2018-2019, United States. EdTech startup; robotics curriculum. tecBridge Strategic Business Plan Award 2018.</p>
+              <p><strong>Software Engineer Intern</strong>, Visa, Austin, TX. <span className="ats-only">May 2021 - Aug 2021.</span> Built multilingual React SPA deployed across 1,600+ partner sites.</p>
+              <p><strong>Developer Relations Engineer Intern</strong>, Google, New York, NY. <span className="ats-only">Jun 2020 - Aug 2020.</span> Contributed to open-source Python automation (Synthtool) and UX research.</p>
+              <p><strong>Product Manager</strong>, Nexus Valley Solutions, United States. <span className="ats-only">Oct 2018 - Mar 2019.</span> EdTech startup; robotics curriculum. tecBridge Strategic Business Plan Award 2018.</p>
             </div>
           </div>
         </section>
@@ -152,6 +152,7 @@ export default function ResumeOnePager() {
             text-rendering: optimizeLegibility !important;
           }
           .min-h-screen { padding: 0 !important; }
+          .ats-only { font-size: 0 !important; line-height: 0 !important; display: inline !important; }
           * {
             letter-spacing: normal !important;
             line-height: 1.4 !important;
