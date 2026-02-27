@@ -25,8 +25,8 @@ const sideProjects: SideProject[] = [
   },
   {
     id: "2",
-    title: "Portfolio Management Hub & Ledger",
-    description: "Proactive, zero-based budgeting application and comprehensive net worth tracking, supporting complex asset-weighted portfolio forecasting simulations (Monte Carlo), alternative assets, itemized payslip tracking, connector imports.",
+    title: "TRIAGE - Intelligent Budgeting",
+    description: "This is not an 'get out of debt' tool, it's not a pure backwards net worth log either, it's an action-oriented, active, rolling-forward intelligent budget methodology.  `https://github.com/runargs/budget-triage/tree/main`",
     tags: ["Finance", "Automation", "Database", "AI-Assisted Coding", "Postgres DB", "Supabase", "Grafana", "Anthropic Claude"],
     status: "active",
     image: "/images/finance.JPG",
