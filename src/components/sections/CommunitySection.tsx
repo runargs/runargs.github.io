@@ -29,7 +29,7 @@ const communities: Community[] = [
   {
     id: "3",
     name: "I Know a Place Culinary Agency",
-    role: "Advisory Board & Private Chef",
+    role: "Advisory Consultant & Private Chef",
     description: "Driving community engagement and cultural education through curated culinary experiences. Leveraging sensory storytelling and hospitality to understand diverse human needs.",
     members: "2024-Present",
     url: "https://iknowaplace.agency/"
