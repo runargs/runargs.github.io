@@ -30,7 +30,7 @@ export function BioSection() {
       {/* Bio content */}
       <div className="max-w-2xl mx-auto text-center">
         <p className="text-lg md:text-xl leading-relaxed text-foreground/90 mb-6">
-          I'm here when you need to turn complexity into action.
+          I make strategic decisions to unlock speed and scale.
         </p>
         <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
           People seek me out to translate ideas clearly for any audience, prototype solutions rapidly, and surface perspectives that shift how problems get solved. Across all domains.
