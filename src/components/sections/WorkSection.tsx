@@ -91,11 +91,12 @@ const experiences = [
   {
     id: "nexus",
     company: "Nexus Valley Solutions",
-    role: "Associate Technical Product Manager",
+    role: "Product Manager",
     location: "Scranton, PA",
     duration: "2018 - 2019",
-    description: "Foundational technical product role focused on STEAM education platform design and award-winning product strategy.",
+    description: "Foundational role focused on STEAM education platform design and award-winning product strategy.",
     impact: [
+      "First product role for startup, wearing different many hats across needs.",
       "Designed and launched a STEAM curriculum, translating classroom needs into an award-winning concept.",
       "Recipient of the tecBRIDGE radio Business Plan Award for excellence in product strategy."
     ],
