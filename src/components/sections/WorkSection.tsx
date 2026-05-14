@@ -19,7 +19,7 @@ const experiences = [
       "Collaborate across global teams to align OKRs/KPIs, and regional requirements for product launches. Travel periodically (~5-10%) for roadmapping workshops and stakeholder alignment."
     ],
     skills: ["Product Strategy", "RAG Architecture", "Multi-Agent Systems", "Semantic Search", "GTM Strategy", "Data Analysis", "Client-facing", "Technical Writing", "Globalization", "User Research", "Enterprise Scale", "Stakeholder Management", "Automation", "Agile"],
-    video: { id: "p5qGELspVKa4FTSDXezEyM", title: "Mastercard Business Intelligence" },
+    video: { id: "ggs8jevYVZzpeYdcBuaFwW", title: "AMI" },
     featured: true
   },
   {
