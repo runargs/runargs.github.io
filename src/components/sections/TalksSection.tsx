@@ -30,6 +30,16 @@ const appearances: Appearance[] = [
   {
     id: "2",
     type: "talk",
+    title: "Launch Lunch & Learn",
+    venue: "Product Launch Event",
+    date: "2026",
+    location: "New York, NY",
+    topics: ["AI", "Conversational Intelligence", "Product Launch"],
+    url: "https://www.linkedin.com/posts/alexathoennes_intelligence-is-becoming-fast-conversational-ugcPost-7460767669449867264-Swie/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
+  },
+  {
+    id: "3",
+    type: "talk",
     title: "Early Career Roadmapping",
     venue: "Bucks County Community College - Hosted by Women in STEM",
     date: "2024",
@@ -38,7 +48,7 @@ const appearances: Appearance[] = [
     url: "https://www.bucks.edu/"
   },
   {
-    id: "3",
+    id: "4",
     type: "talk",
     title: "Amazon Reviews to Forecast Product Match",
     venue: "INFORMS (Institute for Operations Research and the Management Sciences)",
@@ -46,16 +56,6 @@ const appearances: Appearance[] = [
     location: "Anaheim, CA",
     topics: ["AI/ML", "LLMs", "e-Commerce AI", "Agentic Commerce"],
     url: "https://meetings.informs.org/wordpress/anaheim2021/#ready"
-  },
-  {
-    id: "4",
-    type: "talk",
-    title: "Colloquia Panelist",
-    venue: "University of Scranton",
-    date: "2021",
-    location: "Scranton, PA",
-    topics: ["Mentorship", "Career Guidance"],
-    url: "https://www.scranton.edu/academics/cas/computer-science/colloquia.shtml"
   },
 ];
 
