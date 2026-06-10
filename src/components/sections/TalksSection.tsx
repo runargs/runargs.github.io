@@ -20,7 +20,7 @@ const appearances: Appearance[] = [
   {
     id: "1",
     type: "talk",
-    title: "Launch Lunch & Learn",
+    title: "Ask Mastercard Intelligence Launch | Lunch & Learn",
     venue: "Product Launch Event",
     date: "2026",
     location: "New York, NY",
