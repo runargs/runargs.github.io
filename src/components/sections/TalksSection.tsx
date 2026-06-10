@@ -19,16 +19,6 @@ interface Appearance {
 const appearances: Appearance[] = [
   {
     id: "1",
-    type: "video",
-    title: "Mastery Learning and Profesional Outcomes",
-    venue: "21st Century Cyber Charter",
-    date: "February 2026",
-    location: "Downingtown, PA",
-    topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"],
-    url: "https://www.linkedin.com/posts/alexathoennes_21cccsalumni-classof2018-alumnispotlight-activity-7424802530242506752-15Qf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
-  },
-  {
-    id: "2",
     type: "talk",
     title: "Launch Lunch & Learn",
     venue: "Product Launch Event",
@@ -36,6 +26,16 @@ const appearances: Appearance[] = [
     location: "New York, NY",
     topics: ["AI", "Conversational Intelligence", "Product Launch"],
     url: "https://www.linkedin.com/posts/alexathoennes_intelligence-is-becoming-fast-conversational-ugcPost-7460767669449867264-Swie/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
+  },
+  {
+    id: "2",
+    type: "video",
+    title: "Mastery Learning and Profesional Outcomes",
+    venue: "21st Century Cyber Charter",
+    date: "February 2026",
+    location: "Downingtown, PA",
+    topics: ["Mastery Pedagogy", "Educational Technology (EdTech)"],
+    url: "https://www.linkedin.com/posts/alexathoennes_21cccsalumni-classof2018-alumnispotlight-activity-7424802530242506752-15Qf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
   },
   {
     id: "3",
@@ -77,7 +77,7 @@ export function TalksSection() {
         {/* Section header - Restored font styles */}
         <div className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">
-            Talks & Publications
+            Speaking & Features
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Sharing ideas and stories at conferences and through writing
