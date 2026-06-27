@@ -1,127 +1,202 @@
 import { useState } from "react";
-import { Github, ExternalLink } from "lucide-react";
-import { Card, CardTitle, CardDescription } from "@/components/ui/card";
+import { ArrowUpRight, BookOpen, ClipboardList, Compass, Layers, Search, Sparkles } from "lucide-react";
+import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-interface SideProject {
+interface WorkingNote {
   id: string;
   title: string;
   description: string;
+  detail: string;
   tags: string[];
-  status: "active" | "archived" | "experiment";
-  image: string;
+  status: "question" | "artifact";
+  icon: typeof Search;
+  image?: string;
+  url?: string;
 }
 
-const sideProjects: SideProject[] = [
+const workingNotes: WorkingNote[] = [
   {
-    id: "1",
-    title: "Haruhay Studio",
-    description: "Creative and culinary explorations. IG: @haruhay.studio",
-    tags: ["Ceramic art", "Culinary", "Portfolio"],
-    status: "experiment",
-    image: "/images/haruhayicon.jpg",
+    id: "synthesis",
+    title: "AI for synthesis and sensemaking",
+    description: "How can AI help people move from more information to better understanding — not just faster summaries?",
+    detail:
+      "I’m interested in the product layer between retrieval and judgment: what gets surfaced, what gets compressed, what remains uncertain, and how a user can inspect the reasoning path without drowning in source material.",
+    tags: ["AI Product", "Sensemaking", "Decision-making"],
+    status: "question",
+    icon: Search,
   },
   {
-    id: "2",
-    title: "TRIAGE - Intelligent Budgeting",
-    description: "This is not an 'get out of debt' tool, it's not a pure backwards net worth log either, it's an action-oriented, active, rolling-forward intelligent budget methodology.  `https://github.com/runargs/budget-triage/tree/main`",
-    tags: ["Finance", "Automation", "Database", "AI-Assisted Coding", "Postgres DB", "Supabase", "Grafana", "Anthropic Claude"],
-    status: "active",
+    id: "memory",
+    title: "Analog + AI memory systems",
+    description: "How can AI make the raw material of life easier to capture and revisit, while keeping interpretation in human hands?",
+    detail:
+      "I’m exploring the space between analog thinking and AI assistance: handwritten notes, commonplace books, journaling, multimedia capture, tagging, resurfacing, and recall. The question is how AI can handle the clerical layer around memory without flattening the human work of synthesis.",
+    tags: ["Memory", "Analog Workflows", "AI Assistance"],
+    status: "question",
+    icon: Layers,
+  },
+  {
+    id: "evaluation",
+    title: "Evaluation and LLM-as-judge",
+    description: "How do we build scalable quality systems for AI products without pretending judgment is simple?",
+    detail:
+      "LLM-as-judge is a real opportunity for scalable product quality, but it becomes weak when teams treat judgment as objective, context-free, or magically solved. I’m interested in evaluation systems that make uncertainty visible and improve with use.",
+    tags: ["Evaluation", "Quality", "LLM-as-judge"],
+    status: "question",
+    icon: ClipboardList,
+  },
+  {
+    id: "behavior",
+    title: "Behavior change and healthspan",
+    description: "How can longitudinal products support durable behavior change without turning self-tracking into anxiety?",
+    detail:
+      "Healthspan and wellness products often have better sensors than behavior loops. The interesting product question is not only what can be measured, but what should be made salient, when, and with what kind of intervention.",
+    tags: ["Healthspan", "Wearables", "Behavior Change"],
+    status: "question",
+    icon: Compass,
+  },
+  {
+    id: "impact",
+    title: "Human-impact product mechanics",
+    description: "What makes a mission-driven product actually work: incentives, adoption, trust, distribution, and feedback loops?",
+    detail:
+      "I’m drawn to products where the stakes are real — health, food systems, climate, education, financial resilience, and public-interest infrastructure. I care about the mission, but impact has to survive contact with adoption, incentives, quality, and operations.",
+    tags: ["Human Impact", "Systems", "Adoption"],
+    status: "question",
+    icon: Sparkles,
+  },
+  {
+    id: "triage",
+    title: "TRIAGE — intelligent budgeting",
+    description: "A personal finance experiment in rolling-forward, action-oriented budgeting instead of passive backwards-looking net worth tracking.",
+    detail:
+      "A personal experiment around budgeting as a decision-support system: what needs attention, what can wait, what changed, and what action should happen next.",
+    tags: ["Finance", "Decision Systems", "Personal Experiment"],
+    status: "artifact",
+    icon: BookOpen,
     image: "/images/finance.JPG",
-  },
-  {
-    id: "4",
-    title: "Traveler & Hiker",
-    description: "Sometimes with my dog. Norway, Sweden, Netherlands, Iceland, New Zealand, Austalia.",
-    tags: ["Globetrotter"],
-    status: "active",
-    image: "/images/puppy.jpg",
-  },
-  {
-    id: "5",
-    title: "This Website",
-    description: "Quite meta.",
-    tags: ["Lovable AI", "Typescript", "Web Development"],
-    status: "active"
+    url: "https://github.com/runargs/budget-triage/tree/main",
   },
 ];
 
-// Ensure statusColors is defined to prevent reference errors
-const statusColors: Record<string, string> = {
-  completed: "border-green-500/50 text-green-500",
-  ongoing: "border-blue-500/50 text-blue-500",
-  planned: "border-muted text-muted-foreground",
+const statusLabel: Record<WorkingNote["status"], string> = {
+  question: "Question",
+  artifact: "Artifact",
 };
 
 export function SideProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<any | null>(null);
+  const [selectedNote, setSelectedNote] = useState<WorkingNote | null>(null);
 
   return (
-    <section id="side-projects" className="py-20 px-6 md:px-12 bg-background">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">Side Projects</h2>
-          <p className="text-muted-foreground text-lg">Experiments and tools</p>
+    <section id="side-projects" className="py-24 px-6 md:px-12 bg-background">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
+            Notes & artifacts
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">
+            Questions and artifacts
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
+            A mix of questions, small experiments, and public artifacts around memory, synthesis, evaluation, behavior change, and decision systems.
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-primary/15 bg-primary/[0.03] p-6 md:p-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-6 items-start">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-primary font-bold mb-3">Analog + AI</p>
+              <h3 className="font-serif text-2xl md:text-3xl italic text-foreground">Analog + AI memory systems</h3>
+            </div>
+            <p className="text-muted-foreground leading-relaxed">
+              I’m interested in the space between analog thinking and AI assistance: handwritten notes, commonplace books, journaling, multimedia capture, tagging, resurfacing, and recall. The question is how AI can handle the clerical layer around memory without flattening the human work of synthesis.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {sideProjects.map((project) => (
-            <Card 
-              key={project.id} 
-              onClick={() => setSelectedProject(project)}
-              className="card-hover border-gold-hover group cursor-pointer flex flex-row items-center overflow-hidden h-28"
-            >
-              <div className="w-24 h-full shrink-0 relative overflow-hidden bg-muted/30 border-r">
-                {project.image ? (
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-flourish text-2xl text-primary/20">❧</span>
+          {workingNotes.map((note) => {
+            const Icon = note.icon;
+            return (
+              <Card
+                key={note.id}
+                onClick={() => setSelectedNote(note)}
+                className="card-hover border-gold-hover group cursor-pointer overflow-hidden bg-card/40"
+              >
+                <CardContent className="p-5">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <Badge variant="outline" className="text-[9px] uppercase tracking-widest text-muted-foreground border-muted-foreground/20">
+                      {statusLabel[note.status]}
+                    </Badge>
                   </div>
-                )}
-              </div>
-              <div className="flex-1 min-w-0 p-4">
-                <CardTitle className="font-serif text-base truncate">{project.title}</CardTitle>
-                <CardDescription className="text-xs line-clamp-2 mt-1">{project.description}</CardDescription>
-              </div>
-            </Card>
-          ))}
+                  <CardTitle className="font-serif text-xl mb-2 group-hover:text-primary transition-colors">
+                    {note.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm leading-relaxed">
+                    {note.description}
+                  </CardDescription>
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {note.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-[10px]">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
-        <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <Dialog open={!!selectedNote} onOpenChange={() => setSelectedNote(null)}>
           <DialogContent className="max-w-2xl p-0 overflow-hidden bg-card border-gold">
             <VisuallyHidden>
-              <DialogTitle>{selectedProject?.title || "Project Detail"}</DialogTitle>
+              <DialogTitle>{selectedNote?.title || "Question"}</DialogTitle>
             </VisuallyHidden>
-            
-            {selectedProject && (
+
+            {selectedNote && (
               <div className="flex flex-col">
-                <div className="aspect-video relative overflow-hidden border-b shrink-0">
-                  {selectedProject.image ? (
-                    <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-muted/20">
-                      <span className="font-flourish text-7xl text-primary/20">❧</span>
-                    </div>
-                  )}
-                </div>
+                {selectedNote.image && (
+                  <div className="aspect-video relative overflow-hidden border-b shrink-0">
+                    <img src={selectedNote.image} alt="" className="w-full h-full object-cover" />
+                  </div>
+                )}
 
                 <div className="p-6 md:p-8">
                   <div className="flex flex-col gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                       <div className="space-y-3">
-                        <h3 className="font-serif text-2xl md:text-3xl break-words">{selectedProject.title}</h3>
+                        <Badge variant="outline" className="text-[9px] uppercase tracking-widest text-muted-foreground border-muted-foreground/20 w-fit">
+                          {statusLabel[selectedNote.status]}
+                        </Badge>
+                        <h3 className="font-serif text-2xl md:text-3xl break-words">{selectedNote.title}</h3>
                         <div className="flex flex-wrap gap-1.5">
-                          {selectedProject.tags?.map((tag: string) => (
-                            <Badge key={tag} variant="secondary" className="text-[10px] whitespace-nowrap">{tag}</Badge>
+                          {selectedNote.tags.map((tag) => (
+                            <Badge key={tag} variant="secondary" className="text-[10px] whitespace-nowrap">
+                              {tag}
+                            </Badge>
                           ))}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed break-words">{selectedProject.description}</p>
+                  <p className="text-muted-foreground leading-relaxed break-words">{selectedNote.detail}</p>
+                  {selectedNote.url && (
+                    <a
+                      href={selectedNote.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-6 text-[10px] uppercase tracking-widest text-primary font-bold hover:underline"
+                    >
+                      View public artifact <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  )}
                 </div>
               </div>
             )}
