@@ -1,5 +1,18 @@
 import { useState } from "react";
-import { ChevronDown, User, Briefcase, Award, Heart, Users, Mic, Rocket, Palette, FileText, Clock } from "lucide-react";
+import type { ReactNode } from "react";
+import {
+  Award,
+  BookOpen,
+  Briefcase,
+  Compass,
+  FileText,
+  HeartHandshake,
+  Home,
+  Mic,
+  Palette,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -11,7 +24,7 @@ import {
 interface NavItem {
   id: string;
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 interface NavGroup {
@@ -22,46 +35,50 @@ interface NavGroup {
 
 const navGroups: NavGroup[] = [
   {
-    id: "about",
-    label: "About",
+    id: "start",
+    label: "Overview",
     items: [
-      { id: "bio", label: "Bio", icon: <User className="h-4 w-4" /> },
+      { id: "bio", label: "Overview", icon: <Home className="h-4 w-4" /> },
     ],
   },
   {
-    id: "professional",
-    label: "Professional",
+    id: "work",
+    label: "Product",
     items: [
-      { id: "work", label: "Work", icon: <Briefcase className="h-4 w-4" /> },
-      { id: "accomplishments", label: "Accomplishments", icon: <Award className="h-4 w-4" /> },
-      { id: "resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
+      { id: "work", label: "Selected work", icon: <Briefcase className="h-4 w-4" /> },
+      { id: "resume", label: "Résumé + contact", icon: <FileText className="h-4 w-4" /> },
     ],
   },
   {
-    id: "community",
-    label: "Community",
+    id: "thinking",
+    label: "Notes",
     items: [
-      { id: "talks", label: "Speaking & Publication", icon: <Mic className="h-4 w-4" /> },
-      { id: "community-building", label: "Community Building", icon: <Users className="h-4 w-4" /> },
-      { id: "mentorship", label: "Mentorship & Outreach", icon: <Heart className="h-4 w-4" /> },
+      { id: "side-projects", label: "Notes & artifacts", icon: <BookOpen className="h-4 w-4" /> },
+      { id: "talks", label: "Public links", icon: <Mic className="h-4 w-4" /> },
     ],
   },
   {
-    id: "creative",
-    label: "Creative",
+    id: "food-culture",
+    label: "Food + culture",
     items: [
-      { id: "art", label: "Artisan Gallery", icon: <Palette className="h-4 w-4" /> },
-      { id: "side-projects", label: "Projects", icon: <Rocket className="h-4 w-4" /> },
+      { id: "art", label: "Artisan gallery", icon: <Palette className="h-4 w-4" /> },
+      { id: "community-building", label: "Product context", icon: <Users className="h-4 w-4" /> },
+      { id: "mentorship", label: "Contact", icon: <HeartHandshake className="h-4 w-4" /> },
+    ],
+  },
+  {
+    id: "background",
+    label: "Background",
+    items: [
+      { id: "accomplishments", label: "Selected honors", icon: <Award className="h-4 w-4" /> },
     ],
   },
 ];
 
 const comingSoonItems: NavItem[] = [
-  { id: "mentions", label: "Mentions", icon: <Clock className="h-4 w-4" /> },
-  { id: "podcasts", label: "Podcasts", icon: <Clock className="h-4 w-4" /> },
-  { id: "interviews", label: "Interviews", icon: <Clock className="h-4 w-4" /> },
-  { id: "publications", label: "Publications", icon: <Clock className="h-4 w-4" /> },
-  { id: "books", label: "Books", icon: <Clock className="h-4 w-4" /> },
+  { id: "public-notes", label: "Notes", icon: <Sparkles className="h-4 w-4" /> },
+  { id: "diagrams", label: "Diagrams", icon: <Compass className="h-4 w-4" /> },
+  { id: "archive", label: "Archive", icon: <BookOpen className="h-4 w-4" /> },
 ];
 
 interface PortfolioSidebarProps {
@@ -70,12 +87,18 @@ interface PortfolioSidebarProps {
   showComingSoon?: boolean;
 }
 
-export function PortfolioSidebar({ 
-  activeSection, 
+export function PortfolioSidebar({
+  activeSection,
   onSectionChange,
-  showComingSoon = false 
+  showComingSoon = false,
 }: PortfolioSidebarProps) {
-  const [expandedGroups, setExpandedGroups] = useState<string[]>(["about", "professional", "community", "creative"]);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>([
+    "start",
+    "work",
+    "thinking",
+    "food-culture",
+    "background",
+  ]);
 
   const handleNavClick = (sectionId: string) => {
     onSectionChange(sectionId);
@@ -86,28 +109,30 @@ export function PortfolioSidebar({
   };
 
   return (
-    <aside className="h-full overflow-y-auto bg-sidebar border-r border-sidebar-border">
-      {/* Logo / Name */}
+    <aside className="h-full overflow-y-auto bg-sidebar border-r border-sidebar-border flex flex-col">
+      {/* Nameplate */}
       <div className="p-6 border-b border-sidebar-border">
-        <h1 className="font-display text-3xl text-primary">Portfolio</h1>
-        <p className="text-sm text-muted-foreground mt-1 font-sans">Explore & Discover</p>
+        <h1 className="font-display text-3xl text-primary">Alexa Thoennes</h1>
+        <p className="text-xs text-muted-foreground mt-2 font-sans leading-relaxed">
+          AI product for research, synthesis, and decision-making
+        </p>
       </div>
 
       {/* Navigation */}
-      <nav className="p-4">
-        <Accordion 
-          type="multiple" 
+      <nav className="p-4 flex-1">
+        <Accordion
+          type="multiple"
           value={expandedGroups}
           onValueChange={setExpandedGroups}
           className="space-y-2"
         >
           {navGroups.map((group) => (
-            <AccordionItem 
-              key={group.id} 
+            <AccordionItem
+              key={group.id}
               value={group.id}
               className="border-none"
             >
-              <AccordionTrigger className="py-2 px-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:no-underline rounded-md hover:bg-sidebar-accent transition-colors">
+              <AccordionTrigger className="py-2 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground hover:no-underline rounded-md hover:bg-sidebar-accent transition-colors">
                 {group.label}
               </AccordionTrigger>
               <AccordionContent className="pb-0">
@@ -115,22 +140,27 @@ export function PortfolioSidebar({
                   {group.items.map((item) => (
                     <li key={item.id}>
                       <button
+                        type="button"
                         onClick={() => handleNavClick(item.id)}
                         className={cn(
-                          "w-full flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-all duration-200",
+                          "w-full flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-all duration-200 text-left",
                           "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                           activeSection === item.id
                             ? "bg-primary/10 text-primary font-medium border-l-2 border-primary"
                             : "text-sidebar-foreground"
                         )}
                       >
-                        <span className={cn(
-                          "transition-colors",
-                          activeSection === item.id ? "text-primary" : "text-muted-foreground"
-                        )}>
+                        <span
+                          className={cn(
+                            "transition-colors shrink-0",
+                            activeSection === item.id
+                              ? "text-primary"
+                              : "text-muted-foreground"
+                          )}
+                        >
                           {item.icon}
                         </span>
-                        {item.label}
+                        <span>{item.label}</span>
                       </button>
                     </li>
                   ))}
@@ -139,11 +169,10 @@ export function PortfolioSidebar({
             </AccordionItem>
           ))}
 
-          {/* Coming Soon Section */}
           {showComingSoon && (
-            <AccordionItem value="coming-soon" className="border-none opacity-50">
-              <AccordionTrigger className="py-2 px-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:no-underline rounded-md hover:bg-sidebar-accent transition-colors">
-                Coming Soon
+            <AccordionItem value="coming-soon" className="border-none opacity-60">
+              <AccordionTrigger className="py-2 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground hover:no-underline rounded-md hover:bg-sidebar-accent transition-colors">
+                Add later
               </AccordionTrigger>
               <AccordionContent className="pb-0">
                 <ul className="space-y-1 pl-2">
@@ -163,7 +192,7 @@ export function PortfolioSidebar({
       </nav>
 
       {/* Footer flourish */}
-      <div className="mt-auto p-6 text-center">
+      <div className="p-6 text-center border-t border-sidebar-border/60">
         <span className="font-flourish text-2xl text-primary/40">❧</span>
       </div>
     </aside>
