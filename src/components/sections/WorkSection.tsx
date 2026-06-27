@@ -11,14 +11,14 @@ const evidenceTiles = [
     detail: "Conversation, synthesis, personalization, evaluation, and adoption.",
   },
   {
-    label: "Operating mode",
+    label: "How I work",
     value: "Product + technical translation",
-    detail: "Turning ambiguous workflows into scoped, testable product decisions.",
+    detail: "Ambiguous workflows turned into scoped, testable product decisions.",
   },
   {
-    label: "Impact lens",
-    value: "Useful enough to become habit",
-    detail: "Quality, trust, feedback loops, and the mechanics of real adoption.",
+    label: "Adoption lens",
+    value: "Trust and repeat use",
+    detail: "Quality, feedback loops, and whether the product becomes part of a real workflow.",
   },
 ];
 
@@ -26,9 +26,9 @@ const experiences = [
   {
     id: "mc-pm",
     company: "Mastercard Insights & Intelligence",
-    role: "Global Product Manager II — AI, Platform, Market Intelligence",
+    role: "Global Product Manager II, AI, Platform, Market Intelligence",
     location: "Remote",
-    duration: "2024 — Present",
+    duration: "2024 to Present",
     description:
       "Leading product work on AI research assistant and market-intelligence workflows at Mastercard, with focus areas including conversational analytics, synthesis, personalization, evaluation, and user adoption.",
     links: [
@@ -67,7 +67,7 @@ const experiences = [
     company: "Mastercard",
     role: "Automation / DevOps Engineer I",
     location: "New York, NY",
-    duration: "2022 — 2024",
+    duration: "2022 to 2024",
     description:
       "Automated CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications before moving formally into product.",
     impact: [
@@ -79,10 +79,10 @@ const experiences = [
   },
   {
     id: "google",
-    company: "Google Cloud — Internship",
+    company: "Google Cloud, Internship",
     role: "Developer Relations Engineer",
     location: "New York, NY (Remote)",
-    duration: "Jun 2020 — Aug 2020",
+    duration: "Jun 2020 to Aug 2020",
     description:
       "Owned the development lifecycle for a documentation-creation feature in Google’s open-source client library management tooling.",
     impact: [
@@ -100,10 +100,10 @@ const experiences = [
   },
   {
     id: "visa",
-    company: "Visa — Internship",
+    company: "Visa, Internship",
     role: "Software Engineer",
     location: "Austin, TX (Remote)",
-    duration: "May 2021 — Aug 2021",
+    duration: "May 2021 to Aug 2021",
     description:
       "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills, a financial education platform.",
     impact: [
@@ -121,17 +121,17 @@ const experiences = [
   {
     id: "nexus",
     company: "Nexus Valley Solutions",
-    role: "Product Manager",
+    role: "Product Builder, Robotics Education",
     location: "Scranton, PA",
-    duration: "2018 — 2019",
+    duration: "2018 to 2019",
     description:
-      "Foundational product role focused on STEAM education platform design, curriculum development, and product strategy.",
+      "Early product-building work focused on robotics education, STEAM curriculum, and product strategy.",
     impact: [
-      "First product role in a startup environment, working across strategy, UX, research, and go-to-market needs.",
-      "Designed and launched a STEAM curriculum by translating classroom needs into a product concept.",
+      "Worked across strategy, UX, research, and go-to-market needs in a startup environment.",
+      "Designed and launched a STEAM robotics curriculum by translating classroom needs into a product concept.",
       "Received the tecBRIDGE radio Business Plan Award for product strategy work.",
     ],
-    skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Curriculum Development", "Client-facing"],
+    skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Robotics Education", "Client-facing"],
     featured: true,
   },
   {
@@ -139,7 +139,7 @@ const experiences = [
     company: "University of Scranton",
     role: "Enterprise Web Developer",
     location: "Scranton, PA",
-    duration: "2020 — 2022",
+    duration: "2020 to 2022",
     description:
       "Architected and maintained digital systems for university audiences, balancing technical maintenance with user-facing improvements.",
     impact: [
@@ -158,9 +158,9 @@ const experiences = [
     location: "Philadelphia, PA",
     duration: "2016",
     description:
-      "Front-line volunteer work helping patients and families navigate hospital policies and surgical waiting-room procedures.",
+      "Front-line volunteer work helping patients and families navigate hospital policies and surgical waiting-area procedures.",
     impact: [
-      "Guided patients and families through hospital policies and surgical waiting-room procedures.",
+      "Guided patients and families through hospital policies and surgical waiting-area procedures.",
       "Facilitated empathetic communication between medical staff and patient families.",
       "Built early sensitivity to how confusing systems become human problems at the point of care.",
     ],
@@ -221,7 +221,7 @@ export function WorkSection() {
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4 italic">Selected work</h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Product and technical work across AI research assistants, enterprise automation, developer experience, search, education, and financial capability.
+            Product and technical work across AI research assistants, enterprise automation, developer tools, search, education, and financial capability.
           </p>
         </div>
 
@@ -238,7 +238,7 @@ export function WorkSection() {
         <div className="mb-12 p-5 bg-card/30 border border-border/40 rounded-2xl shadow-sm">
           <div className="flex items-center justify-between mb-4 gap-4">
             <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] flex items-center gap-2">
-              <Sparkles className="h-3 w-3" /> Filter by skill or context
+              <Sparkles className="h-3 w-3" /> Filter experience by skill
             </span>
             {activeFilter && (
               <button onClick={() => setActiveFilter(null)} className="text-[10px] font-bold text-muted-foreground hover:text-primary flex items-center gap-1">
@@ -300,7 +300,7 @@ export function WorkSection() {
                   </div>
                   {experience.type === "secondary" && (
                     <div className="hidden sm:flex items-center gap-1 text-[9px] font-bold text-primary/60 uppercase italic">
-                      <Info className="h-3 w-3" /> Context
+                      <Info className="h-3 w-3" /> Related
                     </div>
                   )}
                 </div>
@@ -361,7 +361,7 @@ export function WorkSection() {
                   <div className="p-6 bg-primary/[0.03] border-l-4 border-primary/40 rounded-r-2xl italic">
                     <p className="text-sm text-foreground/90 leading-relaxed mb-4">“{experience.testimonial.text}”</p>
                     <cite className="text-[10px] not-italic font-extrabold text-primary uppercase tracking-widest">
-                      — {experience.testimonial.author}, {experience.testimonial.title}
+                      {experience.testimonial.author}, {experience.testimonial.title}
                     </cite>
                   </div>
                 )}

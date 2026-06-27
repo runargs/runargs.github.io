@@ -16,7 +16,7 @@ const communities: Community[] = [
     name: "Ōura, Manta Sleep, Bearable, Atlassian, Canva, Dynamo AI, Koinly + more",
     role: "Beta testing and research participation",
     description:
-      "A product-user practice across wellness hardware, productivity software, AI tools, and finance products. Useful because it keeps product judgment close to friction, feedback loops, and actual behavior.",
+      "Beta testing and research participation across wellness hardware, productivity software, AI tools, and finance products. It keeps my product judgment close to friction, onboarding, and everyday use.",
     period: "2022–Present",
   },
   {
@@ -24,7 +24,7 @@ const communities: Community[] = [
     name: "Moral Ambition Community",
     role: "Member",
     description:
-      "A community for people trying to apply ambition to problems that matter. The part I find most useful is the pressure to get concrete about incentives, institutions, tradeoffs, and follow-through.",
+      "A community for people applying ambition to high-stakes problems. I’m interested in the practical side: incentives, institutions, tradeoffs, and follow-through.",
     period: "2026–Present",
     url: "https://www.moralambition.org/",
   },
@@ -54,11 +54,11 @@ export function CommunitySection() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-            Product context
+            Community
           </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">Communities and operating rooms</h2>
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">Community and product practice</h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-            The connective tissue: product research, wellness tools, public-interest ambition, food culture, service, and community systems.
+            A few contexts that inform how I think about products: wellness tools, public-interest work, food culture, service, and community.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export function CommunitySection() {
                       className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-muted-foreground font-bold group-hover:text-primary transition-colors pt-3 border-t border-muted w-full"
                     >
                       <LinkIcon className="h-3 w-3" />
-                      View material
+                      Open link
                     </a>
                   )}
                 </div>

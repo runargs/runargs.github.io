@@ -2,9 +2,9 @@ import { ArrowRight, Mail, MessageCircle, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const collaborationPaths = [
-  { id: "1", title: "Product conversations", focus: "AI, evaluation, synthesis, adoption", icon: Sparkles },
-  { id: "2", title: "Human-impact work", focus: "Health, food, climate, finance, public-interest tech", icon: Users },
-  { id: "3", title: "Food and culture", focus: "Private dining, hosting, events, sensory systems", icon: MessageCircle },
+  { id: "1", title: "Product conversations", focus: "AI tools, evaluation, adoption", icon: Sparkles },
+  { id: "2", title: "Impact-oriented work", focus: "Health, food, climate, finance, public-interest tech", icon: Users },
+  { id: "3", title: "Food and culture", focus: "Private dining, hosting, events, menus", icon: MessageCircle },
 ];
 
 export function MentorshipSection() {
@@ -19,7 +19,7 @@ export function MentorshipSection() {
             <p className="text-[10px] uppercase tracking-[0.25em] text-primary font-bold mb-3">Contact paths</p>
             <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Reach out</h2>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Useful reasons to get in touch: AI product work, healthspan or human-impact products, writing, collaboration, culinary events, or a specific question.
+              Useful reasons to get in touch: AI product work, healthspan, impact-oriented products, writing, collaboration, culinary events, or a specific question.
             </p>
 
             <Button asChild size="lg" className="rounded-full group">

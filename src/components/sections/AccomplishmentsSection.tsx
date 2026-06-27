@@ -11,7 +11,7 @@ const accomplishments = [
   },
   {
     id: "2",
-    title: "Award for Excellence in Applied Computing — Magna Cum Laude",
+    title: "Award for Excellence in Applied Computing, Magna Cum Laude",
     organization: "University of Scranton",
     year: "2021",
     icon: "award",
@@ -118,28 +118,25 @@ const iconMap = {
 export function AccomplishmentsSection() {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const initialLimit = 4;
+  const initialLimit = 3;
   const visibleList = isExpanded ? accomplishments : accomplishments.slice(0, initialLimit);
   const totalCount = accomplishments.length;
   const remainingCount = totalCount - initialLimit;
 
   return (
-    <section id="accomplishments" className="py-16 px-6 md:px-12 bg-background">
-      <div className="max-w-3xl mx-auto">
-        <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <section id="accomplishments" className="py-12 px-6 md:px-12 bg-background">
+      <div className="max-w-2xl mx-auto">
+        <header className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
               Background
             </p>
             <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">
-              Selected honors
+              Honors
             </h2>
-            <p className="text-muted-foreground text-sm md:text-base mt-3 max-w-2xl leading-relaxed">
-              A compact archive of earlier awards and recognitions across product strategy, technical work, leadership, service, and visual communication.
-            </p>
           </div>
           <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60 border-l border-muted pl-4">
-            {totalCount} items
+            {totalCount}
           </div>
         </header>
 

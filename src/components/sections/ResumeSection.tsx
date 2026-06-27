@@ -36,7 +36,7 @@ export function ResumeSection() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 pb-6 border-b border-border/50">
             <div className="flex items-center gap-3">
               <FileText className="h-6 w-6 text-primary" />
-              <span className="font-serif text-xl">Alexa Thoennes — résumé</span>
+              <span className="font-serif text-xl">Alexa Thoennes, résumé</span>
             </div>
             <a href="/Alexa_Public_Resume.pdf" download="Alexa_Thoennes_Resume.pdf" className="w-full md:w-auto">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 w-full md:w-auto shadow-md active:scale-95 transition-all">
@@ -48,7 +48,7 @@ export function ResumeSection() {
 
           <div className="space-y-6">
             <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm">
-              <h4 className="font-serif text-lg text-primary mb-3 italic">Positioning</h4>
+              <h4 className="font-serif text-lg text-primary mb-3 italic">Summary</h4>
               <ul className="space-y-2.5 text-muted-foreground text-sm leading-snug">
                 {resumeHighlights.map((highlight) => (
                   <li key={highlight} className="flex items-start gap-2">

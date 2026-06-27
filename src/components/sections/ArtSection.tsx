@@ -49,7 +49,7 @@ const artPieces: ArtPiece[] = [
     id: "s4",
     title: "Flavors of Iloilo",
     date: "2025",
-    description: "Filipino cuisine and handmade ceramic serviceware — food, object, memory, and table treated as one system.",
+    description: "Filipino cuisine and handmade ceramic serviceware, with food, object, memory, and table treated together.",
     gallery: "culinary",
     image: "/images/iloilo.jpg",
     url: "https://www.instagram.com/p/DEv2ddPAVal/",
@@ -66,7 +66,7 @@ const artPieces: ArtPiece[] = [
     id: "s6",
     title: "The Bond Experience",
     date: "2025",
-    description: "A collaboration with The Bond Experience and Newtown Theatre. The operating brief: slow down and enjoy yourself.",
+    description: "A collaboration with The Bond Experience and Newtown Theatre. The aim: slow down and enjoy yourself.",
     gallery: "culinary",
     image: "/images/puff.jpg",
     url: "https://www.instagram.com/p/DNe3tH2AEX1/",
@@ -188,7 +188,7 @@ export function ArtSection() {
           </p>
           <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">Artisan gallery</h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-            Food is one of the places I practice systems thinking at human scale: ingredients, timing, constraint, memory, culture, and the feeling of being hosted well.
+            Food and hosting make the abstract concrete: ingredients, timing, constraint, memory, culture, and whether people feel taken care of.
           </p>
         </div>
 

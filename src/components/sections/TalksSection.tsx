@@ -44,7 +44,7 @@ const artifacts: Artifact[] = [
     id: "women-in-stem",
     type: "talk",
     title: "Early-career roadmapping",
-    venue: "Bucks County Community College — Women in STEM",
+    venue: "Bucks County Community College, Women in STEM",
     date: "2024",
     location: "Newtown, PA",
     topics: ["Mentorship", "Career Design", "Women in Tech"],
@@ -90,7 +90,7 @@ export function TalksSection() {
             Selected links
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-            Public material with a little more context: AI product work, selected speaking, education, and earlier technical work.
+            A few public links: AI research-assistant work, speaking, education, and earlier technical projects.
           </p>
         </div>
 
@@ -161,7 +161,7 @@ export function TalksSection() {
 
                 <div className="mt-4 pt-4 border-t border-muted flex items-center gap-1 text-[10px] uppercase tracking-widest text-muted-foreground font-bold group-hover:text-primary transition-colors">
                   <LinkIcon className="h-3 w-3" />
-                  View material
+                  Open link
                 </div>
               </CardContent>
             </Card>

@@ -1,10 +1,17 @@
 export function BioSection() {
   const paths = [
-    { label: "Product work", href: "#work", note: "AI, search, automation, and product delivery" },
-    { label: "Notes & artifacts", href: "#side-projects", note: "questions, experiments, and public links" },
-    { label: "Food & gathering", href: "#art", note: "culinary work, ceramics, and sensory detail" },
-    { label: "Résumé & contact", href: "#resume", note: "PDF, credentials, and contact" },
+    { label: "Product work", id: "work", note: "AI research assistants, search, automation, and product delivery" },
+    { label: "Notes & projects", id: "side-projects", note: "AI evaluation, memory systems, decision tools, and experiments" },
+    { label: "Food & gathering", id: "art", note: "Culinary work, ceramics, hosting, and sensory detail" },
+    { label: "Résumé & contact", id: "resume", note: "PDF, credentials, and ways to reach me" },
   ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section
@@ -22,7 +29,7 @@ export function BioSection() {
 
         <div className="order-1 lg:order-2 text-center lg:text-left">
           <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-5">
-            AI product for research, synthesis, and decision-making
+            Product manager working on AI research tools
           </p>
 
           <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4 leading-none">
@@ -35,23 +42,23 @@ export function BioSection() {
 
           <div className="mt-7 space-y-4 max-w-2xl mx-auto lg:mx-0">
             <p className="text-lg md:text-xl leading-relaxed text-foreground/90">
-              I’m a product manager interested in systems that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
+              I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
             </p>
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              My work spans AI research assistants, product strategy, evaluation, behavior change, and the cultural systems that shape everyday choices. I care about human-impact products, especially when the work gets specific: adoption, incentives, trust, quality, distribution, and execution.
+              My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
             </p>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
-            <a href="#resume" className="px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+            <button type="button" onClick={() => scrollToSection("resume")} className="px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
               View résumé
-            </a>
-            <a href="#work" className="px-5 py-3 rounded-full border border-border text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
+            </button>
+            <button type="button" onClick={() => scrollToSection("work")} className="px-5 py-3 rounded-full border border-border text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
               See selected work
-            </a>
-            <a href="#side-projects" className="px-5 py-3 rounded-full border border-border text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
-              View notes & artifacts
-            </a>
+            </button>
+            <button type="button" onClick={() => scrollToSection("side-projects")} className="px-5 py-3 rounded-full border border-border text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
+              See notes & projects
+            </button>
           </div>
         </div>
       </div>
@@ -59,9 +66,10 @@ export function BioSection() {
       <div className="max-w-6xl mx-auto w-full mt-14 pt-8 border-t border-muted/30">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {paths.map((path) => (
-            <a
+            <button
               key={path.label}
-              href={path.href}
+              type="button"
+              onClick={() => scrollToSection(path.id)}
               className="group rounded-2xl border border-border/50 bg-card/30 p-4 text-left hover:border-primary/30 hover:bg-card/60 transition-all"
             >
               <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold mb-2">
@@ -70,7 +78,7 @@ export function BioSection() {
               <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                 {path.note}
               </p>
-            </a>
+            </button>
           ))}
         </div>
       </div>
