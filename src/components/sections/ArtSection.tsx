@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-type GalleryType = "culinary" | "ceramics" | "fashion design";
+type GalleryType = "culinary" | "ceramics" | "image studies";
 
 interface ArtPiece {
   id: string;
@@ -14,37 +14,163 @@ interface ArtPiece {
   description?: string;
   gallery: GalleryType;
   image?: string;
+  url?: string;
 }
 
 const artPieces: ArtPiece[] = [
-  // Culinary
-  { id: "s1", title: "Gallery Tasting Series", date: "2024-2025", description: "Filipino cuisine inspired small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery. Pictured: Adobo Tapanade Bites (V), Peach-Mango Tartlets with Coconut Glaze (V)", gallery: "culinary", image: "/images/gallerytasting.jpeg"},
-  { id: "s2", title: "Gallery Tasting Series", date: "2024-2025", description: "Filipino cuisine inspired small bites for ArtWrkd, a full service art consortium that houses Artists in Residence, Workshops and a revolving Gallery. Pictured: Adobo Tapanade Bites (V), Peach-Mango Tartlets with Coconut Glaze (V)", gallery: "culinary", image: "/images/tasting.jpeg"},
-  { id: "s3", title: "Happening Women 2025", date: "2025", description: "Interactive canapé chef's table for Happening Women Award Ceremony. https://www.happeningmag.com/happening-women-2025/", gallery: "culinary", image: "/images/bucksawards.JPG"},
-  { id: "s4", title: "Flavors of Iloilo", date: "2025", description: "Elevated filipino cuisine and handmade ceramic plate https://www.instagram.com/p/DEv2ddPAVal/", gallery: "culinary", image: "/images/iloilo.jpg"},
-  { id: "s5", title: "Grilled octopus @ Triple Sun Spirits", date: "2025", description: "Part of a mediterranean dining experience. Hosting private events at Triple Sun Spirits Distillery & Speakeasy from 30-125pax.", gallery: "culinary", image: "/images/IMG_8416.jpg"},
-  { id: "s6", title: "The Bond Experience", date: "2025", description: "In collaboration with The Bond Experience and Newtown Theatre. Operation: slow down & enjoy yourself. https://www.instagram.com/p/DNe3tH2AEX1/", gallery: "culinary", image: "/images/puff.jpg"},
-  { id: "p3", title: "In-Home Private Dining", date: "2024-Present", description: "Local venue and in-home private dining", gallery: "culinary", image: "/images/kitchen.JPG"},
-  
-  // Ceramics
-  { id: "c1", title: "Ginkgo Biloga Sgraffito Bowl", date: "2024", description: "Wheel-thrown ceramics with hand-carved designs", gallery: "ceramics", image: "/images/IMG_8418.jpg"},
-  { id: "c2", title: "Teapot", date: "2025", description: "https://www.instagram.com/p/DOH53lpDoK2/", gallery: "ceramics", image: "/images/teapot.jpg"},
-  { id: "c3", title: "Mixed Pottery", date: "2025", description: "https://www.instagram.com/p/DN6Akntjo3y/", gallery: "ceramics", image: "/images/comp_pottery1.jpg"},
-  { id: "c4", title: "Mixed Pottery", date: "2025", description: "https://www.instagram.com/p/DN6Akntjo3y/", gallery: "ceramics", image: "/images/comp_pottery2.jpg"},
-  
-  // Photography
-  { id: "p1", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/placesetting.JPEG"},
-  { id: "p2", title: "modeling", date: "@delarosa_jr", description: "for I Know a Place Agency", gallery: "other", image: "/images/herbs.JPEG"},
-  { id: "p4", title: "modeling", date: "@visualsbykaitlyn", description: "https://www.instagram.com/p/CNH3F4GHG8P/", gallery: "other", image: "/images/photoshoot1.jpg"},
-  { id: "p5", title: "modeling", date: "@visualsbykaitlyn", description: "https://www.instagram.com/p/CNAOVNKn4DJ/", gallery: "other", image: "/images/photoshoot2.jpg"},
-  { id: "p6", title: "modeling", date: "@photography_by_nadia", description: "@photography_by_nadia", gallery: "other", image: "/images/photoshoot3.jpg"},
-  { id: "p7", title: "modeling", date: "@alexander.aperture", description: "https://www.instagram.com/p/DCiDW_cJwZR/", gallery: "other", image: "/images/sf.jpg"},
+  {
+    id: "s1",
+    title: "Gallery tasting series",
+    date: "2024–2025",
+    description:
+      "Filipino-inspired small bites for ArtWRKD, a full-service art consortium with artists in residence, workshops, and a rotating gallery. Pictured: adobo tapenade bites and peach-mango tartlets with coconut glaze.",
+    gallery: "culinary",
+    image: "/images/gallerytasting.jpeg",
+  },
+  {
+    id: "s2",
+    title: "Gallery tasting series",
+    date: "2024–2025",
+    description:
+      "A second view from the gallery tasting series: small bites built around timing, texture, and how food behaves in a room full of people moving through art.",
+    gallery: "culinary",
+    image: "/images/tasting.jpeg",
+  },
+  {
+    id: "s3",
+    title: "Happening Women 2025",
+    date: "2025",
+    description: "Interactive canapé chef’s table for the Happening Women Award Ceremony.",
+    gallery: "culinary",
+    image: "/images/bucksawards.JPG",
+    url: "https://www.happeningmag.com/happening-women-2025/",
+  },
+  {
+    id: "s4",
+    title: "Flavors of Iloilo",
+    date: "2025",
+    description: "Filipino cuisine and handmade ceramic serviceware — food, object, memory, and table treated as one system.",
+    gallery: "culinary",
+    image: "/images/iloilo.jpg",
+    url: "https://www.instagram.com/p/DEv2ddPAVal/",
+  },
+  {
+    id: "s5",
+    title: "Grilled octopus at Triple Sun Spirits",
+    date: "2025",
+    description: "Part of a Mediterranean dining experience for private events at Triple Sun Spirits Distillery & Speakeasy.",
+    gallery: "culinary",
+    image: "/images/IMG_8416.jpg",
+  },
+  {
+    id: "s6",
+    title: "The Bond Experience",
+    date: "2025",
+    description: "A collaboration with The Bond Experience and Newtown Theatre. The operating brief: slow down and enjoy yourself.",
+    gallery: "culinary",
+    image: "/images/puff.jpg",
+    url: "https://www.instagram.com/p/DNe3tH2AEX1/",
+  },
+  {
+    id: "p3",
+    title: "In-home private dining",
+    date: "2024–Present",
+    description: "Local venue and in-home private dining: menus, pacing, prep systems, and the feeling of being hosted well.",
+    gallery: "culinary",
+    image: "/images/kitchen.JPG",
+  },
+  {
+    id: "c1",
+    title: "Ginkgo biloba sgraffito bowl",
+    date: "2024",
+    description: "Wheel-thrown ceramic work with hand-carved surface design.",
+    gallery: "ceramics",
+    image: "/images/IMG_8418.jpg",
+  },
+  {
+    id: "c2",
+    title: "Teapot",
+    date: "2025",
+    description: "A study in form, handle, pour, and proportion.",
+    gallery: "ceramics",
+    image: "/images/teapot.jpg",
+    url: "https://www.instagram.com/p/DOH53lpDoK2/",
+  },
+  {
+    id: "c3",
+    title: "Mixed pottery",
+    date: "2025",
+    description: "Ceramic work across shape, glaze, constraint, and use.",
+    gallery: "ceramics",
+    image: "/images/comp_pottery1.jpg",
+    url: "https://www.instagram.com/p/DN6Akntjo3y/",
+  },
+  {
+    id: "c4",
+    title: "Mixed pottery",
+    date: "2025",
+    description: "Another study in vessel language and surface treatment.",
+    gallery: "ceramics",
+    image: "/images/comp_pottery2.jpg",
+    url: "https://www.instagram.com/p/DN6Akntjo3y/",
+  },
+  {
+    id: "p1",
+    title: "Place setting study",
+    date: "@delarosa_jr",
+    description: "Image study for I Know a Place Agency: table, gesture, material, and mood.",
+    gallery: "image studies",
+    image: "/images/placesetting.JPEG",
+  },
+  {
+    id: "p2",
+    title: "Herb study",
+    date: "@delarosa_jr",
+    description: "Image study for I Know a Place Agency: sensory detail as atmosphere.",
+    gallery: "image studies",
+    image: "/images/herbs.JPEG",
+  },
+  {
+    id: "p4",
+    title: "Portrait study",
+    date: "@visualsbykaitlyn",
+    description: "A visual reference point for restraint, light, and editorial mood.",
+    gallery: "image studies",
+    image: "/images/photoshoot1.jpg",
+    url: "https://www.instagram.com/p/CNH3F4GHG8P/",
+  },
+  {
+    id: "p5",
+    title: "Portrait study",
+    date: "@visualsbykaitlyn",
+    description: "A second visual reference point for composition and atmosphere.",
+    gallery: "image studies",
+    image: "/images/photoshoot2.jpg",
+    url: "https://www.instagram.com/p/CNAOVNKn4DJ/",
+  },
+  {
+    id: "p6",
+    title: "Portrait study",
+    date: "@photography_by_nadia",
+    description: "A study in styling, silhouette, and visual tone.",
+    gallery: "image studies",
+    image: "/images/photoshoot3.jpg",
+  },
+  {
+    id: "p7",
+    title: "San Francisco image study",
+    date: "@alexander.aperture",
+    description: "Urban light, texture, and composition.",
+    gallery: "image studies",
+    image: "/images/sf.jpg",
+    url: "https://www.instagram.com/p/DCiDW_cJwZR/",
+  },
 ];
 
 const galleries: { id: GalleryType; label: string }[] = [
-  { id: "culinary", label: "Culinary" },
-  { id: "ceramics", label: "Ceramic" },
-  { id: "other", label: "Other" },
+  { id: "culinary", label: "Food & hosting" },
+  { id: "ceramics", label: "Ceramics" },
+  { id: "image studies", label: "Image studies" },
 ];
 
 export function ArtSection() {
@@ -54,18 +180,19 @@ export function ArtSection() {
   const filteredPieces = artPieces.filter((piece) => piece.gallery === activeGallery);
 
   return (
-    <section id="art" className="py-20 px-6 md:px-12">
+    <section id="art" className="py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        {/* Section header */}
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">Artisan Gallery</h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Sharing my passion for craft, science, and my cultural roots through art.
+          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
+            Food, hosting, and sensory detail
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">Artisan gallery</h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
+            Food is one of the places I practice systems thinking at human scale: ingredients, timing, constraint, memory, culture, and the feeling of being hosted well.
           </p>
         </div>
 
-        {/* Gallery filter */}
-        <div className="flex justify-center gap-2 mb-12">
+        <div className="flex justify-center flex-wrap gap-2 mb-12">
           {galleries.map((gallery) => (
             <button
               key={gallery.id}
@@ -82,7 +209,6 @@ export function ArtSection() {
           ))}
         </div>
 
-        {/* Art grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-fade-in">
           {filteredPieces.map((piece) => (
             <Card
@@ -90,7 +216,6 @@ export function ArtSection() {
               onClick={() => setSelectedPiece(piece)}
               className="card-hover border-gold-hover cursor-pointer overflow-hidden group"
             >
-              {/* Image placeholder */}
               <div className="aspect-square relative overflow-hidden">
                 {piece.image ? (
                   <img
@@ -105,7 +230,6 @@ export function ArtSection() {
                 )}
               </div>
 
-
               <CardContent className="p-3">
                 <h3 className="font-serif text-sm font-medium truncate">{piece.title}</h3>
                 <p className="text-xs text-muted-foreground">{piece.date}</p>
@@ -114,7 +238,6 @@ export function ArtSection() {
           ))}
         </div>
 
-        {/* Lightbox dialog */}
         <Dialog open={!!selectedPiece} onOpenChange={() => setSelectedPiece(null)}>
           <DialogContent className="max-w-3xl p-0 overflow-hidden">
             <VisuallyHidden>
@@ -136,12 +259,21 @@ export function ArtSection() {
                   )}
                 </div>
 
-                {/* Info */}
                 <div className="p-6">
                   <h3 className="font-serif text-2xl mb-1">{selectedPiece.title}</h3>
                   <p className="text-sm text-muted-foreground mb-2">{selectedPiece.date}</p>
                   {selectedPiece.description && (
-                    <p className="text-foreground/80">{selectedPiece.description}</p>
+                    <p className="text-foreground/80 leading-relaxed">{selectedPiece.description}</p>
+                  )}
+                  {selectedPiece.url && (
+                    <a
+                      href={selectedPiece.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-5 text-[10px] uppercase tracking-widest text-primary font-bold hover:underline"
+                    >
+                      View reference <ExternalLink className="h-3 w-3" />
+                    </a>
                   )}
                 </div>
               </div>
