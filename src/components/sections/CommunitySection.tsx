@@ -1,4 +1,4 @@
-import { Link as LinkIcon, Globe, Users } from "lucide-react";
+import { Link as LinkIcon, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Community {
@@ -6,66 +6,67 @@ interface Community {
   name: string;
   role: string;
   description: string;
-  members?: string;
+  period?: string;
   url?: string;
 }
 
 const communities: Community[] = [
   {
-    id: "1",
-    name: "Atlassian, Dynamo AI, Canva, Ōura, Koinly, Manta Sleep, Bearable + more",
-    role: "Beta Testing/Research Participation",
-    description: "Bridging the gap between product and customer by acting as a power-user and research subject for leading software and hardware. Immersing myself in feedback loops to spot friction and advocate for the user.",
-    members: "2022-Present"
+    id: "product-research",
+    name: "Ōura, Manta Sleep, Bearable, Atlassian, Canva, Dynamo AI, Koinly + more",
+    role: "Beta testing and research participation",
+    description:
+      "A product-user practice across wellness hardware, productivity software, AI tools, and finance products. Useful because it keeps product judgment close to friction, feedback loops, and actual behavior.",
+    period: "2022–Present",
   },
   {
-    id: "2",
+    id: "moral-ambition",
     name: "Moral Ambition Community",
     role: "Member",
-    description: "Engaging with a global network of social entrepreneurs. Focused on applying moral ambitiom to product ethics, ensuring that building for the user also means building for the greater good.",
-    members: "2026-Present",
-    url: "https://www.moralambition.org/"
+    description:
+      "A community for people trying to apply ambition to problems that matter. The part I find most useful is the pressure to get concrete about incentives, institutions, tradeoffs, and follow-through.",
+    period: "2026–Present",
+    url: "https://www.moralambition.org/",
   },
   {
-    id: "3",
+    id: "ikap",
     name: "I Know a Place Culinary Agency",
-    role: "Advisory Consultant & Private Chef",
-    description: "Driving community engagement and cultural education through curated culinary experiences. Leveraging sensory storytelling and hospitality to understand diverse human needs.",
-    members: "2024-Present",
-    url: "https://iknowaplace.agency/"
+    role: "Advisory consultant and private chef",
+    description:
+      "Independent and collaborative culinary work across menus, event concepts, operations, and hosting. A practical place to think about culture, constraint, pacing, service, and whether people feel taken care of.",
+    period: "2024–Present",
+    url: "https://iknowaplace.agency/",
   },
   {
-    id: "4",
-    name: "Fundraiser/Grants Specialist",
-    role: "Various",
-    description: "Scaled local aid operations to deliver 600+ nutritional meals to homebound seniors and achieved Grand Champion status for Alzheimer’s research fundraising.",
-    members: "2015-2018",
-    url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/"
-  }
+    id: "aid",
+    name: "Local aid, grants, and fundraising",
+    role: "Volunteer and organizer",
+    description:
+      "Earlier community work across meal delivery, grants, and Alzheimer’s research fundraising.",
+    period: "2015–2018",
+    url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/",
+  },
 ];
 
 export function CommunitySection() {
   return (
-    <section id="community-building" className="py-20 px-6 md:px-12 bg-background/50">
-      <div className="max-w-4xl mx-auto">
-        {/* Section header */}
+    <section id="community-building" className="py-24 px-6 md:px-12 bg-background/50">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">Community</h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Creating spaces where connections thrive
+          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
+            Product context
+          </p>
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">Communities and operating rooms</h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
+            The connective tissue: product research, wellness tools, public-interest ambition, food culture, service, and community systems.
           </p>
         </div>
 
-        {/* Compressed Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 stagger-fade-in">
           {communities.map((community) => (
-            <Card 
-              key={community.id} 
-              className="card-hover border-gold-hover group transition-all duration-300 flex flex-col h-full"
-            >
+            <Card key={community.id} className="card-hover border-gold-hover group transition-all duration-300 flex flex-col h-full">
               <CardHeader className="pb-2">
                 <div className="space-y-1">
-                  {/* Reduced title size slightly for better fit */}
                   <CardTitle className="font-serif text-lg leading-tight group-hover:text-primary transition-colors">
                     {community.name}
                   </CardTitle>
@@ -76,21 +77,18 @@ export function CommunitySection() {
               </CardHeader>
 
               <CardContent className="flex flex-col flex-grow">
-                {/* Community Description - smaller text for compression */}
-                <p className="text-sm text-foreground/80 leading-snug mb-4 flex-grow">
+                <p className="text-sm text-foreground/80 leading-relaxed mb-4 flex-grow">
                   {community.description}
                 </p>
-                
+
                 <div className="space-y-3 mt-auto">
-                  {/* Metadata moved here to save vertical space in header */}
-                  {community.members && (
+                  {community.period && (
                     <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
                       <Users className="h-3 w-3" />
-                      <span>{community.members}</span>
+                      <span>{community.period}</span>
                     </div>
                   )}
 
-                  {/* View Community Link */}
                   {community.url && (
                     <a
                       href={community.url}
@@ -99,7 +97,7 @@ export function CommunitySection() {
                       className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-muted-foreground font-bold group-hover:text-primary transition-colors pt-3 border-t border-muted w-full"
                     >
                       <LinkIcon className="h-3 w-3" />
-                      View Material
+                      View material
                     </a>
                   )}
                 </div>
