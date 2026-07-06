@@ -39,8 +39,8 @@ const experiences = [
     ],
     impact: [
       "Launched AI-assisted research tools and enhanced search using vector embeddings.",
-      "Improved data-retrieval accuracy and traceability by 30% via privacy-respecting RAG.",
-      "Streamlined onboarding by 40% through standardized documentation and RACI frameworks.",
+      "Improved data-retrieval accuracy and traceability via privacy-respecting RAG.",
+      "Streamlined onboarding through standardized documentation and RACI frameworks.",
       "Collaborate across global teams to align OKRs, KPIs, regional requirements, and product-launch tradeoffs.",
     ],
     skills: [
@@ -69,10 +69,10 @@ const experiences = [
     location: "New York, NY",
     duration: "2022 to 2024",
     description:
-      "Automated CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications before moving formally into product.",
+      "Automated CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
     impact: [
-      "Reduced deployment time by roughly 50% through optimized automation pipelines.",
-      "Improved cross-team alignment by 42% through standardized documentation.",
+      "Reduced deployment time through optimized automation pipelines.",
+      "Improved cross-team alignment through standardized documentation.",
       "Crafted automation scripts to support high-availability global services.",
     ],
     skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Agile", "Technical Writing"],
@@ -225,6 +225,7 @@ export function WorkSection() {
           </p>
         </div>
 
+{/*
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {evidenceTiles.map((tile) => (
             <div key={tile.label} className="rounded-2xl border border-border/50 bg-card/30 p-5">
@@ -234,7 +235,7 @@ export function WorkSection() {
             </div>
           ))}
         </div>
-
+*/}
         <div className="mb-12 p-5 bg-card/30 border border-border/40 rounded-2xl shadow-sm">
           <div className="flex items-center justify-between mb-4 gap-4">
             <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] flex items-center gap-2">
