@@ -222,7 +222,8 @@ export function ArtSection() {
                     caption={`${piece.title} / ${piece.date}`}
                     mediaClassName="aspect-square"
                     className="h-full transition-colors group-hover:border-[var(--civic-blue)]"
-                    grayscale={piece.gallery !== "culinary"}
+                    imgClassName="transition duration-200 group-hover:grayscale-0 group-hover:sepia-0 group-hover:contrast-100 group-focus-visible:grayscale-0 group-focus-visible:sepia-0 group-focus-visible:contrast-100"
+                    grayscale
                   />
                 ) : (
                   <div className="notched flex aspect-square items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)]">

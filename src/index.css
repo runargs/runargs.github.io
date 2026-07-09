@@ -331,6 +331,37 @@
     line-height: 1.62;
   }
 
+  .stamp-tag {
+    display: inline-flex;
+    min-height: 23px;
+    align-items: center;
+    border: var(--line-hair) solid color-mix(in srgb, var(--ink-muted) 46%, transparent);
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 5px,
+        rgba(45, 40, 31, 0.045) 5px,
+        rgba(45, 40, 31, 0.045) 6px
+      ),
+      color-mix(in srgb, var(--paper-card) 92%, var(--paper-soft));
+    color: var(--ink-muted);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.055em;
+    line-height: 1;
+    padding: 0.28rem 0.52rem;
+    text-transform: uppercase;
+    transform: rotate(-0.35deg);
+    box-shadow: 1px 1px 0 rgba(45, 40, 31, 0.07);
+  }
+
+  .stamp-tag-blue {
+    border-color: var(--civic-blue);
+    background-color: var(--civic-blue-soft);
+    color: var(--civic-blue);
+  }
+
   .hero-console::after {
     content: "";
     position: absolute;
@@ -445,17 +476,17 @@
   .marginalia-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: var(--space-3);
+    gap: var(--space-2);
   }
 
   .marginalia-card {
     grid-column: span 2;
-    min-height: 210px;
+    min-height: 156px;
     border: var(--line-hair) solid var(--rule);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent),
       var(--paper-card);
-    padding: var(--space-4);
+    padding: var(--space-3);
     color: var(--ink);
     text-align: left;
     transition: border-color var(--ease), transform var(--ease), background var(--ease);
@@ -463,12 +494,12 @@
 
   .marginalia-card:nth-child(2),
   .marginalia-card:nth-child(5) {
-    transform: translateY(18px);
+    transform: translateY(10px);
   }
 
   .marginalia-card:nth-child(3) {
     grid-column: span 2;
-    min-height: 178px;
+    min-height: 140px;
   }
 
   .marginalia-card:hover {

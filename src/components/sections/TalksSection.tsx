@@ -1,5 +1,5 @@
 import { Calendar, Link as LinkIcon, MapPin, Mic2, PenLine, Video } from "lucide-react";
-import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
+import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 type ArtifactType = "talk" | "video" | "note";
 
@@ -162,9 +162,9 @@ export function TalksSection() {
                 {item.topics && (
                   <div className="flex flex-wrap gap-2">
                     {item.topics.map((topic) => (
-                      <StampBadge key={topic} tone="blue">
+                      <span key={topic} className="stamp-tag stamp-tag-blue">
                         {topic}
-                      </StampBadge>
+                      </span>
                     ))}
                   </div>
                 )}

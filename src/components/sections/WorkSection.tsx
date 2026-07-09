@@ -424,10 +424,10 @@ export function WorkSection() {
                     <span
                       key={skill}
                       className={cn(
-                        "inline-flex min-h-[22px] items-center border px-2.5 py-0.5 text-[0.62rem] font-bold uppercase leading-none tracking-[0.04em]",
+                        "stamp-tag",
                         activeFilter === skill
                           ? "border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]"
-                          : "border-[rgba(112,103,87,0.22)] bg-[color-mix(in_srgb,var(--paper-card)_86%,var(--paper-soft))] text-[color-mix(in_srgb,var(--ink-muted)_72%,transparent)]"
+                          : "text-[var(--ink-muted)]"
                       )}
                     >
                       {skill}

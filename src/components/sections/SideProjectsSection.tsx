@@ -91,25 +91,18 @@ export function SideProjectsSection() {
                 onClick={() => setSelectedItem(item)}
                 className="marginalia-card group"
               >
-                <div className="mb-3 flex items-center justify-between gap-3">
+                <div className="mb-2 flex items-center justify-between gap-3">
                   <span className="small-label text-[var(--civic-blue)]">{kindLabel[item.kind]}</span>
-                  <span className="font-display text-2xl leading-none text-[var(--civic-blue)]" aria-hidden="true">
+                  <span className="font-display text-xl leading-none text-[var(--civic-blue)]" aria-hidden="true">
                     {index + 1}
                   </span>
                 </div>
-                <h3 className="mb-2 text-left text-lg leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
+                <h3 className="mb-2 text-left text-base leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
                   {item.title}
                 </h3>
-                <p className="text-left text-sm leading-6 text-[var(--ink-muted)]">
+                <p className="text-left text-[0.8rem] leading-5 text-[var(--ink-muted)]">
                   {item.description}
                 </p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {item.tags.slice(0, 2).map((tag) => (
-                    <StampBadge key={tag} tone="muted" className="border-[rgba(112,103,87,0.3)] text-[var(--ink-muted)]">
-                      {tag}
-                    </StampBadge>
-                  ))}
-                </div>
               </button>
             );
           })}
@@ -142,17 +135,17 @@ export function SideProjectsSection() {
                           {kindLabel[selectedItem.kind]}
                         </StampBadge>
                         <h3 className="break-words text-2xl md:text-3xl">{selectedItem.title}</h3>
-                        <div className="flex flex-wrap gap-1.5">
-                          {selectedItem.tags.map((tag) => (
-                            <StampBadge key={tag} tone="muted" className="whitespace-nowrap">
-                              {tag}
-                            </StampBadge>
-                          ))}
-                        </div>
                       </div>
                     </div>
                   </div>
                   <p className="break-words leading-7 text-[var(--ink-muted)]">{selectedItem.detail}</p>
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {selectedItem.tags.map((tag) => (
+                      <span key={tag} className="stamp-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                   {selectedItem.url && (
                     <a
                       href={selectedItem.url}
