@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { ArrowUpRight, BookOpen, ClipboardList, Compass, Layers, Search, Sparkles } from "lucide-react";
-import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { EditorialCard, ImageFrame, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 interface NoteOrProject {
   id: string;
@@ -91,71 +90,65 @@ export function SideProjectsSection() {
   const [selectedItem, setSelectedItem] = useState<NoteOrProject | null>(null);
 
   return (
-    <section id="side-projects" className="py-24 px-6 md:px-12 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-            Notes & projects
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">
-            Notes and projects
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-            A few threads I keep returning to: memory, synthesis, evaluation, behavior change, decision tools, and products that have to work in the real world.
-          </p>
-        </div>
+    <SectionBand id="side-projects">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeader
+          marker="08"
+          eyebrow="Notes & projects"
+          title="Marginalia, experiments, and recurring questions."
+          description="A few threads I keep returning to: memory, synthesis, evaluation, behavior change, decision tools, and products that have to work in the real world."
+          className="mb-10"
+        />
 
-        <div className="rounded-3xl border border-primary/15 bg-primary/[0.03] p-6 md:p-8 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-6 items-start">
+        <div className="notched mb-8 border border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] p-6 md:p-8">
+          <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-primary font-bold mb-3">Analog + AI</p>
-              <h3 className="font-serif text-2xl md:text-3xl italic text-foreground">Analog + AI memory systems</h3>
+              <StampBadge tone="blue">Analog + AI</StampBadge>
+              <h3 className="mt-4 text-2xl leading-tight text-[var(--ink)] md:text-3xl">Analog + AI memory systems</h3>
             </div>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-7 text-[var(--ink-muted)]">
               I’m interested in the space between analog thinking and AI assistance: handwritten notes, commonplace books, journaling, multimedia capture, tagging, resurfacing, and recall. The useful question is how AI can handle the clerical layer around memory without flattening the human work of synthesis.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {notesAndProjects.map((item) => {
             const Icon = item.icon;
             return (
-              <Card
+              <EditorialCard
                 key={item.id}
                 onClick={() => setSelectedItem(item)}
-                className="card-hover border-gold-hover group cursor-pointer overflow-hidden bg-card/40"
+                className="group cursor-pointer overflow-hidden"
               >
-                <CardContent className="p-5">
-                  <div className="flex items-start justify-between gap-4 mb-4">
-                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Icon className="h-4 w-4 text-primary" />
+                  <div className="mb-4 flex items-start justify-between gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--rule)] bg-[var(--paper-soft)]">
+                      <Icon className="h-4 w-4 text-[var(--civic-blue)]" />
                     </div>
-                    <Badge variant="outline" className="text-[9px] uppercase tracking-widest text-muted-foreground border-muted-foreground/20">
+                    <StampBadge tone={item.kind === "project" ? "violet" : "blue"}>
                       {kindLabel[item.kind]}
-                    </Badge>
+                    </StampBadge>
                   </div>
-                  <CardTitle className="font-serif text-xl mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="mb-2 text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
                     {item.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm leading-relaxed">
+                  </h3>
+                  <p className="text-sm leading-7 text-[var(--ink-muted)]">
                     {item.description}
-                  </CardDescription>
+                  </p>
                   <div className="flex flex-wrap gap-1.5 mt-4">
                     {item.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-[10px]">
+                      <StampBadge key={tag} tone="muted">
                         {tag}
-                      </Badge>
+                      </StampBadge>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
+              </EditorialCard>
             );
           })}
         </div>
 
         <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-          <DialogContent className="max-w-2xl p-0 overflow-hidden bg-card border-gold">
+          <DialogContent className="max-w-2xl overflow-hidden border-[var(--rule)] bg-[var(--paper-card)] p-0">
             <VisuallyHidden>
               <DialogTitle>{selectedItem?.title || "Note or project"}</DialogTitle>
             </VisuallyHidden>
@@ -163,36 +156,41 @@ export function SideProjectsSection() {
             {selectedItem && (
               <div className="flex flex-col">
                 {selectedItem.image && (
-                  <div className="aspect-video relative overflow-hidden border-b shrink-0">
-                    <img src={selectedItem.image} alt="" className="w-full h-full object-cover" />
-                  </div>
+                  <ImageFrame
+                    src={selectedItem.image}
+                    alt={selectedItem.title}
+                    caption={`${selectedItem.title} / project image`}
+                    mediaClassName="aspect-video"
+                    className="border-0 border-b"
+                    grayscale={false}
+                  />
                 )}
 
                 <div className="p-6 md:p-8">
                   <div className="flex flex-col gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                       <div className="space-y-3">
-                        <Badge variant="outline" className="text-[9px] uppercase tracking-widest text-muted-foreground border-muted-foreground/20 w-fit">
+                        <StampBadge tone={selectedItem.kind === "project" ? "violet" : "blue"}>
                           {kindLabel[selectedItem.kind]}
-                        </Badge>
-                        <h3 className="font-serif text-2xl md:text-3xl break-words">{selectedItem.title}</h3>
+                        </StampBadge>
+                        <h3 className="break-words text-2xl md:text-3xl">{selectedItem.title}</h3>
                         <div className="flex flex-wrap gap-1.5">
                           {selectedItem.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-[10px] whitespace-nowrap">
+                            <StampBadge key={tag} tone="muted" className="whitespace-nowrap">
                               {tag}
-                            </Badge>
+                            </StampBadge>
                           ))}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed break-words">{selectedItem.detail}</p>
+                  <p className="break-words leading-7 text-[var(--ink-muted)]">{selectedItem.detail}</p>
                   {selectedItem.url && (
                     <a
                       href={selectedItem.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-6 text-[10px] uppercase tracking-widest text-primary font-bold hover:underline"
+                      className="mt-6 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--civic-blue)] hover:underline"
                     >
                       Open project <ArrowUpRight className="h-3 w-3" />
                     </a>
@@ -203,6 +201,6 @@ export function SideProjectsSection() {
           </DialogContent>
         </Dialog>
       </div>
-    </section>
+    </SectionBand>
   );
 }
