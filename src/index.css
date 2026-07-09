@@ -426,46 +426,36 @@
 
   .work-visual-field {
     position: relative;
-    min-height: 245px;
+    min-height: 205px;
     overflow: hidden;
     border-bottom: var(--line-hair) solid var(--rule);
-    padding: var(--space-4) clamp(220px, 40vw, 430px) var(--space-6) 0;
+    padding: var(--space-4) clamp(180px, 35vw, 360px) var(--space-6) 0;
   }
 
   .work-visual-field::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    width: min(52%, 500px);
-    height: 72%;
-    border-left: var(--line-hair) solid rgba(213, 198, 177, 0.72);
-    background:
-      linear-gradient(90deg, transparent, var(--paper) 88%),
-      repeating-linear-gradient(0deg, transparent, transparent 9px, rgba(45, 40, 31, 0.045) 9px, rgba(45, 40, 31, 0.045) 10px);
-    pointer-events: none;
+    display: none;
   }
 
   .work-operator-figure {
     position: absolute;
-    right: -18px;
-    bottom: -18px;
+    right: -12px;
+    bottom: -28px;
     z-index: 1;
-    width: min(48%, 470px);
-    max-height: 250px;
+    width: min(40%, 410px);
+    max-height: 225px;
     object-fit: contain;
     object-position: right bottom;
-    filter: grayscale(1) sepia(0.12) contrast(1.04);
-    opacity: 0.5;
+    filter: grayscale(1) sepia(0.12) contrast(1.03);
+    opacity: 0.2;
+    mask-image: radial-gradient(ellipse at 58% 54%, #000 0 48%, transparent 78%);
     mix-blend-mode: multiply;
     pointer-events: none;
   }
 
   [data-theme="dark"] .work-operator-figure,
   .dark .work-operator-figure {
-    filter: grayscale(1) sepia(0.05) contrast(1.08) invert(0.86);
-    opacity: 0.2;
+    filter: grayscale(1) sepia(0.08) contrast(1.08) invert(0.92);
+    opacity: 0.1;
     mix-blend-mode: screen;
   }
 
