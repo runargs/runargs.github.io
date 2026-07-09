@@ -4,29 +4,45 @@ import { DossierLink, StampBadge } from "@/components/design-system/Dossier";
 export function BioSection() {
   return (
     <section
-      id="bio"
-      className="hero-console relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-52 opacity-[0.16] mix-blend-multiply dark:opacity-[0.12]">
-        <img
-          src="/images/punchcard-reference.png"
-          alt=""
-          aria-hidden="true"
-          className="h-full w-full object-cover object-center"
-        />
-      </div>
+    id="bio"
+    className="hero-console relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
+  >
+    <div className="pointer-events-none absolute inset-x-0 top-0 h-[31rem] opacity-[0.16] mix-blend-multiply dark:opacity-[0.12] md:h-[27rem] lg:h-[18rem]">
+      <img
+        src="/images/punchcard-reference.png"
+        alt=""
+        aria-hidden="true"
+        className="h-full w-full object-cover object-center"
+      />
+    </div>
 
       <div className="relative z-10">
-        <div className="hero-intro-panel mb-8 grid gap-5 border-b border-[var(--rule)] pb-6 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-end">
+        <div className="hero-intro-panel mb-8 grid gap-6 border-b border-[var(--rule)] pb-6 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
           <div>
-            <p className="hero-kicker small-label mb-3 text-[var(--ink-muted)]">Human-first responsible technology</p>
-            <div className="font-display text-[2.75rem] leading-none text-[var(--civic-blue)] md:text-[4.2rem]">
-              Alexa Thoennes
+            <div className="flex items-center gap-5 md:gap-6">
+              <img
+                src="/images/pixel_portrait.png"
+                alt=""
+                aria-hidden="true"
+                className="h-28 w-28 shrink-0 object-contain [filter:none!important] dark:[filter:none!important] md:h-32 md:w-32"
+              />
+
+              <div className="font-display text-[3.15rem] leading-[0.86] text-[var(--civic-blue)] md:text-[4.2rem] lg:whitespace-nowrap">
+                Alexa Thoennes
+                <div className="hero-kicker small-label mb-5 text-[var(--ink-muted)]">
+                  Human-first responsible technology
+                </div>
+              </div>
+              
             </div>
           </div>
-          <div className="hero-mission-panel border-l border-[var(--rule)] pl-5">
-            <StampBadge tone="blue" className="hero-values-stamp">Empathy • Agency • Discernment</StampBadge>
-            <p className="hero-mission-copy mt-3 text-sm leading-6 text-[var(--ink-muted)]">
+
+          <div className="hero-mission-panel border-t border-[var(--rule)] pt-5 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
+            <StampBadge tone="blue" className="hero-values-stamp">
+              Empathy • Agency • Discernment
+            </StampBadge>
+
+            <p className="hero-mission-copy mt-3 max-w-[34rem] text-sm leading-6 text-[var(--ink-muted)] lg:max-w-none">
               Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
             </p>
           </div>
