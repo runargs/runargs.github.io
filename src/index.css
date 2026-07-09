@@ -351,6 +351,20 @@
       repeating-linear-gradient(90deg, transparent, transparent 32px, rgba(53, 111, 128, 0.055) 32px, rgba(53, 111, 128, 0.055) 33px);
   }
 
+  .hero-headline-pixel {
+    color: var(--civic-blue);
+    font-family: var(--font-pixel);
+    font-size: 1.18em;
+    line-height: 0.82;
+    vertical-align: -0.04em;
+  }
+
+  .hero-headline-editorial {
+    color: var(--ink-soft);
+    font-family: var(--font-editorial);
+    font-size: 0.92em;
+  }
+
   .hero-photo-wrap {
     float: left;
     width: min(54%, 560px);

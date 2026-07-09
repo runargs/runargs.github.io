@@ -33,8 +33,9 @@ export function BioSection() {
         </div>
 
         <article className="hero-article border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 md:p-7">
-          <h1 className="max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
-            I build AI products for research, synthesis, and better decision-making.
+          <h1 className="hero-headline max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
+            I build <span className="hero-headline-pixel">AI</span> products for{" "}
+            <span className="hero-headline-editorial">research, synthesis,</span> and better decision-making.
           </h1>
 
           <div className="mt-7 flow-root">
