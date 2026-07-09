@@ -14,10 +14,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Instrument Sans", "sans-serif"],
-        serif: ["Instrument Serif", "serif"],
-        display: ["PPMondwest-Regular", "cursive"],
-        flourish: ["Miss Fajardose", "cursive"],
+        sans: ["Public Sans", "Inter", "Helvetica Neue", "Arial", "sans-serif"],
+        serif: ["Corben", "Georgia", "serif"],
+        editorial: ["Corben", "Georgia", "serif"],
+        display: ["PP Mondwest", "Public Sans", "sans-serif"],
+        flourish: ["Corben", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -63,7 +64,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Art Nouveau custom colors
+        // Civic analog system colors
         gold: "hsl(var(--gold))",
         forest: "hsl(var(--forest))",
         terracotta: "hsl(var(--terracotta))",
