@@ -382,6 +382,15 @@
       repeating-linear-gradient(90deg, transparent, transparent 32px, rgba(53, 111, 128, 0.055) 32px, rgba(53, 111, 128, 0.055) 33px);
   }
 
+  .hero-mission-copy {
+    max-width: 40ch;
+  }
+
+  .hero-values-stamp {
+    font-size: 0.66rem;
+    letter-spacing: 0.07em;
+  }
+
   .hero-headline-pixel {
     color: var(--civic-blue);
     font-family: var(--font-pixel);
@@ -709,6 +718,50 @@
 
     .hero-console::after {
       display: none;
+    }
+
+    .hero-console {
+      padding-top: var(--space-7);
+    }
+
+    .hero-intro-panel {
+      gap: var(--space-4);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-5);
+    }
+
+    .hero-kicker {
+      margin-bottom: var(--space-2);
+      font-size: 0.68rem;
+      letter-spacing: 0.055em;
+    }
+
+    .hero-mission-panel {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .hero-values-stamp {
+      max-width: 100%;
+      font-size: 0.62rem;
+      line-height: 1.2;
+      white-space: normal;
+    }
+
+    .hero-mission-copy {
+      max-width: 36rem;
+      margin-top: var(--space-2);
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+
+    .hero-article {
+      padding: var(--space-5);
+    }
+
+    .hero-headline {
+      font-size: clamp(2.15rem, 10.5vw, 3.15rem);
+      line-height: 1.05;
     }
 
     .hero-photo-wrap {

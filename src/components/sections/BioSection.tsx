@@ -17,17 +17,17 @@ export function BioSection() {
       </div>
 
       <div className="relative z-10">
-        <div className="mb-8 grid gap-5 border-b border-[var(--rule)] pb-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
+        <div className="hero-intro-panel mb-8 grid gap-5 border-b border-[var(--rule)] pb-6 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-end">
           <div>
-            <p className="small-label mb-3 text-[var(--ink-muted)]">Human-first responsible technology</p>
+            <p className="hero-kicker small-label mb-3 text-[var(--ink-muted)]">Human-first responsible technology</p>
             <div className="font-display text-[2.75rem] leading-none text-[var(--civic-blue)] md:text-[4.2rem]">
               Alexa Thoennes
             </div>
           </div>
-          <div className="border-l border-[var(--rule)] pl-5">
-            <StampBadge tone="blue">AI product launch 2026</StampBadge>
-            <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">
-              Product work across AI research tools, evaluation, adoption, and the human systems around technical launch.
+          <div className="hero-mission-panel border-l border-[var(--rule)] pl-5">
+            <StampBadge tone="blue" className="hero-values-stamp">Empathy • Agency • Discernment</StampBadge>
+            <p className="hero-mission-copy mt-3 text-sm leading-6 text-[var(--ink-muted)]">
+              Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
             </p>
           </div>
         </div>
