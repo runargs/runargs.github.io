@@ -1,86 +1,89 @@
-import { DossierButton, ImageFrame, StampBadge } from "@/components/design-system/Dossier";
+import { ArrowRight, FileText } from "lucide-react";
+import { DossierLink, ImageFrame, StampBadge } from "@/components/design-system/Dossier";
 
 export function BioSection() {
-  const paths = [
-    { label: "Product work", id: "work", note: "AI research assistants, search, automation, and product delivery" },
-    { label: "Notes & projects", id: "side-projects", note: "AI evaluation, memory systems, decision tools, and experiments" },
-    { label: "Food & gathering", id: "art", note: "Culinary work, ceramics, hosting, and sensory detail" },
-    { label: "Résumé & contact", id: "resume", note: "PDF, credentials, and ways to reach me" },
-  ];
-
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="bio"
-      className="relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
+      className="hero-console relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
     >
-      <div className="mb-10 grid gap-6 md:grid-cols-[1fr_320px] md:items-start">
-        <div className="font-display text-[2.6rem] leading-none text-[var(--civic-blue)] md:text-[3.5rem]">
-          Alexa Thoennes
-        </div>
-        <div className="border-l border-[var(--rule)] pl-5">
-          <StampBadge tone="blue">Human-first responsible technology</StampBadge>
-          <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">
-            AI product for research, synthesis, responsible decision-making, and the human systems around technical work.
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-9 lg:grid-cols-[1.04fr_0.96fr] lg:items-start">
-        <ImageFrame
-          src="/images/profile.JPG"
-          alt="Alexa Thoennes speaking to a seated audience"
-          caption="Speaking engagement / product judgment in a room"
-          className="order-2 lg:order-1"
-          mediaClassName="aspect-video"
-          imgClassName="object-[50%_52%]"
-          grayscale={false}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-52 opacity-[0.16] mix-blend-multiply dark:opacity-[0.12]">
+        <img
+          src="/images/punchcard-reference.png"
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover object-center"
         />
-
-        <div className="order-1 lg:order-2">
-          <h1 className="max-w-3xl text-[2.35rem] leading-tight text-[var(--ink)] md:text-[3rem]">
-            I build AI products for research, synthesis, and better decision-making.
-          </h1>
-
-          <div className="mt-7 max-w-2xl space-y-4 text-[var(--ink-muted)]">
-            <p className="text-lg leading-8 text-[var(--ink-soft)]">
-              I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
-            </p>
-            <p className="text-base leading-7">
-              My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <DossierButton type="button" onClick={() => scrollToSection("resume")} className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
-              View résumé
-            </DossierButton>
-            <DossierButton type="button" onClick={() => scrollToSection("work")}>
-              See selected work
-            </DossierButton>
-            <DossierButton type="button" onClick={() => scrollToSection("side-projects")}>
-              See notes
-            </DossierButton>
-          </div>
-        </div>
       </div>
 
-      <div className="mt-12 grid gap-3 md:grid-cols-4">
-        {paths.map((path, index) => (
-          <button
-            key={path.label}
-            type="button"
-            onClick={() => scrollToSection(path.id)}
-            className="notched relative block w-full cursor-pointer border border-[var(--rule)] bg-[var(--paper-card)] p-5 text-left text-[var(--ink)] transition-colors duration-150 hover:border-[color-mix(in_srgb,var(--civic-blue)_45%,var(--rule))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
-          >
-            <p className="font-display text-2xl text-[var(--civic-blue)]">{String(index + 1).padStart(2, "0")}</p>
-            <h2 className="mt-2 text-lg leading-tight">{path.label}</h2>
-            <p className="mt-2 text-sm leading-6 text-[var(--ink-muted)]">{path.note}</p>
-          </button>
-        ))}
+      <div className="relative z-10">
+        <div className="mb-8 grid gap-5 border-b border-[var(--rule)] pb-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-end">
+          <div>
+            <p className="small-label mb-3 text-[var(--ink-muted)]">Human-first responsible technology</p>
+            <div className="font-display text-[2.75rem] leading-none text-[var(--civic-blue)] md:text-[4.2rem]">
+              Alexa Thoennes
+            </div>
+          </div>
+          <div className="border-l border-[var(--rule)] pl-5">
+            <StampBadge tone="blue">AI product launch 2026</StampBadge>
+            <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">
+              Product judgment for research, synthesis, responsible decision-making, and the human systems around technical work.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.98fr)_minmax(360px,1.02fr)] lg:items-stretch">
+          <div className="hero-brief order-2 flex flex-col justify-between border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 lg:order-1 md:p-7">
+            <div>
+              <h1 className="max-w-3xl text-[2.3rem] leading-tight text-[var(--ink)] md:text-[3.15rem]">
+                I build AI products for research, synthesis, and better decision-making.
+              </h1>
+
+              <div className="mt-6 max-w-2xl space-y-4 text-[var(--ink-muted)]">
+                <p className="text-lg leading-8 text-[var(--ink-soft)]">
+                  I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
+                </p>
+                <p className="text-base leading-7">
+                  My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-2 border-y border-[var(--rule)] py-4 text-sm md:grid-cols-3">
+              <div>
+                <span className="small-label block text-[var(--civic-blue)]">Focus</span>
+                <span className="data-text">AI research tools</span>
+              </div>
+              <div>
+                <span className="small-label block text-[var(--civic-blue)]">Method</span>
+                <span className="data-text">Evidence + adoption</span>
+              </div>
+              <div>
+                <span className="small-label block text-[var(--civic-blue)]">Value</span>
+                <span className="data-text">Human-first systems</span>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
+                Contact <ArrowRight className="ml-2 h-4 w-4" />
+              </DossierLink>
+              <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
+                <FileText className="mr-2 h-4 w-4" /> Résumé PDF
+              </DossierLink>
+            </div>
+          </div>
+
+          <ImageFrame
+            src="/images/profile.JPG"
+            alt="Alexa Thoennes speaking to a seated audience"
+            caption="AI product launch 2026"
+            className="order-1 lg:order-2"
+            mediaClassName="aspect-[16/10] md:aspect-[16/9]"
+            imgClassName="object-[50%_52%]"
+            grayscale={false}
+          />
+        </div>
       </div>
     </section>
   );

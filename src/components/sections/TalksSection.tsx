@@ -181,7 +181,7 @@ export function TalksSection() {
 
         <div className="mt-8 border-t border-[var(--rule)] pt-6">
           <div className="mb-3 flex items-baseline justify-between gap-4">
-            <h3 className="text-lg leading-tight text-[var(--ink)]">Selected honors</h3>
+            <h3 className="text-lg leading-tight text-[var(--ink)]">Honors</h3>
             <span className="data-text text-[var(--ink-faint)]">{honors.length}</span>
           </div>
           <div className="grid gap-x-5 md:grid-cols-2">

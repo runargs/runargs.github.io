@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ArrowUpRight, ClipboardList, Compass, Layers, Search, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { EditorialCard, ImageFrame, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
+import { ImageFrame, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 interface NoteOrProject {
   id: string;
@@ -11,7 +11,6 @@ interface NoteOrProject {
   detail: string;
   tags: string[];
   kind: "note" | "project";
-  icon: typeof Search;
   image?: string;
   url?: string;
 }
@@ -25,7 +24,6 @@ const notesAndProjects: NoteOrProject[] = [
       "The product layer between retrieval and judgment is where the hard decisions live: what gets surfaced, what gets compressed, what remains uncertain, and how the user can inspect sources without drowning in them.",
     tags: ["AI Product", "Sensemaking", "Decision-making"],
     kind: "note",
-    icon: Search,
   },
   {
     id: "memory",
@@ -35,7 +33,6 @@ const notesAndProjects: NoteOrProject[] = [
       "I’m interested in the space between analog thinking and AI assistance: handwritten notes, commonplace books, journaling, multimedia capture, tagging, resurfacing, and recall. The useful question is how AI can handle the clerical layer around memory without flattening the human work of synthesis.",
     tags: ["Memory", "Analog Workflows", "AI Assistance"],
     kind: "note",
-    icon: Layers,
   },
   {
     id: "evaluation",
@@ -45,7 +42,6 @@ const notesAndProjects: NoteOrProject[] = [
       "LLM-as-judge is a real opportunity for scalable product quality. It gets weak when teams treat judgment as objective, context-free, or magically solved. I’m interested in evaluation systems that make uncertainty visible and improve with use.",
     tags: ["Evaluation", "Quality", "LLM-as-judge"],
     kind: "note",
-    icon: ClipboardList,
   },
   {
     id: "behavior",
@@ -55,7 +51,6 @@ const notesAndProjects: NoteOrProject[] = [
       "Healthspan and wellness products often have better sensors than behavior loops. The product question is not only what can be measured, but what should be made salient, when, and with what kind of intervention.",
     tags: ["Healthspan", "Wearables", "Behavior Change"],
     kind: "note",
-    icon: Compass,
   },
   {
     id: "impact",
@@ -65,7 +60,6 @@ const notesAndProjects: NoteOrProject[] = [
       "I’m drawn to products where the stakes are real: health, food systems, climate, education, financial resilience, and public-interest infrastructure. The interesting part is whether adoption, incentives, quality, and operations make the intended outcome durable.",
     tags: ["Impact", "Systems", "Adoption"],
     kind: "note",
-    icon: Sparkles,
   },
 ];
 
@@ -82,43 +76,41 @@ export function SideProjectsSection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="08"
-          eyebrow="Notes & projects"
-          title="Notes"
-          description="Marginalia, experiments, and recurring questions around memory, synthesis, evaluation, behavior change, and products that need to work in the real world."
-          className="mb-6"
+          eyebrow="Marginalia"
+          title="Marginalia"
+          description="Small recurring questions around memory, synthesis, evaluation, behavior change, and products that need to work in the real world."
+          className="mb-5"
         />
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {notesAndProjects.map((item) => {
-            const Icon = item.icon;
+        <div className="marginalia-grid">
+          {notesAndProjects.map((item, index) => {
             return (
-              <EditorialCard
+              <button
                 key={item.id}
+                type="button"
                 onClick={() => setSelectedItem(item)}
-                className="group cursor-pointer overflow-hidden"
+                className="marginalia-card group"
               >
-                  <div className="mb-4 flex items-start justify-between gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--rule)] bg-[var(--paper-soft)]">
-                      <Icon className="h-4 w-4 text-[var(--civic-blue)]" />
-                    </div>
-                    <StampBadge tone={item.kind === "project" ? "violet" : "blue"}>
-                      {kindLabel[item.kind]}
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <span className="small-label text-[var(--civic-blue)]">{kindLabel[item.kind]}</span>
+                  <span className="font-display text-2xl leading-none text-[var(--civic-blue)]" aria-hidden="true">
+                    {index + 1}
+                  </span>
+                </div>
+                <h3 className="mb-2 text-left text-lg leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
+                  {item.title}
+                </h3>
+                <p className="text-left text-sm leading-6 text-[var(--ink-muted)]">
+                  {item.description}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {item.tags.slice(0, 2).map((tag) => (
+                    <StampBadge key={tag} tone="muted" className="border-[rgba(112,103,87,0.3)] text-[var(--ink-muted)]">
+                      {tag}
                     </StampBadge>
-                  </div>
-                  <h3 className="mb-2 text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-7 text-[var(--ink-muted)]">
-                    {item.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {item.tags.map((tag) => (
-                      <StampBadge key={tag} tone="muted">
-                        {tag}
-                      </StampBadge>
-                    ))}
-                  </div>
-              </EditorialCard>
+                  ))}
+                </div>
+              </button>
             );
           })}
         </div>

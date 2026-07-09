@@ -16,8 +16,8 @@ export function MentorshipSection() {
       <div className="mx-auto max-w-4xl">
         <SectionHeader
           marker="06"
-          eyebrow="Contact paths"
-          title="Reach out through the practical routes."
+          eyebrow="Contact"
+          title="Ways to reach me."
           className="mb-8"
         />
 
@@ -26,7 +26,7 @@ export function MentorshipSection() {
             <div>
               <StampBadge tone="red">Contact</StampBadge>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink-muted)]">
-                Useful reasons to get in touch: AI product work, healthspan, impact-oriented products, writing, collaboration, culinary events, or a specific question.
+                AI product work, healthspan, impact-oriented products, writing, collaboration, culinary events, or a specific question.
               </p>
 
               <DossierLink href={mailtoLink} className="mt-6 bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">

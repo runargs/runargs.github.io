@@ -23,8 +23,8 @@ export function ResumeSection() {
         <SectionHeader
           marker="09"
           eyebrow="Résumé"
-          title="Résumé, credentials, and contact in one place."
-          description="A compact schedule of current focus, selected credentials, and ways to reach me."
+          title="Résumé and selected credentials."
+          description="Current focus, selected credentials, and contact details."
           className="mb-8"
         />
 

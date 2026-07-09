@@ -4,8 +4,6 @@ import { Calendar, ExternalLink, MapPin, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   EditorialCard,
-  EvidenceMeta,
-  LedgerList,
   SectionBand,
   SectionHeader,
   StampBadge,
@@ -291,7 +289,8 @@ export function WorkSection() {
                 key={skill}
                 onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
                 className={cn(
-                  "inline-flex min-h-[25px] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
+                  "inline-flex min-h-[25px] rotate-[-0.45deg] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
+                  "bg-[repeating-linear-gradient(-45deg,transparent,transparent_5px,rgba(45,40,31,0.045)_5px,rgba(45,40,31,0.045)_6px)]",
                   activeFilter === skill
                     ? "border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] text-[var(--civic-blue)]"
                     : "border-[var(--rule-strong)] bg-transparent text-[var(--ink-muted)] hover:border-[var(--civic-blue)] hover:text-[var(--civic-blue)]"
@@ -310,40 +309,46 @@ export function WorkSection() {
               important={experience.featured}
               style={getWorkAccentStyle(experience.accent)}
               className={cn(
-                "group",
+                "work-card group overflow-hidden p-0",
                 experience.type === "secondary" && "border-dashed bg-[color-mix(in_srgb,var(--paper-card)_74%,var(--work-accent-soft))]"
               )}
             >
-              {experience.featured && (
-                <div className="absolute right-4 top-4 z-10">
-                  <StampBadge tone="muted" className="border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">Selected</StampBadge>
-                </div>
-              )}
+              <div className="work-punch-strip" aria-hidden="true" />
 
-              <div className="mb-6 flex flex-col justify-between gap-5 md:flex-row md:items-start">
-                  <div>
-                    <h3 className={cn("text-2xl leading-tight transition-colors group-hover:text-[var(--work-accent)] md:text-3xl", experience.featured && "pr-28")}>
+              <div className="relative z-10 p-5 md:p-7">
+                <div className="mb-6 flex flex-col gap-5 border-b border-[var(--rule)] pb-5 md:flex-row md:items-start md:justify-between">
+                  <div className="min-w-0">
+                    <div className="mb-3 flex flex-wrap items-center gap-2">
+                      <span className="small-label text-[var(--work-accent)]">{experience.company}</span>
+                      {experience.featured && (
+                        <StampBadge tone="muted" className="border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
+                          Selected
+                        </StampBadge>
+                      )}
+                      {experience.type === "secondary" && (
+                        <StampBadge tone="muted" className="bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
+                          Related
+                        </StampBadge>
+                      )}
+                    </div>
+                    <h3 className="text-2xl leading-tight transition-colors group-hover:text-[var(--work-accent)] md:text-3xl">
                       {experience.role}
                     </h3>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-                      <span className="small-label text-[var(--work-accent)]">{experience.company}</span>
+                  </div>
+
+                  <div className="grid min-w-[210px] gap-2 border border-[var(--rule)] bg-[var(--paper)] p-3">
                       <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
                         <Calendar className="h-3.5 w-3.5" /> {experience.duration}
                       </div>
                       <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
                         <MapPin className="h-3.5 w-3.5" /> {experience.location}
                       </div>
-                    </div>
                   </div>
-                  {experience.type === "secondary" && (
-                    <StampBadge tone="muted" className="bg-[var(--work-accent-soft)] text-[var(--work-accent)]">Related</StampBadge>
-                  )}
                 </div>
 
-              <div className="space-y-8">
-                <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[0.95fr_1.05fr]">
-                  <div className="space-y-6">
-                    <div className="border-l-2 border-[var(--work-accent)] bg-[var(--work-accent-soft)] p-5">
+                <div className="grid grid-cols-1 items-start gap-7 lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,1.12fr)]">
+                  <div className="space-y-5">
+                    <div className="work-copy-block">
                       <p className="text-sm leading-7 text-[var(--ink-soft)]">
                         {experience.description}
                       </p>
@@ -364,7 +369,23 @@ export function WorkSection() {
                       )}
                     </div>
 
-                    {experience.video && (
+                    <div>
+                      <p className="small-label mb-3 text-[var(--work-accent)]">Impact</p>
+                      <ol className="work-impact-list">
+                        {experience.impact.map((item, index) => (
+                          <li key={item}>
+                            <span className="font-display text-2xl leading-none text-[var(--work-accent)]">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </div>
+
+                  <div className="space-y-5">
+                    {experience.video ? (
                       <figure className="notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
                         <div className="relative aspect-video overflow-hidden bg-black">
                         <iframe
@@ -378,41 +399,42 @@ export function WorkSection() {
                           Video artifact / {experience.video.title}
                         </figcaption>
                       </figure>
+                    ) : (
+                      <div className="work-terminal-panel" aria-hidden="true">
+                        <span>READY</span>
+                        <span>{experience.id.toUpperCase()}</span>
+                        <span>RUN</span>
+                      </div>
                     )}
-                  </div>
 
-                  <div className="space-y-4">
-                    <p className="small-label">Work details</p>
-                    <LedgerList items={experience.impact} />
+                    {experience.testimonial && (
+                      <blockquote className="border-l-2 border-[var(--revision-red)] bg-[var(--revision-red-soft)] p-5">
+                        <p className="mb-4 text-sm leading-7 text-[var(--ink-soft)]">“{experience.testimonial.text}”</p>
+                        <cite className="text-xs not-italic font-extrabold uppercase tracking-[0.07em] text-[var(--revision-red)]">
+                          {experience.testimonial.author}, {experience.testimonial.title}
+                        </cite>
+                      </blockquote>
+                    )}
                   </div>
                 </div>
 
-                {experience.testimonial && (
-                  <blockquote className="border-l-2 border-[var(--revision-red)] bg-[var(--revision-red-soft)] p-5">
-                    <p className="mb-4 text-sm leading-7 text-[var(--ink-soft)]">“{experience.testimonial.text}”</p>
-                    <cite className="text-xs not-italic font-extrabold uppercase tracking-[0.07em] text-[var(--revision-red)]">
-                      {experience.testimonial.author}, {experience.testimonial.title}
-                    </cite>
-                  </blockquote>
-                )}
-
-                <EvidenceMeta>
-                  <div className="flex flex-wrap gap-2">
+                <div className="mt-7 border-t border-[rgba(213,198,177,0.85)] pt-4">
+                  <div className="flex flex-wrap gap-1.5">
                   {experience.skills.map((skill) => (
                     <span
                       key={skill}
                       className={cn(
-                        "inline-flex min-h-[22px] items-center border px-2.5 py-0.5 text-[0.64rem] font-bold uppercase leading-none tracking-[0.055em]",
+                        "inline-flex min-h-[22px] items-center border px-2.5 py-0.5 text-[0.62rem] font-bold uppercase leading-none tracking-[0.04em]",
                         activeFilter === skill
                           ? "border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]"
-                          : "border-[rgba(112,103,87,0.32)] bg-transparent text-[var(--ink-faint)]"
+                          : "border-[rgba(112,103,87,0.22)] bg-[color-mix(in_srgb,var(--paper-card)_86%,var(--paper-soft))] text-[color-mix(in_srgb,var(--ink-muted)_72%,transparent)]"
                       )}
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-                </EvidenceMeta>
+              </div>
               </div>
             </EditorialCard>
           ))}

@@ -331,6 +331,120 @@
     line-height: 1.62;
   }
 
+  .hero-console::after {
+    content: "";
+    position: absolute;
+    inset: auto var(--space-6) var(--space-5) auto;
+    width: min(320px, 52vw);
+    height: 72px;
+    border: var(--line-hair) solid rgba(213, 198, 177, 0.72);
+    background:
+      linear-gradient(90deg, rgba(53, 111, 128, 0.08), transparent 32%),
+      repeating-linear-gradient(90deg, transparent 0 16px, rgba(45, 40, 31, 0.08) 16px 17px);
+    opacity: 0.46;
+    pointer-events: none;
+  }
+
+  .hero-brief {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--paper-card) 92%, transparent), color-mix(in srgb, var(--paper-soft) 34%, transparent)),
+      repeating-linear-gradient(90deg, transparent, transparent 32px, rgba(53, 111, 128, 0.055) 32px, rgba(53, 111, 128, 0.055) 33px);
+  }
+
+  .work-card {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--paper-card) 94%, var(--work-accent-soft)), var(--paper-card));
+  }
+
+  .work-punch-strip {
+    height: 46px;
+    border-bottom: var(--line-hair) solid var(--rule);
+    background:
+      linear-gradient(90deg, var(--work-accent-soft), transparent 34%),
+      url("/images/punchcard-reference.png");
+    background-position: center 48%;
+    background-size: cover;
+    filter: sepia(0.18) saturate(0.72) contrast(0.9);
+    opacity: 0.28;
+  }
+
+  .work-copy-block {
+    border-left: var(--line-strong) solid var(--work-accent);
+    background:
+      linear-gradient(90deg, var(--work-accent-soft), transparent 86%),
+      var(--paper);
+    padding: var(--space-5);
+  }
+
+  .work-impact-list {
+    border-top: var(--line-hair) solid var(--rule);
+  }
+
+  .work-impact-list li {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-bottom: var(--line-hair) solid rgba(213, 198, 177, 0.72);
+    color: var(--ink-muted);
+    font-size: var(--text-sm);
+    line-height: 1.62;
+  }
+
+  .work-terminal-panel {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    border: var(--line-hair) solid var(--rule);
+    background:
+      radial-gradient(circle at 50% 42%, rgba(127, 183, 200, 0.14), transparent 34%),
+      linear-gradient(180deg, rgba(45, 40, 31, 0.08), transparent),
+      var(--paper-soft);
+    color: var(--work-accent);
+    font-family: var(--font-pixel);
+    font-size: clamp(1.8rem, 4vw, 3.8rem);
+    line-height: 0.9;
+    text-align: center;
+  }
+
+  .work-terminal-panel span {
+    display: block;
+  }
+
+  .marginalia-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .marginalia-card {
+    grid-column: span 2;
+    min-height: 210px;
+    border: var(--line-hair) solid var(--rule);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent),
+      var(--paper-card);
+    padding: var(--space-4);
+    color: var(--ink);
+    text-align: left;
+    transition: border-color var(--ease), transform var(--ease), background var(--ease);
+  }
+
+  .marginalia-card:nth-child(2),
+  .marginalia-card:nth-child(5) {
+    transform: translateY(18px);
+  }
+
+  .marginalia-card:nth-child(3) {
+    grid-column: span 2;
+    min-height: 178px;
+  }
+
+  .marginalia-card:hover {
+    border-color: color-mix(in srgb, var(--civic-blue) 45%, var(--rule));
+    transform: translateY(-2px);
+  }
+
   .theme-toggle {
     position: fixed;
     top: 12px;
@@ -398,11 +512,33 @@
       padding: var(--space-1) var(--space-3);
       font-size: var(--text-xs);
     }
+
+    .hero-console::after {
+      display: none;
+    }
+
+    .marginalia-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .marginalia-card {
+      grid-column: span 1;
+      min-height: 0;
+    }
+
+    .marginalia-card:nth-child(2),
+    .marginalia-card:nth-child(5) {
+      transform: none;
+    }
   }
 
   @media (max-width: 560px) {
     .section-band {
       padding: var(--space-5);
+    }
+
+    .marginalia-grid {
+      grid-template-columns: 1fr;
     }
   }
 }
