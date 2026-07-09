@@ -38,20 +38,12 @@ const communities: Community[] = [
     url: "https://iknowaplace.agency/",
   },
   {
-    id: "career-mentorship",
-    name: "Career mentorship",
-    role: "Independent and Year Up United mentor",
+    id: "mentorship-volunteerism",
+    name: "Mentorship and volunteerism",
+    role: "Independent mentor and community volunteer",
     description:
-      "Mentorship for emerging technical talent and early-career peers, focused on career navigation, communication, and confidence in ambiguous professional paths.",
-    period: "Ongoing",
-  },
-  {
-    id: "aid",
-    name: "Local aid, grants, and fundraising",
-    role: "Volunteer and organizer",
-    description:
-      "Earlier community work across meal delivery, grants, and Alzheimer’s research fundraising.",
-    period: "2015–2018",
+      "Career mentorship for emerging technical talent and early-career peers, including Year Up United, alongside earlier volunteer work across meal delivery, grants, and Alzheimer’s research fundraising.",
+    period: "2015–Present",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/",
   },
 ];

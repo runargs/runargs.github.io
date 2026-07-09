@@ -15,7 +15,6 @@ const credentials = [
   { title: "Understanding Customer Needs", org: "Wharton Executive Education", date: "2025" },
   { title: "Compelling Data Stories", org: "UVA Darden Executive Education", date: "2026" },
   { title: "Influencing with Diplomacy", org: "Wharton Executive Education", date: "2025" },
-  { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
   { title: "B.S. Applied Computing", org: "University of Scranton · Magna Cum Laude", date: "2021" },
 ];
 
