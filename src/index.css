@@ -430,12 +430,25 @@
     opacity: 0.28;
   }
 
-  .work-copy-block {
+  .work-ad-body {
+    color: var(--ink-muted);
+    font-size: var(--text-sm);
+    line-height: 1.68;
+  }
+
+  .work-ad-media {
+    float: right;
+    width: min(50%, 430px);
+    margin: 0 0 var(--space-5) var(--space-7);
+  }
+
+  .work-ad-lede {
+    max-width: 72ch;
     border-left: var(--line-strong) solid var(--work-accent);
-    background:
-      linear-gradient(90deg, var(--work-accent-soft), transparent 86%),
-      var(--paper);
-    padding: var(--space-5);
+    padding-left: var(--space-4);
+    color: var(--ink-soft);
+    font-size: var(--text-md);
+    line-height: 1.72;
   }
 
   .work-impact-list {
@@ -451,26 +464,6 @@
     color: var(--ink-muted);
     font-size: var(--text-sm);
     line-height: 1.62;
-  }
-
-  .work-terminal-panel {
-    display: grid;
-    min-height: 180px;
-    place-items: center;
-    border: var(--line-hair) solid var(--rule);
-    background:
-      radial-gradient(circle at 50% 42%, rgba(127, 183, 200, 0.14), transparent 34%),
-      linear-gradient(180deg, rgba(45, 40, 31, 0.08), transparent),
-      var(--paper-soft);
-    color: var(--work-accent);
-    font-family: var(--font-pixel);
-    font-size: clamp(1.8rem, 4vw, 3.8rem);
-    line-height: 0.9;
-    text-align: center;
-  }
-
-  .work-terminal-panel span {
-    display: block;
   }
 
   .marginalia-grid {
@@ -580,6 +573,12 @@
     }
 
     .hero-photo-wrap {
+      float: none;
+      width: 100%;
+      margin: 0 0 var(--space-5) 0;
+    }
+
+    .work-ad-media {
       float: none;
       width: 100%;
       margin: 0 0 var(--space-5) 0;

@@ -346,76 +346,64 @@ export function WorkSection() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 items-start gap-7 lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,1.12fr)]">
-                  <div className="space-y-5">
-                    <div className="work-copy-block">
-                      <p className="text-sm leading-7 text-[var(--ink-soft)]">
-                        {experience.description}
-                      </p>
-                      {experience.links && (
-                        <div className="mt-4 flex flex-wrap gap-3">
-                          {experience.links.map((link) => (
-                            <a
-                              key={link.url}
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--work-accent)] hover:underline"
-                            >
-                              {link.label} <ExternalLink className="h-3 w-3" />
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <p className="small-label mb-3 text-[var(--work-accent)]">Impact</p>
-                      <ol className="work-impact-list">
-                        {experience.impact.map((item, index) => (
-                          <li key={item}>
-                            <span className="font-display text-2xl leading-none text-[var(--work-accent)]">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  </div>
-
-                  <div className="space-y-5">
-                    {experience.video ? (
-                      <figure className="notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
-                        <div className="relative aspect-video overflow-hidden bg-black">
-                        <iframe
-                          src={`https://play.vidyard.com/${experience.video.id}?autoplay=1&muted=1&loop=1&v=4&type=inline`}
-                          className="absolute inset-0 w-full h-full border-0"
-                          title={experience.video.title}
-                          allow="autoplay; fullscreen; picture-in-picture"
-                        />
-                        </div>
-                        <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)]">
-                          Video artifact / {experience.video.title}
-                        </figcaption>
-                      </figure>
-                    ) : (
-                      <div className="work-terminal-panel" aria-hidden="true">
-                        <span>READY</span>
-                        <span>{experience.id.toUpperCase()}</span>
-                        <span>RUN</span>
+                <div className="work-ad-body flow-root">
+                  {experience.video && (
+                    <figure className="work-ad-media notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
+                      <div className="relative aspect-video overflow-hidden bg-black">
+                      <iframe
+                        src={`https://play.vidyard.com/${experience.video.id}?autoplay=1&muted=1&loop=1&v=4&type=inline`}
+                        className="absolute inset-0 w-full h-full border-0"
+                        title={experience.video.title}
+                        allow="autoplay; fullscreen; picture-in-picture"
+                      />
                       </div>
-                    )}
+                      <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)]">
+                        Video artifact / {experience.video.title}
+                      </figcaption>
+                    </figure>
+                  )}
 
-                    {experience.testimonial && (
-                      <blockquote className="border-l-2 border-[var(--revision-red)] bg-[var(--revision-red-soft)] p-5">
-                        <p className="mb-4 text-sm leading-7 text-[var(--ink-soft)]">“{experience.testimonial.text}”</p>
-                        <cite className="text-xs not-italic font-extrabold uppercase tracking-[0.07em] text-[var(--revision-red)]">
-                          {experience.testimonial.author}, {experience.testimonial.title}
-                        </cite>
-                      </blockquote>
-                    )}
+                  <p className="work-ad-lede">
+                    {experience.description}
+                  </p>
+                  {experience.links && (
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {experience.links.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--work-accent)] hover:underline"
+                        >
+                          {link.label} <ExternalLink className="h-3 w-3" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="mt-5">
+                    <p className="small-label mb-3 text-[var(--work-accent)]">Impact</p>
+                    <ol className="work-impact-list">
+                      {experience.impact.map((item, index) => (
+                        <li key={item}>
+                          <span className="font-display text-2xl leading-none text-[var(--work-accent)]">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ol>
                   </div>
+
+                  {experience.testimonial && (
+                    <blockquote className="mt-5 clear-both border-l-2 border-[var(--revision-red)] bg-[var(--revision-red-soft)] p-5">
+                      <p className="mb-4 text-sm leading-7 text-[var(--ink-soft)]">“{experience.testimonial.text}”</p>
+                      <cite className="text-xs not-italic font-extrabold uppercase tracking-[0.07em] text-[var(--revision-red)]">
+                        {experience.testimonial.author}, {experience.testimonial.title}
+                      </cite>
+                    </blockquote>
+                  )}
                 </div>
 
                 <div className="mt-7 border-t border-[rgba(213,198,177,0.85)] pt-4">
