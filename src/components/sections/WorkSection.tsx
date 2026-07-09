@@ -1,8 +1,15 @@
 import { useMemo, useState } from "react";
-import { Calendar, ExternalLink, Info, MapPin, Sparkles, Star, X, Zap } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Calendar, ExternalLink, MapPin, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  EditorialCard,
+  EvidenceMeta,
+  LedgerList,
+  PunchcardFilter,
+  SectionBand,
+  SectionHeader,
+  StampBadge,
+} from "@/components/design-system/Dossier";
 
 /*
 const evidenceTiles = [
@@ -215,17 +222,15 @@ export function WorkSection() {
   }, [activeFilter]);
 
   return (
-    <section id="work" className="py-24 px-6 md:px-12 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-            Selected work
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4 italic">Selected work</h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Product and technical work across AI research assistants, enterprise automation, developer tools, search, education, and financial capability.
-          </p>
-        </div>
+    <SectionBand id="work">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeader
+          marker="02"
+          eyebrow="Selected work"
+          title="Product and technical work, filed as evidence."
+          description="Product and technical work across AI research assistants, enterprise automation, developer tools, search, education, and financial capability."
+          className="mb-10"
+        />
 
 {/*
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
@@ -238,93 +243,82 @@ export function WorkSection() {
           ))}
         </div>
 */}
-        <div className="mb-12 p-5 bg-card/30 border border-border/40 rounded-2xl shadow-sm">
-          <div className="flex items-center justify-between mb-4 gap-4">
-            <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] flex items-center gap-2">
-              <Sparkles className="h-3 w-3" /> Filter experience by skill
+        <div className="notched mb-10 border border-[var(--rule)] bg-[var(--paper-card)] p-5">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <span className="small-label">
+              Punchcard filter / skill evidence
             </span>
             {activeFilter && (
-              <button onClick={() => setActiveFilter(null)} className="text-[10px] font-bold text-muted-foreground hover:text-primary flex items-center gap-1">
+              <button onClick={() => setActiveFilter(null)} className="inline-flex items-center gap-1 text-xs font-extrabold uppercase tracking-[0.075em] text-[var(--revision-red)] hover:underline">
                 <X className="h-3 w-3" /> Reset
               </button>
             )}
           </div>
           <div className="flex flex-wrap gap-2">
             {globalSkills.map((skill) => (
-              <button
+              <PunchcardFilter
                 key={skill}
                 onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
-                className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-bold tracking-wider transition-all border",
-                  activeFilter === skill
-                    ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
-                    : "bg-background text-muted-foreground border-border/60 hover:border-primary/40 hover:text-primary"
-                )}
+                active={activeFilter === skill}
               >
                 {skill}
-              </button>
+              </PunchcardFilter>
             ))}
           </div>
         </div>
 
         <div className="space-y-10">
           {filteredExperiences.map((experience) => (
-            <Card
+            <EditorialCard
               key={experience.id}
+              important={experience.featured}
               className={cn(
-                "relative animate-in fade-in slide-in-from-bottom-6 duration-700 bg-card/40 border-border/40 hover:border-primary/20 transition-all group shadow-none",
-                experience.type === "secondary" && "border-dashed border-primary/20 bg-primary/[0.01]"
+                "group",
+                experience.type === "secondary" && "border-dashed bg-[color-mix(in_srgb,var(--paper-card)_74%,var(--system-teal-soft))]"
               )}
             >
               {experience.featured && (
-                <div className="absolute -top-3 -right-3">
-                  <Badge className="bg-primary/10 text-primary border-primary/20 backdrop-blur-md flex gap-1 items-center px-3 py-1">
-                    <Star className="h-3 w-3 fill-primary/20" />
-                    <span className="text-[9px] uppercase tracking-tighter font-bold">Selected</span>
-                  </Badge>
+                <div className="absolute -right-3 -top-3 z-10">
+                  <StampBadge tone="green">Selected</StampBadge>
                 </div>
               )}
 
-              <CardHeader className="pb-4">
-                <div className="flex justify-between items-start gap-6">
+              <div className="mb-6 flex flex-col justify-between gap-5 md:flex-row md:items-start">
                   <div>
-                    <CardTitle className="font-serif text-2xl md:text-3xl mb-1 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl leading-tight transition-colors group-hover:text-[var(--civic-blue)] md:text-3xl">
                       {experience.role}
-                    </CardTitle>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
-                      <span className="text-primary font-bold text-xs uppercase tracking-[0.15em]">{experience.company}</span>
-                      <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium">
+                    </h3>
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                      <span className="small-label text-[var(--civic-blue)]">{experience.company}</span>
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
                         <Calendar className="h-3.5 w-3.5" /> {experience.duration}
                       </div>
-                      <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium">
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
                         <MapPin className="h-3.5 w-3.5" /> {experience.location}
                       </div>
                     </div>
                   </div>
                   {experience.type === "secondary" && (
-                    <div className="hidden sm:flex items-center gap-1 text-[9px] font-bold text-primary/60 uppercase italic">
-                      <Info className="h-3 w-3" /> Related
-                    </div>
+                    <StampBadge tone="muted" className="text-[var(--system-teal)] bg-[var(--system-teal-soft)]">Related</StampBadge>
                   )}
                 </div>
-              </CardHeader>
 
-              <CardContent className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+              <div className="space-y-8">
+                <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[0.95fr_1.05fr]">
                   <div className="space-y-6">
-                    <div className="space-y-4 border-l-4 border-primary/10 pl-5">
-                      <p className="text-sm text-foreground/80 leading-relaxed">
+                    <div className="border-l-2 border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] p-5">
+                      <p className="text-sm leading-7 text-[var(--ink-soft)]">
                         {experience.description}
                       </p>
                       {experience.links && (
-                        <div className="flex flex-wrap gap-3">
+                        <div className="mt-4 flex flex-wrap gap-3">
                           {experience.links.map((link) => (
                             <a
                               key={link.url}
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-primary font-bold hover:underline"
+                              className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--civic-blue)] hover:underline"
                             >
                               {link.label} <ExternalLink className="h-3 w-3" />
                             </a>
@@ -334,62 +328,58 @@ export function WorkSection() {
                     </div>
 
                     {experience.video && (
-                      <div className="relative aspect-video overflow-hidden rounded-xl border border-primary/10 bg-black shadow-2xl">
+                      <figure className="notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
+                        <div className="relative aspect-video overflow-hidden bg-black">
                         <iframe
                           src={`https://play.vidyard.com/${experience.video.id}?autoplay=1&muted=1&loop=1&v=4&type=inline`}
                           className="absolute inset-0 w-full h-full border-0"
                           title={experience.video.title}
                           allow="autoplay; fullscreen; picture-in-picture"
                         />
-                      </div>
+                        </div>
+                        <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)]">
+                          Video artifact / {experience.video.title}
+                        </figcaption>
+                      </figure>
                     )}
                   </div>
 
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-primary uppercase tracking-[0.25em]">
-                      <Zap className="h-4 w-4" /> Work details
-                    </div>
-                    <ul className="space-y-4">
-                      {experience.impact.map((point, index) => (
-                        <li key={index} className="text-[11px] md:text-sm text-muted-foreground leading-snug flex gap-3">
-                          <span className="text-primary mt-1 select-none">✦</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="small-label">Proof rows</p>
+                    <LedgerList items={experience.impact} />
                   </div>
                 </div>
 
                 {experience.testimonial && (
-                  <div className="p-6 bg-primary/[0.03] border-l-4 border-primary/40 rounded-r-2xl italic">
-                    <p className="text-sm text-foreground/90 leading-relaxed mb-4">“{experience.testimonial.text}”</p>
-                    <cite className="text-[10px] not-italic font-extrabold text-primary uppercase tracking-widest">
+                  <blockquote className="border-l-2 border-[var(--revision-red)] bg-[var(--revision-red-soft)] p-5">
+                    <p className="mb-4 text-sm leading-7 text-[var(--ink-soft)]">“{experience.testimonial.text}”</p>
+                    <cite className="text-xs not-italic font-extrabold uppercase tracking-[0.07em] text-[var(--revision-red)]">
                       {experience.testimonial.author}, {experience.testimonial.title}
                     </cite>
-                  </div>
+                  </blockquote>
                 )}
 
-                <div className="pt-6 border-t border-muted/20 flex flex-wrap gap-2">
+                <EvidenceMeta>
+                  <div className="flex flex-wrap gap-2">
                   {experience.skills.map((skill) => (
-                    <Badge
+                    <StampBadge
                       key={skill}
-                      variant="outline"
+                      tone={activeFilter === skill ? "blue" : "muted"}
                       className={cn(
-                        "rounded-full px-3 py-1 text-[9px] font-bold transition-all duration-300",
-                        activeFilter === skill
-                          ? "bg-primary text-primary-foreground border-primary scale-110"
-                          : "border-muted-foreground/20 text-muted-foreground/50 hover:border-primary/40"
+                        "cursor-default",
+                        activeFilter === skill && "border-[var(--civic-blue)]"
                       )}
                     >
                       {skill}
-                    </Badge>
+                    </StampBadge>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+                </EvidenceMeta>
+              </div>
+            </EditorialCard>
           ))}
         </div>
       </div>
-    </section>
+    </SectionBand>
   );
 }
