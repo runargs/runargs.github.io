@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, BookOpen, ClipboardList, Compass, Layers, Search, Sparkles } from "lucide-react";
+import { ArrowUpRight, ClipboardList, Compass, Layers, Search, Sparkles } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { EditorialCard, ImageFrame, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
@@ -67,18 +67,6 @@ const notesAndProjects: NoteOrProject[] = [
     kind: "note",
     icon: Sparkles,
   },
-  {
-    id: "triage",
-    title: "TRIAGE, intelligent budgeting",
-    description: "A personal finance project for rolling-forward, action-oriented budgeting instead of passive net-worth tracking.",
-    detail:
-      "A personal project around budgeting as a decision-support system: what needs attention, what can wait, what changed, and what action should happen next.",
-    tags: ["Finance", "Decision Systems", "Personal Project"],
-    kind: "project",
-    icon: BookOpen,
-    image: "/images/finance.JPG",
-    url: "https://github.com/runargs/budget-triage/tree/main",
-  },
 ];
 
 const kindLabel: Record<NoteOrProject["kind"], string> = {
@@ -95,22 +83,10 @@ export function SideProjectsSection() {
         <SectionHeader
           marker="08"
           eyebrow="Notes & projects"
-          title="Marginalia, experiments, and recurring questions."
-          description="A few threads I keep returning to: memory, synthesis, evaluation, behavior change, decision tools, and products that have to work in the real world."
-          className="mb-10"
+          title="Notes"
+          description="Marginalia, experiments, and recurring questions around memory, synthesis, evaluation, behavior change, and products that need to work in the real world."
+          className="mb-6"
         />
-
-        <div className="notched mb-8 border border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] p-6 md:p-8">
-          <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <StampBadge tone="blue">Analog + AI</StampBadge>
-              <h3 className="mt-4 text-2xl leading-tight text-[var(--ink)] md:text-3xl">Analog + AI memory systems</h3>
-            </div>
-            <p className="leading-7 text-[var(--ink-muted)]">
-              I’m interested in the space between analog thinking and AI assistance: handwritten notes, commonplace books, journaling, multimedia capture, tagging, resurfacing, and recall. The useful question is how AI can handle the clerical layer around memory without flattening the human work of synthesis.
-            </p>
-          </div>
-        </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {notesAndProjects.map((item) => {

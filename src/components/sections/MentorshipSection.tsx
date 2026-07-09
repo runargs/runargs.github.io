@@ -24,7 +24,7 @@ export function MentorshipSection() {
         <div className="notched relative overflow-hidden border border-[var(--rule)] bg-[var(--paper-card)] p-6 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[18px] after:border-t after:border-[var(--rule)] after:bg-[linear-gradient(135deg,transparent_0_8px,var(--paper-soft)_8px_16px,transparent_16px)] after:bg-[length:16px_18px] md:p-8">
           <div className="grid gap-10 md:grid-cols-[1fr_310px] md:items-start">
           <div>
-            <StampBadge tone="red">Open channel</StampBadge>
+            <StampBadge tone="red">Contact</StampBadge>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink-muted)]">
               Useful reasons to get in touch: AI product work, healthspan, impact-oriented products, writing, collaboration, culinary events, or a specific question.
             </p>

@@ -63,6 +63,24 @@ const artifacts: Artifact[] = [
   },
 ];
 
+const honors = [
+  { title: "Strategic Business Plan Award", organization: "tecBRIDGE radio", year: "2018" },
+  { title: "Award for Excellence in Applied Computing, Magna Cum Laude", organization: "University of Scranton", year: "2021" },
+  { title: "First Place: Autonomous Maze-Solving Robotics Competition", organization: "University of Scranton", year: "2018" },
+  { title: "Technical Competition Finalist: SumoBot Engineering", organization: "IEEE Hackathon", year: "2019" },
+  { title: "Leadership Award", organization: "The Ronald Reagan Presidential Foundation & Institute", year: "2017" },
+  { title: "Philanthropic Leadership: Grand Champion Fundraiser", organization: "Walk to End Alzheimer’s", year: "2017" },
+  { title: "Exemplary Leadership Award", organization: "21st Century Cyber Charter", year: "2018" },
+  { title: "Regional Leadership Recognition", organization: "NBC10 / Widener University", year: "2018" },
+  { title: "Graphic Design Competition Runner-Up", organization: "Instructables.com", year: "2015" },
+  { title: "Scholastic Art & Writing Silver Key", organization: "Greater Philadelphia Region", year: "2015" },
+  { title: "Academic Excellence: Top 3% of Class", organization: "21st Century Cyber Charter", year: "2018" },
+  { title: "Dean’s List for Academic Achievement", organization: "University of Scranton", year: "2021" },
+  { title: "University Merit Grant", organization: "University of Scranton", year: "2018" },
+  { title: "Freedom Credit Union Grant", organization: "Freedom Credit Union", year: "2018" },
+  { title: "AAWC Merit Award", organization: "FISDU & Asian American Women’s Coalition", year: "2018" },
+];
+
 function TypeIcon({ type }: { type: ArtifactType }) {
   const iconProps = "h-4 w-4 text-muted-foreground shrink-0";
   switch (type) {
@@ -84,9 +102,9 @@ export function TalksSection() {
         <SectionHeader
           marker="04"
           eyebrow="Public links"
-          title="Public artifacts and appearances."
-          description="A few public links: AI research-assistant work, speaking, education, and earlier technical projects."
-          className="mb-10"
+          title="Public links and background."
+          description="AI research-assistant work, speaking, education, earlier technical projects, and a quiet record of honors."
+          className="mb-8"
         />
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -159,6 +177,24 @@ export function TalksSection() {
                 </EvidenceMeta>
             </EditorialCard>
           ))}
+        </div>
+
+        <div className="mt-8 border-t border-[var(--rule)] pt-6">
+          <div className="mb-3 flex items-baseline justify-between gap-4">
+            <h3 className="text-lg leading-tight text-[var(--ink)]">Selected honors</h3>
+            <span className="data-text text-[var(--ink-faint)]">{honors.length}</span>
+          </div>
+          <div className="grid gap-x-5 md:grid-cols-2">
+            {honors.map((honor) => (
+              <div key={`${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-3 border-b border-[rgba(213,198,177,0.55)] py-2">
+                <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
+                <p className="text-xs leading-5 text-[var(--ink-muted)]">
+                  <span className="font-semibold text-[var(--ink-soft)]">{honor.title}</span>
+                  <span className="text-[var(--ink-faint)]"> / {honor.organization}</span>
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </SectionBand>

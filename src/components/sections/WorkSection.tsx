@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
+import type { CSSProperties } from "react";
 import { Calendar, ExternalLink, MapPin, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   EditorialCard,
   EvidenceMeta,
   LedgerList,
-  PunchcardFilter,
   SectionBand,
   SectionHeader,
   StampBadge,
@@ -70,6 +70,7 @@ const experiences = [
     ],
     video: { id: "ggs8jevYVZzpeYdcBuaFwW", title: "Ask Mastercard Intelligence" },
     featured: true,
+    accent: "ochre",
   },
   {
     id: "mc-devops",
@@ -85,6 +86,7 @@ const experiences = [
       "Crafted automation scripts to support high-availability global services.",
     ],
     skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Agile", "Technical Writing"],
+    accent: "blue",
   },
   {
     id: "google",
@@ -106,6 +108,7 @@ const experiences = [
       title: "Sr. Developer Advocate @ Google",
     },
     featured: true,
+    accent: "green",
   },
   {
     id: "visa",
@@ -126,6 +129,7 @@ const experiences = [
       author: "Sandesh K.",
       title: "Sr. Director @ Visa",
     },
+    accent: "violet",
   },
   {
     id: "nexus",
@@ -142,6 +146,7 @@ const experiences = [
     ],
     skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Robotics Education", "Client-facing"],
     featured: true,
+    accent: "teal",
   },
   {
     id: "u-scranton",
@@ -159,6 +164,7 @@ const experiences = [
     ],
     skills: ["Web Development", "Automation", "Full Stack", "Data Analysis"],
     type: "secondary",
+    accent: "blue",
   },
   {
     id: "jefferson-volunteer",
@@ -175,6 +181,7 @@ const experiences = [
     ],
     skills: ["Health", "Service Design", "Human Impact", "Communication", "User Research"],
     type: "secondary",
+    accent: "green",
   },
   {
     id: "notion-enhanced",
@@ -191,6 +198,7 @@ const experiences = [
     ],
     skills: ["Web Development", "UX Design", "GitHub", "Full Stack", "Open Source", "Developer Advocacy"],
     type: "secondary",
+    accent: "violet",
   },
   {
     id: "manila-design",
@@ -205,8 +213,31 @@ const experiences = [
     ],
     skills: ["UX Design", "Stakeholder Management", "Globalization", "Product Strategy", "Visual Communication"],
     type: "secondary",
+    accent: "ochre",
   },
 ];
+
+const workAccentVars = {
+  blue: { color: "var(--civic-blue)", soft: "var(--civic-blue-soft)" },
+  teal: { color: "var(--system-teal)", soft: "var(--system-teal-soft)" },
+  ochre: { color: "var(--field-ochre)", soft: "var(--field-ochre-soft)" },
+  violet: { color: "var(--ai-violet)", soft: "var(--ai-violet-soft)" },
+  green: { color: "var(--trust-green)", soft: "var(--trust-green-soft)" },
+} as const;
+
+type AccentName = keyof typeof workAccentVars;
+type WorkAccentStyle = CSSProperties & {
+  "--work-accent": string;
+  "--work-accent-soft": string;
+};
+
+function getWorkAccentStyle(accent?: string): WorkAccentStyle {
+  const vars = workAccentVars[(accent as AccentName) || "blue"] ?? workAccentVars.blue;
+  return {
+    "--work-accent": vars.color,
+    "--work-accent-soft": vars.soft,
+  };
+}
 
 export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
@@ -227,7 +258,7 @@ export function WorkSection() {
         <SectionHeader
           marker="02"
           eyebrow="Selected work"
-          title="Product and technical work, filed as evidence."
+          title="Selected work"
           description="Product and technical work across AI research assistants, enterprise automation, developer tools, search, education, and financial capability."
           className="mb-10"
         />
@@ -246,7 +277,7 @@ export function WorkSection() {
         <div className="notched mb-10 border border-[var(--rule)] bg-[var(--paper-card)] p-5">
           <div className="mb-4 flex items-center justify-between gap-4">
             <span className="small-label">
-              Punchcard filter / skill evidence
+              Filter by skill
             </span>
             {activeFilter && (
               <button onClick={() => setActiveFilter(null)} className="inline-flex items-center gap-1 text-xs font-extrabold uppercase tracking-[0.075em] text-[var(--revision-red)] hover:underline">
@@ -256,13 +287,18 @@ export function WorkSection() {
           </div>
           <div className="flex flex-wrap gap-2">
             {globalSkills.map((skill) => (
-              <PunchcardFilter
+              <button
                 key={skill}
                 onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
-                active={activeFilter === skill}
+                className={cn(
+                  "inline-flex min-h-[25px] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
+                  activeFilter === skill
+                    ? "border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] text-[var(--civic-blue)]"
+                    : "border-[var(--rule-strong)] bg-transparent text-[var(--ink-muted)] hover:border-[var(--civic-blue)] hover:text-[var(--civic-blue)]"
+                )}
               >
                 {skill}
-              </PunchcardFilter>
+              </button>
             ))}
           </div>
         </div>
@@ -272,24 +308,25 @@ export function WorkSection() {
             <EditorialCard
               key={experience.id}
               important={experience.featured}
+              style={getWorkAccentStyle(experience.accent)}
               className={cn(
                 "group",
-                experience.type === "secondary" && "border-dashed bg-[color-mix(in_srgb,var(--paper-card)_74%,var(--system-teal-soft))]"
+                experience.type === "secondary" && "border-dashed bg-[color-mix(in_srgb,var(--paper-card)_74%,var(--work-accent-soft))]"
               )}
             >
               {experience.featured && (
-                <div className="absolute -right-3 -top-3 z-10">
-                  <StampBadge tone="green">Selected</StampBadge>
+                <div className="absolute right-4 top-4 z-10">
+                  <StampBadge tone="muted" className="border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">Selected</StampBadge>
                 </div>
               )}
 
               <div className="mb-6 flex flex-col justify-between gap-5 md:flex-row md:items-start">
                   <div>
-                    <h3 className="text-2xl leading-tight transition-colors group-hover:text-[var(--civic-blue)] md:text-3xl">
+                    <h3 className={cn("text-2xl leading-tight transition-colors group-hover:text-[var(--work-accent)] md:text-3xl", experience.featured && "pr-28")}>
                       {experience.role}
                     </h3>
                     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-                      <span className="small-label text-[var(--civic-blue)]">{experience.company}</span>
+                      <span className="small-label text-[var(--work-accent)]">{experience.company}</span>
                       <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
                         <Calendar className="h-3.5 w-3.5" /> {experience.duration}
                       </div>
@@ -299,14 +336,14 @@ export function WorkSection() {
                     </div>
                   </div>
                   {experience.type === "secondary" && (
-                    <StampBadge tone="muted" className="text-[var(--system-teal)] bg-[var(--system-teal-soft)]">Related</StampBadge>
+                    <StampBadge tone="muted" className="bg-[var(--work-accent-soft)] text-[var(--work-accent)]">Related</StampBadge>
                   )}
                 </div>
 
               <div className="space-y-8">
                 <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[0.95fr_1.05fr]">
                   <div className="space-y-6">
-                    <div className="border-l-2 border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] p-5">
+                    <div className="border-l-2 border-[var(--work-accent)] bg-[var(--work-accent-soft)] p-5">
                       <p className="text-sm leading-7 text-[var(--ink-soft)]">
                         {experience.description}
                       </p>
@@ -318,7 +355,7 @@ export function WorkSection() {
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--civic-blue)] hover:underline"
+                              className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--work-accent)] hover:underline"
                             >
                               {link.label} <ExternalLink className="h-3 w-3" />
                             </a>
@@ -345,7 +382,7 @@ export function WorkSection() {
                   </div>
 
                   <div className="space-y-4">
-                    <p className="small-label">Proof rows</p>
+                    <p className="small-label">Work details</p>
                     <LedgerList items={experience.impact} />
                   </div>
                 </div>
@@ -362,16 +399,17 @@ export function WorkSection() {
                 <EvidenceMeta>
                   <div className="flex flex-wrap gap-2">
                   {experience.skills.map((skill) => (
-                    <StampBadge
+                    <span
                       key={skill}
-                      tone={activeFilter === skill ? "blue" : "muted"}
                       className={cn(
-                        "cursor-default",
-                        activeFilter === skill && "border-[var(--civic-blue)]"
+                        "inline-flex min-h-[22px] items-center border px-2.5 py-0.5 text-[0.64rem] font-bold uppercase leading-none tracking-[0.055em]",
+                        activeFilter === skill
+                          ? "border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]"
+                          : "border-[rgba(112,103,87,0.32)] bg-transparent text-[var(--ink-faint)]"
                       )}
                     >
                       {skill}
-                    </StampBadge>
+                    </span>
                   ))}
                 </div>
                 </EvidenceMeta>

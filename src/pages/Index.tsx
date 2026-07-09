@@ -4,7 +4,6 @@ import { MobileNav } from "@/components/layout/MobileNav";
 import { LightsOffToggle } from "@/components/design-system/Dossier";
 import { BioSection } from "@/components/sections/BioSection";
 import { WorkSection } from "@/components/sections/WorkSection";
-import { AccomplishmentsSection } from "@/components/sections/AccomplishmentsSection";
 import { MentorshipSection } from "@/components/sections/MentorshipSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { TalksSection } from "@/components/sections/TalksSection";
@@ -15,7 +14,6 @@ import { ResumeSection } from "@/components/sections/ResumeSection";
 const sectionIds = [
   "bio",
   "work",
-  "accomplishments",
   "talks",
   "community-building",
   "mentorship",
@@ -81,7 +79,6 @@ const Index = () => {
           />
           <div className="hatch-band" aria-hidden="true" />
           <WorkSection />
-          <AccomplishmentsSection />
           <TalksSection />
           <CommunitySection />
           <MentorshipSection />

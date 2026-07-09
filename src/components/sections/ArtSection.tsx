@@ -2,7 +2,8 @@ import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { ImageFrame, PunchcardFilter, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { cn } from "@/lib/utils";
 
 type GalleryType = "culinary" | "ceramics" | "image studies";
 
@@ -191,13 +192,18 @@ export function ArtSection() {
 
         <div className="mb-10 flex flex-wrap gap-2">
           {galleries.map((gallery) => (
-            <PunchcardFilter
+            <button
               key={gallery.id}
               onClick={() => setActiveGallery(gallery.id)}
-              active={activeGallery === gallery.id}
+              className={cn(
+                "inline-flex min-h-[25px] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
+                activeGallery === gallery.id
+                  ? "border-[var(--field-ochre)] bg-[var(--field-ochre-soft)] text-[var(--field-ochre)]"
+                  : "border-[var(--rule-strong)] bg-transparent text-[var(--ink-muted)] hover:border-[var(--field-ochre)] hover:text-[var(--field-ochre)]"
+              )}
             >
               {gallery.label}
-            </PunchcardFilter>
+            </button>
           ))}
         </div>
 

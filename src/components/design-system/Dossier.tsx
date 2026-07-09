@@ -204,30 +204,6 @@ export function ImageFrame({
   );
 }
 
-export function PunchcardFilter({
-  active,
-  children,
-  className,
-  ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & { active?: boolean }) {
-  return (
-    <button
-      className={cn(
-        "relative min-h-[34px] border px-3 py-2 text-left text-[0.68rem] font-extrabold uppercase tracking-[0.075em]",
-        "overflow-hidden text-[var(--ink-muted)] transition duration-150",
-        "before:absolute before:inset-x-2 before:top-1 before:h-[5px] before:bg-[radial-gradient(circle,var(--paper-card)_0_2px,transparent_2.4px)] before:bg-[length:13px_5px] before:content-['']",
-        active
-          ? "border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] text-[var(--civic-blue)]"
-          : "border-[var(--rule)] bg-[var(--paper-card)] hover:border-[var(--civic-blue)] hover:text-[var(--ink)]",
-        className,
-      )}
-      {...props}
-    >
-      <span className="relative z-10">{children}</span>
-    </button>
-  );
-}
-
 export function LightsOffToggle() {
   const [isDark, setIsDark] = useState(false);
 

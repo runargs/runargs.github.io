@@ -18,8 +18,8 @@ export function BioSection() {
       className="relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
     >
       <div className="mb-10 grid gap-6 md:grid-cols-[1fr_320px] md:items-start">
-        <div className="font-display text-[3rem] leading-none text-[var(--civic-blue)] md:text-[4rem]" aria-hidden="true">
-          FIELD
+        <div className="font-display text-[2.6rem] leading-none text-[var(--civic-blue)] md:text-[3.5rem]">
+          Alexa Thoennes
         </div>
         <div className="border-l border-[var(--rule)] pl-5">
           <StampBadge tone="blue">Human-first responsible technology</StampBadge>
@@ -29,19 +29,20 @@ export function BioSection() {
         </div>
       </div>
 
-      <div className="grid gap-9 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+      <div className="grid gap-9 lg:grid-cols-[1.04fr_0.96fr] lg:items-start">
         <ImageFrame
           src="/images/profile.JPG"
-          alt="Alexa Thoennes"
-          caption="Profile artifact / Alexa Thoennes"
+          alt="Alexa Thoennes speaking to a seated audience"
+          caption="Speaking engagement / product judgment in a room"
           className="order-2 lg:order-1"
-          mediaClassName="aspect-[4/5]"
+          mediaClassName="aspect-video"
+          imgClassName="object-[50%_52%]"
           grayscale={false}
         />
 
         <div className="order-1 lg:order-2">
           <h1 className="max-w-3xl text-[2.35rem] leading-tight text-[var(--ink)] md:text-[3rem]">
-            Alexa Thoennes builds AI products for research, synthesis, and better decision-making.
+            I build AI products for research, synthesis, and better decision-making.
           </h1>
 
           <div className="mt-7 max-w-2xl space-y-4 text-[var(--ink-muted)]">
