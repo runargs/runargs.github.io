@@ -27,15 +27,14 @@ export function BioSection() {
           <div className="border-l border-[var(--rule)] pl-5">
             <StampBadge tone="blue">AI product launch 2026</StampBadge>
             <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">
-              Product judgment for research, synthesis, responsible decision-making, and the human systems around technical work.
+              Product work across AI research tools, evaluation, adoption, and the human systems around technical launch.
             </p>
           </div>
         </div>
 
         <article className="hero-article border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 md:p-7">
           <h1 className="hero-headline max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
-            I build <span className="hero-headline-pixel">AI</span> products for{" "}
-            <span className="hero-headline-editorial">research, synthesis,</span> and better decision-making.
+            I build <span className="hero-headline-pixel">AI</span> products for evidence, judgment, and responsible use.
           </h1>
 
           <div className="mt-7 flow-root">
@@ -54,10 +53,10 @@ export function BioSection() {
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
               <p className="text-xl leading-8 text-[var(--ink-soft)]">
-                I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
+                I’m a product manager focused on AI tools that help people make sense of complex information without losing uncertainty, context, or accountability.
               </p>
               <p>
-                My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
+                My work sits between product strategy, technical systems, and human use: retrieval quality, evaluation, documentation, adoption, and whether a tool can be trusted once it leaves the demo.
               </p>
             </div>
           </div>
@@ -65,15 +64,15 @@ export function BioSection() {
           <div className="mt-8 clear-both grid gap-2 border-y border-[var(--rule)] py-4 text-sm md:grid-cols-3">
             <div>
               <span className="small-label block text-[var(--civic-blue)]">Focus</span>
-              <span className="data-text">AI research tools</span>
+              <span className="data-text">Research tools</span>
             </div>
             <div>
               <span className="small-label block text-[var(--civic-blue)]">Method</span>
-              <span className="data-text">Evidence + adoption</span>
+              <span className="data-text">Evaluation + launch</span>
             </div>
             <div>
               <span className="small-label block text-[var(--civic-blue)]">Value</span>
-              <span className="data-text">Human-first systems</span>
+              <span className="data-text">Responsible use</span>
             </div>
           </div>
 

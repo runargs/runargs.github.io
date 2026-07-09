@@ -37,7 +37,7 @@ const experiences = [
     location: "Remote",
     duration: "2024 to Present",
     description:
-      "Leading product work on AI research assistant and market-intelligence workflows at Mastercard, with focus areas including conversational analytics, synthesis, personalization, evaluation, and user adoption.",
+      "Leading product work on AI research-assistant workflows for market intelligence, including conversational analytics, retrieval quality, evaluation, personalization, and adoption.",
     links: [
       {
         label: "Explore the live platform",
@@ -46,8 +46,8 @@ const experiences = [
     ],
     impact: [
       "Launched AI-assisted research tools and enhanced search using vector embeddings.",
-      "Improved data-retrieval accuracy and traceability via privacy-respecting RAG.",
-      "Streamlined onboarding through standardized documentation and RACI frameworks.",
+      "Improved retrieval quality and traceability through source-grounded RAG.",
+      "Defined launch requirements around evaluation, permissioning, and answer boundaries.",
       "Collaborate across global teams to align OKRs, KPIs, regional requirements, and product-launch tradeoffs.",
     ],
     skills: [
@@ -77,7 +77,7 @@ const experiences = [
     location: "New York, NY",
     duration: "2022 to 2024",
     description:
-      "Automated CI/CD pipelines and managed global deployment automation for 100+ core enterprise applications.",
+      "Built and maintained deployment automation for global enterprise systems, with attention to reliability, documentation, and cross-team coordination.",
     impact: [
       "Reduced deployment time through optimized automation pipelines.",
       "Improved cross-team alignment through standardized documentation.",
@@ -93,7 +93,7 @@ const experiences = [
     location: "New York, NY (Remote)",
     duration: "Jun 2020 to Aug 2020",
     description:
-      "Owned the development lifecycle for a documentation-creation feature in Google’s open-source client library management tooling.",
+      "Owned a documentation feature for open-source client-library tooling, moving from user research through implementation and release.",
     impact: [
       "Owned a feature from user research through coding and open-source release.",
       "Automated library documentation updates for hundreds of APIs via generated API client tooling.",
@@ -115,9 +115,9 @@ const experiences = [
     location: "Austin, TX (Remote)",
     duration: "May 2021 to Aug 2021",
     description:
-      "Scaled customer-facing web architecture and engineered semantic search capabilities for Practical Money Skills, a financial education platform.",
+      "Built public-facing web and search capabilities for financial education products where clarity, access, and trust shaped the work.",
     impact: [
-      "Built features for 18 Visa websites and 1,600+ partner sites serving roughly 100K monthly users.",
+      "Built public-facing features across a global financial education ecosystem.",
       "Developed modular semantic search components using NLP and Elasticsearch to reduce maintenance burden.",
       "Worked on a public-facing financial education product where distribution, clarity, and trust mattered as much as the feature itself.",
     ],
@@ -155,7 +155,7 @@ const experiences = [
     description:
       "Architected and maintained digital systems for university audiences, balancing technical maintenance with user-facing improvements.",
     impact: [
-      "Serviced digital tools and web experiences for 6,000+ students and 100K+ monthly visitors.",
+      "Maintained digital tools and web experiences for university audiences.",
       "Migrated a CV Creator application from legacy ASP/Access to a modern PowerApps/SQL Server stack.",
       "Implemented automation scripts and widgets using Acalog API and Python to streamline site content.",
       "Resolved support tickets close to real users while maintaining production systems.",
@@ -191,7 +191,7 @@ const experiences = [
       "Contributed to an open-source customization suite for a productivity app, including extensions, themes, fixes, and community support.",
     impact: [
       "Added extensions, themes, bug fixes, and technical support for a customization suite used by productivity power users.",
-      "Served as a Discord community moderator and #3 ranked contributor for the tool.",
+      "Served as a regular contributor and Discord community moderator for the tool.",
       "Coded with CSS, JavaScript, and Node.js.",
     ],
     skills: ["Web Development", "UX Design", "GitHub", "Full Stack", "Open Source", "Developer Advocacy"],
@@ -255,9 +255,9 @@ export function WorkSection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="02"
-          eyebrow="Selected work"
-          title="Selected work"
-          description="Product and technical work across AI research assistants, enterprise automation, developer tools, search, education, and financial capability."
+          eyebrow="Product work"
+          title="Product work"
+          description="AI research assistants, enterprise systems, developer tools, search, education, and financial capability work. The common thread is technical product judgment under real constraints."
           className="mb-10"
         />
 

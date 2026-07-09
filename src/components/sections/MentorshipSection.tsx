@@ -17,7 +17,7 @@ export function MentorshipSection() {
         <SectionHeader
           marker="06"
           eyebrow="Contact"
-          title="Ways to reach me."
+          title="Contact."
           className="mb-8"
         />
 
@@ -26,7 +26,7 @@ export function MentorshipSection() {
             <div>
               <StampBadge tone="red">Contact</StampBadge>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink-muted)]">
-                AI product work, healthspan, impact-oriented products, writing, collaboration, culinary events, or a specific question.
+                Reach out about AI product work, evaluation, responsible launch, writing, culinary projects, or a specific question.
               </p>
 
               <DossierLink href={mailtoLink} className="mt-6 bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">

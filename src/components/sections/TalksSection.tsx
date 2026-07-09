@@ -74,7 +74,7 @@ const honors = [
   { title: "Regional Leadership Recognition", organization: "NBC10 / Widener University", year: "2018" },
   { title: "Graphic Design Competition Runner-Up", organization: "Instructables.com", year: "2015" },
   { title: "Scholastic Art & Writing Silver Key", organization: "Greater Philadelphia Region", year: "2015" },
-  { title: "Academic Excellence: Top 3% of Class", organization: "21st Century Cyber Charter", year: "2018" },
+  { title: "Academic Excellence Recognition", organization: "21st Century Cyber Charter", year: "2018" },
   { title: "Dean’s List for Academic Achievement", organization: "University of Scranton", year: "2021" },
   { title: "University Merit Grant", organization: "University of Scranton", year: "2018" },
   { title: "Freedom Credit Union Grant", organization: "Freedom Credit Union", year: "2018" },
@@ -101,9 +101,9 @@ export function TalksSection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="04"
-          eyebrow="Public links"
-          title="Public links and background."
-          description="AI research-assistant work, speaking, education, earlier technical projects, and a quiet record of honors."
+          eyebrow="Public record"
+          title="Public record."
+          description="Posts, talks, education, earlier technical work, and selected honors."
           className="mb-8"
         />
 

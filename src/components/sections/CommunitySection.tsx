@@ -16,7 +16,7 @@ const communities: Community[] = [
     name: "Ōura, Manta Sleep, Bearable, Atlassian, Canva, Dynamo AI, Koinly + more",
     role: "Beta testing and research participation",
     description:
-      "Beta testing and research participation across wellness hardware, productivity software, AI tools, and finance products. It keeps my product judgment close to friction, onboarding, and everyday use.",
+      "Beta testing and research participation across wellness hardware, productivity software, AI tools, and finance products. It keeps product judgment close to friction, onboarding, and everyday use.",
     period: "2022–Present",
   },
   {
@@ -55,8 +55,8 @@ export function CommunitySection() {
         <SectionHeader
           marker="05"
           eyebrow="Community"
-          title="Field contexts that shape product judgment."
-          description="A few contexts that inform how I think about products: wellness tools, public-interest work, food culture, service, and community."
+          title="Contexts that keep the work grounded."
+          description="Wellness tools, public-interest work, food culture, service, and community contexts that keep product judgment close to lived experience."
           className="mb-10"
         />
 

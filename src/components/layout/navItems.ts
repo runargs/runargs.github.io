@@ -6,7 +6,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { id: "bio", label: "Field note", shortLabel: "Start" },
-  { id: "work", label: "Selected work", shortLabel: "Work" },
+  { id: "work", label: "Product work", shortLabel: "Work" },
   { id: "talks", label: "Public links", shortLabel: "Links" },
   { id: "community-building", label: "Community", shortLabel: "Field" },
   { id: "mentorship", label: "Contact", shortLabel: "Contact" },

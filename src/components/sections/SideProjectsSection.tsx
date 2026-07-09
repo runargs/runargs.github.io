@@ -78,7 +78,7 @@ export function SideProjectsSection() {
           marker="08"
           eyebrow="Marginalia"
           title="Marginalia"
-          description="Small recurring questions around memory, synthesis, evaluation, behavior change, and products that need to work in the real world."
+          description="Small questions about memory, evaluation, behavior change, and tools that have to work in real life."
           className="mb-5"
         />
 

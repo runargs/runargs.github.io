@@ -90,7 +90,7 @@ const Index = () => {
             <div>
               <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
               <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
-                Human-first responsible technology, AI product judgment, and field notes on systems that need to work for people.
+                AI product work, field notes, and systems thinking for technology that has to work for people.
               </p>
             </div>
             <div className="space-y-1 text-xs text-[var(--ink-faint)] md:text-right">

@@ -2,9 +2,9 @@ import { ArrowRight, Download, FileText, Mail } from "lucide-react";
 import { DossierLink, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 const resumeHighlights = [
-  "4+ years across product, engineering, automation, developer experience, and AI-enabled research workflows.",
-  "Current product work on an AI research assistant with focus on synthesis, conversational analytics, personalization, evaluation, and adoption.",
-  "Interested in products where execution details matter: incentives, trust, distribution, quality, and behavior change.",
+  "Experience across product, engineering, automation, developer experience, and AI-enabled research workflows.",
+  "Current product work on AI research-assistant workflows, including retrieval quality, evaluation, source grounding, personalization, and adoption.",
+  "Interested in technical products where trust, documentation, launch quality, and use determine whether the work matters.",
 ];
 
 const credentials = [
