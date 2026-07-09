@@ -56,27 +56,12 @@ export function BioSection() {
                 I’m a product manager focused on AI tools that help people make sense of complex information without losing uncertainty, context, or accountability.
               </p>
               <p>
-                My work sits between product strategy, technical systems, and human use: retrieval quality, evaluation, documentation, adoption, and whether a tool can be trusted once it leaves the demo.
+                My work connects human-centered judgment with the practical implementation details that make AI usable: retrieval quality, source grounding, guardrails, open feedback loops, and transparent documentation.
               </p>
             </div>
           </div>
 
-          <div className="mt-8 clear-both grid gap-2 border-y border-[var(--rule)] py-4 text-sm md:grid-cols-3">
-            <div>
-              <span className="small-label block text-[var(--civic-blue)]">Focus</span>
-              <span className="data-text">Research tools</span>
-            </div>
-            <div>
-              <span className="small-label block text-[var(--civic-blue)]">Method</span>
-              <span className="data-text">Evaluation + launch</span>
-            </div>
-            <div>
-              <span className="small-label block text-[var(--civic-blue)]">Value</span>
-              <span className="data-text">Responsible use</span>
-            </div>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-8 clear-both flex flex-wrap gap-3">
             <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
               Contact <ArrowRight className="ml-2 h-4 w-4" />
             </DossierLink>

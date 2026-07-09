@@ -20,12 +20,12 @@ const artifacts: Artifact[] = [
   {
     id: "ami-linkedin",
     type: "note",
-    title: "Ask Mastercard Intelligence public post",
+    title: "Ask Mastercard Intelligence launch",
     venue: "LinkedIn",
     date: "2026",
     location: "New York, NY",
     topics: ["AI Product", "Research Assistants", "Conversational Intelligence"],
-    summary: "Public post on AI research assistant work and conversational market intelligence.",
+    summary: "Public post on the Ask Mastercard Intelligence launch and conversational market intelligence work.",
     url: "https://www.linkedin.com/posts/alexathoennes_intelligence-is-becoming-fast-conversational-ugcPost-7460767669449867264-Swie/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
   },
   {

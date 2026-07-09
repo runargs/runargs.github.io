@@ -26,7 +26,7 @@ export function MentorshipSection() {
             <div>
               <StampBadge tone="red">Contact</StampBadge>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink-muted)]">
-                Reach out about AI product work, evaluation, responsible launch, writing, culinary projects, or a specific question.
+                I’m easiest to reach by email. I’m glad to hear from people working on responsible AI products, evaluation, writing, career mentorship, food and culture, or a specific question.
               </p>
 
               <DossierLink href={mailtoLink} className="mt-6 bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">

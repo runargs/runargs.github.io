@@ -257,7 +257,6 @@ export function WorkSection() {
           marker="02"
           eyebrow="Product work"
           title="Product work"
-          description="AI research assistants, enterprise systems, developer tools, search, education, and financial capability work. The common thread is technical product judgment under real constraints."
           className="mb-10"
         />
 

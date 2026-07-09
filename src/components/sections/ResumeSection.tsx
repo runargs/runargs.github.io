@@ -8,11 +8,14 @@ const resumeHighlights = [
 ];
 
 const credentials = [
+  { title: "Communicating Persuasively & Building Trust", org: "Stanford GSB", date: "2026" },
+  { title: "Maximizing Operational Effectiveness", org: "MIT", date: "2026" },
+  { title: "Ethical & Impactful AI Solutions", org: "IMD", date: "2026" },
+  { title: "Driving Digital Transformation", org: "IMD", date: "2026" },
+  { title: "Understanding Customer Needs", org: "Wharton Executive Education", date: "2025" },
   { title: "Compelling Data Stories", org: "UVA Darden Executive Education", date: "2026" },
   { title: "Influencing with Diplomacy", org: "Wharton Executive Education", date: "2025" },
-  { title: "Machine Learning for Business", org: "Wharton Executive Education", date: "2025" },
   { title: "Lean Product Management", org: "Jeff Gothelf", date: "2024" },
-  { title: "Product Management Fundamentals", org: "Matthew Pizzi", date: "2023" },
   { title: "B.S. Applied Computing", org: "University of Scranton · Magna Cum Laude", date: "2021" },
 ];
 

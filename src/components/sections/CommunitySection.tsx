@@ -38,6 +38,14 @@ const communities: Community[] = [
     url: "https://iknowaplace.agency/",
   },
   {
+    id: "career-mentorship",
+    name: "Career mentorship",
+    role: "Independent and Year Up United mentor",
+    description:
+      "Mentorship for emerging technical talent and early-career peers, focused on career navigation, communication, and confidence in ambiguous professional paths.",
+    period: "Ongoing",
+  },
+  {
     id: "aid",
     name: "Local aid, grants, and fundraising",
     role: "Volunteer and organizer",
