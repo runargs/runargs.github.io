@@ -1,3 +1,5 @@
+import { DossierButton, ImageFrame, StampBadge } from "@/components/design-system/Dossier";
+
 export function BioSection() {
   const paths = [
     { label: "Product work", id: "work", note: "AI research assistants, search, automation, and product delivery" },
@@ -7,88 +9,77 @@ export function BioSection() {
   ];
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       id="bio"
-      className="min-h-screen flex flex-col justify-center py-10 px-6 md:px-12 fade-in"
+      className="relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-center max-w-6xl mx-auto w-full">
-        <div className="order-2 lg:order-1">
-          <img
-            src="/images/profile.JPG"
-            alt="Alexa Thoennes"
-            className="w-full h-auto rounded-2xl object-cover border border-border/50 shadow-warm"
-          />
+      <div className="mb-10 grid gap-6 md:grid-cols-[1fr_320px] md:items-start">
+        <div className="font-display text-[3rem] leading-none text-[var(--civic-blue)] md:text-[4rem]" aria-hidden="true">
+          FIELD
         </div>
-
-        <div className="order-1 lg:order-2 text-center lg:text-left">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-5">
-            Product manager working on AI research tools
+        <div className="border-l border-[var(--rule)] pl-5">
+          <StampBadge tone="blue">Human-first responsible technology</StampBadge>
+          <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">
+            AI product for research, synthesis, responsible decision-making, and the human systems around technical work.
           </p>
+        </div>
+      </div>
 
-          <h1 className="font-flourish text-6xl md:text-8xl lg:text-9xl text-gold-gradient mb-4 leading-none">
-            Alexa Thoennes
+      <div className="grid gap-9 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+        <ImageFrame
+          src="/images/profile.JPG"
+          alt="Alexa Thoennes"
+          caption="Profile artifact / Alexa Thoennes"
+          className="order-2 lg:order-1"
+          mediaClassName="aspect-[4/5]"
+          grayscale={false}
+        />
+
+        <div className="order-1 lg:order-2">
+          <h1 className="max-w-3xl text-[2.35rem] leading-tight text-[var(--ink)] md:text-[3rem]">
+            Alexa Thoennes builds AI products for research, synthesis, and better decision-making.
           </h1>
 
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic max-w-3xl mx-auto lg:mx-0">
-            I build AI products for research, synthesis, and better decision-making.
-          </h2>
-
-          <div className="mt-7 space-y-4 max-w-2xl mx-auto lg:mx-0">
-            <p className="text-lg md:text-xl leading-relaxed text-foreground/90">
+          <div className="mt-7 max-w-2xl space-y-4 text-[var(--ink-muted)]">
+            <p className="text-lg leading-8 text-[var(--ink-soft)]">
               I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
             </p>
-            <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+            <p className="text-base leading-7">
               My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
             </p>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
-            <button type="button" onClick={() => scrollToSection("resume")} className="px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+          <div className="mt-8 flex flex-wrap gap-3">
+            <DossierButton type="button" onClick={() => scrollToSection("resume")} className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
               View résumé
-            </button>
-            <button type="button" onClick={() => scrollToSection("work")} className="px-5 py-3 rounded-full border border-border text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
+            </DossierButton>
+            <DossierButton type="button" onClick={() => scrollToSection("work")}>
               See selected work
-            </button>
-            <button type="button" onClick={() => scrollToSection("side-projects")} className="px-5 py-3 rounded-full border border-border text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
-              See notes & projects
-            </button>
+            </DossierButton>
+            <DossierButton type="button" onClick={() => scrollToSection("side-projects")}>
+              See notes
+            </DossierButton>
           </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full mt-14 pt-8 border-t border-muted/30">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          {paths.map((path) => (
-            <button
-              key={path.label}
-              type="button"
-              onClick={() => scrollToSection(path.id)}
-              className="group rounded-2xl border border-border/50 bg-card/30 p-4 text-left hover:border-primary/30 hover:bg-card/60 transition-all"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold mb-2">
-                {path.label}
-              </p>
-              <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                {path.note}
-              </p>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="text-center mt-14">
-        <div className="inline-flex items-center gap-4">
-          <span className="w-16 h-px bg-gradient-to-r from-transparent to-primary/30" />
-          <span className="font-flourish text-2xl text-primary/40">✦</span>
-          <span className="w-16 h-px bg-gradient-to-l from-transparent to-primary/30" />
-        </div>
+      <div className="mt-12 grid gap-3 md:grid-cols-4">
+        {paths.map((path, index) => (
+          <button
+            key={path.label}
+            type="button"
+            onClick={() => scrollToSection(path.id)}
+            className="notched relative block w-full cursor-pointer border border-[var(--rule)] bg-[var(--paper-card)] p-5 text-left text-[var(--ink)] transition-colors duration-150 hover:border-[color-mix(in_srgb,var(--civic-blue)_45%,var(--rule))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
+          >
+            <p className="font-display text-2xl text-[var(--civic-blue)]">{String(index + 1).padStart(2, "0")}</p>
+            <h2 className="mt-2 text-lg leading-tight">{path.label}</h2>
+            <p className="mt-2 text-sm leading-6 text-[var(--ink-muted)]">{path.note}</p>
+          </button>
+        ))}
       </div>
     </section>
   );
