@@ -416,12 +416,40 @@
     height: 46px;
     border-bottom: var(--line-hair) solid var(--rule);
     background:
-      linear-gradient(90deg, var(--work-accent-soft), transparent 34%),
-      url("/images/punchcard-reference.png");
-    background-position: center 48%;
+      linear-gradient(90deg, var(--work-accent-soft), transparent 42%),
+      url("/images/clip-circuit-engraving.png");
+    background-position: center 45%;
     background-size: cover;
-    filter: sepia(0.18) saturate(0.72) contrast(0.9);
-    opacity: 0.28;
+    filter: grayscale(1) sepia(0.12) contrast(0.95);
+    opacity: 0.22;
+  }
+
+  .clip-art-plate {
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    align-items: end;
+    gap: var(--space-5);
+    border-bottom: var(--line-hair) solid var(--rule);
+    padding-bottom: var(--space-5);
+  }
+
+  .clip-art-plate img {
+    display: block;
+    width: 100%;
+    max-height: 190px;
+    object-fit: contain;
+    object-position: left bottom;
+    filter: grayscale(1) sepia(0.14) contrast(1.02);
+    opacity: 0.82;
+  }
+
+  .clip-art-plate figcaption {
+    color: var(--ink-muted);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.075em;
+    line-height: 1.4;
+    text-transform: uppercase;
   }
 
   .work-ad-body {
@@ -576,6 +604,16 @@
       float: none;
       width: 100%;
       margin: 0 0 var(--space-5) 0;
+    }
+
+    .clip-art-plate {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+
+    .clip-art-plate img {
+      max-height: 160px;
+      object-position: center bottom;
     }
 
     .marginalia-grid {

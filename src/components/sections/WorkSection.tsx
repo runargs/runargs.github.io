@@ -257,8 +257,16 @@ export function WorkSection() {
           marker="02"
           eyebrow="Product work"
           title="Product work"
-          className="mb-10"
+          className="mb-6"
         />
+
+        <figure className="clip-art-plate mb-10">
+          <img
+            src="/images/clip-operator-computing.png"
+            alt="Black-and-white illustration of a computing operator reviewing punch-card output"
+          />
+          <figcaption>Human review around machines</figcaption>
+        </figure>
 
 {/*
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
