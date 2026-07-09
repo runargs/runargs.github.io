@@ -69,7 +69,7 @@ export function BioSection() {
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
               <p className="text-xl leading-8 text-[var(--ink-soft)]">
-                I’m a product manager focused on AI tools that help people make sense of complex information without losing uncertainty, context, or accountability.
+                I’m a product manager focused on AI tools that help people make sense of complex information while maintaining trust, context, and accountability.
               </p>
               <p>
                 My work connects human-centered judgment with the practical implementation details that make AI usable: retrieval quality, source grounding, guardrails, open feedback loops, and transparent documentation.
