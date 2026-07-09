@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { navItems } from "./PortfolioSidebar";
+import { navItems } from "./navItems";
 
 interface MobileNavProps {
   activeSection: string;
