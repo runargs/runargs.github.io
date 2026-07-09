@@ -253,20 +253,22 @@ export function WorkSection() {
   return (
     <SectionBand id="work">
       <div className="mx-auto max-w-5xl">
-        <SectionHeader
-          marker="02"
-          eyebrow="Product work"
-          title="Product work"
-          className="mb-6"
-        />
-
-        <figure className="clip-art-plate mb-10">
+        <div className="work-visual-field mb-8">
+          <div className="relative z-10">
+            <SectionHeader
+              marker="02"
+              eyebrow="Product work"
+              title="Product work"
+              className="max-w-2xl"
+            />
+          </div>
           <img
             src="/images/clip-operator-computing.png"
-            alt="Black-and-white illustration of a computing operator reviewing punch-card output"
+            alt=""
+            aria-hidden="true"
+            className="work-operator-figure"
           />
-          <figcaption>Human review around machines</figcaption>
-        </figure>
+        </div>
 
 {/*
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">

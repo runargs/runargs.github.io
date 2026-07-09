@@ -424,32 +424,49 @@
     opacity: 0.22;
   }
 
-  .clip-art-plate {
-    display: grid;
-    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
-    align-items: end;
-    gap: var(--space-5);
+  .work-visual-field {
+    position: relative;
+    min-height: 245px;
+    overflow: hidden;
     border-bottom: var(--line-hair) solid var(--rule);
-    padding-bottom: var(--space-5);
+    padding: var(--space-4) clamp(220px, 40vw, 430px) var(--space-6) 0;
   }
 
-  .clip-art-plate img {
-    display: block;
-    width: 100%;
-    max-height: 190px;
+  .work-visual-field::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: min(52%, 500px);
+    height: 72%;
+    border-left: var(--line-hair) solid rgba(213, 198, 177, 0.72);
+    background:
+      linear-gradient(90deg, transparent, var(--paper) 88%),
+      repeating-linear-gradient(0deg, transparent, transparent 9px, rgba(45, 40, 31, 0.045) 9px, rgba(45, 40, 31, 0.045) 10px);
+    pointer-events: none;
+  }
+
+  .work-operator-figure {
+    position: absolute;
+    right: -18px;
+    bottom: -18px;
+    z-index: 1;
+    width: min(48%, 470px);
+    max-height: 250px;
     object-fit: contain;
-    object-position: left bottom;
-    filter: grayscale(1) sepia(0.14) contrast(1.02);
-    opacity: 0.82;
+    object-position: right bottom;
+    filter: grayscale(1) sepia(0.12) contrast(1.04);
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    pointer-events: none;
   }
 
-  .clip-art-plate figcaption {
-    color: var(--ink-muted);
-    font-size: var(--text-xs);
-    font-weight: 800;
-    letter-spacing: 0.075em;
-    line-height: 1.4;
-    text-transform: uppercase;
+  [data-theme="dark"] .work-operator-figure,
+  .dark .work-operator-figure {
+    filter: grayscale(1) sepia(0.05) contrast(1.08) invert(0.86);
+    opacity: 0.2;
+    mix-blend-mode: screen;
   }
 
   .work-ad-body {
@@ -488,7 +505,49 @@
     line-height: 1.62;
   }
 
+  .marginalia-field {
+    position: relative;
+    overflow: hidden;
+    padding-right: clamp(0px, 14vw, 150px);
+  }
+
+  .marginalia-field::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: min(23vw, 180px);
+    border-left: var(--line-hair) solid rgba(213, 198, 177, 0.64);
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 13px, rgba(45, 40, 31, 0.05) 13px, rgba(45, 40, 31, 0.05) 14px),
+      linear-gradient(90deg, transparent, var(--paper-soft));
+    opacity: 0.62;
+    pointer-events: none;
+  }
+
+  .marginalia-scribe {
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    z-index: 1;
+    width: min(24vw, 210px);
+    clip-path: inset(9% 10% 6% 9%);
+    filter: grayscale(1) sepia(0.12) contrast(1.18) brightness(1.18);
+    opacity: 0.16;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    transform: translateY(-50%) rotate(1.5deg);
+  }
+
+  [data-theme="dark"] .marginalia-scribe,
+  .dark .marginalia-scribe {
+    filter: grayscale(1) sepia(0.08) contrast(1.1) invert(0.9);
+    opacity: 0.12;
+    mix-blend-mode: screen;
+  }
+
   .marginalia-grid {
+    position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: var(--space-2);
@@ -520,6 +579,47 @@
   .marginalia-card:hover {
     border-color: color-mix(in srgb, var(--civic-blue) 45%, var(--rule));
     transform: translateY(-2px);
+  }
+
+  .resume-file-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .resume-file-card::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    width: min(34vw, 280px);
+    border-left: var(--line-hair) solid rgba(213, 198, 177, 0.64);
+    background:
+      linear-gradient(90deg, transparent, color-mix(in srgb, var(--paper-soft) 80%, transparent)),
+      repeating-linear-gradient(0deg, transparent, transparent 12px, rgba(45, 40, 31, 0.045) 12px, rgba(45, 40, 31, 0.045) 13px);
+    pointer-events: none;
+  }
+
+  .resume-disk-icon {
+    position: absolute;
+    right: 32px;
+    top: 82px;
+    z-index: 1;
+    width: min(12vw, 104px);
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(1) sepia(0.12) contrast(1.08) brightness(1.05);
+    opacity: 0.2;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  [data-theme="dark"] .resume-disk-icon,
+  .dark .resume-disk-icon {
+    filter: grayscale(1) sepia(0.08) contrast(1.12) invert(0.9);
+    opacity: 0.2;
+    mix-blend-mode: screen;
   }
 
   .theme-toggle {
@@ -606,14 +706,28 @@
       margin: 0 0 var(--space-5) 0;
     }
 
-    .clip-art-plate {
-      grid-template-columns: 1fr;
-      gap: var(--space-2);
+    .work-visual-field {
+      min-height: 0;
+      padding: var(--space-4) 0 var(--space-5);
     }
 
-    .clip-art-plate img {
-      max-height: 160px;
-      object-position: center bottom;
+    .work-visual-field::after,
+    .work-operator-figure {
+      display: none;
+    }
+
+    .marginalia-field {
+      padding-right: 0;
+    }
+
+    .marginalia-field::after,
+    .marginalia-scribe {
+      display: none;
+    }
+
+    .resume-file-card::after,
+    .resume-disk-icon {
+      display: none;
     }
 
     .marginalia-grid {

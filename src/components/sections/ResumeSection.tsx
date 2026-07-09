@@ -1,4 +1,4 @@
-import { ArrowRight, Download, FileText, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 import { DossierLink, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 const resumeHighlights = [
@@ -30,10 +30,10 @@ export function ResumeSection() {
           className="mb-8"
         />
 
-        <div className="notched mb-8 border border-[var(--rule)] bg-[var(--paper-card)] p-6 text-left md:p-8">
-          <div className="mb-8 flex flex-col gap-4 border-b border-[var(--rule)] pb-6 md:flex-row md:items-center md:justify-between">
+        <div className="resume-file-card notched mb-8 border border-[var(--rule)] bg-[var(--paper-card)] p-6 text-left md:p-8">
+          <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" className="resume-disk-icon" />
+          <div className="relative z-10 mb-8 flex flex-col gap-4 border-b border-[var(--rule)] pb-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
-              <FileText className="h-6 w-6 text-[var(--civic-blue)]" />
               <span className="font-serif text-xl text-[var(--ink)]">Alexa Thoennes, résumé</span>
             </div>
             <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request" className="w-full bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)] md:w-auto">
@@ -42,7 +42,7 @@ export function ResumeSection() {
             </DossierLink>
           </div>
 
-          <div className="space-y-6">
+          <div className="relative z-10 space-y-6">
             <div className="border border-[var(--rule)] bg-[var(--paper)] p-5">
               <StampBadge tone="blue">Summary</StampBadge>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-[var(--ink-muted)]">

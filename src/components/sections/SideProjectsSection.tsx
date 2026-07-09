@@ -82,30 +82,33 @@ export function SideProjectsSection() {
           className="mb-5"
         />
 
-        <div className="marginalia-grid">
-          {notesAndProjects.map((item, index) => {
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setSelectedItem(item)}
-                className="marginalia-card group"
-              >
-                <div className="mb-2 flex items-center justify-between gap-3">
-                  <span className="small-label text-[var(--civic-blue)]">{kindLabel[item.kind]}</span>
-                  <span className="font-display text-xl leading-none text-[var(--civic-blue)]" aria-hidden="true">
-                    {index + 1}
-                  </span>
-                </div>
-                <h3 className="mb-2 text-left text-base leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
-                  {item.title}
-                </h3>
-                <p className="text-left text-[0.8rem] leading-5 text-[var(--ink-muted)]">
-                  {item.description}
-                </p>
-              </button>
-            );
-          })}
+        <div className="marginalia-field">
+          <img src="/images/clip-robot-scribe.png" alt="" aria-hidden="true" className="marginalia-scribe" />
+          <div className="marginalia-grid">
+            {notesAndProjects.map((item, index) => {
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setSelectedItem(item)}
+                  className="marginalia-card group"
+                >
+                  <div className="mb-2 flex items-center justify-between gap-3">
+                    <span className="small-label text-[var(--civic-blue)]">{kindLabel[item.kind]}</span>
+                    <span className="font-display text-xl leading-none text-[var(--civic-blue)]" aria-hidden="true">
+                      {index + 1}
+                    </span>
+                  </div>
+                  <h3 className="mb-2 text-left text-base leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
+                    {item.title}
+                  </h3>
+                  <p className="text-left text-[0.8rem] leading-5 text-[var(--ink-muted)]">
+                    {item.description}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
