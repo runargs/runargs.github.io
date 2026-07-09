@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { PortfolioSidebar } from "@/components/layout/PortfolioSidebar";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { LightsOffToggle } from "@/components/design-system/Dossier";
 import { BioSection } from "@/components/sections/BioSection";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { AccomplishmentsSection } from "@/components/sections/AccomplishmentsSection";
@@ -15,17 +16,16 @@ const sectionIds = [
   "bio",
   "work",
   "accomplishments",
-  "mentorship",
-  "community-building",
   "talks",
-  "side-projects",
+  "community-building",
+  "mentorship",
   "art",
+  "side-projects",
   "resume",
 ];
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("bio");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   // States for timing and visibility
   const [isRendered, setIsRendered] = useState(false);
@@ -64,57 +64,59 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex w-full relative">
-      <div className="hidden md:block w-64 shrink-0 sticky top-0 h-screen">
-        <PortfolioSidebar 
-          activeSection={activeSection} 
-          onSectionChange={setActiveSection}
-        />
-      </div>
+    <div className="min-h-screen w-full relative">
+      <LightsOffToggle />
 
       <MobileNav
         activeSection={activeSection}
         onSectionChange={setActiveSection}
-        sidebarOpen={sidebarOpen}
-        onSidebarOpenChange={setSidebarOpen}
       />
 
-      <main className="flex-1 pt-14 pb-20 md:pt-0 md:pb-0">
-        <BioSection />
-        <WorkSection />
-        <AccomplishmentsSection />
-        <TalksSection />
-        <CommunitySection />
-        <MentorshipSection />
-        <ArtSection />
-        <SideProjectsSection />
-        <ResumeSection />
+      <main className="page-shell">
+        <div className="page-inner">
+          <BioSection />
+          <PortfolioSidebar
+            activeSection={activeSection}
+            onSectionChange={setActiveSection}
+          />
+          <div className="hatch-band" aria-hidden="true" />
+          <WorkSection />
+          <AccomplishmentsSection />
+          <TalksSection />
+          <CommunitySection />
+          <MentorshipSection />
+          <ArtSection />
+          <SideProjectsSection />
+          <ResumeSection />
 
-        <footer className="py-12 px-6 text-center border-t border-border">
-          <div className="mb-4">
-            <span className="font-flourish text-3xl text-primary/40">❧</span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Crafted by Alexa, built with Generative AI assistance
-            <br /> 
-            <small><em>(Lovable, Github Copilot, Gemini, Claude, GPT-5)</em></small>
-            <br />
-            © 2026
-          </p>
-        </footer>
+          <footer className="grid gap-6 border-t border-[var(--rule)] bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_260px] md:px-11">
+            <div>
+              <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
+                Human-first responsible technology, AI product judgment, and field notes on systems that need to work for people.
+              </p>
+            </div>
+            <div className="space-y-1 text-xs text-[var(--ink-faint)] md:text-right">
+              <p>Built with generative AI assistance</p>
+              <p>Lovable, GitHub Copilot, Gemini, Claude, GPT-5</p>
+              <p>© 2026</p>
+            </div>
+          </footer>
+        </div>
       </main>
 
-      {/* Clippy Component */}
+      {/* Clippy stays as a vintage computing contact artifact. */}
       {isRendered && (
         <div 
           className={`fixed bottom-6 right-6 z-50 hidden md:flex flex-col items-end pointer-events-none transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
           {/* Tooltip */}
-          <div className="pointer-events-auto mb-2 relative bg-[#ffffcc] border border-black p-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] max-w-[180px] text-[11px] font-sans text-black leading-tight">
+          <div className="pointer-events-auto mb-2 relative max-w-[210px] border-2 border-[var(--ink)] bg-[var(--paper-card)] p-3 text-[11px] leading-tight text-[var(--ink)] shadow-[3px_3px_0_var(--civic-blue)]">
             <button 
               onClick={() => setIsVisible(false)} // Fade out first
               onTransitionEnd={() => !isVisible && setIsRendered(false)} // Remove from DOM after fade
-              className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-[#c0c0c0] border-t-white border-l-white border-b-gray-700 border-r-gray-700 border text-[10px] hover:bg-[#d0d0d0] active:border-t-gray-700 active:border-l-gray-700 active:border-b-white active:border-r-white"
+              className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center border border-[var(--ink)] bg-[var(--paper-soft)] text-[10px] hover:bg-[var(--field-ochre-soft)]"
+              aria-label="Dismiss Clippy contact prompt"
             >
               ✕
             </button>
@@ -129,8 +131,8 @@ const Index = () => {
               Click here to contact.
             </a>
             
-            <div className="absolute -bottom-[9px] right-6 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-black">
-               <div className="absolute -top-[9px] -left-[7px] w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-[7px] border-t-[#ffffcc]" />
+            <div className="absolute -bottom-[9px] right-6 h-0 w-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-[var(--ink)]">
+               <div className="absolute -left-[7px] -top-[9px] h-0 w-0 border-l-[7px] border-r-[7px] border-t-[7px] border-l-transparent border-r-transparent border-t-[var(--paper-card)]" />
             </div>
           </div>
 

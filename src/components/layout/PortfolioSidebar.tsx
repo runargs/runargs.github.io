@@ -1,200 +1,55 @@
-import { useState } from "react";
-import type { ReactNode } from "react";
-import {
-  Award,
-  BookOpen,
-  Briefcase,
-  Compass,
-  FileText,
-  HeartHandshake,
-  Home,
-  Mic,
-  Palette,
-  Sparkles,
-  Users,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
-interface NavItem {
+export interface NavItem {
   id: string;
   label: string;
-  icon: ReactNode;
+  shortLabel: string;
 }
 
-interface NavGroup {
-  id: string;
-  label: string;
-  items: NavItem[];
-}
-
-const navGroups: NavGroup[] = [
-  {
-    id: "start",
-    label: "Overview",
-    items: [
-      { id: "bio", label: "Overview", icon: <Home className="h-4 w-4" /> },
-    ],
-  },
-  {
-    id: "work",
-    label: "Product",
-    items: [
-      { id: "work", label: "Selected work", icon: <Briefcase className="h-4 w-4" /> },
-      { id: "resume", label: "Résumé + contact", icon: <FileText className="h-4 w-4" /> },
-    ],
-  },
-  {
-    id: "thinking",
-    label: "Notes",
-    items: [
-      { id: "side-projects", label: "Notes & artifacts", icon: <BookOpen className="h-4 w-4" /> },
-      { id: "talks", label: "Public links", icon: <Mic className="h-4 w-4" /> },
-    ],
-  },
-  {
-    id: "food-culture",
-    label: "Food + culture",
-    items: [
-      { id: "art", label: "Artisan gallery", icon: <Palette className="h-4 w-4" /> },
-      { id: "community-building", label: "Product context", icon: <Users className="h-4 w-4" /> },
-      { id: "mentorship", label: "Contact", icon: <HeartHandshake className="h-4 w-4" /> },
-    ],
-  },
-  {
-    id: "background",
-    label: "Background",
-    items: [
-      { id: "accomplishments", label: "Selected honors", icon: <Award className="h-4 w-4" /> },
-    ],
-  },
-];
-
-const comingSoonItems: NavItem[] = [
-  { id: "public-notes", label: "Notes", icon: <Sparkles className="h-4 w-4" /> },
-  { id: "diagrams", label: "Diagrams", icon: <Compass className="h-4 w-4" /> },
-  { id: "archive", label: "Archive", icon: <BookOpen className="h-4 w-4" /> },
+export const navItems: NavItem[] = [
+  { id: "bio", label: "Field note", shortLabel: "Start" },
+  { id: "work", label: "Selected work", shortLabel: "Work" },
+  { id: "accomplishments", label: "Honors", shortLabel: "Honors" },
+  { id: "talks", label: "Public links", shortLabel: "Links" },
+  { id: "community-building", label: "Community", shortLabel: "Field" },
+  { id: "mentorship", label: "Contact", shortLabel: "Contact" },
+  { id: "art", label: "Image studies", shortLabel: "Images" },
+  { id: "side-projects", label: "Notes", shortLabel: "Notes" },
+  { id: "resume", label: "Résumé", shortLabel: "Résumé" },
 ];
 
 interface PortfolioSidebarProps {
   activeSection: string;
   onSectionChange: (sectionId: string) => void;
-  showComingSoon?: boolean;
 }
 
-export function PortfolioSidebar({
-  activeSection,
-  onSectionChange,
-  showComingSoon = false,
-}: PortfolioSidebarProps) {
-  const [expandedGroups, setExpandedGroups] = useState<string[]>([
-    "start",
-    "work",
-    "thinking",
-    "food-culture",
-    "background",
-  ]);
-
+export function PortfolioSidebar({ activeSection, onSectionChange }: PortfolioSidebarProps) {
   const handleNavClick = (sectionId: string) => {
     onSectionChange(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <aside className="h-full overflow-y-auto bg-sidebar border-r border-sidebar-border flex flex-col">
-      {/* Nameplate */}
-      <div className="p-6 border-b border-sidebar-border">
-        <h1 className="font-display text-3xl text-primary">Alexa Thoennes</h1>
-        <p className="text-xs text-muted-foreground mt-2 font-sans leading-relaxed">
-          AI product for research, synthesis, and decision-making
-        </p>
-      </div>
-
-      {/* Navigation */}
-      <nav className="p-4 flex-1">
-        <Accordion
-          type="multiple"
-          value={expandedGroups}
-          onValueChange={setExpandedGroups}
-          className="space-y-2"
-        >
-          {navGroups.map((group) => (
-            <AccordionItem
-              key={group.id}
-              value={group.id}
-              className="border-none"
-            >
-              <AccordionTrigger className="py-2 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground hover:no-underline rounded-md hover:bg-sidebar-accent transition-colors">
-                {group.label}
-              </AccordionTrigger>
-              <AccordionContent className="pb-0">
-                <ul className="space-y-1 pl-2">
-                  {group.items.map((item) => (
-                    <li key={item.id}>
-                      <button
-                        type="button"
-                        onClick={() => handleNavClick(item.id)}
-                        className={cn(
-                          "w-full flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-all duration-200 text-left",
-                          "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                          activeSection === item.id
-                            ? "bg-primary/10 text-primary font-medium border-l-2 border-primary"
-                            : "text-sidebar-foreground"
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            "transition-colors shrink-0",
-                            activeSection === item.id
-                              ? "text-primary"
-                              : "text-muted-foreground"
-                          )}
-                        >
-                          {item.icon}
-                        </span>
-                        <span>{item.label}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-
-          {showComingSoon && (
-            <AccordionItem value="coming-soon" className="border-none opacity-60">
-              <AccordionTrigger className="py-2 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground hover:no-underline rounded-md hover:bg-sidebar-accent transition-colors">
-                Add later
-              </AccordionTrigger>
-              <AccordionContent className="pb-0">
-                <ul className="space-y-1 pl-2">
-                  {comingSoonItems.map((item) => (
-                    <li key={item.id}>
-                      <span className="w-full flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground/60 cursor-not-allowed">
-                        {item.icon}
-                        {item.label}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
+    <nav
+      aria-label="Portfolio sections"
+      className="sticky top-0 z-40 hidden min-h-[var(--sticky-nav-height)] border-b border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-quiet)_94%,transparent)] backdrop-blur md:flex"
+    >
+      {navItems.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          onClick={() => handleNavClick(item.id)}
+          className={cn(
+            "relative min-w-[96px] flex-1 border-r border-[rgba(213,198,177,0.8)] px-3 py-3 text-center text-[0.72rem] font-extrabold uppercase tracking-[0.07em]",
+            "text-[var(--ink-muted)] transition duration-150 hover:bg-[var(--civic-blue-soft)] hover:text-[var(--ink)]",
+            "after:absolute after:bottom-0 after:left-1/2 after:h-[7px] after:w-px after:-translate-x-1/2 after:bg-[var(--rule)] after:content-['']",
+            activeSection === item.id && "bg-[var(--civic-blue-soft)] text-[var(--ink)] shadow-[inset_0_-3px_0_var(--civic-blue)]",
           )}
-        </Accordion>
-      </nav>
-
-      {/* Footer flourish */}
-      <div className="p-6 text-center border-t border-sidebar-border/60">
-        <span className="font-flourish text-2xl text-primary/40">❧</span>
-      </div>
-    </aside>
+          aria-current={activeSection === item.id ? "true" : undefined}
+        >
+          {item.label}
+        </button>
+      ))}
+    </nav>
   );
 }
