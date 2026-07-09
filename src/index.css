@@ -652,6 +652,33 @@
     transform: translateY(-2px) rotate(-2.4deg);
   }
 
+  .clippy-assistant {
+    animation: clippy-soft-bounce 4.8s ease-in-out infinite;
+    filter: drop-shadow(2px 3px 0 rgba(45, 40, 31, 0.32));
+    transform-origin: 50% 88%;
+  }
+
+  @keyframes clippy-soft-bounce {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1deg);
+    }
+
+    42% {
+      transform: translateY(-5px) rotate(1.4deg);
+    }
+
+    56% {
+      transform: translateY(-3px) rotate(-0.8deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clippy-assistant {
+      animation: none;
+    }
+  }
+
   .card-hover,
   .border-gold-hover {
     transition: border-color var(--ease), background var(--ease), color var(--ease), transform var(--ease);

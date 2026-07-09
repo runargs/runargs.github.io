@@ -134,9 +134,9 @@ const Index = () => {
           </div>
 
           <img 
-            src="/images/clippy-karl-klammer.gif" 
+            src="/images/clippy-new.png" 
             alt="Clippy" 
-            className="w-16 h-16 object-contain"
+            className="clippy-assistant h-20 w-16 object-contain"
           />
         </div>
       )}
