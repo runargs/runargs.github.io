@@ -421,6 +421,64 @@
       linear-gradient(180deg, color-mix(in srgb, var(--paper-card) 94%, var(--work-accent-soft)), var(--paper-card));
   }
 
+  .work-mobile-controls,
+  .work-mobile-list,
+  .mobile-only-block {
+    display: none;
+  }
+
+  .mobile-filter-chip {
+    display: inline-flex;
+    min-height: 32px;
+    flex: 0 0 auto;
+    align-items: center;
+    border: var(--line-hair) solid var(--rule-strong);
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 5px,
+        rgba(45, 40, 31, 0.045) 5px,
+        rgba(45, 40, 31, 0.045) 6px
+      ),
+      transparent;
+    color: var(--ink-muted);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    padding: 0.44rem 0.72rem;
+    text-transform: uppercase;
+  }
+
+  .mobile-filter-chip.is-active {
+    border-color: var(--civic-blue);
+    background-color: var(--civic-blue-soft);
+    color: var(--civic-blue);
+  }
+
+  .mobile-work-card {
+    border: var(--line-hair) solid var(--rule);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--paper-card) 94%, var(--work-accent-soft)), var(--paper-card));
+    padding: var(--space-4);
+  }
+
+  .mobile-card-disclosure summary,
+  .mobile-more-details summary {
+    cursor: pointer;
+    color: var(--work-accent, var(--civic-blue));
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .mobile-more-details {
+    border: var(--line-hair) solid var(--rule);
+    background: var(--paper-card);
+    padding: var(--space-4);
+  }
+
   .work-punch-strip {
     height: 46px;
     border-bottom: var(--line-hair) solid var(--rule);
@@ -776,6 +834,25 @@
       margin: 0 0 var(--space-5) 0;
     }
 
+    .work-skill-cloud,
+    .work-desktop-list {
+      display: none;
+    }
+
+    .work-mobile-controls,
+    .work-mobile-list {
+      display: block;
+    }
+
+    .work-mobile-list {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .mobile-only-block {
+      display: block;
+    }
+
     .work-visual-field {
       min-height: 0;
       padding: var(--space-4) 0 var(--space-5);
@@ -807,6 +884,18 @@
     .marginalia-card {
       grid-column: span 1;
       min-height: 0;
+    }
+
+    .mobile-digest-copy {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+
+    .honors-grid > div:nth-child(n + 6),
+    .mobile-gallery-grid > button:nth-child(n + 5) {
+      display: none;
     }
 
     .marginalia-card:nth-child(2),

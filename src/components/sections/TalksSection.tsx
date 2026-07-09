@@ -184,7 +184,7 @@ export function TalksSection() {
             <h3 className="text-lg leading-tight text-[var(--ink)]">Honors</h3>
             <span className="data-text text-[var(--ink-faint)]">{honors.length}</span>
           </div>
-          <div className="grid gap-x-5 md:grid-cols-2">
+          <div className="honors-grid grid gap-x-5 md:grid-cols-2">
             {honors.map((honor) => (
               <div key={`${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-3 border-b border-[rgba(213,198,177,0.55)] py-2">
                 <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
@@ -195,6 +195,20 @@ export function TalksSection() {
               </div>
             ))}
           </div>
+          <details className="mobile-more-details mobile-only-block mt-4">
+            <summary>More honors ({honors.length - 5})</summary>
+            <div className="mt-3 space-y-2">
+              {honors.slice(5).map((honor) => (
+                <div key={`mobile-more-${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-3 border-b border-[rgba(213,198,177,0.55)] py-2">
+                  <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
+                  <p className="text-xs leading-5 text-[var(--ink-muted)]">
+                    <span className="font-semibold text-[var(--ink-soft)]">{honor.title}</span>
+                    <span className="text-[var(--ink-faint)]"> / {honor.organization}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </details>
         </div>
       </div>
     </SectionBand>

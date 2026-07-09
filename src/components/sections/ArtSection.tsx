@@ -178,6 +178,7 @@ export function ArtSection() {
   const [selectedPiece, setSelectedPiece] = useState<ArtPiece | null>(null);
 
   const filteredPieces = artPieces.filter((piece) => piece.gallery === activeGallery);
+  const mobileHiddenPieces = filteredPieces.slice(4);
 
   return (
     <SectionBand id="art">
@@ -208,7 +209,7 @@ export function ArtSection() {
         </div>
 
         <div className="border border-[var(--rule)] bg-[var(--paper-soft)] p-3">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mobile-gallery-grid grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
           {filteredPieces.map((piece) => (
             <button
               key={piece.id}
@@ -233,6 +234,24 @@ export function ArtSection() {
             </button>
           ))}
         </div>
+        {mobileHiddenPieces.length > 0 && (
+          <details className="mobile-more-details mobile-only-block mt-3">
+            <summary>More image records ({mobileHiddenPieces.length})</summary>
+            <div className="mt-4 grid gap-2">
+              {mobileHiddenPieces.map((piece) => (
+                <button
+                  key={`mobile-more-${piece.id}`}
+                  type="button"
+                  onClick={() => setSelectedPiece(piece)}
+                  className="border border-[var(--rule)] bg-[var(--paper-card)] p-3 text-left"
+                >
+                  <p className="text-sm font-semibold leading-tight text-[var(--ink)]">{piece.title}</p>
+                  <p className="small-label mt-1">{piece.date}</p>
+                </button>
+              ))}
+            </div>
+          </details>
+        )}
         </div>
 
         <Dialog open={!!selectedPiece} onOpenChange={() => setSelectedPiece(null)}>

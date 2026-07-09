@@ -72,7 +72,7 @@ export function CommunitySection() {
                   </StampBadge>
                 </div>
 
-                <p className="mt-5 flex-grow text-sm leading-7 text-[var(--ink-muted)]">
+                <p className="mobile-digest-copy mt-5 flex-grow text-sm leading-7 text-[var(--ink-muted)]">
                   {community.description}
                 </p>
 

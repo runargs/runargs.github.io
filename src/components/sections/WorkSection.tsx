@@ -223,6 +223,14 @@ const workAccentVars = {
   green: { color: "var(--trust-green)", soft: "var(--trust-green-soft)" },
 } as const;
 
+const mobileWorkFilters = [
+  { label: "Featured", skills: [] },
+  { label: "AI product", skills: ["Product Strategy", "RAG Architecture", "Semantic Search", "Multi-Agent Systems"] },
+  { label: "Launch", skills: ["GTM Strategy", "Stakeholder Management", "Client-facing", "Globalization"] },
+  { label: "Engineering", skills: ["Automation", "CI/CD", "Full Stack", "Web Development"] },
+  { label: "Human systems", skills: ["Human Impact", "Health", "Service Design", "User Research"] },
+];
+
 type AccentName = keyof typeof workAccentVars;
 type WorkAccentStyle = CSSProperties & {
   "--work-accent": string;
@@ -239,6 +247,7 @@ function getWorkAccentStyle(accent?: string): WorkAccentStyle {
 
 export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [activeMobileFilter, setActiveMobileFilter] = useState("Featured");
 
   const globalSkills = useMemo(() => {
     const all = experiences.flatMap((experience) => experience.skills);
@@ -246,9 +255,19 @@ export function WorkSection() {
   }, []);
 
   const filteredExperiences = useMemo(() => {
+    const selectedMobileFilter = mobileWorkFilters.find((filter) => filter.label === activeMobileFilter);
+    if (activeFilter) return experiences.filter((experience) => experience.skills.includes(activeFilter));
+    if (selectedMobileFilter && selectedMobileFilter.skills.length > 0) {
+      return experiences.filter((experience) =>
+        selectedMobileFilter.skills.some((skill) => experience.skills.includes(skill))
+      );
+    }
     if (!activeFilter) return experiences.filter((experience) => experience.type !== "secondary");
     return experiences.filter((experience) => experience.skills.includes(activeFilter));
-  }, [activeFilter]);
+  }, [activeFilter, activeMobileFilter]);
+
+  const mobileVisibleExperiences = filteredExperiences.slice(0, activeFilter || activeMobileFilter !== "Featured" ? 4 : 3);
+  const mobileHiddenExperiences = filteredExperiences.slice(mobileVisibleExperiences.length);
 
   return (
     <SectionBand id="work">
@@ -281,13 +300,41 @@ export function WorkSection() {
           ))}
         </div>
 */}
-        <div className="notched mb-10 border border-[var(--rule)] bg-[var(--paper-card)] p-5">
+        <div className="work-mobile-controls mb-6">
+          <span className="small-label mb-3 block">Scan by lens</span>
+          <div className="flex gap-2 overflow-x-auto pb-1">
+            {mobileWorkFilters.map((filter) => (
+              <button
+                key={filter.label}
+                type="button"
+                onClick={() => {
+                  setActiveFilter(null);
+                  setActiveMobileFilter(filter.label);
+                }}
+                className={cn(
+                  "mobile-filter-chip",
+                  activeMobileFilter === filter.label && !activeFilter && "is-active"
+                )}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="work-skill-cloud notched mb-10 border border-[var(--rule)] bg-[var(--paper-card)] p-5">
           <div className="mb-4 flex items-center justify-between gap-4">
             <span className="small-label">
               Filter by skill
             </span>
             {activeFilter && (
-              <button onClick={() => setActiveFilter(null)} className="inline-flex items-center gap-1 text-xs font-extrabold uppercase tracking-[0.075em] text-[var(--revision-red)] hover:underline">
+              <button
+                onClick={() => {
+                  setActiveFilter(null);
+                  setActiveMobileFilter("Featured");
+                }}
+                className="inline-flex items-center gap-1 text-xs font-extrabold uppercase tracking-[0.075em] text-[var(--revision-red)] hover:underline"
+              >
                 <X className="h-3 w-3" /> Reset
               </button>
             )}
@@ -296,7 +343,10 @@ export function WorkSection() {
             {globalSkills.map((skill) => (
               <button
                 key={skill}
-                onClick={() => setActiveFilter(activeFilter === skill ? null : skill)}
+                onClick={() => {
+                  setActiveFilter(activeFilter === skill ? null : skill);
+                  setActiveMobileFilter("Featured");
+                }}
                 className={cn(
                   "inline-flex min-h-[25px] rotate-[-0.45deg] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
                   "bg-[repeating-linear-gradient(-45deg,transparent,transparent_5px,rgba(45,40,31,0.045)_5px,rgba(45,40,31,0.045)_6px)]",
@@ -311,7 +361,91 @@ export function WorkSection() {
           </div>
         </div>
 
-        <div className="space-y-10">
+        <div className="work-mobile-list">
+          {mobileVisibleExperiences.map((experience) => (
+            <article
+              key={`mobile-${experience.id}`}
+              className="mobile-work-card"
+              style={getWorkAccentStyle(experience.accent)}
+            >
+              <div className="mb-3 flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="small-label mb-1 text-[var(--work-accent)]">{experience.company}</p>
+                  <h3 className="text-lg leading-tight text-[var(--ink)]">{experience.role}</h3>
+                </div>
+                {experience.featured && (
+                  <StampBadge tone="muted" className="shrink-0 border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
+                    Selected
+                  </StampBadge>
+                )}
+              </div>
+
+              <div className="mb-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-[var(--ink-muted)]">
+                <span>{experience.duration}</span>
+                <span>{experience.location}</span>
+              </div>
+
+              <p className="text-sm leading-6 text-[var(--ink-muted)]">{experience.description}</p>
+
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {experience.skills.slice(0, 3).map((skill) => (
+                  <span key={skill} className="stamp-tag text-[var(--ink-muted)]">
+                    {skill}
+                  </span>
+                ))}
+                {experience.skills.length > 3 && (
+                  <span className="stamp-tag text-[var(--ink-faint)]">+{experience.skills.length - 3}</span>
+                )}
+              </div>
+
+              <details className="mobile-card-disclosure mt-4">
+                <summary>View details</summary>
+                <ol className="mt-3 space-y-2 text-sm leading-6 text-[var(--ink-muted)]">
+                  {experience.impact.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ol>
+                {experience.links && (
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {experience.links.map((link) => (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--work-accent)] hover:underline"
+                      >
+                        {link.label} <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </details>
+            </article>
+          ))}
+
+          {mobileHiddenExperiences.length > 0 && (
+            <details className="mobile-more-details">
+              <summary>More work records ({mobileHiddenExperiences.length})</summary>
+              <div className="mt-4 space-y-3">
+                {mobileHiddenExperiences.map((experience) => (
+                  <article
+                    key={`mobile-hidden-${experience.id}`}
+                    className="mobile-work-card"
+                    style={getWorkAccentStyle(experience.accent)}
+                  >
+                    <p className="small-label mb-1 text-[var(--work-accent)]">{experience.company}</p>
+                    <h3 className="text-base leading-tight text-[var(--ink)]">{experience.role}</h3>
+                    <p className="mt-2 text-xs font-semibold text-[var(--ink-muted)]">{experience.duration}</p>
+                    <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">{experience.description}</p>
+                  </article>
+                ))}
+              </div>
+            </details>
+          )}
+        </div>
+
+        <div className="work-desktop-list space-y-10">
           {filteredExperiences.map((experience) => (
             <EditorialCard
               key={experience.id}
