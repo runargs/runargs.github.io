@@ -345,10 +345,27 @@
     pointer-events: none;
   }
 
-  .hero-brief {
+  .hero-article {
     background:
       linear-gradient(180deg, color-mix(in srgb, var(--paper-card) 92%, transparent), color-mix(in srgb, var(--paper-soft) 34%, transparent)),
       repeating-linear-gradient(90deg, transparent, transparent 32px, rgba(53, 111, 128, 0.055) 32px, rgba(53, 111, 128, 0.055) 33px);
+  }
+
+  .hero-photo-wrap {
+    float: left;
+    width: min(54%, 560px);
+    margin: 0 var(--space-7) var(--space-4) 0;
+  }
+
+  .hero-intro-copy {
+    max-width: 72rem;
+    column-gap: var(--space-8);
+    font-size: var(--text-md);
+    line-height: 1.75;
+  }
+
+  .hero-intro-copy p + p {
+    margin-top: var(--space-4);
   }
 
   .work-card {
@@ -515,6 +532,12 @@
 
     .hero-console::after {
       display: none;
+    }
+
+    .hero-photo-wrap {
+      float: none;
+      width: 100%;
+      margin: 0 0 var(--space-5) 0;
     }
 
     .marginalia-grid {

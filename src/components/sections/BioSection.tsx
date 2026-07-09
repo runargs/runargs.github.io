@@ -1,5 +1,5 @@
 import { ArrowRight, FileText } from "lucide-react";
-import { DossierLink, ImageFrame, StampBadge } from "@/components/design-system/Dossier";
+import { DossierLink, StampBadge } from "@/components/design-system/Dossier";
 
 export function BioSection() {
   return (
@@ -32,58 +32,59 @@ export function BioSection() {
           </div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.98fr)_minmax(360px,1.02fr)] lg:items-stretch">
-          <div className="hero-brief order-2 flex flex-col justify-between border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 lg:order-1 md:p-7">
-            <div>
-              <h1 className="max-w-3xl text-[2.3rem] leading-tight text-[var(--ink)] md:text-[3.15rem]">
-                I build AI products for research, synthesis, and better decision-making.
-              </h1>
+        <article className="hero-article border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 md:p-7">
+          <h1 className="max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
+            I build AI products for research, synthesis, and better decision-making.
+          </h1>
 
-              <div className="mt-6 max-w-2xl space-y-4 text-[var(--ink-muted)]">
-                <p className="text-lg leading-8 text-[var(--ink-soft)]">
-                  I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
-                </p>
-                <p className="text-base leading-7">
-                  My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
-                </p>
+          <div className="mt-7 flow-root">
+            <figure className="hero-photo-wrap notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
+              <div className="aspect-[16/9] overflow-hidden bg-[var(--paper-soft)]">
+                <img
+                  src="/images/profile.JPG"
+                  alt="Alexa Thoennes speaking to a seated audience"
+                  className="block h-full w-full object-cover object-[50%_52%]"
+                />
               </div>
-            </div>
+              <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">
+                AI product launch 2026
+              </figcaption>
+            </figure>
 
-            <div className="mt-8 grid gap-2 border-y border-[var(--rule)] py-4 text-sm md:grid-cols-3">
-              <div>
-                <span className="small-label block text-[var(--civic-blue)]">Focus</span>
-                <span className="data-text">AI research tools</span>
-              </div>
-              <div>
-                <span className="small-label block text-[var(--civic-blue)]">Method</span>
-                <span className="data-text">Evidence + adoption</span>
-              </div>
-              <div>
-                <span className="small-label block text-[var(--civic-blue)]">Value</span>
-                <span className="data-text">Human-first systems</span>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
-                Contact <ArrowRight className="ml-2 h-4 w-4" />
-              </DossierLink>
-              <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
-                <FileText className="mr-2 h-4 w-4" /> Résumé PDF
-              </DossierLink>
+            <div className="hero-intro-copy text-[var(--ink-muted)]">
+              <p className="text-xl leading-8 text-[var(--ink-soft)]">
+                I’m a product manager interested in tools that help people turn complex information into judgment: what to trust, what to remember, and what to do next.
+              </p>
+              <p>
+                My work spans AI research assistants, product strategy, evaluation, behavior change, and adoption. I’m drawn to products where good intentions are not enough, because trust, quality, distribution, and execution determine whether the work matters.
+              </p>
             </div>
           </div>
 
-          <ImageFrame
-            src="/images/profile.JPG"
-            alt="Alexa Thoennes speaking to a seated audience"
-            caption="AI product launch 2026"
-            className="order-1 lg:order-2"
-            mediaClassName="aspect-[16/10] md:aspect-[16/9]"
-            imgClassName="object-[50%_52%]"
-            grayscale={false}
-          />
-        </div>
+          <div className="mt-8 clear-both grid gap-2 border-y border-[var(--rule)] py-4 text-sm md:grid-cols-3">
+            <div>
+              <span className="small-label block text-[var(--civic-blue)]">Focus</span>
+              <span className="data-text">AI research tools</span>
+            </div>
+            <div>
+              <span className="small-label block text-[var(--civic-blue)]">Method</span>
+              <span className="data-text">Evidence + adoption</span>
+            </div>
+            <div>
+              <span className="small-label block text-[var(--civic-blue)]">Value</span>
+              <span className="data-text">Human-first systems</span>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
+              Contact <ArrowRight className="ml-2 h-4 w-4" />
+            </DossierLink>
+            <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
+              <FileText className="mr-2 h-4 w-4" /> Résumé PDF
+            </DossierLink>
+          </div>
+        </article>
       </div>
     </section>
   );
