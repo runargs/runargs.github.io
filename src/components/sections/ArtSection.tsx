@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { ImageFrame, PunchcardFilter, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 type GalleryType = "culinary" | "ceramics" | "image studies";
 
@@ -180,97 +179,88 @@ export function ArtSection() {
   const filteredPieces = artPieces.filter((piece) => piece.gallery === activeGallery);
 
   return (
-    <section id="art" className="py-24 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-            Food, hosting, and sensory detail
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">Artisan gallery</h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-            Food and hosting make the abstract concrete: ingredients, timing, constraint, memory, culture, and whether people feel taken care of.
-          </p>
-        </div>
+    <SectionBand id="art">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader
+          marker="07"
+          eyebrow="Food, hosting, and sensory detail"
+          title="Image studies as human-system evidence."
+          description="Food and hosting make the abstract concrete: ingredients, timing, constraint, memory, culture, and whether people feel taken care of."
+          className="mb-10"
+        />
 
-        <div className="flex justify-center flex-wrap gap-2 mb-12">
+        <div className="mb-10 flex flex-wrap gap-2">
           {galleries.map((gallery) => (
-            <button
+            <PunchcardFilter
               key={gallery.id}
               onClick={() => setActiveGallery(gallery.id)}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
-                activeGallery === gallery.id
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-sidebar-accent text-sidebar-foreground hover:bg-sidebar-accent/80"
-              )}
+              active={activeGallery === gallery.id}
             >
               {gallery.label}
+            </PunchcardFilter>
+          ))}
+        </div>
+
+        <div className="border border-[var(--rule)] bg-[var(--paper-soft)] p-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+          {filteredPieces.map((piece) => (
+            <button
+              key={piece.id}
+              onClick={() => setSelectedPiece(piece)}
+              className="group block text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
+            >
+                {piece.image ? (
+                  <ImageFrame
+                    src={piece.image}
+                    alt={piece.title}
+                    caption={`${piece.title} / ${piece.date}`}
+                    mediaClassName="aspect-square"
+                    className="h-full transition-colors group-hover:border-[var(--civic-blue)]"
+                    grayscale={piece.gallery !== "culinary"}
+                  />
+                ) : (
+                  <div className="notched flex aspect-square items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)]">
+                    <span className="font-display text-3xl text-[var(--civic-blue)]">IMG</span>
+                  </div>
+                )}
             </button>
           ))}
         </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-fade-in">
-          {filteredPieces.map((piece) => (
-            <Card
-              key={piece.id}
-              onClick={() => setSelectedPiece(piece)}
-              className="card-hover border-gold-hover cursor-pointer overflow-hidden group"
-            >
-              <div className="aspect-square relative overflow-hidden">
-                {piece.image ? (
-                  <img
-                    src={piece.image}
-                    alt={piece.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5">
-                    <span className="font-flourish text-3xl text-primary/20">❧</span>
-                  </div>
-                )}
-              </div>
-
-              <CardContent className="p-3">
-                <h3 className="font-serif text-sm font-medium truncate">{piece.title}</h3>
-                <p className="text-xs text-muted-foreground">{piece.date}</p>
-              </CardContent>
-            </Card>
-          ))}
         </div>
 
         <Dialog open={!!selectedPiece} onOpenChange={() => setSelectedPiece(null)}>
-          <DialogContent className="max-w-3xl p-0 overflow-hidden">
+          <DialogContent className="max-w-3xl overflow-hidden border-[var(--rule)] bg-[var(--paper-card)] p-0">
             <VisuallyHidden>
               <DialogTitle>{selectedPiece?.title || "Art piece"}</DialogTitle>
             </VisuallyHidden>
             {selectedPiece && (
               <div>
-                <div className="aspect-[4/3] relative overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[var(--paper-soft)]">
                   {selectedPiece.image ? (
                     <img
                       src={selectedPiece.image}
                       alt={selectedPiece.title}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
-                      <span className="font-flourish text-8xl text-primary/20">❧</span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="font-display text-8xl text-[var(--civic-blue)]">IMG</span>
                     </div>
                   )}
                 </div>
 
                 <div className="p-6">
-                  <h3 className="font-serif text-2xl mb-1">{selectedPiece.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{selectedPiece.date}</p>
+                  <h3 className="mb-1 text-2xl">{selectedPiece.title}</h3>
+                  <p className="small-label mb-3">{selectedPiece.date}</p>
                   {selectedPiece.description && (
-                    <p className="text-foreground/80 leading-relaxed">{selectedPiece.description}</p>
+                    <p className="leading-7 text-[var(--ink-muted)]">{selectedPiece.description}</p>
                   )}
                   {selectedPiece.url && (
                     <a
                       href={selectedPiece.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-5 text-[10px] uppercase tracking-widest text-primary font-bold hover:underline"
+                      className="mt-5 inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--civic-blue)] hover:underline"
                     >
                       View reference <ExternalLink className="h-3 w-3" />
                     </a>
@@ -281,6 +271,6 @@ export function ArtSection() {
           </DialogContent>
         </Dialog>
       </div>
-    </section>
+    </SectionBand>
   );
 }
