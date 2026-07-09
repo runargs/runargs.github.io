@@ -1,5 +1,5 @@
 import { ArrowRight, Mail, MessageCircle, Sparkles, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { DossierLink, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 const collaborationPaths = [
   { id: "1", title: "Product conversations", focus: "AI tools, evaluation, adoption", icon: Sparkles },
@@ -12,38 +12,44 @@ export function MentorshipSection() {
   const mailtoLink = `mailto:${email}?subject=Website%20Inquiry`;
 
   return (
-    <section id="mentorship" className="py-16 px-6 bg-background/30">
-      <div className="max-w-4xl mx-auto border border-gold/20 rounded-2xl p-8 md:p-12 bg-card/50 backdrop-blur-sm shadow-xl">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="flex-1 text-center md:text-left">
-            <p className="text-[10px] uppercase tracking-[0.25em] text-primary font-bold mb-3">Contact paths</p>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Reach out</h2>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+    <SectionBand id="mentorship">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeader
+          marker="06"
+          eyebrow="Contact paths"
+          title="Reach out through the practical routes."
+          className="mb-8"
+        />
+
+        <div className="notched relative overflow-hidden border border-[var(--rule)] bg-[var(--paper-card)] p-6 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[18px] after:border-t after:border-[var(--rule)] after:bg-[linear-gradient(135deg,transparent_0_8px,var(--paper-soft)_8px_16px,transparent_16px)] after:bg-[length:16px_18px] md:p-8">
+          <div className="grid gap-10 md:grid-cols-[1fr_310px] md:items-start">
+          <div>
+            <StampBadge tone="red">Open channel</StampBadge>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink-muted)]">
               Useful reasons to get in touch: AI product work, healthspan, impact-oriented products, writing, collaboration, culinary events, or a specific question.
             </p>
 
-            <Button asChild size="lg" className="rounded-full group">
-              <a href={mailtoLink}>
+            <DossierLink href={mailtoLink} className="mt-6 bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
                 <Mail className="mr-2 h-4 w-4" />
                 Send email
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+                <ArrowRight className="ml-2 h-4 w-4" />
+            </DossierLink>
           </div>
 
-          <div className="w-full md:w-auto shrink-0 space-y-3">
+          <div className="w-full shrink-0 space-y-3">
             {collaborationPaths.map((item) => (
-              <div key={item.id} className="flex items-center gap-4 px-4 py-3 rounded-xl bg-background/50 border border-border/50 w-full md:w-72">
-                <item.icon className="h-5 w-5 text-primary shrink-0" />
+              <div key={item.id} className="grid grid-cols-[28px_minmax(0,1fr)] gap-4 border border-[var(--rule)] bg-[var(--paper-soft)] px-4 py-3">
+                <item.icon className="h-5 w-5 shrink-0 text-[var(--civic-blue)]" />
                 <div className="min-w-0 text-left">
-                  <p className="text-sm font-medium text-foreground leading-none mb-1">{item.title}</p>
-                  <p className="text-[10px] uppercase tracking-tighter text-primary/70 font-bold leading-snug">{item.focus}</p>
+                  <p className="mb-1 text-sm font-semibold leading-tight text-[var(--ink)]">{item.title}</p>
+                  <p className="text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">{item.focus}</p>
                 </div>
               </div>
             ))}
           </div>
+          </div>
         </div>
       </div>
-    </section>
+    </SectionBand>
   );
 }

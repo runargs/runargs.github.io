@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Award, Star, Trophy } from "lucide-react";
+import { DossierButton, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 const accomplishments = [
   {
@@ -109,12 +109,6 @@ const accomplishments = [
   },
 ];
 
-const iconMap = {
-  trophy: Trophy,
-  star: Star,
-  award: Award,
-};
-
 export function AccomplishmentsSection() {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -124,42 +118,36 @@ export function AccomplishmentsSection() {
   const remainingCount = totalCount - initialLimit;
 
   return (
-    <section id="accomplishments" className="py-12 px-6 md:px-12 bg-background">
-      <div className="max-w-2xl mx-auto">
-        <header className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-              Background
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground tracking-tight italic">
-              Honors
-            </h2>
-          </div>
-          <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60 border-l border-muted pl-4">
-            {totalCount}
-          </div>
-        </header>
+    <SectionBand id="accomplishments">
+      <div className="mx-auto max-w-3xl">
+        <SectionHeader
+          marker="03"
+          eyebrow="Background"
+          title="Honors as dated records."
+          description="Selected honors, awards, and recognitions retained as a compact ledger."
+          className="mb-8"
+        />
 
-        <div className="border-t border-muted/40">
+        <div className="notched border border-[var(--rule)] bg-[var(--paper-card)]">
+          <div className="flex items-center justify-between border-b border-[var(--rule)] px-4 py-3">
+            <span className="small-label">Evidence schedule</span>
+            <span className="font-display text-2xl text-[var(--civic-blue)]">{totalCount}</span>
+          </div>
           {visibleList.map((item) => {
-            const Icon = iconMap[item.icon as keyof typeof iconMap];
             return (
-              <div key={item.id} className="group flex items-center justify-between py-3.5 border-b border-muted/20 hover:bg-muted/5 transition-all duration-300 px-1">
-                <div className="flex flex-col min-w-0 pr-4">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-medium text-[13px] md:text-sm text-foreground group-hover:text-primary transition-colors">
+              <div key={item.id} className="grid gap-3 border-b border-[rgba(213,198,177,0.7)] px-4 py-3 transition-colors last:border-b-0 hover:bg-[var(--civic-blue-soft)] md:grid-cols-[72px_minmax(0,1fr)_auto] md:items-center">
+                <span className="font-display text-2xl text-[var(--civic-blue)]">{item.year}</span>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-3">
+                    <span className="text-sm font-semibold text-[var(--ink)]">
                       {item.title}
                     </span>
-                    <span className="text-[10px] text-muted-foreground/50 font-mono tracking-tighter">
-                      {item.year}
-                    </span>
                   </div>
-                  <span className="text-xs text-muted-foreground/70 mt-0.5">
+                  <span className="mt-0.5 block text-xs text-[var(--ink-muted)]">
                     {item.organization}
                   </span>
                 </div>
-
-                <Icon className="h-4 w-4 text-muted-foreground/20 group-hover:text-primary/60 transition-colors shrink-0" />
+                <StampBadge tone={item.icon === "trophy" ? "ochre" : "blue"}>{item.icon}</StampBadge>
               </div>
             );
           })}
@@ -167,15 +155,14 @@ export function AccomplishmentsSection() {
 
         {!isExpanded && remainingCount > 0 && (
           <div className="mt-8 flex justify-center">
-            <button
+            <DossierButton
               onClick={() => setIsExpanded(true)}
-              className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all py-3 px-8 border border-muted/60 hover:border-foreground rounded-full"
             >
               Show {remainingCount} more
-            </button>
+            </DossierButton>
           </div>
         )}
       </div>
-    </section>
+    </SectionBand>
   );
 }

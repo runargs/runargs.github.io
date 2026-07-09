@@ -1,6 +1,5 @@
 import { Calendar, Link as LinkIcon, MapPin, Mic2, PenLine, Video } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 type ArtifactType = "talk" | "video" | "note";
 
@@ -80,54 +79,47 @@ function TypeIcon({ type }: { type: ArtifactType }) {
 
 export function TalksSection() {
   return (
-    <section id="talks" className="py-24 px-6 md:px-12">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-            Public links
-          </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground tracking-tight italic">
-            Selected links
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4">
-            A few public links: AI research-assistant work, speaking, education, and earlier technical projects.
-          </p>
-        </div>
+    <SectionBand id="talks">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeader
+          marker="04"
+          eyebrow="Public links"
+          title="Public artifacts and appearances."
+          description="A few public links: AI research-assistant work, speaking, education, and earlier technical projects."
+          className="mb-10"
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-fade-in">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {artifacts.map((item) => (
-            <Card
+            <EditorialCard
               key={item.id}
-              className="card-hover border-gold-hover group cursor-pointer transition-all duration-300"
+              className="group cursor-pointer"
               onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
             >
               {item.imageUrl && (
-                <div className="w-full overflow-hidden rounded-t-xl bg-muted border-b border-gold-hover/20">
+                <div className="mb-5 aspect-[4/3] overflow-hidden border border-[var(--rule)] bg-[var(--paper-soft)]">
                   <img
                     src={item.imageUrl}
-                    alt=""
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt={item.title}
+                    className="h-full w-full object-cover grayscale contrast-[1.08] sepia-[0.10]"
                   />
                 </div>
               )}
 
-              <CardHeader>
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="font-serif text-lg group-hover:text-primary transition-colors leading-tight">
+                <div className="mb-3 flex items-start justify-between gap-2">
+                  <h3 className="text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
                     {item.title}
-                  </CardTitle>
+                  </h3>
                   <TypeIcon type={item.type} />
                 </div>
                 {item.venue && (
-                  <CardDescription className="font-medium text-foreground/80">
+                  <p className="text-sm font-semibold text-[var(--ink-soft)]">
                     {item.venue}
-                  </CardDescription>
+                  </p>
                 )}
-              </CardHeader>
 
-              <CardContent>
                 {(item.date || item.location) && (
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="my-4 flex flex-wrap items-center gap-4 text-sm text-[var(--ink-muted)]">
                     {item.date && (
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
@@ -144,7 +136,7 @@ export function TalksSection() {
                 )}
 
                 {item.summary && (
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  <p className="mb-4 text-sm leading-7 text-[var(--ink-muted)]">
                     {item.summary}
                   </p>
                 )}
@@ -152,22 +144,23 @@ export function TalksSection() {
                 {item.topics && (
                   <div className="flex flex-wrap gap-2">
                     {item.topics.map((topic) => (
-                      <Badge key={topic} variant="outline" className="text-xs border-primary/30 text-primary">
+                      <StampBadge key={topic} tone="blue">
                         {topic}
-                      </Badge>
+                      </StampBadge>
                     ))}
                   </div>
                 )}
 
-                <div className="mt-4 pt-4 border-t border-muted flex items-center gap-1 text-[10px] uppercase tracking-widest text-muted-foreground font-bold group-hover:text-primary transition-colors">
+                <EvidenceMeta className="justify-start">
+                <div className="flex items-center gap-1 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)] transition-colors group-hover:text-[var(--civic-blue)]">
                   <LinkIcon className="h-3 w-3" />
                   Open link
                 </div>
-              </CardContent>
-            </Card>
+                </EvidenceMeta>
+            </EditorialCard>
           ))}
         </div>
       </div>
-    </section>
+    </SectionBand>
   );
 }

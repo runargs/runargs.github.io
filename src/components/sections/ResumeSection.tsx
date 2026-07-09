@@ -1,5 +1,5 @@
 import { ArrowRight, Download, FileText, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { DossierLink, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 const resumeHighlights = [
   "4+ years across product, engineering, automation, developer experience, and AI-enabled research workflows.",
@@ -18,64 +18,58 @@ const credentials = [
 
 export function ResumeSection() {
   return (
-    <section id="resume" className="py-24 px-6 md:px-12 bg-background">
-      <div className="max-w-3xl mx-auto text-center">
-        <div className="mb-8">
-          <span className="font-flourish text-4xl text-primary/30">ꕥ</span>
-        </div>
+    <SectionBand id="resume">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeader
+          marker="09"
+          eyebrow="Résumé"
+          title="Résumé, credentials, and contact in one place."
+          description="A compact schedule of current focus, selected credentials, and ways to reach me."
+          className="mb-8"
+        />
 
-        <p className="text-[11px] uppercase tracking-[0.28em] text-primary font-bold mb-3">
-          Résumé
-        </p>
-        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Résumé & contact</h2>
-        <p className="text-muted-foreground text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-          Résumé, credentials, and contact in one place.
-        </p>
-
-        <div className="bg-card rounded-2xl border border-border p-6 md:p-8 mb-8 shadow-warm text-left">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 pb-6 border-b border-border/50">
+        <div className="notched mb-8 border border-[var(--rule)] bg-[var(--paper-card)] p-6 text-left md:p-8">
+          <div className="mb-8 flex flex-col gap-4 border-b border-[var(--rule)] pb-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
-              <FileText className="h-6 w-6 text-primary" />
-              <span className="font-serif text-xl">Alexa Thoennes, résumé</span>
+              <FileText className="h-6 w-6 text-[var(--civic-blue)]" />
+              <span className="font-serif text-xl text-[var(--ink)]">Alexa Thoennes, résumé</span>
             </div>
-            <a href="/Alexa_Public_Resume.pdf" download="Alexa_Thoennes_Resume.pdf" className="w-full md:w-auto">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 w-full md:w-auto shadow-md active:scale-95 transition-all">
-                <Download className="h-5 w-5 opacity-80" />
-                Download PDF
-              </Button>
-            </a>
+            <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request" className="w-full bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)] md:w-auto">
+              <Download className="h-5 w-5 opacity-80" />
+              Request résumé PDF
+            </DossierLink>
           </div>
 
           <div className="space-y-6">
-            <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm">
-              <h4 className="font-serif text-lg text-primary mb-3 italic">Summary</h4>
-              <ul className="space-y-2.5 text-muted-foreground text-sm leading-snug">
+            <div className="border border-[var(--rule)] bg-[var(--paper)] p-5">
+              <StampBadge tone="blue">Summary</StampBadge>
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-[var(--ink-muted)]">
                 {resumeHighlights.map((highlight) => (
-                  <li key={highlight} className="flex items-start gap-2">
-                    <span className="text-primary mt-1.5 text-[11px]">✦</span>
+                  <li key={highlight} className="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+                    <span className="font-display text-xl text-[var(--civic-blue)]">•</span>
                     <span>{highlight}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="p-5 bg-background border border-border/40 rounded-lg shadow-sm">
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 pb-2 border-b border-primary/10 gap-2">
-                <h4 className="font-serif text-lg text-primary italic">Education & selected credentials</h4>
+            <div className="border border-[var(--rule)] bg-[var(--paper)] p-5">
+              <div className="mb-4 flex flex-col justify-between gap-2 border-b border-[var(--rule)] pb-2 md:flex-row md:items-center">
+                <h4 className="font-serif text-lg text-[var(--ink)]">Education & selected credentials</h4>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+              <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
                 {credentials.map((credential) => (
-                  <div key={`${credential.title}-${credential.date}`} className="flex items-center justify-between group py-1 border-b border-muted/30 last:border-0 md:last:border-b">
+                  <div key={`${credential.title}-${credential.date}`} className="group flex items-center justify-between border-b border-[rgba(213,198,177,0.72)] py-3 last:border-0 md:last:border-b">
                     <div className="min-w-0">
-                      <p className="text-[12px] font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                      <p className="truncate text-sm font-semibold text-[var(--ink)] transition-colors group-hover:text-[var(--civic-blue)]">
                         {credential.title}
                       </p>
-                      <p className="text-[10px] text-muted-foreground/70 uppercase tracking-widest leading-none">
+                      <p className="text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">
                         {credential.org}
                       </p>
                     </div>
-                    <span className="text-[10px] font-bold text-primary/40 ml-2 tabular-nums">
+                    <span className="ml-2 font-display text-xl text-[var(--civic-blue)]">
                       {credential.date}
                     </span>
                   </div>
@@ -85,18 +79,18 @@ export function ResumeSection() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center text-sm text-muted-foreground">
-          <a href="mailto:alexa.thoennes@gmail.com" className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium">
+        <div className="flex flex-col items-start gap-3 text-sm text-[var(--ink-muted)] sm:flex-row sm:items-center">
+          <a href="mailto:alexa.thoennes@gmail.com" className="inline-flex items-center gap-1.5 font-semibold text-[var(--civic-blue)] hover:underline">
             <Mail className="h-4 w-4" />
             Email
           </a>
-          <span className="hidden sm:inline text-muted-foreground/40">·</span>
-          <a href="https://linkedin.com/in/alexathoennes" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium">
+          <span className="hidden text-[var(--ink-faint)] sm:inline">/</span>
+          <a href="https://linkedin.com/in/alexathoennes" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-[var(--civic-blue)] hover:underline">
             LinkedIn
             <ArrowRight className="h-3 w-3" />
           </a>
         </div>
       </div>
-    </section>
+    </SectionBand>
   );
 }
