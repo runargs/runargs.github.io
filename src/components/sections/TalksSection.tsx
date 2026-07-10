@@ -123,7 +123,7 @@ export function TalksSection() {
     <SectionBand id="talks">
       <div className="mx-auto max-w-5xl">
         <SectionHeader
-          marker="04"
+          marker="02"
           title="Engagements and activations"
           description="Posts, talks, education, earlier technical work, and selected honors."
           className="mb-8"
@@ -142,9 +142,9 @@ export function TalksSection() {
             </thead>
             <tbody>
               {artifacts.map((item, index) => (
-                <tr key={item.id}>
-                  <td className="evidence-ref">{String(index + 1).padStart(2, "0")}</td>
-                  <td className="evidence-entry-cell">
+                <tr key={item.id} className="evidence-row">
+                  <td className="evidence-ref" data-label="Ref">{String(index + 1).padStart(2, "0")}</td>
+                  <td className="evidence-entry-cell" data-label="Entry">
                     <a
                       href={item.url}
                       target="_blank"
@@ -159,13 +159,13 @@ export function TalksSection() {
                       </span>
                     )}
                   </td>
-                  <td className="evidence-date-cell">
+                  <td className="evidence-date-cell" data-label="Date / Place">
                     <span className="block">{item.date}</span>
                     {item.location && (
                       <span className="block text-xs text-[var(--ink-faint)]">{item.location}</span>
                     )}
                   </td>
-                  <td className="evidence-proof-cell">
+                  <td className="evidence-proof-cell" data-label="Evidence">
                     <p>{item.summary}</p>
                     {item.topics && (
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -177,7 +177,7 @@ export function TalksSection() {
                       </div>
                     )}
                   </td>
-                  <td>
+                  <td className="evidence-link-cell" data-label="Link">
                     <a
                       href={item.url}
                       target="_blank"

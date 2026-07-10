@@ -23,14 +23,14 @@ export function ResumeSection() {
     <SectionBand id="resume">
       <div className="mx-auto max-w-4xl">
         <SectionHeader
-          marker="09"
+          marker="07"
           title="Curriculum Vitae."
           className="mb-8"
         />
 
         <div className="resume-file-card notched mb-8 border border-[var(--rule)] bg-[var(--paper-card)] p-6 text-left md:p-8">
           <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" className="resume-disk-icon" />
-          <div className="relative z-10 mb-8 flex flex-col gap-4 border-b border-[var(--rule)] pb-6 md:flex-row md:items-center md:justify-between">
+          <div className="resume-file-header relative z-10 mb-8 flex flex-col gap-4 border-b border-[var(--rule)] pb-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
               <span className="font-serif text-xl text-[var(--ink)]">Alexa Thoennes</span>
             </div>
@@ -41,7 +41,7 @@ export function ResumeSection() {
           </div>
 
           <div className="relative z-10 space-y-6">
-            <div className="border border-[var(--rule)] bg-[var(--paper)] p-5">
+            <div className="resume-summary-panel border border-[var(--rule)] bg-[var(--paper)] p-5">
               <StampBadge tone="blue">Summary</StampBadge>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-[var(--ink-muted)]">
                 {resumeHighlights.map((highlight) => (
@@ -53,23 +53,23 @@ export function ResumeSection() {
               </ul>
             </div>
 
-            <div className="border border-[var(--rule)] bg-[var(--paper)] p-5">
+            <div className="resume-credentials-panel border border-[var(--rule)] bg-[var(--paper)] p-5">
               <div className="mb-4 flex flex-col justify-between gap-2 border-b border-[var(--rule)] pb-2 md:flex-row md:items-center">
                 <h4 className="font-serif text-lg text-[var(--ink)]">Education & selected credentials</h4>
               </div>
 
-              <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
+              <div className="resume-credentials-grid grid grid-cols-1 gap-x-6 md:grid-cols-2">
                 {credentials.map((credential) => (
-                  <div key={`${credential.title}-${credential.date}`} className="group flex items-center justify-between border-b border-[rgba(213,198,177,0.72)] py-3 last:border-0 md:last:border-b">
+                  <div key={`${credential.title}-${credential.date}`} className="resume-credential-row group flex items-center justify-between border-b border-[rgba(213,198,177,0.72)] py-3 last:border-0 md:last:border-b">
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-[var(--ink)] transition-colors group-hover:text-[var(--civic-blue)]">
+                      <p className="resume-credential-title text-sm font-semibold text-[var(--ink)] transition-colors group-hover:text-[var(--civic-blue)]">
                         {credential.title}
                       </p>
-                      <p className="text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">
+                      <p className="resume-credential-org text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">
                         {credential.org}
                       </p>
                     </div>
-                    <span className="ml-2 font-display text-xl text-[var(--civic-blue)]">
+                    <span className="resume-credential-date ml-2 font-display text-xl text-[var(--civic-blue)]">
                       {credential.date}
                     </span>
                   </div>

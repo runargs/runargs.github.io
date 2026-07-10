@@ -15,7 +15,7 @@ export function MentorshipSection() {
     <SectionBand id="mentorship">
       <div className="mx-auto max-w-4xl">
         <SectionHeader
-          marker="06"
+          marker="04"
           title="Ways to get in touch."
           className="mb-8"
         />

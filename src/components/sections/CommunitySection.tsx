@@ -67,17 +67,17 @@ export function CommunitySection() {
     <SectionBand id="community-building">
       <div className="mx-auto max-w-5xl">
         <SectionHeader
-          marker="05"
+          marker="03"
           title="Service keeps me grounded."
           description="Wellness tools, public-interest work, food culture, service, and community contexts that give me broader perspectives."
           className="mb-10"
         />
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="service-work-grid grid grid-cols-1 gap-5 md:grid-cols-2">
           {communities.map((community) => (
-            <EditorialCard key={community.id} className="group flex h-full flex-col">
-                <div className="space-y-2">
-                  <h3 className="text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
+            <EditorialCard key={community.id} className="service-work-card group flex h-full flex-col">
+                <div className="service-work-heading space-y-2">
+                  <h3 className="service-work-title text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
                     {community.companyLinks ? (
                       <>
                         {community.companyLinks.map((company, index) => (
@@ -98,7 +98,7 @@ export function CommunitySection() {
                       community.name
                     )}
                   </h3>
-                  <StampBadge tone="ochre">
+                  <StampBadge tone="ochre" className="service-work-role">
                     {community.role}
                   </StampBadge>
                 </div>
@@ -107,7 +107,7 @@ export function CommunitySection() {
                   {community.description}
                 </p>
 
-                <EvidenceMeta className="mt-auto">
+                <EvidenceMeta className="service-work-meta mt-auto">
                   <div className="space-y-3">
                   {community.period && (
                     <div className="flex items-center gap-1.5 text-xs text-[var(--ink-muted)]">

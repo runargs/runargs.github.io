@@ -288,7 +288,7 @@ export function WorkSection() {
         <div className="work-visual-field mb-8">
           <div className="relative z-10">
             <SectionHeader
-              marker="02"
+              marker="01"
               title="Professional experience"
               description="A rotation through a breath of technical, care, and community work. Collapsed experiences surface depending on filter lens below."
               className="max-w-2xl"

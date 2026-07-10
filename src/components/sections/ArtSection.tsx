@@ -175,6 +175,7 @@ const galleries: { id: GalleryType; label: string }[] = [
 
 export function ArtSection() {
   const [activeGallery, setActiveGallery] = useState<GalleryType>("culinary");
+  const [isGalleryLabelHovered, setIsGalleryLabelHovered] = useState(false);
   const [selectedPiece, setSelectedPiece] = useState<ArtPiece | null>(null);
 
   const filteredPieces = artPieces.filter((piece) => piece.gallery === activeGallery);
@@ -184,7 +185,7 @@ export function ArtSection() {
     <SectionBand id="art">
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          marker="07"
+          marker="05"
           title="What is done in love is well done."
           description="The arts are what make us human, whether that's in the chemistry of the glaze room, the film darkroom, or the heat of smokey wok hei. Find more on Instagram, @haruhay_studio"
           className="mb-10"
@@ -195,6 +196,10 @@ export function ArtSection() {
             <button
               key={gallery.id}
               onClick={() => setActiveGallery(gallery.id)}
+              onMouseEnter={() => setIsGalleryLabelHovered(true)}
+              onMouseLeave={() => setIsGalleryLabelHovered(false)}
+              onFocus={() => setIsGalleryLabelHovered(true)}
+              onBlur={() => setIsGalleryLabelHovered(false)}
               className={cn(
                 "inline-flex min-h-[25px] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
                 activeGallery === gallery.id
@@ -208,13 +213,18 @@ export function ArtSection() {
         </div>
 
         <div className="border border-[var(--rule)] bg-[var(--paper-soft)] p-3">
-        <div className="mobile-gallery-grid grid grid-cols-2 gap-3 md:grid-cols-4">
-          {filteredPieces.map((piece) => (
-            <button
-              key={piece.id}
-              onClick={() => setSelectedPiece(piece)}
-              className="group block text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
-            >
+          <div
+            className={cn(
+              "mobile-gallery-grid grid grid-cols-2 gap-3 md:grid-cols-4",
+              isGalleryLabelHovered && "gallery-label-hovered",
+            )}
+          >
+            {filteredPieces.map((piece) => (
+              <button
+                key={piece.id}
+                onClick={() => setSelectedPiece(piece)}
+                className="group block text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
+              >
                 {piece.image ? (
                   <ImageFrame
                     src={piece.image}
@@ -243,27 +253,27 @@ export function ArtSection() {
                     <p className="mobile-gallery-title">{piece.title}</p>
                   </div>
                 </div>
-            </button>
-          ))}
-        </div>
-        {mobileHiddenPieces.length > 0 && (
-          <details className="mobile-more-details mobile-only-block mt-3">
-            <summary>More image records ({mobileHiddenPieces.length})</summary>
-            <div className="mt-4 grid gap-2">
-              {mobileHiddenPieces.map((piece) => (
-                <button
-                  key={`mobile-more-${piece.id}`}
-                  type="button"
-                  onClick={() => setSelectedPiece(piece)}
-                  className="border border-[var(--rule)] bg-[var(--paper-card)] p-3 text-left"
-                >
-                  <p className="text-sm font-semibold leading-tight text-[var(--ink)]">{piece.title}</p>
-                  <p className="small-label mt-1">{piece.date}</p>
-                </button>
-              ))}
-            </div>
-          </details>
-        )}
+              </button>
+            ))}
+          </div>
+          {mobileHiddenPieces.length > 0 && (
+            <details className="mobile-more-details mobile-only-block mt-3">
+              <summary>More image records ({mobileHiddenPieces.length})</summary>
+              <div className="mt-4 grid gap-2">
+                {mobileHiddenPieces.map((piece) => (
+                  <button
+                    key={`mobile-more-${piece.id}`}
+                    type="button"
+                    onClick={() => setSelectedPiece(piece)}
+                    className="border border-[var(--rule)] bg-[var(--paper-card)] p-3 text-left"
+                  >
+                    <p className="text-sm font-semibold leading-tight text-[var(--ink)]">{piece.title}</p>
+                    <p className="small-label mt-1">{piece.date}</p>
+                  </button>
+                ))}
+              </div>
+            </details>
+          )}
         </div>
 
         <Dialog open={!!selectedPiece} onOpenChange={() => setSelectedPiece(null)}>

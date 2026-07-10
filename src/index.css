@@ -418,6 +418,16 @@
     display: none;
   }
 
+  .gallery-image-frame img,
+  .mobile-gallery-thumb img {
+    transition: filter 200ms ease;
+  }
+
+  .gallery-label-hovered .gallery-image-frame img,
+  .gallery-label-hovered .mobile-gallery-thumb img {
+    filter: grayscale(0) contrast(1) sepia(0);
+  }
+
   .evidence-table-wrap {
     overflow-x: auto;
     border: var(--line-hair) solid var(--rule);
@@ -1128,6 +1138,160 @@
       display: none;
     }
 
+    .service-work-grid {
+      gap: var(--space-3);
+    }
+
+    .service-work-card {
+      padding: var(--space-4);
+    }
+
+    .service-work-heading {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .service-work-title {
+      font-size: var(--text-lg);
+      line-height: 1.2;
+    }
+
+    .service-work-role {
+      width: fit-content;
+      max-width: 100%;
+      white-space: normal;
+      line-height: 1.15;
+    }
+
+    .service-work-meta {
+      margin-top: var(--space-4);
+    }
+
+    .evidence-table-wrap {
+      overflow: visible;
+      border: 0;
+      background: transparent;
+    }
+
+    .evidence-table,
+    .evidence-table tbody,
+    .evidence-table tr,
+    .evidence-table td {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .evidence-table th:nth-child(n),
+    .evidence-table td:nth-child(n) {
+      width: 100%;
+    }
+
+    .evidence-table {
+      font-size: var(--text-sm);
+      table-layout: auto;
+    }
+
+    .evidence-table thead {
+      display: none;
+    }
+
+    .evidence-table tbody {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .evidence-row {
+      position: relative;
+      overflow: hidden;
+      border: var(--line-hair) solid var(--rule);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent),
+        var(--paper-card);
+      padding: var(--space-4);
+    }
+
+    .evidence-row::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--civic-blue);
+      opacity: 0.72;
+    }
+
+    .evidence-table td {
+      border: 0;
+      padding: 0;
+    }
+
+    .evidence-ref {
+      width: auto;
+      border-right: 0;
+      background: transparent;
+      font-size: 1.55rem;
+      line-height: 0.9;
+      position: absolute;
+      right: var(--space-4);
+      top: var(--space-4);
+    }
+
+    .evidence-entry-cell {
+      padding-right: 52px !important;
+    }
+
+    .evidence-entry-link {
+      font-size: var(--text-lg);
+      line-height: 1.18;
+    }
+
+    .evidence-date-cell {
+      margin-top: var(--space-3);
+      color: var(--ink-muted) !important;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.055em;
+    }
+
+    .evidence-date-cell span {
+      display: inline !important;
+    }
+
+    .evidence-date-cell span + span::before {
+      content: " / ";
+      color: var(--ink-faint);
+    }
+
+    .evidence-proof-cell {
+      margin-top: var(--space-3);
+    }
+
+    .evidence-proof-cell p {
+      max-width: none;
+      font-size: var(--text-sm);
+      line-height: 1.6;
+    }
+
+    .evidence-link-cell {
+      margin-top: var(--space-3);
+    }
+
+    .evidence-link-badge {
+      min-height: 30px;
+      padding: 0.4rem 0.72rem;
+      transform: none;
+    }
+
+    .evidence-link-badge:hover {
+      transform: translateY(-1px);
+    }
+
+    .evidence-mini-badge {
+      max-width: 100%;
+      white-space: normal;
+      line-height: 1.12;
+    }
+
     .marginalia-field {
       padding-right: 0;
     }
@@ -1144,11 +1308,68 @@
 
     .marginalia-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
     }
 
     .marginalia-card {
       grid-column: span 1;
       min-height: 0;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: var(--space-4);
+    }
+
+    .marginalia-card h3 {
+      font-size: var(--text-md);
+    }
+
+    .marginalia-card p {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+    }
+
+    .resume-file-card {
+      margin-bottom: var(--space-5);
+      padding: var(--space-4) !important;
+    }
+
+    .resume-file-header {
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
+    }
+
+    .resume-summary-panel,
+    .resume-credentials-panel {
+      padding: var(--space-4);
+    }
+
+    .resume-credentials-grid {
+      gap: 0;
+    }
+
+    .resume-credential-row {
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .resume-credential-title {
+      overflow: visible;
+      text-overflow: clip;
+      white-space: normal;
+      line-height: 1.28;
+    }
+
+    .resume-credential-org {
+      margin-top: 0.18rem;
+      letter-spacing: 0.055em;
+    }
+
+    .resume-credential-date {
+      flex: 0 0 auto;
+      line-height: 1;
     }
 
     .mobile-gallery-grid {
@@ -1214,16 +1435,16 @@
 
     .art-dialog-media {
       max-height: 48vh;
-      aspect-ratio: 16 / 11;
+      aspect-ratio: 16 / 11 !important;
     }
 
     .art-dialog-content {
       max-height: min(86vh, 680px);
-      overflow-y: auto;
+      overflow-y: auto !important;
     }
 
     .art-dialog-copy {
-      padding: var(--space-4);
+      padding: var(--space-4) !important;
     }
 
     .art-dialog-copy h3 {
@@ -1232,19 +1453,20 @@
     }
 
     .art-dialog-description {
-      display: -webkit-box;
-      overflow: hidden;
+      overflow: hidden !important;
       font-size: var(--text-sm);
-      line-height: 1.6;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
+      line-height: 1.6 !important;
+      max-height: calc(1.6em * 4);
     }
 
     .mobile-digest-copy {
       display: -webkit-box;
       overflow: hidden;
+      margin-top: var(--space-4);
+      font-size: var(--text-sm);
+      line-height: 1.62;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 3;
     }
 
     .honors-grid > div:nth-child(n + 6),
@@ -1263,8 +1485,38 @@
       padding: var(--space-5);
     }
 
+    .service-work-grid,
+    .evidence-table tbody,
     .marginalia-grid {
-      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .marginalia-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .marginalia-card,
+    .marginalia-card:nth-child(n) {
+      grid-column: 1 / -1;
+      width: 100%;
+      transform: none;
+    }
+
+    .marginalia-card p {
+      -webkit-line-clamp: 3;
+    }
+
+    .resume-file-header {
+      align-items: stretch;
+    }
+
+    .resume-credential-row {
+      display: block;
+      padding: var(--space-3) 0;
+    }
+
+    .resume-credential-date {
+      display: none;
     }
 
   }

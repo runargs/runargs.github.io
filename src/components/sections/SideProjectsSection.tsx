@@ -66,7 +66,7 @@ export function SideProjectsSection() {
     <SectionBand id="side-projects">
       <div className="mx-auto max-w-5xl">
         <SectionHeader
-          marker="08"
+          marker="06"
           title="Marginalia"
           description="If you searched my desk, you'd find scraps of paper with scattered thoughts and collages."
           className="mb-5"
