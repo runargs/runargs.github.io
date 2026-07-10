@@ -123,7 +123,7 @@ const Index = () => {
             </p>
             <a 
               href="mailto:alexa.thoennes@gmail.com" 
-              className="block mt-2 font-bold underline text-blue-800 hover:text-blue-600"
+              className="mt-2 block font-bold text-[var(--civic-blue)] underline hover:text-[var(--ink)]"
             >
               Click here to contact.
             </a>

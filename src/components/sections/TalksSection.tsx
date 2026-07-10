@@ -1,5 +1,5 @@
-import { Calendar, Info, Link as LinkIcon, MapPin, Mic2, PenLine, Video } from "lucide-react";
-import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { Info, Link as LinkIcon } from "lucide-react";
+import { SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 type ArtifactType = "talk" | "video" | "note";
@@ -34,7 +34,7 @@ const artifacts: Artifact[] = [
     type: "video",
     title: "Mastery learning and professional outcomes",
     venue: "21st Century Cyber Charter alumni spotlight",
-    date: "February 2026",
+    date: "2026",
     location: "Downingtown, PA",
     topics: ["Education", "Career Path", "Technical Learning"],
     summary: "A multi-channel feature on individualized education, mastery curriculums, early development, and professional trajectory.",
@@ -104,19 +104,19 @@ function OrganizationTooltip({ organization, title }: { organization: string; ti
   );
 }
 
-function TypeIcon({ type }: { type: ArtifactType }) {
-  const iconProps = "h-4 w-4 text-muted-foreground shrink-0";
-  switch (type) {
-    case "video":
-      return <Video className={iconProps} />;
-    case "talk":
-      return <Mic2 className={iconProps} />;
-    case "note":
-      return <PenLine className={iconProps} />;
-    default:
-      return null;
-  }
-}
+const artifactTypeLabel: Record<ArtifactType, string> = {
+  note: "Note",
+  talk: "Talk",
+  video: "Video",
+};
+
+const artifactTypeTone: Record<ArtifactType, string> = {
+  note: "blue",
+  talk: "ochre",
+  video: "green",
+};
+
+const topicToneByIndex = ["blue", "violet", "green", "ochre"] as const;
 
 export function TalksSection() {
   return (
@@ -129,76 +129,69 @@ export function TalksSection() {
           className="mb-8"
         />
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {artifacts.map((item) => (
-            <EditorialCard
-              key={item.id}
-              className="group cursor-pointer"
-              onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
-            >
-              {item.imageUrl && (
-                <div className="mb-5 aspect-[4/3] overflow-hidden border border-[var(--rule)] bg-[var(--paper-soft)]">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="h-full w-full object-cover grayscale contrast-[1.08] sepia-[0.10]"
-                  />
-                </div>
-              )}
-
-                <div className="mb-3 flex items-start justify-between gap-2">
-                  <h3 className="text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
-                    {item.title}
-                  </h3>
-                  <TypeIcon type={item.type} />
-                </div>
-                {item.venue && (
-                  <p className="text-sm font-semibold text-[var(--ink-soft)]">
-                    {item.venue}
-                  </p>
-                )}
-
-                {(item.date || item.location) && (
-                  <div className="my-4 flex flex-wrap items-center gap-4 text-sm text-[var(--ink-muted)]">
-                    {item.date && (
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        {item.date}
+        <div className="evidence-table-wrap notched">
+          <table className="evidence-table">
+            <thead>
+              <tr>
+                <th>Ref</th>
+                <th>Entry</th>
+                <th>Date / Place</th>
+                <th>Evidence</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {artifacts.map((item, index) => (
+                <tr key={item.id}>
+                  <td className="evidence-ref">{String(index + 1).padStart(2, "0")}</td>
+                  <td className="evidence-entry-cell">
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="evidence-entry-link"
+                    >
+                      {item.title}
+                    </a>
+                    {item.venue && (
+                      <span className="mt-1 block text-xs font-semibold text-[var(--ink-muted)]">
+                        {item.venue}
                       </span>
                     )}
+                  </td>
+                  <td className="evidence-date-cell">
+                    <span className="block">{item.date}</span>
                     {item.location && (
-                      <span className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
-                        {item.location}
-                      </span>
+                      <span className="block text-xs text-[var(--ink-faint)]">{item.location}</span>
                     )}
-                  </div>
-                )}
-
-                {item.summary && (
-                  <p className="mb-4 text-sm leading-7 text-[var(--ink-muted)]">
-                    {item.summary}
-                  </p>
-                )}
-
-                {item.topics && (
-                  <div className="flex flex-wrap gap-2">
-                    {item.topics.map((topic) => (
-                      <span key={topic} className="stamp-tag stamp-tag-blue">
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                <EvidenceMeta className="justify-start">
-                <div className="flex items-center gap-1 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)] transition-colors group-hover:text-[var(--civic-blue)]">
-                  <LinkIcon className="h-3 w-3" />
-                  Open link
-                </div>
-                </EvidenceMeta>
-            </EditorialCard>
-          ))}
+                  </td>
+                  <td className="evidence-proof-cell">
+                    <p>{item.summary}</p>
+                    {item.topics && (
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {item.topics.map((topic, topicIndex) => (
+                          <span key={topic} className={`evidence-mini-badge ${topicToneByIndex[topicIndex % topicToneByIndex.length]}`}>
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`evidence-link-badge ${artifactTypeTone[item.type]}`}
+                    >
+                      <LinkIcon className="h-3 w-3" />
+                      {artifactTypeLabel[item.type]}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div className="mt-8 border-t border-[var(--rule)] pt-6">

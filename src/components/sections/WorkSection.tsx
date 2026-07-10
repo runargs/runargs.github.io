@@ -249,8 +249,10 @@ export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeMobileFilter, setActiveMobileFilter] = useState("Featured");
 
-  const globalSkills = useMemo(() => {
-    const all = experiences.flatMap((experience) => experience.skills);
+  const desktopRevealSkills = useMemo(() => {
+    const all = experiences
+      .filter((experience) => experience.type === "secondary")
+      .flatMap((experience) => experience.skills);
     return Array.from(new Set(all)).sort();
   }, []);
 
@@ -340,7 +342,7 @@ export function WorkSection() {
             )}
           </div>
           <div className="flex flex-wrap gap-2">
-            {globalSkills.map((skill) => (
+            {desktopRevealSkills.map((skill) => (
               <button
                 key={skill}
                 onClick={() => {
@@ -348,11 +350,8 @@ export function WorkSection() {
                   setActiveMobileFilter("Featured");
                 }}
                 className={cn(
-                  "inline-flex min-h-[25px] rotate-[-0.45deg] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
-                  "bg-[repeating-linear-gradient(-45deg,transparent,transparent_5px,rgba(45,40,31,0.045)_5px,rgba(45,40,31,0.045)_6px)]",
-                  activeFilter === skill
-                    ? "border-[var(--civic-blue)] bg-[var(--civic-blue-soft)] text-[var(--civic-blue)]"
-                    : "border-[var(--rule-strong)] bg-transparent text-[var(--ink-muted)] hover:border-[var(--civic-blue)] hover:text-[var(--civic-blue)]"
+                  "work-filter-tag",
+                  activeFilter === skill && "is-active"
                 )}
               >
                 {skill}
@@ -555,10 +554,10 @@ export function WorkSection() {
                     <span
                       key={skill}
                       className={cn(
-                        "stamp-tag",
+                        "stamp-tag work-card-skill-tag",
                         activeFilter === skill
                           ? "border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]"
-                          : "text-[var(--ink-muted)]"
+                          : ""
                       )}
                     >
                       {skill}

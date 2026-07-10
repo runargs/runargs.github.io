@@ -8,16 +8,30 @@ interface Community {
   description: string;
   period?: string;
   url?: string;
+  companyLinks?: Array<{
+    name: string;
+    url: string;
+  }>;
 }
 
 const communities: Community[] = [
   {
     id: "product-research",
-    name: "Ōura, Manta Sleep, Bearable, Atlassian, Canva, Dynamo AI, Koinly, Lumia + more",
+    name: "Product research participation",
     role: "Beta testing and research participation",
     description:
       "Product research participation across consumer wellness hardware, productivity software, AI tools, and finance products. There's no better way to have user empathy than to be one :)",
     period: "2022–Present",
+    companyLinks: [
+      { name: "Ōura", url: "https://ouraring.com/" },
+      { name: "Manta Sleep", url: "https://mantasleep.com/" },
+      { name: "Bearable", url: "https://bearable.app/science-research/" },
+      { name: "Atlassian", url: "https://www.atlassian.com/" },
+      { name: "Canva", url: "https://www.canva.com/" },
+      { name: "Dynamo AI", url: "https://dynamo.ai/" },
+      { name: "Koinly", url: "https://koinly.io/" },
+      { name: "Lumia", url: "https://lumiahealth.com/" },
+    ],
   },
   {
     id: "moral-ambition",
@@ -64,7 +78,25 @@ export function CommunitySection() {
             <EditorialCard key={community.id} className="group flex h-full flex-col">
                 <div className="space-y-2">
                   <h3 className="text-xl leading-tight transition-colors group-hover:text-[var(--civic-blue)]">
-                    {community.name}
+                    {community.companyLinks ? (
+                      <>
+                        {community.companyLinks.map((company, index) => (
+                          <span key={company.name}>
+                            <a
+                              href={company.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline decoration-[var(--rule-strong)] underline-offset-[0.18em] transition-colors hover:text-[var(--civic-blue)] hover:decoration-[var(--civic-blue)]"
+                            >
+                              {company.name}
+                            </a>
+                            {index < community.companyLinks.length - 1 ? ", " : " + more"}
+                          </span>
+                        ))}
+                      </>
+                    ) : (
+                      community.name
+                    )}
                   </h3>
                   <StampBadge tone="ochre">
                     {community.role}
