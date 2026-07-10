@@ -17,48 +17,39 @@ interface NoteOrProject {
 
 const notesAndProjects: NoteOrProject[] = [
   {
-    id: "synthesis",
-    title: "AI for synthesis and sensemaking",
-    description: "How can AI help people move from more information to better understanding, not just faster summaries?",
+    id: "consumption",
+    title: "Human Data Curation",
+    description: "Everyone knows the saying about LLMs, 'Garbage in, garbage out'. The most sophisticated neural net we have is sitting behhind our eyes, what are we watching?",
     detail:
       "The product layer between retrieval and judgment is where the hard decisions live: what gets surfaced, what gets compressed, what remains uncertain, and how the user can inspect sources without drowning in them.",
-    tags: ["AI Product", "Sensemaking", "Decision-making"],
+    tags: ["Data curation", "Sensemaking", "Brainrot"],
     kind: "note",
   },
   {
     id: "memory",
-    title: "Analog + AI memory systems",
-    description: "How can AI make the raw material of life easier to capture and revisit while keeping interpretation in human hands?",
+    title: "Analog + AI systems",
+    description: "How can AI make the raw material of life easier to capture while acknowleding that the processing itself is what's the highest value for humans to own?",
     detail:
       "I’m interested in the space between analog thinking and AI assistance: handwritten notes, commonplace books, journaling, multimedia capture, tagging, resurfacing, and recall. The useful question is how AI can handle the clerical layer around memory without flattening the human work of synthesis.",
     tags: ["Memory", "Analog Workflows", "AI Assistance"],
     kind: "note",
   },
   {
-    id: "evaluation",
-    title: "Evaluation and LLM-as-judge",
-    description: "How do we build scalable quality systems for AI products without pretending judgment is simple?",
-    detail:
-      "LLM-as-judge is a real opportunity for scalable product quality. It gets weak when teams treat judgment as objective, context-free, or magically solved. I’m interested in evaluation systems that make uncertainty visible and improve with use.",
-    tags: ["Evaluation", "Quality", "LLM-as-judge"],
-    kind: "note",
-  },
-  {
     id: "behavior",
-    title: "Behavior change and healthspan",
-    description: "How can longitudinal products support durable behavior change without turning self-tracking into anxiety?",
+    title: "Behavior change",
+    description: "How can products support durable behavior change and self-efficacy to agency?",
     detail:
       "Healthspan and wellness products often have better sensors than behavior loops. The product question is not only what can be measured, but what should be made salient, when, and with what kind of intervention.",
     tags: ["Healthspan", "Wearables", "Behavior Change"],
     kind: "note",
   },
   {
-    id: "impact",
-    title: "Impact product mechanics",
-    description: "What makes a mission-driven product actually work: incentives, adoption, trust, distribution, and feedback loops?",
+    id: "humangeo",
+    title: "The environment <> people loop",
+    description: "How do the places and environments we live in shape who we are, how we behave, and how our societies develop?",
     detail:
-      "I’m drawn to products where the stakes are real: health, food systems, climate, education, financial resilience, and public-interest infrastructure. The interesting part is whether adoption, incentives, quality, and operations make the intended outcome durable.",
-    tags: ["Impact", "Systems", "Adoption"],
+      "Healthspan and wellness products often have better sensors than behavior loops. The product question is not only what can be measured, but what should be made salient, when, and with what kind of intervention.",
+    tags: ["Healthspan", "Wearables", "Behavior Change"],
     kind: "note",
   },
 ];
@@ -76,9 +67,8 @@ export function SideProjectsSection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="08"
-          eyebrow="Marginalia"
           title="Marginalia"
-          description="Small questions about memory, evaluation, behavior change, and tools that have to work in real life."
+          description="If you searched my desk, you'd find scraps of paper with scattered thoughts and collages."
           className="mb-5"
         />
 

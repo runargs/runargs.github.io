@@ -38,7 +38,7 @@ const artPieces: ArtPiece[] = [
   },
   {
     id: "s3",
-    title: "Happening Women 2025",
+    title: "Happening Women Awards",
     date: "2025",
     description: "Interactive canapé chef’s table for the Happening Women Award Ceremony.",
     gallery: "culinary",
@@ -56,7 +56,7 @@ const artPieces: ArtPiece[] = [
   },
   {
     id: "s5",
-    title: "Grilled octopus at Triple Sun Spirits",
+    title: "Event Catering at Triple Sun Spirits",
     date: "2025",
     description: "Part of a Mediterranean dining experience for private events at Triple Sun Spirits Distillery & Speakeasy.",
     gallery: "culinary",
@@ -170,7 +170,7 @@ const artPieces: ArtPiece[] = [
 const galleries: { id: GalleryType; label: string }[] = [
   { id: "culinary", label: "Food & hosting" },
   { id: "ceramics", label: "Ceramics" },
-  { id: "image studies", label: "Image studies" },
+  { id: "image studies", label: "Muse" },
 ];
 
 export function ArtSection() {
@@ -185,9 +185,8 @@ export function ArtSection() {
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           marker="07"
-          eyebrow="Food, hosting, and sensory detail"
-          title="Image studies as human-system evidence."
-          description="Food and hosting make the abstract concrete: ingredients, timing, constraint, memory, culture, and whether people feel taken care of."
+          title="What is done in love is well done."
+          description="The arts are what make us human, whether that's in the chemistry of the glaze room, the film darkroom, or the heat of smokey wok hei. Find more on Instagram, @haruhay_studio"
           className="mb-10"
         />
 

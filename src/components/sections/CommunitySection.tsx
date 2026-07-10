@@ -13,10 +13,10 @@ interface Community {
 const communities: Community[] = [
   {
     id: "product-research",
-    name: "Ōura, Manta Sleep, Bearable, Atlassian, Canva, Dynamo AI, Koinly + more",
+    name: "Ōura, Manta Sleep, Bearable, Atlassian, Canva, Dynamo AI, Koinly, Lumia + more",
     role: "Beta testing and research participation",
     description:
-      "Beta testing and research participation across wellness hardware, productivity software, AI tools, and finance products. It keeps product judgment close to friction, onboarding, and everyday use.",
+      "Product research participation across consumer wellness hardware, productivity software, AI tools, and finance products. There's no better way to have user empathy than to be one :)",
     period: "2022–Present",
   },
   {
@@ -24,16 +24,16 @@ const communities: Community[] = [
     name: "Moral Ambition Community",
     role: "Member",
     description:
-      "A community for people applying ambition to high-stakes problems. I’m interested in the practical side: incentives, institutions, tradeoffs, and follow-through.",
+      "A community for people applying ambition to high-stakes problems. Recognizing that we’re among the most privileged people in the history of humanity. That means we have an enormous opportunity to make a difference.",
     period: "2026–Present",
     url: "https://www.moralambition.org/",
   },
   {
-    id: "ikap",
-    name: "I Know a Place Culinary Agency",
+    id: "chef",
+    name: "Private dining & hosted culinary experiences",
     role: "Advisory consultant and private chef",
     description:
-      "Independent and collaborative culinary work across menus, event concepts, operations, and hosting. A practical place to think about culture, constraint, pacing, service, and whether people feel taken care of.",
+      "Independent and collaborative culinary work (I Know a Place Culinary Agency) across menus, event concepts, operations, and hosting.",
     period: "2024–Present",
     url: "https://iknowaplace.agency/",
   },
@@ -42,7 +42,7 @@ const communities: Community[] = [
     name: "Mentorship and volunteerism",
     role: "Independent mentor and community volunteer",
     description:
-      "Career mentorship for emerging technical talent and early-career peers, including Year Up United, alongside earlier volunteer work across meal delivery, grants, and Alzheimer’s research fundraising.",
+      "Career mentorship for emerging technical talent, as well as providing meals, grants, and raising grand champion fundraiser for Alzheimer’s research.",
     period: "2015–Present",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/",
   },
@@ -54,9 +54,8 @@ export function CommunitySection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="05"
-          eyebrow="Community"
-          title="Contexts that keep the work grounded."
-          description="Wellness tools, public-interest work, food culture, service, and community contexts that keep product judgment close to lived experience."
+          title="Service keeps me grounded."
+          description="Wellness tools, public-interest work, food culture, service, and community contexts that give me broader perspectives."
           className="mb-10"
         />
 

@@ -8,14 +8,14 @@ const resumeHighlights = [
 ];
 
 const credentials = [
-  { title: "Communicating Persuasively & Building Trust", org: "Stanford GSB", date: "2026" },
-  { title: "Maximizing Operational Effectiveness", org: "MIT", date: "2026" },
-  { title: "Ethical & Impactful AI Solutions", org: "IMD", date: "2026" },
-  { title: "Driving Digital Transformation", org: "IMD", date: "2026" },
-  { title: "Understanding Customer Needs", org: "Wharton Executive Education", date: "2025" },
-  { title: "Compelling Data Stories", org: "UVA Darden Executive Education", date: "2026" },
-  { title: "Influencing with Diplomacy", org: "Wharton Executive Education", date: "2025" },
-  { title: "B.S. Applied Computing", org: "University of Scranton · Magna Cum Laude", date: "2021" },
+  { title: "Communicating Persuasively & Building Trust", org: "Stanford GSB" },
+  { title: "Maximizing Operational Effectiveness", org: "MIT" },
+  { title: "Ethical & Impactful AI Solutions", org: "IMD" },
+  { title: "Driving Digital Transformation", org: "IMD" },
+  { title: "Understanding Customer Needs", org: "Wharton Executive Education" },
+  { title: "Compelling Data Stories", org: "UVA Darden Executive Education" },
+  { title: "Influencing with Diplomacy", org: "Wharton Executive Education" },
+  { title: "B.S. Applied Computing (Business Analytics)", org: "University of Scranton · Magna Cum Laude" },
 ];
 
 export function ResumeSection() {
@@ -24,9 +24,7 @@ export function ResumeSection() {
       <div className="mx-auto max-w-4xl">
         <SectionHeader
           marker="09"
-          eyebrow="Résumé"
-          title="Résumé and selected credentials."
-          description="Current focus, selected credentials, and contact details."
+          title="Curriculum Vitae."
           className="mb-8"
         />
 
@@ -34,7 +32,7 @@ export function ResumeSection() {
           <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" className="resume-disk-icon" />
           <div className="relative z-10 mb-8 flex flex-col gap-4 border-b border-[var(--rule)] pb-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
-              <span className="font-serif text-xl text-[var(--ink)]">Alexa Thoennes, résumé</span>
+              <span className="font-serif text-xl text-[var(--ink)]">Alexa Thoennes</span>
             </div>
             <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request" className="w-full bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)] md:w-auto">
               <Download className="h-5 w-5 opacity-80" />

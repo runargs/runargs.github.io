@@ -30,7 +30,7 @@ export function BioSection() {
               <div className="font-display text-[3.15rem] leading-[0.86] text-[var(--civic-blue)] md:text-[4.2rem] lg:whitespace-nowrap">
                 Alexa Thoennes
                 <div className="hero-kicker small-label mb-5 text-[var(--ink-muted)]">
-                  Human-first responsible technology
+                  Human-First + AI-Forward
                 </div>
               </div>
               
@@ -68,23 +68,26 @@ export function BioSection() {
             </figure>
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
-              <p className="text-xl leading-8 text-[var(--ink-soft)]">
-                I’m a product manager focused on AI tools that help people make sense of complex information while maintaining trust, context, and accountability.
+              <p></p>
+              <p className="text-lg text-[var(--ink-soft)] leading-8">
+                I’m a product manager focused on AI tools that help people make sense of complex information without losing uncertainty, context, or accountability.
               </p>
-              <p>
-                My work connects human-centered judgment with the practical implementation details that make AI usable: retrieval quality, source grounding, guardrails, open feedback loops, and transparent documentation.
-              </p>
+              <p></p>
             </div>
-          </div>
-
-          <div className="mt-8 clear-both flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3">
             <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
               Contact <ArrowRight className="ml-2 h-4 w-4" />
             </DossierLink>
             <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
               <FileText className="mr-2 h-4 w-4" /> Résumé PDF
             </DossierLink>
+                          <p className="text-xl leading-8 font-display">
+                “There are times when the world is rearranging itself, and at times like that, the right words can change the world.”<br></br><small>- Ender's Game</small>
+                </p>
           </div>
+          </div>
+
+          
         </article>
       </div>
     </section>

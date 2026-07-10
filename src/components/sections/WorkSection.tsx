@@ -34,7 +34,7 @@ const experiences = [
     id: "mc-pm",
     company: "Mastercard Insights & Intelligence",
     role: "Global Product Manager II, AI, Platform, Market Intelligence",
-    location: "Remote",
+    location: "Remote (US - ET)",
     duration: "2024 to Present",
     description:
       "Leading product work on AI research-assistant workflows for market intelligence, including conversational analytics, retrieval quality, evaluation, personalization, and adoption.",
@@ -90,7 +90,7 @@ const experiences = [
     id: "google",
     company: "Google Cloud, Internship",
     role: "Developer Relations Engineer",
-    location: "New York, NY (Remote)",
+    location: "New York, NY",
     duration: "Jun 2020 to Aug 2020",
     description:
       "Owned a documentation feature for open-source client-library tooling, moving from user research through implementation and release.",
@@ -112,7 +112,7 @@ const experiences = [
     id: "visa",
     company: "Visa, Internship",
     role: "Software Engineer",
-    location: "Austin, TX (Remote)",
+    location: "Austin, TX",
     duration: "May 2021 to Aug 2021",
     description:
       "Built public-facing web and search capabilities for financial education products where clarity, access, and trust shaped the work.",
@@ -276,8 +276,8 @@ export function WorkSection() {
           <div className="relative z-10">
             <SectionHeader
               marker="02"
-              eyebrow="Product work"
-              title="Product work"
+              title="Professional experience"
+              description="A rotation through a breath of technical, care, and community work. Collapsed experiences surface depending on filter lens below."
               className="max-w-2xl"
             />
           </div>

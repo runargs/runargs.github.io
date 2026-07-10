@@ -20,12 +20,12 @@ const artifacts: Artifact[] = [
   {
     id: "ami-linkedin",
     type: "note",
-    title: "Ask Mastercard Intelligence launch",
-    venue: "LinkedIn",
+    title: "Global AI product launch",
+    venue: "Ask Mastercard Intelligence",
     date: "2026",
     location: "New York, NY",
     topics: ["AI Product", "Research Assistants", "Conversational Intelligence"],
-    summary: "Public post on the Ask Mastercard Intelligence launch and conversational market intelligence work.",
+    summary: "Hosted and presented Lunch & Learn product launch in NYC, with addtn locations coordinated in Rome, Athens, and Purchase.",
     url: "https://www.linkedin.com/posts/alexathoennes_intelligence-is-becoming-fast-conversational-ugcPost-7460767669449867264-Swie/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
   },
   {
@@ -36,7 +36,7 @@ const artifacts: Artifact[] = [
     date: "February 2026",
     location: "Downingtown, PA",
     topics: ["Education", "Career Path", "Technical Learning"],
-    summary: "A public feature on education, early technical development, and professional trajectory.",
+    summary: "A multi-channel feature on individualized education, mastery curriculums, early development, and professional trajectory.",
     url: "https://www.linkedin.com/posts/alexathoennes_21cccsalumni-classof2018-alumnispotlight-activity-7424802530242506752-15Qf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
   },
   {
@@ -47,18 +47,18 @@ const artifacts: Artifact[] = [
     date: "2024",
     location: "Newtown, PA",
     topics: ["Mentorship", "Career Design", "Women in Tech"],
-    summary: "Guest session on early career choices, technical confidence, and navigating ambiguous paths.",
+    summary: "Invited guest session and Q&A for college students on early career, choice confidence, and navigating ambiguous paths.",
     url: "https://www.bucks.edu/",
   },
   {
     id: "informs",
     type: "talk",
     title: "Amazon reviews to forecast product match",
-    venue: "INFORMS Annual Meeting",
+    venue: "INFORMS Annual Conference",
     date: "2021",
     location: "Anaheim, CA",
-    topics: ["AI/ML", "E-commerce", "Product Match"],
-    summary: "Earlier work on using review data to understand product fit and purchasing signals.",
+    topics: ["AI/ML", "NLP", "E-commerce", "Product Match"],
+    summary: "NLP for recommendations from user propensity, feature sentiment summary (prior to Amazon's 'AI Customer Highlights' in 2023).",
     url: "https://meetings.informs.org/wordpress/anaheim2021/#ready",
   },
 ];
@@ -101,8 +101,7 @@ export function TalksSection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="04"
-          eyebrow="Public record"
-          title="Public record."
+          title="Engagements and activations"
           description="Posts, talks, education, earlier technical work, and selected honors."
           className="mb-8"
         />

@@ -16,8 +16,7 @@ export function MentorshipSection() {
       <div className="mx-auto max-w-4xl">
         <SectionHeader
           marker="06"
-          eyebrow="Contact"
-          title="Contact."
+          title="Ways to get in touch."
           className="mb-8"
         />
 
