@@ -87,15 +87,22 @@ const Index = () => {
           <ResumeSection />
 
           <footer className="grid gap-6 border-t border-[var(--rule)] bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_260px] md:px-11">
-            <div>
-              <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
-                AI product work, field notes, and systems thinking for technology that has to work for people.
-              </p>
+            <div className="flex items-start gap-4">
+              <img
+                src="/favicon.png"
+                alt=""
+                aria-hidden="true"
+                className="h-14 w-14 shrink-0 object-contain"
+              />
+              <div>
+                <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
+                  You made it to the end. Stay curious.
+                </p>
+              </div>
             </div>
             <div className="space-y-1 text-xs text-[var(--ink-faint)] md:text-right">
               <p>Built with generative AI assistance</p>
-              <p>Lovable, GitHub Copilot, Gemini, Claude, GPT-5</p>
               <p>© 2026</p>
             </div>
           </footer>

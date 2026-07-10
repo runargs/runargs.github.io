@@ -208,7 +208,7 @@ export function ArtSection() {
         </div>
 
         <div className="border border-[var(--rule)] bg-[var(--paper-soft)] p-3">
-        <div className="mobile-gallery-grid grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mobile-gallery-grid grid grid-cols-2 gap-3 md:grid-cols-4">
           {filteredPieces.map((piece) => (
             <button
               key={piece.id}
@@ -221,15 +221,28 @@ export function ArtSection() {
                     alt={piece.title}
                     caption={`${piece.title} / ${piece.date}`}
                     mediaClassName="aspect-square"
-                    className="h-full transition-colors group-hover:border-[var(--civic-blue)]"
+                    className="gallery-image-frame h-full transition-colors group-hover:border-[var(--civic-blue)]"
                     imgClassName="transition duration-200 group-hover:grayscale-0 group-hover:sepia-0 group-hover:contrast-100 group-focus-visible:grayscale-0 group-focus-visible:sepia-0 group-focus-visible:contrast-100"
                     grayscale
                   />
                 ) : (
-                  <div className="notched flex aspect-square items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)]">
+                  <div className="gallery-image-frame notched flex aspect-square items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)]">
                     <span className="font-display text-3xl text-[var(--civic-blue)]">IMG</span>
                   </div>
                 )}
+                <div className="mobile-gallery-card">
+                  <div className="mobile-gallery-thumb" aria-hidden="true">
+                    {piece.image ? (
+                      <img src={piece.image} alt="" />
+                    ) : (
+                      <span>IMG</span>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="small-label mb-1 text-[var(--field-ochre)]">{piece.date}</p>
+                    <p className="mobile-gallery-title">{piece.title}</p>
+                  </div>
+                </div>
             </button>
           ))}
         </div>
@@ -254,13 +267,13 @@ export function ArtSection() {
         </div>
 
         <Dialog open={!!selectedPiece} onOpenChange={() => setSelectedPiece(null)}>
-          <DialogContent className="max-w-3xl overflow-hidden border-[var(--rule)] bg-[var(--paper-card)] p-0">
+          <DialogContent className="art-dialog-content max-w-3xl overflow-hidden border-[var(--rule)] bg-[var(--paper-card)] p-0">
             <VisuallyHidden>
               <DialogTitle>{selectedPiece?.title || "Art piece"}</DialogTitle>
             </VisuallyHidden>
             {selectedPiece && (
               <div>
-                <div className="relative aspect-[4/3] overflow-hidden bg-[var(--paper-soft)]">
+                <div className="art-dialog-media relative aspect-[4/3] overflow-hidden bg-[var(--paper-soft)]">
                   {selectedPiece.image ? (
                     <img
                       src={selectedPiece.image}
@@ -274,11 +287,11 @@ export function ArtSection() {
                   )}
                 </div>
 
-                <div className="p-6">
+                <div className="art-dialog-copy p-6">
                   <h3 className="mb-1 text-2xl">{selectedPiece.title}</h3>
                   <p className="small-label mb-3">{selectedPiece.date}</p>
                   {selectedPiece.description && (
-                    <p className="leading-7 text-[var(--ink-muted)]">{selectedPiece.description}</p>
+                    <p className="art-dialog-description leading-7 text-[var(--ink-muted)]">{selectedPiece.description}</p>
                   )}
                   {selectedPiece.url && (
                     <a

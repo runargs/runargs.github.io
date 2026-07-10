@@ -105,6 +105,12 @@ const experiences = [
       author: "Billy J.",
       title: "Sr. Developer Advocate @ Google",
     },
+    artifactImage: {
+      src: "/images/google-synthtool.png",
+      alt: "GitHub repository card for googleapis synthtool",
+      caption: "Open-source / googleapis synthtool",
+      fit: "contain",
+    },
     featured: true,
     accent: "green",
   },
@@ -143,6 +149,11 @@ const experiences = [
       "Received the tecBRIDGE radio Business Plan Award for product strategy work.",
     ],
     skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Robotics Education", "Client-facing"],
+    artifactImage: {
+      src: "/images/nexus-valley-robots.jpg",
+      alt: "Small colorful educational robots on a workshop table",
+      caption: "3D Printed Robotics / STEAM curriculum",
+    },
     featured: true,
     accent: "teal",
   },
@@ -501,6 +512,24 @@ export function WorkSection() {
                       </div>
                       <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)]">
                         Video artifact / {experience.video.title}
+                      </figcaption>
+                    </figure>
+                  )}
+
+                  {experience.artifactImage && (
+                    <figure className="work-ad-media notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
+                      <div className="work-artifact-frame">
+                        <img
+                          src={experience.artifactImage.src}
+                          alt={experience.artifactImage.alt}
+                          className={cn(
+                            "work-artifact-image",
+                            experience.artifactImage.fit === "contain" && "work-artifact-image-contain"
+                          )}
+                        />
+                      </div>
+                      <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink-muted)]">
+                        {experience.artifactImage.caption}
                       </figcaption>
                     </figure>
                   )}
