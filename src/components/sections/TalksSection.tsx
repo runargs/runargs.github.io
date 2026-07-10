@@ -1,5 +1,6 @@
-import { Calendar, Link as LinkIcon, MapPin, Mic2, PenLine, Video } from "lucide-react";
+import { Calendar, Info, Link as LinkIcon, MapPin, Mic2, PenLine, Video } from "lucide-react";
 import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 type ArtifactType = "talk" | "video" | "note";
 
@@ -64,22 +65,44 @@ const artifacts: Artifact[] = [
 ];
 
 const honors = [
-  { title: "Strategic Business Plan Award", organization: "tecBRIDGE radio", year: "2018" },
-  { title: "Award for Excellence in Applied Computing, Magna Cum Laude", organization: "University of Scranton", year: "2021" },
-  { title: "First Place: Autonomous Maze-Solving Robotics Competition", organization: "University of Scranton", year: "2018" },
-  { title: "Technical Competition Finalist: SumoBot Engineering", organization: "IEEE Hackathon", year: "2019" },
-  { title: "Leadership Award", organization: "The Ronald Reagan Presidential Foundation & Institute", year: "2017" },
-  { title: "Philanthropic Leadership: Grand Champion Fundraiser", organization: "Walk to End Alzheimer’s", year: "2017" },
-  { title: "Exemplary Leadership Award", organization: "21st Century Cyber Charter", year: "2018" },
-  { title: "Regional Leadership Recognition", organization: "NBC10 / Widener University", year: "2018" },
-  { title: "Graphic Design Competition Runner-Up", organization: "Instructables.com", year: "2015" },
-  { title: "Scholastic Art & Writing Silver Key", organization: "Greater Philadelphia Region", year: "2015" },
-  { title: "Academic Excellence Recognition", organization: "21st Century Cyber Charter", year: "2018" },
-  { title: "Dean’s List for Academic Achievement", organization: "University of Scranton", year: "2021" },
-  { title: "University Merit Grant", organization: "University of Scranton", year: "2018" },
+  { title: "Startup | Strategic Business Plan Award", organization: "tecBRIDGE radio", year: "2018" },
+  { title: "Award for Applied Computing Excellence", organization: "University of Scranton", year: "2021" },
+  { title: "Presidential Award", organization: "The Ronald Reagan Presidential Foundation & Institute", year: "2017" },
+  { title: "Grand Champion Fundraiser", organization: "Walk to End Alzheimer’s", year: "2017" },
+  { title: "Student Leadership grant", organization: "21st Century Cyber Charter", year: "2018" },
+  { title: "NBC10 / Widener | Regional Leadership Recognition", organization: "NBC10 / Widener University", year: "2018" },
+  { title: "Instructables  | Graphic design contest", organization: "Instructables.com", year: "2015" },
+  { title: "Scholastic Art & Writing | Silver Key", organization: "Greater Philadelphia Region", year: "2015" },
   { title: "Freedom Credit Union Grant", organization: "Freedom Credit Union", year: "2018" },
-  { title: "AAWC Merit Award", organization: "FISDU & Asian American Women’s Coalition", year: "2018" },
+  { title: "Asian American Women’s Coalition Merit Award", organization: "FISDU & Asian American Women’s Coalition", year: "2018" },
 ];
+
+function OrganizationTooltip({ organization, title }: { organization: string; title: string }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          className="ml-1 inline-flex h-4 w-4 translate-y-[0.1rem] items-center justify-center text-[var(--ink-faint)] transition-colors hover:text-[var(--civic-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
+          aria-label={`${title} organization`}
+        >
+          <Info className="h-3.5 w-3.5" aria-hidden="true" />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        align="start"
+        sideOffset={8}
+        className="relative max-w-[220px] overflow-visible rounded-none border-2 border-[var(--ink)] bg-[var(--paper-card)] px-2.5 py-1.5 text-[11px] font-semibold leading-tight text-[var(--ink)] shadow-[3px_3px_0_var(--civic-blue)]"
+      >
+        {organization}
+        <div className="absolute -bottom-[9px] left-4 h-0 w-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-[var(--ink)]">
+          <div className="absolute -left-[7px] -top-[9px] h-0 w-0 border-l-[7px] border-r-[7px] border-t-[7px] border-l-transparent border-r-transparent border-t-[var(--paper-card)]" />
+        </div>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
 
 function TypeIcon({ type }: { type: ArtifactType }) {
   const iconProps = "h-4 w-4 text-muted-foreground shrink-0";
@@ -185,11 +208,11 @@ export function TalksSection() {
           </div>
           <div className="honors-grid grid gap-x-5 md:grid-cols-2">
             {honors.map((honor) => (
-              <div key={`${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-3 border-b border-[rgba(213,198,177,0.55)] py-2">
+              <div key={`${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-2.5 border-b border-[rgba(213,198,177,0.55)] py-1.5">
                 <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
                 <p className="text-xs leading-5 text-[var(--ink-muted)]">
                   <span className="font-semibold text-[var(--ink-soft)]">{honor.title}</span>
-                  <span className="text-[var(--ink-faint)]"> / {honor.organization}</span>
+                  <OrganizationTooltip organization={honor.organization} title={honor.title} />
                 </p>
               </div>
             ))}
@@ -198,11 +221,11 @@ export function TalksSection() {
             <summary>More honors ({honors.length - 5})</summary>
             <div className="mt-3 space-y-2">
               {honors.slice(5).map((honor) => (
-                <div key={`mobile-more-${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-3 border-b border-[rgba(213,198,177,0.55)] py-2">
+                <div key={`mobile-more-${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-2.5 border-b border-[rgba(213,198,177,0.55)] py-1.5">
                   <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
                   <p className="text-xs leading-5 text-[var(--ink-muted)]">
                     <span className="font-semibold text-[var(--ink-soft)]">{honor.title}</span>
-                    <span className="text-[var(--ink-faint)]"> / {honor.organization}</span>
+                    <OrganizationTooltip organization={honor.organization} title={honor.title} />
                   </p>
                 </div>
               ))}

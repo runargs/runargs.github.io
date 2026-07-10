@@ -50,7 +50,7 @@ export function BioSection() {
 
         <article className="hero-article border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 md:p-7">
           <h1 className="hero-headline max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
-            I build <span className="hero-headline-pixel">AI</span> products for evidence, judgment, and responsible use.
+            I build <span className="hero-headline-pixel">AI</span> tools for making sense of messy information without flattening what matters.
           </h1>
 
           <div className="mt-7 flow-root">
@@ -68,26 +68,29 @@ export function BioSection() {
             </figure>
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
-              <p></p>
               <p className="text-lg text-[var(--ink-soft)] leading-8">
                 I’m a product manager focused on AI tools that help people make sense of complex information without losing uncertainty, context, or accountability.
               </p>
-              <p></p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-            <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
-              Contact <ArrowRight className="ml-2 h-4 w-4" />
-            </DossierLink>
-            <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
-              <FileText className="mr-2 h-4 w-4" /> Résumé PDF
-            </DossierLink>
-                          <p className="text-xl leading-8 font-display">
-                “There are times when the world is rearranging itself, and at times like that, the right words can change the world.”<br></br><small>- Ender's Game</small>
-                </p>
-          </div>
-          </div>
 
-          
+              <blockquote className="mt-4 border-l-2 border-[var(--civic-blue)] pl-4">
+                <p className="font-display text-[1.35rem] leading-[1.18] text-[var(--ink-soft)]">
+                  “There are times when the world is rearranging itself, and at times like that, the right words can change the world.”
+                </p>
+                <cite className="mt-3 block text-[0.68rem] not-italic font-extrabold uppercase leading-none tracking-[0.07em] text-[var(--civic-blue)]">
+                  Ender Wiggin, Ender’s Game
+                </cite>
+              </blockquote>
+
+              <div className="mt-4 flex flex-wrap gap-3">
+                <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
+                  Contact <ArrowRight className="ml-2 h-4 w-4" />
+                </DossierLink>
+                <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
+                  <FileText className="mr-2 h-4 w-4" /> Résumé PDF
+                </DossierLink>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </section>

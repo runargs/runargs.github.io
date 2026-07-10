@@ -2,8 +2,8 @@ import { ArrowRight, Mail } from "lucide-react";
 import { DossierLink, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
 
 const collaborationPaths = [
-  { id: "01", title: "Product conversations", focus: "AI tools, evaluation, adoption" },
-  { id: "02", title: "Impact-oriented work", focus: "Health, food, climate, finance, public-interest tech" },
+  { id: "01", title: "Product conversations", focus: "AI, responsible tech, innovation, risk" },
+  { id: "02", title: "Impact work", focus: "Health, inequality, food, biodiversity, governance, built environment" },
   { id: "03", title: "Food and culture", focus: "Private dining, hosting, events, menus" },
 ];
 
