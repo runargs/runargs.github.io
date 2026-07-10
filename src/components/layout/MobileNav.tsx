@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 import { navItems } from "./navItems";
 import type { CSSProperties } from "react";
 
@@ -7,15 +7,14 @@ interface MobileNavProps {
   onSectionChange: (sectionId: string) => void;
 }
 
-export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
+export function MobileNav({ activeSection }: MobileNavProps) {
   const activeIndex = Math.max(
     0,
     navItems.findIndex((item) => item.id === activeSection)
   );
 
   const handleQuickNav = (sectionId: string) => {
-    onSectionChange(sectionId);
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(sectionId);
   };
 
   return (

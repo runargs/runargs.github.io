@@ -206,7 +206,6 @@ export function ImageFrame({
 
 export function LightsOffToggle() {
   const [isDark, setIsDark] = useState(false);
-  const [isSwitchingTheme, setIsSwitchingTheme] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("site-theme");
@@ -216,18 +215,45 @@ export function LightsOffToggle() {
     document.documentElement.dataset.theme = nextIsDark ? "dark" : "light";
   }, []);
 
+  useEffect(() => {
+    const finePointer = window.matchMedia("(pointer: fine)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (!isDark || !finePointer.matches || reducedMotion.matches) {
+      document.documentElement.classList.remove("has-pointer-light");
+      document.documentElement.style.removeProperty("--pointer-x");
+      document.documentElement.style.removeProperty("--pointer-y");
+      return;
+    }
+
+    let animationFrame = 0;
+    const updatePointer = (event: PointerEvent) => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(() => {
+        document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+        document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+        document.documentElement.classList.add("has-pointer-light");
+      });
+    };
+
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("pointermove", updatePointer);
+      document.documentElement.classList.remove("has-pointer-light");
+    };
+  }, [isDark]);
+
   const toggleTheme = () => {
     const nextIsDark = !isDark;
-    setIsSwitchingTheme(true);
     setIsDark(nextIsDark);
     document.documentElement.dataset.theme = nextIsDark ? "dark" : "light";
     window.localStorage.setItem("site-theme", nextIsDark ? "dark" : "light");
-    window.setTimeout(() => setIsSwitchingTheme(false), 720);
   };
 
   return (
     <>
-      {isSwitchingTheme && <span className="theme-switch-overlay" aria-hidden="true" />}
       <button className="theme-toggle" type="button" onClick={toggleTheme} aria-pressed={isDark} aria-label="Toggle lights-off mode">
         {isDark ? "Lights on" : "Lights off"}
       </button>

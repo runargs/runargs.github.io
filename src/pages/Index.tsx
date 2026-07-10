@@ -16,10 +16,10 @@ const sectionIds = [
   "work",
   "talks",
   "community-building",
-  "mentorship",
   "art",
   "side-projects",
   "resume",
+  "mentorship",
 ];
 
 const Index = () => {
@@ -53,36 +53,142 @@ const Index = () => {
     requestedSectionTimerRef.current = window.setTimeout(() => {
       requestedSectionRef.current = null;
       requestedSectionTimerRef.current = null;
-    }, 1400);
+    }, 920);
   };
 
   // Track active section based on scroll position
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+    let resizeTimer = 0;
+    let sectionRanges: Array<{ id: string; top: number; bottom: number }> = [];
+
+    const measureSections = () => {
+      sectionRanges = sectionIds.flatMap((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (!element) return [];
+
+        return [{
+          id: sectionId,
+          top: element.offsetTop,
+          bottom: element.offsetTop + element.offsetHeight,
+        }];
+      });
+    };
+
+    const updateActiveSection = () => {
+      frame = 0;
       if (requestedSectionRef.current) {
         return;
       }
 
       const scrollPosition = window.scrollY + 200;
+      const pageBottom = document.documentElement.scrollHeight - window.innerHeight;
 
-      for (const sectionId of sectionIds) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
-          }
+      if (window.scrollY >= pageBottom - 8) {
+        setActiveSection(sectionIds[sectionIds.length - 1]);
+        return;
+      }
+
+      let nearestSection = sectionRanges[0]?.id ?? "bio";
+
+      for (const section of sectionRanges) {
+        if (scrollPosition >= section.top) {
+          nearestSection = section.id;
+        }
+
+        if (scrollPosition >= section.top && scrollPosition < section.bottom) {
+          setActiveSection(section.id);
+          return;
         }
       }
+
+      setActiveSection(nearestSection);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    const requestMeasure = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        measureSections();
+        requestUpdate();
+      }, 120);
+    };
+
+    measureSections();
+    updateActiveSection();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestMeasure);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestMeasure);
       if (requestedSectionTimerRef.current) {
         window.clearTimeout(requestedSectionTimerRef.current);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) return;
+
+    let frame = 0;
+    let resizeTimer = 0;
+    const sections = Array.from(document.querySelectorAll<HTMLElement>(".section-band[id]"));
+    let focusLine = window.innerHeight * 0.42;
+    let falloff = Math.max(window.innerHeight * 0.72, 420);
+
+    const updateSectionPresence = () => {
+      frame = 0;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionFocus = rect.top + Math.min(rect.height * 0.34, focusLine + window.innerHeight * 0.08);
+        const distance = Math.abs(sectionFocus - focusLine);
+        const presence = Math.min(Math.max(1 - distance / falloff, 0), 1);
+        const feed = Math.round((rect.top - focusLine) * -0.08);
+
+        const presenceValue = presence.toFixed(3);
+        const feedValue = `${feed}px`;
+        if (section.style.getPropertyValue("--section-presence") !== presenceValue) {
+          section.style.setProperty("--section-presence", presenceValue);
+        }
+        if (section.style.getPropertyValue("--section-feed") !== feedValue) {
+          section.style.setProperty("--section-feed", feedValue);
+        }
+        section.classList.toggle("section-in-view", presence > 0.54);
+      });
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateSectionPresence);
+    };
+
+    const requestMeasure = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        focusLine = window.innerHeight * 0.42;
+        falloff = Math.max(window.innerHeight * 0.72, 420);
+        requestUpdate();
+      }, 120);
+    };
+
+    updateSectionPresence();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestMeasure);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestMeasure);
     };
   }, []);
 
@@ -106,10 +212,10 @@ const Index = () => {
           <WorkSection />
           <TalksSection />
           <CommunitySection />
-          <MentorshipSection />
           <ArtSection />
           <SideProjectsSection />
           <ResumeSection />
+          <MentorshipSection />
 
           <footer className="grid gap-6 border-t border-[var(--rule)] bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_260px] md:px-11">
             <div className="flex items-start gap-4">

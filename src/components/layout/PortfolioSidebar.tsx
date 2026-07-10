@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 import { navItems } from "./navItems";
 import type { CSSProperties } from "react";
 
@@ -7,15 +7,14 @@ interface PortfolioSidebarProps {
   onSectionChange: (sectionId: string) => void;
 }
 
-export function PortfolioSidebar({ activeSection, onSectionChange }: PortfolioSidebarProps) {
+export function PortfolioSidebar({ activeSection }: PortfolioSidebarProps) {
   const activeIndex = Math.max(
     0,
     navItems.findIndex((item) => item.id === activeSection)
   );
 
   const handleNavClick = (sectionId: string) => {
-    onSectionChange(sectionId);
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(sectionId);
   };
 
   return (

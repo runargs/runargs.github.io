@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { Calendar, ExternalLink, MapPin, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -250,6 +250,7 @@ type WorkAccentStyle = CSSProperties & {
 
 type WorkCardStyle = WorkAccentStyle & {
   "--shuffle-index": number;
+  "--work-stack-index"?: number;
 };
 
 function getWorkAccentStyle(accent?: string): WorkAccentStyle {
@@ -263,6 +264,7 @@ function getWorkAccentStyle(accent?: string): WorkAccentStyle {
 export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeMobileFilter, setActiveMobileFilter] = useState("Featured");
+  const desktopListRef = useRef<HTMLDivElement | null>(null);
 
   const desktopRevealSkills = useMemo(() => {
     const all = experiences
@@ -286,6 +288,107 @@ export function WorkSection() {
   const mobileVisibleExperiences = filteredExperiences.slice(0, activeFilter || activeMobileFilter !== "Featured" ? 4 : 3);
   const mobileHiddenExperiences = filteredExperiences.slice(mobileVisibleExperiences.length);
   const filterMotionKey = activeFilter ?? activeMobileFilter;
+
+  useEffect(() => {
+    const list = desktopListRef.current;
+    if (!list) return;
+
+    const desktopMedia = window.matchMedia("(min-width: 901px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!desktopMedia.matches || reducedMotion.matches) return;
+
+    type CardMetric = {
+      card: HTMLElement;
+      fitsViewport: boolean;
+      top: number;
+    };
+
+    let frame = 0;
+    let resizeTimer = 0;
+    let metrics: CardMetric[] = [];
+
+    const setVar = (card: HTMLElement, name: string, value: string) => {
+      if (card.style.getPropertyValue(name) !== value) {
+        card.style.setProperty(name, value);
+      }
+    };
+
+    const measureCards = () => {
+      const cards = Array.from(list.querySelectorAll<HTMLElement>(".work-card"));
+      const viewportHeight = window.innerHeight;
+      const stackTop = 74;
+      const listTop = list.getBoundingClientRect().top + window.scrollY;
+
+      metrics = cards.map((card) => {
+        const fitsViewport = card.offsetHeight < viewportHeight - stackTop - 42;
+        card.classList.toggle("work-card-stackable", fitsViewport);
+
+        return {
+          card,
+          fitsViewport,
+          top: listTop + card.offsetTop,
+        };
+      });
+    };
+
+    const updateWorkStack = () => {
+      frame = 0;
+      const stackTop = 74;
+      const passedCards: HTMLElement[] = [];
+      const scrollY = window.scrollY;
+
+      metrics.forEach(({ card, fitsViewport, top }) => {
+        const progress = fitsViewport ? Math.min(Math.max((scrollY + stackTop - top) / 180, 0), 1) : 0;
+
+        setVar(card, "--work-stack-progress", progress.toFixed(3));
+        setVar(card, "--work-stack-depth", "0");
+        setVar(card, "--work-stack-opacity", "1");
+        setVar(card, "--work-stack-offset", "0px");
+        setVar(card, "--work-stack-shade", "0");
+
+        if (fitsViewport && progress > 0) {
+          passedCards.push(card);
+        }
+      });
+
+      passedCards.forEach((card, passedIndex) => {
+        const depth = passedCards.length - 1 - passedIndex;
+        const visibleDepth = Math.min(depth, 4);
+        const opacity = depth > 3 ? 0 : 1 - visibleDepth * 0.2;
+        const shade = depth > 3 ? 1 : Math.min(visibleDepth * 0.28, 0.84);
+
+        setVar(card, "--work-stack-depth", String(visibleDepth));
+        setVar(card, "--work-stack-offset", `${visibleDepth * 12}px`);
+        setVar(card, "--work-stack-opacity", opacity.toFixed(3));
+        setVar(card, "--work-stack-shade", shade.toFixed(3));
+      });
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateWorkStack);
+    };
+
+    const requestMeasure = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        measureCards();
+        requestUpdate();
+      }, 120);
+    };
+
+    measureCards();
+    updateWorkStack();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestMeasure);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestMeasure);
+    };
+  }, [filterMotionKey]);
 
   return (
     <SectionBand id="work">
@@ -463,7 +566,7 @@ export function WorkSection() {
           )}
         </div>
 
-        <div className="work-desktop-list space-y-10" key={`desktop-${filterMotionKey}`}>
+        <div className="work-desktop-list space-y-10" key={`desktop-${filterMotionKey}`} ref={desktopListRef}>
           {filteredExperiences.map((experience, index) => (
             <EditorialCard
               key={experience.id}
@@ -471,6 +574,7 @@ export function WorkSection() {
               style={{
                 ...getWorkAccentStyle(experience.accent),
                 "--shuffle-index": index,
+                "--work-stack-index": index,
               } as WorkCardStyle}
               className={cn(
                 "work-card group overflow-hidden p-0",
