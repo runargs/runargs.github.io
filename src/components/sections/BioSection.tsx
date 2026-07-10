@@ -69,7 +69,7 @@ export function BioSection() {
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
               <p className="text-lg text-[var(--ink-soft)] leading-8">
-                I’m a product manager focused on AI tools that help people make sense of complex information without losing uncertainty, context, or accountability.
+                I’m a product manager building AI tools that help people understand complex information, make better decisions, and stay accountable for the judgment behind them.
               </p>
 
               <blockquote className="mt-4 border-l-2 border-[var(--civic-blue)] pl-4">
