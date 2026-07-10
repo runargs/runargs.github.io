@@ -638,8 +638,8 @@
     justify-content: center;
     overflow-wrap: anywhere;
     line-height: 1.08;
-    letter-spacing: 0.045em;
-    font-size: clamp(0.58rem, 0.72vw, 0.72rem);
+    letter-spacing: 0.035em;
+    font-size: clamp(0.52rem, 0.64vw, 0.64rem);
     transform-origin: 50% 100%;
   }
 
