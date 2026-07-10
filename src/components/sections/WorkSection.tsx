@@ -248,6 +248,10 @@ type WorkAccentStyle = CSSProperties & {
   "--work-accent-soft": string;
 };
 
+type WorkCardStyle = WorkAccentStyle & {
+  "--shuffle-index": number;
+};
+
 function getWorkAccentStyle(accent?: string): WorkAccentStyle {
   const vars = workAccentVars[(accent as AccentName) || "blue"] ?? workAccentVars.blue;
   return {
@@ -281,6 +285,7 @@ export function WorkSection() {
 
   const mobileVisibleExperiences = filteredExperiences.slice(0, activeFilter || activeMobileFilter !== "Featured" ? 4 : 3);
   const mobileHiddenExperiences = filteredExperiences.slice(mobileVisibleExperiences.length);
+  const filterMotionKey = activeFilter ?? activeMobileFilter;
 
   return (
     <SectionBand id="work">
@@ -371,12 +376,15 @@ export function WorkSection() {
           </div>
         </div>
 
-        <div className="work-mobile-list">
-          {mobileVisibleExperiences.map((experience) => (
+        <div className="work-mobile-list" key={`mobile-${filterMotionKey}`}>
+          {mobileVisibleExperiences.map((experience, index) => (
             <article
               key={`mobile-${experience.id}`}
               className="mobile-work-card"
-              style={getWorkAccentStyle(experience.accent)}
+              style={{
+                ...getWorkAccentStyle(experience.accent),
+                "--shuffle-index": index,
+              } as WorkCardStyle}
             >
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div className="min-w-0">
@@ -455,12 +463,15 @@ export function WorkSection() {
           )}
         </div>
 
-        <div className="work-desktop-list space-y-10">
-          {filteredExperiences.map((experience) => (
+        <div className="work-desktop-list space-y-10" key={`desktop-${filterMotionKey}`}>
+          {filteredExperiences.map((experience, index) => (
             <EditorialCard
               key={experience.id}
               important={experience.featured}
-              style={getWorkAccentStyle(experience.accent)}
+              style={{
+                ...getWorkAccentStyle(experience.accent),
+                "--shuffle-index": index,
+              } as WorkCardStyle}
               className={cn(
                 "work-card group overflow-hidden p-0",
                 experience.type === "secondary" && "border-dashed bg-[color-mix(in_srgb,var(--paper-card)_74%,var(--work-accent-soft))]"
@@ -484,7 +495,7 @@ export function WorkSection() {
                         </StampBadge>
                       )}
                     </div>
-                    <h3 className="text-2xl leading-tight transition-colors group-hover:text-[var(--work-accent)] md:text-3xl">
+                    <h3 className="text-2xl leading-tight transition-[transform,text-shadow] duration-200 group-hover:-translate-y-px group-hover:[text-shadow:1px_1px_0_var(--paper-soft)] md:text-3xl">
                       {experience.role}
                     </h3>
                   </div>

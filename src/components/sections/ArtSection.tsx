@@ -175,7 +175,6 @@ const galleries: { id: GalleryType; label: string }[] = [
 
 export function ArtSection() {
   const [activeGallery, setActiveGallery] = useState<GalleryType>("culinary");
-  const [isGalleryLabelHovered, setIsGalleryLabelHovered] = useState(false);
   const [selectedPiece, setSelectedPiece] = useState<ArtPiece | null>(null);
 
   const filteredPieces = artPieces.filter((piece) => piece.gallery === activeGallery);
@@ -196,15 +195,9 @@ export function ArtSection() {
             <button
               key={gallery.id}
               onClick={() => setActiveGallery(gallery.id)}
-              onMouseEnter={() => setIsGalleryLabelHovered(true)}
-              onMouseLeave={() => setIsGalleryLabelHovered(false)}
-              onFocus={() => setIsGalleryLabelHovered(true)}
-              onBlur={() => setIsGalleryLabelHovered(false)}
               className={cn(
-                "inline-flex min-h-[25px] items-center border px-3 py-1 text-[0.68rem] font-extrabold uppercase leading-none tracking-[0.075em] shadow-[1px_1px_0_rgba(45,40,31,0.08)] transition-colors",
-                activeGallery === gallery.id
-                  ? "border-[var(--field-ochre)] bg-[var(--field-ochre-soft)] text-[var(--field-ochre)]"
-                  : "border-[var(--rule-strong)] bg-transparent text-[var(--ink-muted)] hover:border-[var(--field-ochre)] hover:text-[var(--field-ochre)]"
+                "art-gallery-tab",
+                activeGallery === gallery.id && "is-active"
               )}
             >
               {gallery.label}
@@ -214,10 +207,7 @@ export function ArtSection() {
 
         <div className="border border-[var(--rule)] bg-[var(--paper-soft)] p-3">
           <div
-            className={cn(
-              "mobile-gallery-grid grid grid-cols-2 gap-3 md:grid-cols-4",
-              isGalleryLabelHovered && "gallery-label-hovered",
-            )}
+            className="mobile-gallery-grid grid grid-cols-2 gap-3 md:grid-cols-4"
           >
             {filteredPieces.map((piece) => (
               <button
@@ -231,12 +221,12 @@ export function ArtSection() {
                     alt={piece.title}
                     caption={`${piece.title} / ${piece.date}`}
                     mediaClassName="aspect-square"
-                    className="gallery-image-frame h-full transition-colors group-hover:border-[var(--civic-blue)]"
-                    imgClassName="transition duration-200 group-hover:grayscale-0 group-hover:sepia-0 group-hover:contrast-100 group-focus-visible:grayscale-0 group-focus-visible:sepia-0 group-focus-visible:contrast-100"
-                    grayscale
+                    className="gallery-image-frame film-frame h-full"
+                    imgClassName="film-frame-image"
+                    grayscale={false}
                   />
                 ) : (
-                  <div className="gallery-image-frame notched flex aspect-square items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)]">
+                  <div className="gallery-image-frame film-frame notched flex aspect-square items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)]">
                     <span className="font-display text-3xl text-[var(--civic-blue)]">IMG</span>
                   </div>
                 )}
@@ -249,7 +239,7 @@ export function ArtSection() {
                     )}
                   </div>
                   <div className="min-w-0">
-                    <p className="small-label mb-1 text-[var(--field-ochre)]">{piece.date}</p>
+                    <p className="mobile-gallery-meta small-label mb-1 text-[var(--field-ochre)]">{piece.date}</p>
                     <p className="mobile-gallery-title">{piece.title}</p>
                   </div>
                 </div>

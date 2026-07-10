@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PortfolioSidebar } from "@/components/layout/PortfolioSidebar";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { LightsOffToggle } from "@/components/design-system/Dossier";
@@ -24,6 +24,8 @@ const sectionIds = [
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("bio");
+  const requestedSectionRef = useRef<string | null>(null);
+  const requestedSectionTimerRef = useRef<number | null>(null);
   
   // States for timing and visibility
   const [isRendered, setIsRendered] = useState(false);
@@ -40,9 +42,27 @@ const Index = () => {
     return () => clearTimeout(appearanceTimer);
   }, []);
 
+  const handleSectionChange = (sectionId: string) => {
+    requestedSectionRef.current = sectionId;
+    setActiveSection(sectionId);
+
+    if (requestedSectionTimerRef.current) {
+      window.clearTimeout(requestedSectionTimerRef.current);
+    }
+
+    requestedSectionTimerRef.current = window.setTimeout(() => {
+      requestedSectionRef.current = null;
+      requestedSectionTimerRef.current = null;
+    }, 1400);
+  };
+
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
+      if (requestedSectionRef.current) {
+        return;
+      }
+
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sectionIds) {
@@ -58,7 +78,12 @@ const Index = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (requestedSectionTimerRef.current) {
+        window.clearTimeout(requestedSectionTimerRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -67,7 +92,7 @@ const Index = () => {
 
       <MobileNav
         activeSection={activeSection}
-        onSectionChange={setActiveSection}
+        onSectionChange={handleSectionChange}
       />
 
       <main className="page-shell">
@@ -75,7 +100,7 @@ const Index = () => {
           <BioSection />
           <PortfolioSidebar
             activeSection={activeSection}
-            onSectionChange={setActiveSection}
+            onSectionChange={handleSectionChange}
           />
           <div className="hatch-band" aria-hidden="true" />
           <WorkSection />

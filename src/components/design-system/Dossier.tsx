@@ -48,7 +48,7 @@ export function EditorialCard({
     <article
       className={cn(
         "relative border border-[var(--rule)] bg-[var(--paper-card)] p-5 text-[var(--ink)]",
-        "transition-colors duration-150 hover:border-[color-mix(in_srgb,var(--civic-blue)_45%,var(--rule))]",
+        "transition-[border-color,box-shadow,transform] duration-200 hover:-rotate-[0.18deg] hover:-translate-y-1 hover:border-[var(--rule-strong)] hover:shadow-[5px_6px_0_rgba(45,40,31,0.10)]",
         important && "shadow-[inset_0_0_0_4px_rgba(53,111,128,0.045)]",
         notched && "notched",
         className,
@@ -136,7 +136,7 @@ export function DossierButton({
     <button
       className={cn(
         "min-h-[38px] border border-[var(--rule)] bg-[var(--paper-card)] px-5 py-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink)]",
-        "transition duration-150 hover:-translate-y-px hover:border-[var(--ink-faint)] hover:bg-[var(--paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]",
+        "shadow-[2px_2px_0_rgba(45,40,31,0.10)] transition duration-150 hover:-rotate-[0.6deg] hover:-translate-y-0.5 hover:border-[var(--ink-faint)] hover:shadow-[3px_4px_0_rgba(45,40,31,0.13)] active:translate-x-px active:translate-y-px active:shadow-[1px_1px_0_rgba(45,40,31,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]",
         className,
       )}
       {...props}
@@ -155,7 +155,7 @@ export function DossierLink({
     <a
       className={cn(
         "inline-flex min-h-[38px] items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)] px-5 py-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink)]",
-        "transition duration-150 hover:-translate-y-px hover:border-[var(--ink-faint)] hover:bg-[var(--paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]",
+        "shadow-[2px_2px_0_rgba(45,40,31,0.10)] transition duration-150 hover:-rotate-[0.6deg] hover:-translate-y-0.5 hover:border-[var(--ink-faint)] hover:shadow-[3px_4px_0_rgba(45,40,31,0.13)] active:translate-x-px active:translate-y-px active:shadow-[1px_1px_0_rgba(45,40,31,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]",
         className,
       )}
       {...props}
@@ -206,6 +206,7 @@ export function ImageFrame({
 
 export function LightsOffToggle() {
   const [isDark, setIsDark] = useState(false);
+  const [isSwitchingTheme, setIsSwitchingTheme] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("site-theme");
@@ -217,14 +218,19 @@ export function LightsOffToggle() {
 
   const toggleTheme = () => {
     const nextIsDark = !isDark;
+    setIsSwitchingTheme(true);
     setIsDark(nextIsDark);
     document.documentElement.dataset.theme = nextIsDark ? "dark" : "light";
     window.localStorage.setItem("site-theme", nextIsDark ? "dark" : "light");
+    window.setTimeout(() => setIsSwitchingTheme(false), 720);
   };
 
   return (
-    <button className="theme-toggle" type="button" onClick={toggleTheme} aria-pressed={isDark} aria-label="Toggle lights-off mode">
-      {isDark ? "Lights on" : "Lights off"}
-    </button>
+    <>
+      {isSwitchingTheme && <span className="theme-switch-overlay" aria-hidden="true" />}
+      <button className="theme-toggle" type="button" onClick={toggleTheme} aria-pressed={isDark} aria-label="Toggle lights-off mode">
+        {isDark ? "Lights on" : "Lights off"}
+      </button>
+    </>
   );
 }
