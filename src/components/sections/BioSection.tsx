@@ -74,7 +74,7 @@ export function BioSection() {
 
               <blockquote className="mt-4 border-l-2 border-[var(--civic-blue)] pl-4">
                 <p className="font-display text-[1.35rem] leading-[1.18] text-[var(--ink-soft)]">
-                  “There are times when the world is rearranging itself, and at times like that, the right words can change the world.”
+                  “There are times when the world is in flux and the right voice in the right place can move the world.”
                 </p>
                 <cite className="mt-3 block text-[0.68rem] not-italic font-extrabold uppercase leading-none tracking-[0.07em] text-[var(--civic-blue)]">
                   Peter Wiggin, Ender’s Game
