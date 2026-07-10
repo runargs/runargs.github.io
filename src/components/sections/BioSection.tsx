@@ -77,7 +77,7 @@ export function BioSection() {
                   “There are times when the world is rearranging itself, and at times like that, the right words can change the world.”
                 </p>
                 <cite className="mt-3 block text-[0.68rem] not-italic font-extrabold uppercase leading-none tracking-[0.07em] text-[var(--civic-blue)]">
-                  Ender Wiggin, Ender’s Game
+                  Peter Wiggin, Ender’s Game
                 </cite>
               </blockquote>
 
