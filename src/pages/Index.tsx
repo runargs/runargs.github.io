@@ -272,7 +272,7 @@ const Index = () => {
           </div>
 
           <img 
-            src="/images/clippy-new.png" 
+            src="/images/clippy-assistant-pixel.png" 
             alt="Clippy" 
             className="clippy-assistant h-20 w-16 object-contain"
           />

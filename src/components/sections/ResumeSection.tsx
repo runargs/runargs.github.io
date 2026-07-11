@@ -23,7 +23,7 @@ export function ResumeSection() {
     <SectionBand id="resume">
       <div className="mx-auto max-w-4xl">
         <SectionHeader
-          marker="07"
+          marker="06"
           title="Curriculum Vitae."
           className="mb-8"
         />

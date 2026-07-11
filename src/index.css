@@ -809,8 +809,8 @@
       inset 0 1px 0 rgba(222, 220, 207, 0.03);
   }
 
-  [data-theme="dark"] :is(.notched, .work-card, .mobile-work-card, .marginalia-card, .mobile-more-details, .evidence-row, .evidence-table-wrap):hover,
-  .dark :is(.notched, .work-card, .mobile-work-card, .marginalia-card, .mobile-more-details, .evidence-row, .evidence-table-wrap):hover {
+  [data-theme="dark"] :is(.notched, .work-card, .mobile-work-card, .mobile-more-details, .evidence-row, .evidence-table-wrap):hover,
+  .dark :is(.notched, .work-card, .mobile-work-card, .mobile-more-details, .evidence-row, .evidence-table-wrap):hover {
     border-color: color-mix(in srgb, var(--rule-strong) 78%, transparent);
     box-shadow:
       0 16px 38px rgba(0, 0, 0, 0.34),
@@ -1482,7 +1482,7 @@
     border-bottom: var(--line-hair) solid var(--rule);
     background:
       linear-gradient(90deg, var(--work-accent-soft), transparent 42%),
-      url("/images/clip-circuit-engraving.png");
+      url("/images/clip-circuit-board-engraving.png");
     background-position: center 45%;
     background-size: cover;
     filter: grayscale(1) sepia(0.12) contrast(0.95);
@@ -1634,12 +1634,47 @@
     min-height: 156px;
     border: var(--line-hair) solid var(--rule);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent),
-      var(--paper-card);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.42)),
+      url("/images/notecard-texture.png");
+    background-color: var(--paper-card);
+    background-position: center top;
+    background-repeat: repeat;
+    background-size: 512px 288px;
     padding: var(--space-3);
     color: var(--ink);
     text-align: left;
-    transition: border-color var(--ease), transform var(--ease), background var(--ease);
+    transition: border-color var(--ease), background var(--ease);
+  }
+
+  [data-theme="dark"] .marginalia-card,
+  .dark .marginalia-card {
+    background:
+      linear-gradient(180deg, rgba(248, 240, 222, 0.86), rgba(232, 221, 198, 0.78)),
+      url("/images/notecard-texture.png");
+    background-color: var(--paper-card);
+    background-position: center top;
+    background-repeat: repeat;
+    background-size: 512px 288px;
+    color: #2d281f;
+  }
+
+  .marginalia-card-index {
+    color: var(--civic-blue);
+  }
+
+  [data-theme="dark"] .marginalia-card-index,
+  .dark .marginalia-card-index {
+    color: #294c6a;
+  }
+
+  [data-theme="dark"] .marginalia-card h3,
+  .dark .marginalia-card h3 {
+    color: #2d281f;
+  }
+
+  [data-theme="dark"] .marginalia-card p,
+  .dark .marginalia-card p {
+    color: #494236;
   }
 
   .marginalia-card:nth-child(2),
@@ -1650,12 +1685,6 @@
   .marginalia-card:nth-child(3) {
     grid-column: span 2;
     min-height: 140px;
-  }
-
-  .marginalia-card:hover {
-    border-color: var(--rule-strong);
-    box-shadow: 4px 5px 0 rgba(45, 40, 31, 0.1);
-    transform: translateY(-3px) rotate(-0.2deg);
   }
 
   .resume-file-card {
@@ -1871,8 +1900,8 @@
     transform: translateY(-3px) rotate(-0.2deg);
   }
 
-  [data-theme="dark"] :is(.card-hover:hover, .border-gold-hover:hover, .work-card:hover, .mobile-work-card:hover, .marginalia-card:hover),
-  .dark :is(.card-hover:hover, .border-gold-hover:hover, .work-card:hover, .mobile-work-card:hover, .marginalia-card:hover) {
+  [data-theme="dark"] :is(.card-hover:hover, .border-gold-hover:hover, .work-card:hover, .mobile-work-card:hover),
+  .dark :is(.card-hover:hover, .border-gold-hover:hover, .work-card:hover, .mobile-work-card:hover) {
     box-shadow:
       0 16px 38px rgba(0, 0, 0, 0.34),
       inset 0 1px 0 rgba(255, 224, 178, 0.055);

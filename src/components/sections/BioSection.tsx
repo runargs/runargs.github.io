@@ -9,7 +9,7 @@ export function BioSection() {
   >
     <div className="pointer-events-none absolute inset-x-0 top-0 h-[31rem] opacity-[0.16] mix-blend-multiply dark:opacity-[0.12] md:h-[27rem] lg:h-[18rem]">
       <img
-        src="/images/punchcard-reference.png"
+        src="/images/punch-card-reference.png"
         alt=""
         aria-hidden="true"
         className="h-full w-full object-cover object-center"
@@ -21,7 +21,7 @@ export function BioSection() {
           <div>
             <div className="flex items-center gap-5 md:gap-6">
               <img
-                src="/images/pixel_portrait.png"
+                src="/images/pixel-portrait.png"
                 alt=""
                 aria-hidden="true"
                 className="h-28 w-28 shrink-0 object-contain [filter:none!important] dark:[filter:none!important] md:h-32 md:w-32"
@@ -57,7 +57,7 @@ export function BioSection() {
             <figure className="hero-photo-wrap notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
               <div className="aspect-[16/9] overflow-hidden bg-[var(--paper-soft)]">
                 <img
-                  src="/images/profile.JPG"
+                  src="/images/ai-product-launch-talk.jpg"
                   alt="Alexa Thoennes speaking to a seated audience"
                   className="block h-full w-full object-cover object-[50%_52%]"
                 />

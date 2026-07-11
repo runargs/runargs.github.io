@@ -106,7 +106,7 @@ const experiences = [
       title: "Sr. Developer Advocate @ Google",
     },
     artifactImage: {
-      src: "/images/google-synthtool.png",
+      src: "/images/google-synthtool-card.png",
       alt: "GitHub repository card for googleapis synthtool",
       caption: "Open-source / googleapis synthtool",
       fit: "contain",
@@ -150,7 +150,7 @@ const experiences = [
     ],
     skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Robotics Education", "Client-facing"],
     artifactImage: {
-      src: "/images/nexus-valley-robots.jpg",
+      src: "/images/nexus-valley-robot-cars.jpg",
       alt: "Small colorful educational robots on a workshop table",
       caption: "3D Printed Robotics / STEAM curriculum",
     },

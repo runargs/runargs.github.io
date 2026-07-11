@@ -25,7 +25,7 @@ const artPieces: ArtPiece[] = [
     description:
       "Filipino-inspired small bites for ArtWRKD, a full-service art consortium with artists in residence, workshops, and a rotating gallery. Pictured: adobo tapenade bites and peach-mango tartlets with coconut glaze.",
     gallery: "culinary",
-    image: "/images/gallerytasting.jpeg",
+    image: "/images/gallery-tasting-service.jpeg",
   },
   {
     id: "s2",
@@ -34,7 +34,7 @@ const artPieces: ArtPiece[] = [
     description:
       "A second view from the gallery tasting series: small bites built around timing, texture, and how food behaves in a room full of people moving through art.",
     gallery: "culinary",
-    image: "/images/tasting.jpeg",
+    image: "/images/gallery-tasting-plate.jpeg",
   },
   {
     id: "s3",
@@ -42,7 +42,7 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "Interactive canapé chef’s table for the Happening Women Award Ceremony.",
     gallery: "culinary",
-    image: "/images/bucksawards.JPG",
+    image: "/images/happening-women-awards-chefs-table.jpg",
     url: "https://www.happeningmag.com/happening-women-2025/",
   },
   {
@@ -51,7 +51,7 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "Filipino cuisine and handmade ceramic serviceware, with food, object, memory, and table treated together.",
     gallery: "culinary",
-    image: "/images/iloilo.jpg",
+    image: "/images/flavors-of-iloilo-plate.jpg",
     url: "https://www.instagram.com/p/DEv2ddPAVal/",
   },
   {
@@ -60,7 +60,15 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "Part of a Mediterranean dining experience for private events at Triple Sun Spirits Distillery & Speakeasy.",
     gallery: "culinary",
-    image: "/images/IMG_8416.jpg",
+    image: "/images/catering-triple-sun-spread.jpg",
+  },
+  {
+    id: "s7",
+    title: "Antipasti table",
+    date: "2025",
+    description: "A hosting study in abundance, pacing, and the quiet choreography of a shared table.",
+    gallery: "culinary",
+    image: "/images/catering-antipasti-table.jpg",
   },
   {
     id: "s6",
@@ -68,7 +76,7 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "A collaboration with The Bond Experience and Newtown Theatre. The aim: slow down and enjoy yourself.",
     gallery: "culinary",
-    image: "/images/puff.jpg",
+    image: "/images/bond-experience-pastry.jpg",
     url: "https://www.instagram.com/p/DNe3tH2AEX1/",
   },
   {
@@ -77,7 +85,7 @@ const artPieces: ArtPiece[] = [
     date: "2024–Present",
     description: "Local venue and in-home private dining: menus, pacing, prep systems, and the feeling of being hosted well.",
     gallery: "culinary",
-    image: "/images/kitchen.JPG",
+    image: "/images/private-dining-kitchen.jpg",
   },
   {
     id: "c1",
@@ -85,7 +93,7 @@ const artPieces: ArtPiece[] = [
     date: "2024",
     description: "Wheel-thrown ceramic work with hand-carved surface design.",
     gallery: "ceramics",
-    image: "/images/IMG_8418.jpg",
+    image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg",
   },
   {
     id: "c2",
@@ -93,7 +101,7 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "A study in form, handle, pour, and proportion.",
     gallery: "ceramics",
-    image: "/images/teapot.jpg",
+    image: "/images/ceramic-brown-teapot.jpg",
     url: "https://www.instagram.com/p/DOH53lpDoK2/",
   },
   {
@@ -102,7 +110,7 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "Ceramic work across shape, glaze, constraint, and use.",
     gallery: "ceramics",
-    image: "/images/comp_pottery1.jpg",
+    image: "/images/ceramic-mixed-vessels-overhead.jpg",
     url: "https://www.instagram.com/p/DN6Akntjo3y/",
   },
   {
@@ -111,8 +119,16 @@ const artPieces: ArtPiece[] = [
     date: "2025",
     description: "Another study in vessel language and surface treatment.",
     gallery: "ceramics",
-    image: "/images/comp_pottery2.jpg",
+    image: "/images/ceramic-green-table-setting.jpg",
     url: "https://www.instagram.com/p/DN6Akntjo3y/",
+  },
+  {
+    id: "c5",
+    title: "Haruhay Studio",
+    date: "2025",
+    description: "A studio identity image for ceramic work, table objects, and the small rituals around making.",
+    gallery: "ceramics",
+    image: "/images/haruhay-studio-card.jpg",
   },
   {
     id: "p1",
@@ -120,7 +136,7 @@ const artPieces: ArtPiece[] = [
     date: "@delarosa_jr",
     description: "Image study for I Know a Place Agency: table, gesture, material, and mood.",
     gallery: "image studies",
-    image: "/images/placesetting.JPEG",
+    image: "/images/place-setting-candle-study.jpg",
   },
   {
     id: "p2",
@@ -128,7 +144,7 @@ const artPieces: ArtPiece[] = [
     date: "@delarosa_jr",
     description: "Image study for I Know a Place Agency: sensory detail as atmosphere.",
     gallery: "image studies",
-    image: "/images/herbs.JPEG",
+    image: "/images/herb-garden-study.jpg",
   },
   {
     id: "p4",
@@ -136,7 +152,7 @@ const artPieces: ArtPiece[] = [
     date: "@visualsbykaitlyn",
     description: "A visual reference point for restraint, light, and editorial mood.",
     gallery: "image studies",
-    image: "/images/photoshoot1.jpg",
+    image: "/images/portrait-study-seated-shadow.jpg",
     url: "https://www.instagram.com/p/CNH3F4GHG8P/",
   },
   {
@@ -145,7 +161,7 @@ const artPieces: ArtPiece[] = [
     date: "@visualsbykaitlyn",
     description: "A second visual reference point for composition and atmosphere.",
     gallery: "image studies",
-    image: "/images/photoshoot2.jpg",
+    image: "/images/portrait-study-red-light.jpg",
     url: "https://www.instagram.com/p/CNAOVNKn4DJ/",
   },
   {
@@ -154,7 +170,23 @@ const artPieces: ArtPiece[] = [
     date: "@photography_by_nadia",
     description: "A study in styling, silhouette, and visual tone.",
     gallery: "image studies",
-    image: "/images/photoshoot3.jpg",
+    image: "/images/portrait-study-magenta-light.jpg",
+  },
+  {
+    id: "p8",
+    title: "Green dress portrait",
+    date: "Muse",
+    description: "A portrait study in softness, color, and outdoor light.",
+    gallery: "image studies",
+    image: "/images/green-dress-portrait.jpg",
+  },
+  {
+    id: "p9",
+    title: "Streamside companion",
+    date: "Muse",
+    description: "A small personal image study in texture, warmth, and place.",
+    gallery: "image studies",
+    image: "/images/streamside-puppy.jpg",
   },
   {
     id: "p7",
@@ -162,7 +194,7 @@ const artPieces: ArtPiece[] = [
     date: "@alexander.aperture",
     description: "Urban light, texture, and composition.",
     gallery: "image studies",
-    image: "/images/sf.jpg",
+    image: "/images/san-francisco-portrait-study.jpg",
     url: "https://www.instagram.com/p/DCiDW_cJwZR/",
   },
 ];
@@ -184,7 +216,7 @@ export function ArtSection() {
     <SectionBand id="art">
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          marker="05"
+          marker="04"
           title="What is done in love is well done."
           description={
             <>
