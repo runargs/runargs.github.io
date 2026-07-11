@@ -12,5 +12,5 @@ export const navItems: NavItem[] = [
   { id: "art", label: "Image Archive", shortLabel: "Images" },
   { id: "side-projects", label: "Marginalia", shortLabel: "Notes" },
   { id: "resume", label: "Dossier", shortLabel: "CV" },
-  { id: "mentorship", label: "Correspondence", shortLabel: "Contact" },
+  { id: "mentorship", label: "Contact", shortLabel: "Contact" },
 ];
