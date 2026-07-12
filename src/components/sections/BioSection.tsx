@@ -50,7 +50,7 @@ export function BioSection() {
 
         <article className="hero-article border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 md:p-7">
           <h1 className="hero-headline max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
-            I build <span className="hero-headline-pixel">AI</span> tools that expand what people can do without outsourcing judgment.
+            I build <span className="hero-headline-pixel">AI</span> tools that expand what people can do without outsourcing compassion.
           </h1>
 
           <div className="mt-7 flow-root">
