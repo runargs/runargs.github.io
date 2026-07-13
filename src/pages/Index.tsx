@@ -223,25 +223,25 @@ const Index = () => {
           <ResumeSection />
           <MentorshipSection />
 
-          <footer className="grid gap-6 border-t border-[var(--rule)] bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_260px] md:px-11">
-            <div className="flex items-start gap-4">
+          <footer className="portfolio-footer">
+            <div className="portfolio-footer-mark">
               <img
                 src="/images/footer-miso-full.png"
                 alt=""
                 aria-hidden="true"
-                className="h-14 w-14 shrink-0 object-contain"
+                className="portfolio-footer-image"
               />
-              <div>
-                <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
-                  You made it to the end. Stay curious.
-                </p>
-                <p className="mt-3 max-w-xl text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.075em] text-[var(--ink-faint)]">
-                  Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
-                </p>
-              </div>
             </div>
-            <div className="space-y-1 text-xs text-[var(--ink-faint)] md:text-right">
+            <div className="portfolio-footer-copy">
+              <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
+                You made it to the end. Stay curious.
+              </p>
+              <p className="portfolio-footer-legal mt-4 max-w-xl text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.075em] text-[var(--ink-faint)]">
+                Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
+              </p>
+            </div>
+            <div className="portfolio-footer-meta">
               <p>Built with generative AI assistance</p>
               <p>© 2026</p>
             </div>
