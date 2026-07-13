@@ -225,11 +225,17 @@ export function LightsOffToggle() {
   const clickAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    const themeParam = new URLSearchParams(window.location.search).get("theme");
     const stored = window.localStorage.getItem("site-theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const nextIsDark = stored ? stored === "dark" : prefersDark;
+    const requestedTheme = themeParam === "dark" || themeParam === "light" ? themeParam : null;
+    const nextIsDark = requestedTheme ? requestedTheme === "dark" : stored ? stored === "dark" : prefersDark;
+
     setIsDark(nextIsDark);
     document.documentElement.dataset.theme = nextIsDark ? "dark" : "light";
+    if (requestedTheme) {
+      window.localStorage.setItem("site-theme", requestedTheme);
+    }
   }, []);
 
   useEffect(() => {
