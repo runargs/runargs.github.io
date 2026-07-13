@@ -713,6 +713,7 @@
 
   .mobile-portfolio-nav {
     --active-index: 0;
+    --mobile-nav-item-width: clamp(76px, 12.5vw, 92px);
   }
 
   .mobile-portfolio-nav-track {
@@ -737,8 +738,8 @@
     content: "";
     position: absolute;
     top: 0;
-    left: calc(var(--active-index) * 86px);
-    width: 86px;
+    left: calc(var(--active-index) * var(--mobile-nav-item-width));
+    width: var(--mobile-nav-item-width);
     height: 100%;
     border-inline: var(--line-hair) solid color-mix(in srgb, var(--civic-blue) 38%, transparent);
     background:
@@ -750,6 +751,15 @@
       left 640ms cubic-bezier(0.16, 0.82, 0.24, 1),
       background-color 260ms ease,
       box-shadow 260ms ease;
+  }
+
+  .mobile-portfolio-nav-button {
+    flex: 0 0 var(--mobile-nav-item-width);
+    min-width: 0;
+    max-width: var(--mobile-nav-item-width);
+    overflow-wrap: anywhere;
+    text-align: center;
+    line-height: 1.05;
   }
 
   .mobile-portfolio-nav-button:hover {

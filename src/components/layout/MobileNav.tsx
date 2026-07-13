@@ -36,7 +36,7 @@ export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
             type="button"
             onClick={() => handleQuickNav(item.id)}
             className={cn(
-              "mobile-portfolio-nav-button relative flex min-w-[86px] items-center justify-center border-r border-[rgba(213,198,177,0.8)] px-3 py-2 text-[0.72rem] font-extrabold uppercase tracking-[0.07em]",
+              "mobile-portfolio-nav-button relative flex items-center justify-center border-r border-[rgba(213,198,177,0.8)] px-2 py-2 text-[0.66rem] font-extrabold uppercase tracking-[0.045em]",
               "text-[var(--ink-muted)] transition duration-150 hover:text-[var(--ink)]",
               "before:absolute before:left-1/2 before:top-0 before:h-[7px] before:w-px before:-translate-x-1/2 before:bg-[var(--rule)] before:content-['']",
               activeSection === item.id && "is-active text-[var(--ink)]",
