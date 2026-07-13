@@ -1,0 +1,5 @@
+# Project-scoped Codex settings.
+#
+# Durable workflow rules live in ../AGENTS.md. Agent role profiles live in
+# ./agents/*.toml. This file intentionally does not override the user's
+# configured default model, reasoning level, sandbox, or approval policy.
