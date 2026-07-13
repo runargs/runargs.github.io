@@ -6,6 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const smoothstep = (progress: number) => progress * progress * (3 - 2 * progress);
+
+// The site uses a custom scroll cadence to match the film-feed visual system.
+// Reduced-motion users bypass this and receive an immediate section jump.
 const filmRollEase = (progress: number) => {
   const immediatePull = progress;
   const softMomentum = smoothstep(progress);
@@ -22,6 +25,8 @@ export function scrollToSection(sectionId: string) {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const startY = window.scrollY;
+  // Desktop has a sticky top nav; mobile has bottom navigation, so the target
+  // can sit closer to the top edge without being covered.
   const navOffset = window.matchMedia("(max-width: 900px)").matches ? 12 : 54;
   const targetY = Math.max(target.getBoundingClientRect().top + startY - navOffset, 0);
   const distance = targetY - startY;

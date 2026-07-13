@@ -18,6 +18,11 @@ const credentials = [
   { title: "B.S. Applied Computing (Business Analytics)", org: "University of Scranton · Magna Cum Laude" },
 ];
 
+type Credential = {
+  title: string;
+  org: string;
+};
+
 export function ResumeSection() {
   return (
     <SectionBand id="resume">
@@ -59,8 +64,8 @@ export function ResumeSection() {
               </div>
 
               <div className="resume-credentials-grid grid grid-cols-1 gap-x-6 md:grid-cols-2">
-                {credentials.map((credential) => (
-                  <div key={`${credential.title}-${credential.date}`} className="resume-credential-row group flex items-center justify-between border-b border-[rgba(213,198,177,0.72)] py-3 last:border-0 md:last:border-b">
+                {(credentials satisfies Credential[]).map((credential) => (
+                  <div key={`${credential.title}-${credential.org}`} className="resume-credential-row group flex items-center justify-between border-b border-[rgba(213,198,177,0.72)] py-3 last:border-0 md:last:border-b">
                     <div className="min-w-0">
                       <p className="resume-credential-title text-sm font-semibold text-[var(--ink)] transition-colors group-hover:text-[var(--civic-blue)]">
                         {credential.title}
@@ -69,9 +74,6 @@ export function ResumeSection() {
                         {credential.org}
                       </p>
                     </div>
-                    <span className="resume-credential-date ml-2 font-display text-xl text-[var(--civic-blue)]">
-                      {credential.date}
-                    </span>
                   </div>
                 ))}
               </div>

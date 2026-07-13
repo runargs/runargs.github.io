@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+/*
+ * Dossier contains the portfolio's editorial primitives. These components
+ * encode the archival civic-publication system; keep visual hierarchy changes
+ * here deliberate so badges, metadata, cards, and links do not drift apart.
+ */
 export interface SectionHeaderProps {
   marker: string;
   title: ReactNode;
@@ -66,6 +71,11 @@ export function StampBadge({
   className,
   ...props
 }: HTMLAttributes<HTMLSpanElement> & { tone?: "blue" | "red" | "green" | "ochre" | "violet" | "muted" }) {
+  /*
+   * Strong stamp styling is reserved for status or rare emphasis. Plain dates,
+   * locations, organizations, descriptive skills, and actions should use quieter
+   * metadata/link treatments instead of this component.
+   */
   const toneClass = {
     blue: "text-[var(--civic-blue)] bg-[var(--civic-blue-soft)]",
     red: "text-[var(--revision-red)] bg-[var(--revision-red-soft)]",
@@ -226,6 +236,8 @@ export function LightsOffToggle() {
       return;
     }
 
+    // The candlelight field follows precise pointers only; coarse pointers and
+    // reduced-motion preferences keep the static dark theme.
     let animationFrame = 0;
     const updatePointer = (event: PointerEvent) => {
       window.cancelAnimationFrame(animationFrame);

@@ -10,26 +10,40 @@ import {
 } from "@/components/design-system/Dossier";
 
 /*
-const evidenceTiles = [
-  {
-    label: "Current focus",
-    value: "AI research assistants",
-    detail: "Conversation, synthesis, personalization, evaluation, and adoption.",
-  },
-  {
-    label: "How I work",
-    value: "Product + technical translation",
-    detail: "Ambiguous workflows turned into scoped, testable product decisions.",
-  },
-  {
-    label: "Adoption lens",
-    value: "Trust and repeat use",
-    detail: "Quality, feedback loops, and whether the product becomes part of a real workflow.",
-  },
-];
-*/
+ * WorkSection carries the highest-density portfolio data and the desktop card
+ * stacking interaction. Preserve the distinction between interactive filters,
+ * descriptive skills, status badges, and plain metadata when editing it.
+ */
+type WorkAccent = "blue" | "teal" | "ochre" | "violet" | "green";
 
-const experiences = [
+interface Experience {
+  id: string;
+  company: string;
+  role: string;
+  location: string;
+  duration: string;
+  description: string;
+  impact: string[];
+  skills: string[];
+  accent: WorkAccent;
+  links?: Array<{ label: string; url: string }>;
+  video?: { id: string; title: string };
+  artifactImage?: {
+    src: string;
+    alt: string;
+    caption: string;
+    fit?: "contain" | "cover";
+  };
+  testimonial?: {
+    text: string;
+    author: string;
+    title: string;
+  };
+  featured?: boolean;
+  type?: "secondary";
+}
+
+const experiences: Experience[] = [
   {
     id: "mc-pm",
     company: "Mastercard Insights & Intelligence",
@@ -242,7 +256,6 @@ const mobileWorkFilters = [
   { label: "Human systems", skills: ["Human Impact", "Health", "Service Design", "User Research"] },
 ];
 
-type AccentName = keyof typeof workAccentVars;
 type WorkAccentStyle = CSSProperties & {
   "--work-accent": string;
   "--work-accent-soft": string;
@@ -253,8 +266,8 @@ type WorkCardStyle = WorkAccentStyle & {
   "--work-stack-index"?: number;
 };
 
-function getWorkAccentStyle(accent?: string): WorkAccentStyle {
-  const vars = workAccentVars[(accent as AccentName) || "blue"] ?? workAccentVars.blue;
+function getWorkAccentStyle(accent: WorkAccent = "blue"): WorkAccentStyle {
+  const vars = workAccentVars[accent] ?? workAccentVars.blue;
   return {
     "--work-accent": vars.color,
     "--work-accent-soft": vars.soft,
@@ -338,6 +351,8 @@ export function WorkSection() {
       const scrollY = window.scrollY;
 
       metrics.forEach(({ card, fitsViewport, top }) => {
+        // Only cards short enough to fit below the sticky nav join the stack;
+        // taller cards stay in normal document flow to avoid clipped content.
         const progress = fitsViewport ? Math.min(Math.max((scrollY + stackTop - top) / 180, 0), 1) : 0;
 
         setVar(card, "--work-stack-progress", progress.toFixed(3));
@@ -409,18 +424,6 @@ export function WorkSection() {
             className="work-operator-figure"
           />
         </div>
-
-{/*
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-          {evidenceTiles.map((tile) => (
-            <div key={tile.label} className="rounded-2xl border border-border/50 bg-card/30 p-5">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold mb-2">{tile.label}</p>
-              <p className="font-serif text-xl text-foreground mb-2">{tile.value}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">{tile.detail}</p>
-            </div>
-          ))}
-        </div>
-*/}
         <div className="work-mobile-controls mb-6">
           <span className="small-label mb-3 block">Scan by lens</span>
           <div className="flex gap-2 overflow-x-auto pb-1">

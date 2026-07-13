@@ -22,16 +22,19 @@ const sectionIds = [
   "mentorship",
 ];
 
+/*
+ * Index owns the one-page document shell: active-section tracking, the
+ * desktop/mobile navigation relationship, and scroll-fed section presence.
+ * Keep the section IDs synchronized with navItems and the rendered order.
+ */
 const Index = () => {
   const [activeSection, setActiveSection] = useState("bio");
   const requestedSectionRef = useRef<string | null>(null);
   const requestedSectionTimerRef = useRef<number | null>(null);
   
-  // States for timing and visibility
   const [isRendered, setIsRendered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Handle the delay and fade-in
   useEffect(() => {
     const appearanceTimer = setTimeout(() => {
       setIsRendered(true);
@@ -56,7 +59,6 @@ const Index = () => {
     }, 920);
   };
 
-  // Track active section based on scroll position
   useEffect(() => {
     let frame = 0;
     let resizeTimer = 0;
@@ -81,6 +83,8 @@ const Index = () => {
         return;
       }
 
+      // The offset tracks the section whose content has entered the main
+      // reading area, rather than the section that merely touches the viewport.
       const scrollPosition = window.scrollY + 200;
       const pageBottom = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -154,6 +158,8 @@ const Index = () => {
         const presence = Math.min(Math.max(1 - distance / falloff, 0), 1);
         const feed = Math.round((rect.top - focusLine) * -0.08);
 
+        // CSS consumes these variables for the subtle archival "feed" effect.
+        // They are intentionally disabled for reduced-motion users above.
         const presenceValue = presence.toFixed(3);
         const feedValue = `${feed}px`;
         if (section.style.getPropertyValue("--section-presence") !== presenceValue) {
@@ -248,8 +254,8 @@ const Index = () => {
           {/* Tooltip */}
           <div className="pointer-events-auto mb-2 relative max-w-[210px] border-2 border-[var(--ink)] bg-[var(--paper-card)] p-3 text-[11px] leading-tight text-[var(--ink)] shadow-[3px_3px_0_var(--civic-blue)]">
             <button 
-              onClick={() => setIsVisible(false)} // Fade out first
-              onTransitionEnd={() => !isVisible && setIsRendered(false)} // Remove from DOM after fade
+              onClick={() => setIsVisible(false)}
+              onTransitionEnd={() => !isVisible && setIsRendered(false)}
               className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center border border-[var(--ink)] bg-[var(--paper-soft)] text-[10px] hover:bg-[var(--field-ochre-soft)]"
               aria-label="Dismiss Clippy contact prompt"
             >

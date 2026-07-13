@@ -7,13 +7,14 @@ interface PortfolioSidebarProps {
   onSectionChange: (sectionId: string) => void;
 }
 
-export function PortfolioSidebar({ activeSection }: PortfolioSidebarProps) {
+export function PortfolioSidebar({ activeSection, onSectionChange }: PortfolioSidebarProps) {
   const activeIndex = Math.max(
     0,
     navItems.findIndex((item) => item.id === activeSection)
   );
 
   const handleNavClick = (sectionId: string) => {
+    onSectionChange(sectionId);
     scrollToSection(sectionId);
   };
 

@@ -7,13 +7,14 @@ interface MobileNavProps {
   onSectionChange: (sectionId: string) => void;
 }
 
-export function MobileNav({ activeSection }: MobileNavProps) {
+export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
   const activeIndex = Math.max(
     0,
     navItems.findIndex((item) => item.id === activeSection)
   );
 
   const handleQuickNav = (sectionId: string) => {
+    onSectionChange(sectionId);
     scrollToSection(sectionId);
   };
 
