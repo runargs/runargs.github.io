@@ -24,6 +24,9 @@ Read the matching profile in `.codex/agents/` before delegating work. Profiles d
 
 ## Delegation Rules
 
+- Before each delegation, tell the user which agent profile is being dispatched
+  and why, using the profile name from `.codex/agents/`. For parallel
+  dispatches, list each agent and its scope before starting them.
 - Run read-only discovery and review agents in parallel when their scopes do not depend on one another.
 - Assign explicit file ownership before any agent edits. Never run two editing agents against overlapping files or directories at the same time.
 - Keep discovery, UI review, copy review, test execution, and code review read-only.
