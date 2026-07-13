@@ -10,17 +10,17 @@ const notesAndProjects: NoteOrProject[] = [
   {
     id: "consumption",
     title: "Human Data Curation",
-    description: "Everyone knows the saying about LLMs, 'Garbage in, garbage out'. The most sophisticated neural net we have is sitting behhind our eyes, what are we watching?",
+    description: "Everyone knows the saying about LLMs: “garbage in, garbage out.” The most sophisticated neural net we have is sitting behind our eyes. What are we watching?",
   },
   {
     id: "memory",
     title: "Analog + AI systems",
-    description: "How can AI make the raw material of life easier to capture while acknowleding that the processing itself is what's the highest value for humans to own?",
+    description: "How can AI make the raw material of life easier to capture while acknowledging that the processing itself is the highest-value part for humans to own?",
   },
   {
     id: "behavior",
     title: "Behavior change",
-    description: "How can products support durable behavior change and self-efficacy to agency?",
+    description: "How can products support durable behavior change, from self-efficacy to agency?",
   },
   {
     id: "humangeo",

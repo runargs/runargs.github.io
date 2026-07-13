@@ -220,7 +220,7 @@ export function ArtSection() {
           title="What is done in love is well done."
           description={
             <>
-              The arts are what make us human, whether that's in the chemistry of the glaze room, the film darkroom, or the heat of smokey wok hei. Find more on Instagram,{" "}
+              The arts are what make us human, whether that's in the chemistry of the glaze room, the film darkroom, or the heat of smoky wok hei. Find more on Instagram,{" "}
               <a
                 href="https://www.instagram.com/haruhay_studio/"
                 target="_blank"

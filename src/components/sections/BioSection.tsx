@@ -1,5 +1,5 @@
 import { ArrowRight, FileText } from "lucide-react";
-import { DossierLink, StampBadge } from "@/components/design-system/Dossier";
+import { DossierLink } from "@/components/design-system/Dossier";
 
 export function BioSection() {
   return (
@@ -17,7 +17,7 @@ export function BioSection() {
     </div>
 
       <div className="relative z-10">
-        <div className="hero-intro-panel mb-8 grid gap-6 border-b border-[var(--rule)] pb-6 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
+        <div className="hero-intro-panel mb-8 border-b border-[var(--rule)] pb-6">
           <div>
             <div className="flex items-center gap-5 md:gap-6">
               <img
@@ -35,16 +35,6 @@ export function BioSection() {
               </div>
               
             </div>
-          </div>
-
-          <div className="hero-mission-panel border-t border-[var(--rule)] pt-5 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
-            <StampBadge tone="blue" className="hero-values-stamp">
-              Empathy • Agency • Discernment
-            </StampBadge>
-
-            <p className="hero-mission-copy mt-3 max-w-[34rem] text-sm leading-6 text-[var(--ink-muted)] lg:max-w-none">
-              Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
-            </p>
           </div>
         </div>
 

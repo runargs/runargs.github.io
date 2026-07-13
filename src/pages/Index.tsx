@@ -236,6 +236,9 @@ const Index = () => {
                 <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
                   You made it to the end. Stay curious.
                 </p>
+                <p className="mt-3 max-w-xl text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.075em] text-[var(--ink-faint)]">
+                  Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
+                </p>
               </div>
             </div>
             <div className="space-y-1 text-xs text-[var(--ink-faint)] md:text-right">

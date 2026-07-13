@@ -5,12 +5,12 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { id: "bio", label: "Field Note", shortLabel: "Start" },
-  { id: "work", label: "Work Ledger", shortLabel: "Work" },
-  { id: "talks", label: "Public Record", shortLabel: "Links" },
-  { id: "community-building", label: "Civic Practice", shortLabel: "Civic" },
-  { id: "art", label: "Image Archive", shortLabel: "Images" },
-  { id: "side-projects", label: "Marginalia", shortLabel: "Notes" },
-  { id: "resume", label: "Dossier", shortLabel: "CV" },
+  { id: "bio", label: "About", shortLabel: "Start" },
+  { id: "work", label: "Work", shortLabel: "Work" },
+  { id: "talks", label: "Engagements", shortLabel: "Engagements" },
+  { id: "community-building", label: "Community", shortLabel: "Civic" },
+  { id: "art", label: "Art", shortLabel: "Art" },
+  { id: "side-projects", label: "Notes", shortLabel: "Notes" },
+  { id: "resume", label: "Résumé", shortLabel: "CV" },
   { id: "mentorship", label: "Contact", shortLabel: "Contact" },
 ];

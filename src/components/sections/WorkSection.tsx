@@ -413,7 +413,7 @@ export function WorkSection() {
             <SectionHeader
               marker="01"
               title="Professional experience"
-              description="A rotation through a breath of technical, care, and community work. Collapsed experiences surface depending on filter lens below."
+              description="Experience across AI product, engineering, automation, developer tools, service, and community work. Use the filters to focus the list."
               className="max-w-2xl"
             />
           </div>
@@ -425,7 +425,7 @@ export function WorkSection() {
           />
         </div>
         <div className="work-mobile-controls mb-6">
-          <span className="small-label mb-3 block">Scan by lens</span>
+          <span className="small-label mb-3 block">Filter work</span>
           <div className="flex gap-2 overflow-x-auto pb-1">
             {mobileWorkFilters.map((filter) => (
               <button
@@ -499,7 +499,7 @@ export function WorkSection() {
                 </div>
                 {experience.featured && (
                   <StampBadge tone="muted" className="shrink-0 border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
-                    Selected
+                    Featured
                   </StampBadge>
                 )}
               </div>
@@ -593,12 +593,12 @@ export function WorkSection() {
                       <span className="small-label text-[var(--work-accent)]">{experience.company}</span>
                       {experience.featured && (
                         <StampBadge tone="muted" className="border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
-                          Selected
+                          Featured
                         </StampBadge>
                       )}
                       {experience.type === "secondary" && (
                         <StampBadge tone="muted" className="bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
-                          Related
+                          Earlier work
                         </StampBadge>
                       )}
                     </div>

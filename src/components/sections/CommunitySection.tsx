@@ -56,7 +56,7 @@ const communities: Community[] = [
     name: "Mentorship and volunteerism",
     role: "Independent mentor and community volunteer",
     description:
-      "Career mentorship for emerging technical talent, as well as providing meals, grants, and raising grand champion fundraiser for Alzheimer’s research.",
+      "Career mentorship for emerging technical talent, as well as providing meals, grants, and serving as a Grand Champion fundraiser for Alzheimer’s research.",
     period: "2015–Present",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/",
   },

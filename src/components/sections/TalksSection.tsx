@@ -26,7 +26,7 @@ const artifacts: Artifact[] = [
     date: "2026",
     location: "New York, NY",
     topics: ["AI Product", "Research Assistants", "Conversational Intelligence"],
-    summary: "Hosted and presented Lunch & Learn product launch in NYC, with addtn locations coordinated in Rome, Athens, and Purchase.",
+    summary: "Hosted and presented a Lunch & Learn product launch in NYC, with additional locations coordinated in Rome, Athens, and Purchase.",
     url: "https://www.linkedin.com/posts/alexathoennes_intelligence-is-becoming-fast-conversational-ugcPost-7460767669449867264-Swie/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB3WfnwBG2V5aCsXyXW2XIxZ5ze9Iksy2fA",
   },
   {
@@ -124,7 +124,7 @@ export function TalksSection() {
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="02"
-          title="Engagements and activations"
+          title="Engagements"
           description="Posts, talks, education, earlier technical work, and selected honors."
           className="mb-8"
         />
