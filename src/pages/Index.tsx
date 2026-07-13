@@ -226,7 +226,7 @@ const Index = () => {
           <footer className="grid gap-6 border-t border-[var(--rule)] bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_260px] md:px-11">
             <div className="flex items-start gap-4">
               <img
-                src="/favicon.png"
+                src="/images/footer-miso-full.png"
                 alt=""
                 aria-hidden="true"
                 className="h-14 w-14 shrink-0 object-contain"
