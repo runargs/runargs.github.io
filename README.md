@@ -1,73 +1,139 @@
-# Welcome to your Lovable project
+# Alexa Thoennes portfolio
 
-## Project info
+Personal portfolio site for Alexa Thoennes, built as an editorial, archival-style civic publication. The site combines professional experience, engagements, community work, visual/art artifacts, notes, resume access, and contact paths in a single-page React application.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Local development
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Use npm; `package-lock.json` is committed.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The development server uses Vite and is configured in [`vite.config.ts`](./vite.config.ts).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Commands
 
-**Use GitHub Codespaces**
+```sh
+npm run dev       # local development server
+npm run lint      # ESLint
+npm test          # Vitest
+npm run build     # production build
+npm run preview   # preview the production build locally
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Deployment is through the static output produced by `npm run build`. The build writes to `dist/`, which can be served by GitHub Pages or another static host.
 
-## What technologies are used for this project?
+## Application architecture
 
-This project is built with:
+- `src/pages/` contains route-level pages. [`src/pages/Index.tsx`](./src/pages/Index.tsx) coordinates the portfolio sections, active-section state, scroll behavior, and shared navigation.
+- `src/components/sections/` contains the major content bands: biography, work, engagements, community, art, notes, resume, and contact.
+- `src/components/layout/` contains desktop and mobile navigation.
+- `src/components/design-system/` contains reusable editorial primitives such as section headers, cards, badges, image frames, and the lights-off interaction.
+- `src/components/ui/` contains shadcn/Radix primitives that are still used by the site.
+- `src/lib/` contains shared utilities, including section scrolling.
+- `src/test/` contains Vitest setup and tests.
+- `public/images/` and `public/fonts/` contain the site imagery and local bitmap-style display font.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The `@/` alias resolves to `src/`.
 
-## How can I deploy this project?
+## Design system
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+The site intentionally preserves a warm paper palette, square editorial geometry, Corben/Public Sans/bitmap typography, a pixel portrait, restrained early-computing references, real photography and artifacts, and a dark-mode candlelight interaction.
 
-## Can I connect a custom domain to my Lovable project?
+Shared design primitives live in [`src/components/design-system/Dossier.tsx`](./src/components/design-system/Dossier.tsx). Global visual contracts and CSS custom properties live in [`src/index.css`](./src/index.css). Changes should preserve reduced-motion support, accessible labels, mobile safe-area behavior, and the distinct desktop/mobile navigation patterns.
 
-Yes, you can!
+## Agentic development workflow
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This repository uses role-specialized Codex agents for delegated repository tasks, staged review, and verification passes. The workflow is coordinated through shared repository instructions and human approval gates; it is not a fully autonomous development system.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```text
+runargs.github.io/
+├── AGENTS.md
+└── .codex/
+    ├── config.toml
+    └── agents/
+        ├── code-explorer.toml
+        ├── code-reviewer.toml
+        ├── commit-pusher.toml
+        ├── copy-reviewer.toml
+        ├── implementer.toml
+        ├── quick-implementer.toml
+        ├── test-runner.toml
+        └── ui-reviewer.toml
+```
+
+[`AGENTS.md`](./AGENTS.md) is the repository-wide operating contract for agents. It defines project context, approval boundaries, coding conventions, testing expectations, commit strategy, rules for user-facing copy, and behavior that must be preserved during refactoring. Repository-wide rules belong there; role-specific instructions belong in the individual agent definitions.
+
+[`.codex/config.toml`](./.codex/config.toml) is the project-scoped Codex configuration. It currently points readers to `AGENTS.md` and `.codex/agents/*.toml`, and intentionally does not override the user's default model, reasoning level, sandbox, or approval policy.
+
+The current role files are:
+
+- [`code-explorer.toml`](./.codex/agents/code-explorer.toml): read-only discovery, dependency tracing, impact mapping, and concise implementation context. This is the implemented explorer role; there is no separate `explorer.toml` file.
+- [`implementer.toml`](./.codex/agents/implementer.toml): larger code-writing tasks, safe refactors, behavior preservation, focused tests, and validation.
+- [`quick-implementer.toml`](./.codex/agents/quick-implementer.toml): small implementation changes confined to one or two files.
+- [`ui-reviewer.toml`](./.codex/agents/ui-reviewer.toml): visual hierarchy, responsive behavior, interaction states, accessibility, reduced-motion behavior, and design-system consistency.
+- [`copy-reviewer.toml`](./.codex/agents/copy-reviewer.toml): approval-gated editorial review of visible copy, terminology, tone, clarity, and consistency.
+- [`code-reviewer.toml`](./.codex/agents/code-reviewer.toml): read-only diff review for correctness, regressions, accessibility effects, maintainability, and scope control.
+- [`test-runner.toml`](./.codex/agents/test-runner.toml): verification-focused linting, tests, builds, and concise failure reporting.
+- [`commit-pusher.toml`](./.codex/agents/commit-pusher.toml): staging and small local commits after primary-agent approval; remote pushes require explicit user instruction.
+
+The typical workflow is:
+
+```text
+Request
+  ↓
+Code explorer maps the relevant code
+  ↓
+Copy and visible behavior changes are separated for approval
+  ↓
+Implementer performs approved work and safe cleanup
+  ↓
+UI reviewer checks visual and responsive quality
+  ↓
+Copy reviewer verifies approved language
+  ↓
+Test runner validates the final state
+  ↓
+Small commits preserve an auditable history
+```
+
+Agents may independently perform safe, behavior-preserving cleanup. User-facing copy requires approval before implementation, and material visual or interaction changes require approval before implementation. Reviewers can propose changes, but they should not silently expand scope. The human owner remains responsible for product, editorial, and design decisions.
+
+This structure keeps exploration separate from implementation, editorial review separate from code review, and testing separate from feature work. Narrow roles reduce context pollution, shared instructions prevent each agent from reconstructing project constraints, and small commits make agent work easier to inspect and reverse.
+
+## Repository structure
+
+```text
+.
+├── AGENTS.md
+├── README.md
+├── package.json
+├── package-lock.json
+├── vite.config.ts
+├── tailwind.config.ts
+├── src/
+│   ├── App.tsx
+│   ├── index.css
+│   ├── components/
+│   │   ├── design-system/
+│   │   ├── layout/
+│   │   ├── sections/
+│   │   └── ui/
+│   ├── lib/
+│   ├── pages/
+│   └── test/
+└── public/
+    ├── fonts/
+    └── images/
+```
+
+## Change management
+
+- Preserve the portfolio's existing identity rather than redesigning from scratch.
+- Keep visible copy changes separate from refactors and implement them only after approval.
+- Keep visual or interaction changes separate when they materially alter what visitors see or how the site behaves.
+- Prefer small, typed, local changes over broad abstractions.
+- Run the narrowest relevant validation first, then `npm run lint`, `npm test`, and `npm run build` for shared behavior, application code, dependency, or release-output changes.
+- Keep commits small and grouped around a shared concern.
