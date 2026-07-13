@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 /*
  * Dossier contains the portfolio's editorial primitives. These components
@@ -216,6 +217,12 @@ export function ImageFrame({
 
 export function LightsOffToggle() {
   const [isDark, setIsDark] = useState(false);
+  const [supportsHover, setSupportsHover] = useState(() => (
+    typeof window !== "undefined"
+      ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
+      : false
+  ));
+  const clickAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("site-theme");
@@ -226,18 +233,27 @@ export function LightsOffToggle() {
   }, []);
 
   useEffect(() => {
-    const finePointer = window.matchMedia("(pointer: fine)");
+    const hoverPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const updateHoverSupport = () => setSupportsHover(hoverPointer.matches);
+
+    updateHoverSupport();
+    hoverPointer.addEventListener("change", updateHoverSupport);
+
+    return () => hoverPointer.removeEventListener("change", updateHoverSupport);
+  }, []);
+
+  useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    if (!isDark || !finePointer.matches || reducedMotion.matches) {
+    if (!isDark || !supportsHover || reducedMotion.matches) {
       document.documentElement.classList.remove("has-pointer-light");
       document.documentElement.style.removeProperty("--pointer-x");
       document.documentElement.style.removeProperty("--pointer-y");
       return;
     }
 
-    // The candlelight field follows precise pointers only; coarse pointers and
-    // reduced-motion preferences keep the static dark theme.
+    // The candlelight field follows hover-capable precise pointers only; touch
+    // screens and reduced-motion preferences keep the static dark theme.
     let animationFrame = 0;
     const updatePointer = (event: PointerEvent) => {
       window.cancelAnimationFrame(animationFrame);
@@ -255,20 +271,54 @@ export function LightsOffToggle() {
       window.removeEventListener("pointermove", updatePointer);
       document.documentElement.classList.remove("has-pointer-light");
     };
-  }, [isDark]);
+  }, [isDark, supportsHover]);
 
   const toggleTheme = () => {
     const nextIsDark = !isDark;
     setIsDark(nextIsDark);
     document.documentElement.dataset.theme = nextIsDark ? "dark" : "light";
     window.localStorage.setItem("site-theme", nextIsDark ? "dark" : "light");
+
+    const audio = clickAudioRef.current;
+    if (audio) {
+      audio.currentTime = 0;
+      void audio.play().catch(() => {
+        // Browsers may block audio in edge cases; the visual toggle still works.
+      });
+    }
   };
 
+  const toggleLabel = isDark ? "Lights on" : "Lights off";
+  const lampImage = isDark ? "/images/lamp-theme-on.png" : "/images/lamp-theme-off.png";
+  const toggleButton = (
+    <button
+      className="theme-toggle"
+      type="button"
+      onClick={toggleTheme}
+      aria-pressed={isDark}
+      aria-label="Toggle lights-off mode"
+    >
+      <img
+        src={lampImage}
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+        className="theme-toggle-lamp"
+      />
+      <audio ref={clickAudioRef} src="/audio/lamp-click.m4a" preload="auto" />
+    </button>
+  );
+
+  if (!supportsHover) {
+    return toggleButton;
+  }
+
   return (
-    <>
-      <button className="theme-toggle" type="button" onClick={toggleTheme} aria-pressed={isDark} aria-label="Toggle lights-off mode">
-        {isDark ? "Lights on" : "Lights off"}
-      </button>
-    </>
+    <Tooltip>
+      <TooltipTrigger asChild>{toggleButton}</TooltipTrigger>
+      <TooltipContent side="left" align="center" className="theme-toggle-tooltip">
+        {toggleLabel}
+      </TooltipContent>
+    </Tooltip>
   );
 }
