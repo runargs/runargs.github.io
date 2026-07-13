@@ -5,7 +5,7 @@ export function BioSection() {
   return (
     <section
     id="bio"
-    className="hero-console relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-16 md:px-11 md:pb-12 md:pt-20"
+    className="hero-console relative overflow-hidden border-b border-[var(--rule)] bg-[var(--paper-card)] px-6 pb-10 pt-10 md:px-11 md:pb-12 md:pt-14"
   >
     <div className="pointer-events-none absolute inset-x-0 top-0 h-[31rem] opacity-[0.16] mix-blend-multiply dark:opacity-[0.12] md:h-[27rem] lg:h-[18rem]">
       <img
@@ -17,8 +17,8 @@ export function BioSection() {
     </div>
 
       <div className="relative z-10">
-        <div className="hero-intro-panel mb-8 border-b border-[var(--rule)] pb-6">
-          <div>
+        <div className="hero-intro-panel mb-8 border-b border-[var(--rule)] pb-7 md:pb-9">
+          <div className="hero-identity-lockup">
             <div className="flex items-center gap-5 md:gap-6">
               <img
                 src="/images/pixel-portrait.png"
