@@ -1770,7 +1770,7 @@
     top: 0;
     bottom: 0;
     z-index: 0;
-    width: min(34vw, 280px);
+    width: min(34vw, 320px);
     border-left: var(--line-hair) solid rgba(213, 198, 177, 0.64);
     background:
       linear-gradient(90deg, transparent, color-mix(in srgb, var(--paper-soft) 80%, transparent)),
@@ -1779,23 +1779,20 @@
   }
 
   .resume-disk-icon {
-    position: absolute;
-    right: 32px;
-    top: 82px;
-    z-index: 1;
-    width: min(12vw, 104px);
-    height: auto;
+    width: auto;
+    flex: 0 0 auto;
+    height: clamp(44px, 4.25vw, 58px);
     object-fit: contain;
-    filter: grayscale(1) sepia(0.12) contrast(1.08) brightness(1.05);
-    opacity: 0.2;
+    filter: grayscale(1) sepia(0.12) contrast(1.12) brightness(1.08);
+    opacity: 0.68;
     mix-blend-mode: multiply;
     pointer-events: none;
   }
 
   [data-theme="dark"] .resume-disk-icon,
   .dark .resume-disk-icon {
-    filter: grayscale(1) sepia(0.08) contrast(1.12) invert(0.9);
-    opacity: 0.2;
+    filter: grayscale(1) sepia(0.08) contrast(1.18) brightness(1.25) invert(0.9);
+    opacity: 0.72;
     mix-blend-mode: screen;
   }
 
@@ -2346,9 +2343,12 @@
       display: none;
     }
 
-    .resume-file-card::after,
-    .resume-disk-icon {
+    .resume-file-card::after {
       display: none;
+    }
+
+    .resume-disk-icon {
+      height: 36px;
     }
 
     .marginalia-grid {
