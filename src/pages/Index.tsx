@@ -242,7 +242,15 @@ const Index = () => {
               </p>
             </div>
             <div className="portfolio-footer-meta">
-              <p>Built with generative AI assistance</p>
+              <p>
+                Built with a crew of AI agents. {" "}
+                <a
+                  href="https://github.com/runargs/runargs.github.io/tree/main"
+                  className="text-[var(--civic-blue)] underline decoration-[var(--rule-strong)] underline-offset-[0.18em] transition-colors hover:decoration-[var(--civic-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
+                >
+                  View the README.
+                </a>
+              </p>
               <p>© 2026</p>
             </div>
           </footer>

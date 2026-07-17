@@ -1655,6 +1655,7 @@
   .marginalia-field {
     position: relative;
     overflow: hidden;
+    padding-bottom: 10px;
     padding-right: clamp(0px, 14vw, 150px);
   }
 
@@ -1714,7 +1715,23 @@
     padding: var(--space-3);
     color: var(--ink);
     text-align: left;
-    transition: border-color var(--ease), background var(--ease);
+    transition: border-color var(--ease), background var(--ease), box-shadow var(--ease), filter var(--ease);
+  }
+
+  .marginalia-card:hover {
+    border-color: var(--rule-strong);
+    box-shadow: 3px 4px 0 color-mix(in srgb, var(--civic-blue) 18%, transparent);
+  }
+
+  .marginalia-card:focus-visible {
+    border-color: var(--civic-blue);
+    outline: 2px solid var(--civic-blue);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--civic-blue) 14%, transparent);
+  }
+
+  .marginalia-card:active {
+    filter: brightness(0.97);
   }
 
   [data-theme="dark"] .marginalia-card,
@@ -2374,6 +2391,12 @@
       overflow: hidden;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 4;
+    }
+
+    .marginalia-card:nth-child(5) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: calc((100% - var(--space-3)) / 2);
     }
 
     .resume-file-card {

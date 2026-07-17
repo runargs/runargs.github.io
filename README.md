@@ -1,139 +1,64 @@
 # Alexa Thoennes portfolio
 
-Personal portfolio site for Alexa Thoennes, built as an editorial, archival-style civic publication. The site combines professional experience, engagements, community work, visual/art artifacts, notes, resume access, and contact paths in a single-page React application.
+This portfolio is designed as an editorial record rather than a conventional personal homepage. It brings professional experience, talks, community work, art, side projects, mentorship, and a resume into one continuous narrative, using the visual language of a warm civic publication and an archival dossier.
 
-## Local development
+The repository also documents how the site was made: through a human-directed, role-specialized agent workflow with explicit context, bounded responsibilities, approval gates, and verification.
 
-Use npm; `package-lock.json` is committed.
+## Project intent
 
-```sh
-npm install
-npm run dev
-```
+The central product challenge was not simply to place a resume on the web. It was to make a wide range of work feel coherent without flattening it into a generic portfolio template.
 
-The development server uses Vite and is configured in [`vite.config.ts`](./vite.config.ts).
+That led to a few guiding decisions:
 
-## Commands
+- Use a single-page reading experience so the work accumulates as a narrative rather than feeling like a set of disconnected destinations.
+- Pair persistent section navigation with scroll-aware state so visitors can move deliberately while retaining a sense of place.
+- Treat photographs, artifacts, talks, and side projects as evidence, not decoration.
+- Build a reusable visual system around paper, ink, civic color, square geometry, and restrained early-computing references.
+- Keep moments of personality—such as the lights-off interaction and Clippy contact prompt—purposeful and subordinate to the work.
+- Preserve access needs through semantic labels, reduced-motion behavior, visible navigation state, and mobile safe-area handling.
 
-```sh
-npm run dev       # local development server
-npm run lint      # ESLint
-npm test          # Vitest
-npm run build     # production build
-npm run preview   # preview the production build locally
-```
+## Product and design decisions
 
-Deployment is through the static output produced by `npm run build`. The build writes to `dist/`, which can be served by GitHub Pages or another static host.
+The information architecture moves from introduction and professional work into talks, community building, art, side projects, resume access, and mentorship. The sequence is intentional: it establishes professional context first, then expands the definition of the work through public contribution, creative practice, and support for others.
 
-## Application architecture
+Desktop and mobile navigation use distinct interaction patterns rather than forcing one layout across screen sizes. Active-section tracking is coordinated at the page level, while section content remains modular. This keeps the experience continuous for visitors and the implementation legible for future changes.
 
-- `src/pages/` contains route-level pages. [`src/pages/Index.tsx`](./src/pages/Index.tsx) coordinates the portfolio sections, active-section state, scroll behavior, and shared navigation.
-- `src/components/sections/` contains the major content bands: biography, work, engagements, community, art, notes, resume, and contact.
-- `src/components/layout/` contains desktop and mobile navigation.
-- `src/components/design-system/` contains reusable editorial primitives such as section headers, cards, badges, image frames, and the lights-off interaction.
-- `src/components/ui/` contains shadcn/Radix primitives that are still used by the site.
-- `src/lib/` contains shared utilities, including section scrolling.
-- `src/test/` contains Vitest setup and tests.
-- `public/images/` and `public/fonts/` contain the site imagery and local bitmap-style display font.
+The visual system is similarly structured. Shared editorial primitives, typography, color tokens, image treatments, and interaction states create consistency without making each section identical. The result aims to feel collected over time, but still governed by a coherent system.
 
-The `@/` alias resolves to `src/`.
+## Technical shape
 
-## Design system
+The site is a Vite, React, and TypeScript application styled with Tailwind CSS and selected shadcn/Radix primitives. [`src/pages/Index.tsx`](./src/pages/Index.tsx) owns the one-page document shell, active-section state, and scroll-fed behavior. Major content bands live in [`src/components/sections/`](./src/components/sections/); navigation lives in [`src/components/layout/`](./src/components/layout/); reusable editorial elements live in [`src/components/design-system/`](./src/components/design-system/).
 
-The site intentionally preserves a warm paper palette, square editorial geometry, Corben/Public Sans/bitmap typography, a pixel portrait, restrained early-computing references, real photography and artifacts, and a dark-mode candlelight interaction.
-
-Shared design primitives live in [`src/components/design-system/Dossier.tsx`](./src/components/design-system/Dossier.tsx). Global visual contracts and CSS custom properties live in [`src/index.css`](./src/index.css). Changes should preserve reduced-motion support, accessible labels, mobile safe-area behavior, and the distinct desktop/mobile navigation patterns.
+That separation reflects product boundaries as much as code boundaries: page-level orchestration, reusable interaction patterns, content modules, and visual primitives can evolve independently while preserving a consistent visitor experience. Shared utilities handle behavior such as reduced-motion-aware scrolling, and the repository includes linting, tests, and a production build as separate validation signals.
 
 ## Agentic development workflow
 
-This repository uses role-specialized Codex agents for delegated repository tasks, staged review, and verification passes. The workflow is coordinated through shared repository instructions and human approval gates; it is not a fully autonomous development system.
+The site was developed through a coordinated set of role-specialized Codex agents. The workflow treats agents as collaborators operating inside an explicit product and engineering system—not as a single prompt-to-code step and not as a fully autonomous development process.
 
-```text
-runargs.github.io/
-├── AGENTS.md
-└── .codex/
-    ├── config.toml
-    └── agents/
-        ├── code-explorer.toml
-        ├── code-reviewer.toml
-        ├── commit-pusher.toml
-        ├── copy-reviewer.toml
-        ├── implementer.toml
-        ├── quick-implementer.toml
-        ├── test-runner.toml
-        └── ui-reviewer.toml
-```
+[`AGENTS.md`](./AGENTS.md) is the shared operating contract. It gives every role the same project context, defines approval boundaries, separates discovery from implementation, protects user-facing copy, sets validation expectations, and prevents agents from silently expanding scope. [`.codex/config.toml`](./.codex/config.toml) connects that repository-level context to the specialized role definitions in [`.codex/agents/`](./.codex/agents/).
 
-[`AGENTS.md`](./AGENTS.md) is the repository-wide operating contract for agents. It defines project context, approval boundaries, coding conventions, testing expectations, commit strategy, rules for user-facing copy, and behavior that must be preserved during refactoring. Repository-wide rules belong there; role-specific instructions belong in the individual agent definitions.
+| Stage | Product question | Workflow control |
+| --- | --- | --- |
+| Frame | What outcome is being requested, and what must remain unchanged? | The primary agent clarifies scope, identifies approval gates, and assigns explicit ownership. |
+| Explore | Where does the behavior live, and what else could the change affect? | A read-only explorer maps relevant code, dependencies, and risks before implementation. |
+| Decide | Does the change alter language, interaction, or visual meaning? | Copy and material UI changes are separated and held for human approval. |
+| Implement | What is the smallest coherent change that satisfies the intent? | A quick implementer handles narrow edits; a broader implementer owns cross-cutting work and focused tests. |
+| Review | Did the implementation preserve behavior, accessibility, and design-system consistency? | Read-only code and UI reviewers inspect the result from distinct perspectives. |
+| Verify | What evidence supports calling the work complete? | A test runner executes the narrowest relevant checks, followed by broader lint, test, and build validation when warranted. |
+| Record | Can the change be understood and reversed later? | Small, logically grouped commits preserve an auditable history; remote actions remain explicitly authorized. |
 
-[`.codex/config.toml`](./.codex/config.toml) is the project-scoped Codex configuration. It currently points readers to `AGENTS.md` and `.codex/agents/*.toml`, and intentionally does not override the user's default model, reasoning level, sandbox, or approval policy.
+The role boundaries are deliberate. Exploration does not mutate code. Review is independent from implementation. Copy review can propose language but cannot approve it. Test execution is separated from feature construction. The primary agent remains responsible for integrating evidence, resolving conflicts, and deciding whether the requested outcome has actually been met.
 
-The current role files are:
+## What the workflow optimizes for
 
-- [`code-explorer.toml`](./.codex/agents/code-explorer.toml): read-only discovery, dependency tracing, impact mapping, and concise implementation context. This is the implemented explorer role; there is no separate `explorer.toml` file.
-- [`implementer.toml`](./.codex/agents/implementer.toml): larger code-writing tasks, safe refactors, behavior preservation, focused tests, and validation.
-- [`quick-implementer.toml`](./.codex/agents/quick-implementer.toml): small implementation changes confined to one or two files.
-- [`ui-reviewer.toml`](./.codex/agents/ui-reviewer.toml): visual hierarchy, responsive behavior, interaction states, accessibility, reduced-motion behavior, and design-system consistency.
-- [`copy-reviewer.toml`](./.codex/agents/copy-reviewer.toml): approval-gated editorial review of visible copy, terminology, tone, clarity, and consistency.
-- [`code-reviewer.toml`](./.codex/agents/code-reviewer.toml): read-only diff review for correctness, regressions, accessibility effects, maintainability, and scope control.
-- [`test-runner.toml`](./.codex/agents/test-runner.toml): verification-focused linting, tests, builds, and concise failure reporting.
-- [`commit-pusher.toml`](./.codex/agents/commit-pusher.toml): staging and small local commits after primary-agent approval; remote pushes require explicit user instruction.
+This setup is designed around a few practical principles:
 
-The typical workflow is:
+- **Context quality over prompt volume.** Durable project rules are written once and shared across roles instead of being reconstructed for every task.
+- **Bounded autonomy.** Agents can make progress within a defined scope, while product, editorial, and material experience decisions remain human-controlled.
+- **Risk-matched review.** Copy, UI, code, and validation are treated as different problem types with different failure modes.
+- **Reversible progress.** Narrow ownership and small commits make changes easier to inspect, understand, and undo.
+- **Evidence-based completion.** A plausible implementation is not considered complete until it has been reviewed and validated in proportion to its risk.
 
-```text
-Request
-  ↓
-Code explorer maps the relevant code
-  ↓
-Copy and visible behavior changes are separated for approval
-  ↓
-Implementer performs approved work and safe cleanup
-  ↓
-UI reviewer checks visual and responsive quality
-  ↓
-Copy reviewer verifies approved language
-  ↓
-Test runner validates the final state
-  ↓
-Small commits preserve an auditable history
-```
+## Outcome
 
-Agents may independently perform safe, behavior-preserving cleanup. User-facing copy requires approval before implementation, and material visual or interaction changes require approval before implementation. Reviewers can propose changes, but they should not silently expand scope. The human owner remains responsible for product, editorial, and design decisions.
-
-This structure keeps exploration separate from implementation, editorial review separate from code review, and testing separate from feature work. Narrow roles reduce context pollution, shared instructions prevent each agent from reconstructing project constraints, and small commits make agent work easier to inspect and reverse.
-
-## Repository structure
-
-```text
-.
-├── AGENTS.md
-├── README.md
-├── package.json
-├── package-lock.json
-├── vite.config.ts
-├── tailwind.config.ts
-├── src/
-│   ├── App.tsx
-│   ├── index.css
-│   ├── components/
-│   │   ├── design-system/
-│   │   ├── layout/
-│   │   ├── sections/
-│   │   └── ui/
-│   ├── lib/
-│   ├── pages/
-│   └── test/
-└── public/
-    ├── fonts/
-    └── images/
-```
-
-## Change management
-
-- Preserve the portfolio's existing identity rather than redesigning from scratch.
-- Keep visible copy changes separate from refactors and implement them only after approval.
-- Keep visual or interaction changes separate when they materially alter what visitors see or how the site behaves.
-- Prefer small, typed, local changes over broad abstractions.
-- Run the narrowest relevant validation first, then `npm run lint`, `npm test`, and `npm run build` for shared behavior, application code, dependency, or release-output changes.
-- Keep commits small and grouped around a shared concern.
+The finished site is both the portfolio and a record of the system used to shape it. Its content and visual language remain personal, while the repository makes the surrounding decision process inspectable: how intent became constraints, how work was decomposed, where autonomy was bounded, and how quality was evaluated before completion.
