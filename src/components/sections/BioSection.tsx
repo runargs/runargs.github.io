@@ -1,4 +1,5 @@
-import { ArrowRight, FileText } from "lucide-react";
+import { ArrowRight, FileText, Palette } from "lucide-react";
+import { Link } from "react-router-dom";
 import { DossierLink } from "@/components/design-system/Dossier";
 
 export function BioSection() {
@@ -78,6 +79,12 @@ export function BioSection() {
                 <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
                   <FileText className="mr-2 h-4 w-4" /> Résumé PDF
                 </DossierLink>
+                <Link
+                  to="/art"
+                  className="inline-flex min-h-[44px] items-center justify-center border border-[var(--rule)] bg-[var(--paper-card)] px-5 py-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--ink)] shadow-[2px_2px_0_rgba(45,40,31,0.10)] transition duration-150 hover:-translate-y-0.5 hover:border-[var(--field-ochre)] hover:text-[var(--field-ochre)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
+                >
+                  <Palette className="mr-2 h-4 w-4" /> Creative work
+                </Link>
               </div>
             </div>
           </div>

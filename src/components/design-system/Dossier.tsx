@@ -184,6 +184,7 @@ export function ImageFrame({
   mediaClassName,
   imgClassName,
   grayscale = true,
+  loading = "lazy",
 }: {
   src: string;
   alt: string;
@@ -192,6 +193,7 @@ export function ImageFrame({
   mediaClassName?: string;
   imgClassName?: string;
   grayscale?: boolean;
+  loading?: "eager" | "lazy";
 }) {
   return (
     <figure className={cn("notched border border-[var(--rule)] bg-[var(--paper-card)] p-3", className)}>
@@ -199,6 +201,8 @@ export function ImageFrame({
         <img
           src={src}
           alt={alt}
+          loading={loading}
+          decoding="async"
           className={cn(
             "block h-full w-full object-cover",
             grayscale && "grayscale contrast-[1.08] sepia-[0.10]",
