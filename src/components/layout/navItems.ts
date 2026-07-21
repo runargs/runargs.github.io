@@ -11,6 +11,5 @@ export const navItems: NavItem[] = [
   { id: "community-building", label: "Community", shortLabel: "Civic" },
   { id: "art", label: "Art", shortLabel: "Art" },
   { id: "side-projects", label: "Notes", shortLabel: "Notes" },
-  { id: "resume", label: "Résumé", shortLabel: "CV" },
-  { id: "mentorship", label: "Contact", shortLabel: "Contact" },
+  { id: "contact", label: "Contact", shortLabel: "Contact" },
 ];

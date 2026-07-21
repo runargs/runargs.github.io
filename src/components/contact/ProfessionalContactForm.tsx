@@ -15,13 +15,18 @@ type Preview = { message: string; organization: string; timing: string };
 
 export function ProfessionalContactForm() {
   const [step, setStep] = useState(0);
-  const [topic, setTopic] = useState("");
+  const [topics, setTopics] = useState<string[]>([]);
+  const [selectionError, setSelectionError] = useState(false);
   const [preview, setPreview] = useState<Preview>({ message: "", organization: "", timing: "" });
   const [receipt, setReceipt] = useState({ name: "", email: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const formRef = useRef<HTMLFormElement>(null);
 
   const next = () => {
+    if (step === 0 && topics.length === 0) {
+      setSelectionError(true);
+      return;
+    }
     const panel = formRef.current?.querySelector<HTMLElement>(`[data-contact-step="${step}"]`);
     const controls = Array.from(panel?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea") ?? []);
     const invalid = controls.find((control) => !control.checkValidity());
@@ -69,20 +74,31 @@ export function ProfessionalContactForm() {
       </ol>
 
       <section className="art-contact-step" data-contact-step="0" hidden={step !== 0}>
-        <div className="art-contact-prompt"><p className="font-pixel">Ways to get in touch</p><h3>What brings you here?</h3></div>
+        <div className="art-contact-prompt"><h3>What brings you here?</h3></div>
         <fieldset className="art-inquiry-cards">
           <legend className="sr-only">Message topic</legend>
           {contactTypes.map(([label, tone, Icon], index) => (
             <label key={label}>
-              <input type="radio" name="topic" value={label} required disabled={locked} checked={topic === label} onChange={() => setTopic(label)} />
+              <input
+                type="checkbox"
+                name="topic[]"
+                value={label}
+                disabled={locked}
+                checked={topics.includes(label)}
+                onChange={() => {
+                  setTopics((current) => current.includes(label) ? current.filter((item) => item !== label) : [...current, label]);
+                  setSelectionError(false);
+                }}
+              />
               <span className={cn("evidence-link-badge", tone)}><small>0{index + 1}</small><Icon aria-hidden="true" /><strong>{label}</strong></span>
             </label>
           ))}
         </fieldset>
+        {selectionError && <p className="art-contact-choice-error" role="alert">Select at least one.</p>}
       </section>
 
       <section className="art-contact-step" data-contact-step="1" hidden={step !== 1}>
-        <div className="art-contact-prompt"><p className="font-pixel">A short note works.</p><h3>What should I know?</h3></div>
+        <div className="art-contact-prompt"><h3>What should I know?</h3></div>
         <div className="art-contact-field art-contact-message">
           <label htmlFor="professional-contact-message">Message</label>
           <textarea id="professional-contact-message" name="message" rows={5} placeholder="Your idea, question, or request" required disabled={locked} />
@@ -100,7 +116,7 @@ export function ProfessionalContactForm() {
       </section>
 
       <section className="art-contact-step" data-contact-step="2" hidden={step !== 2}>
-        <div className="art-contact-prompt"><p className="font-pixel">Last step</p><h3>Where should I reply?</h3></div>
+        <div className="art-contact-prompt"><h3>Where should I reply?</h3></div>
         <div className="art-contact-fields-grid">
           <div className="art-contact-field">
             <label htmlFor="professional-contact-name">Name</label>
@@ -112,7 +128,7 @@ export function ProfessionalContactForm() {
           </div>
         </div>
         <div className="art-contact-summary">
-          <p><strong>{topic}</strong></p>
+          <p><strong>{topics.join(", ")}</strong></p>
           <blockquote>{preview.message}</blockquote>
           <dl>
             {preview.organization && <div><dt>Organization</dt><dd>{preview.organization}</dd></div>}

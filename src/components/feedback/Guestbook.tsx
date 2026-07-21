@@ -1,5 +1,5 @@
 import { useId, useState, type FormEvent } from "react";
-import { ArrowRight, BookHeart, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import { guestbookSnapshot } from "@/data/guestbook";
 import { cn } from "@/lib/utils";
 
@@ -44,10 +44,7 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
   return (
     <section id={id} className={cn("guestbook-section notched", className)} aria-labelledby={`${fieldId}-title`}>
       <div className="guestbook-heading">
-        <p className="font-pixel">guestbook.log</p>
-        <BookHeart aria-hidden="true" />
         <h2 id={`${fieldId}-title`}>Guestbook</h2>
-        <p>If something here stayed with you, leave a small mark. No sign-in needed.</p>
       </div>
 
       <form className="guestbook-form" onSubmit={submit} aria-label={`Sign the ${page} page guestbook`}>

@@ -1,12 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
-import { Calendar, ExternalLink, MapPin, X } from "lucide-react";
+import { Calendar, ExternalLink, MapPin, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   EditorialCard,
+  DossierLink,
   SectionBand,
   SectionHeader,
-  StampBadge,
 } from "@/components/design-system/Dossier";
 
 /*
@@ -240,6 +240,19 @@ const experiences: Experience[] = [
   },
 ];
 
+const workStory = ["Research", "Frame", "Build", "Communicate", "Learn"] as const;
+
+const credentials = [
+  { title: "Communicating Persuasively & Building Trust", org: "Stanford GSB" },
+  { title: "Maximizing Operational Effectiveness", org: "MIT" },
+  { title: "Ethical & Impactful AI Solutions", org: "IMD" },
+  { title: "Driving Digital Transformation", org: "IMD" },
+  { title: "Understanding Customer Needs", org: "Wharton Executive Education" },
+  { title: "Compelling Data Stories", org: "UVA Darden Executive Education" },
+  { title: "Influencing with Diplomacy", org: "Wharton Executive Education" },
+  { title: "B.S. Applied Computing (Business Analytics)", org: "University of Scranton · Magna Cum Laude" },
+];
+
 const workAccentVars = {
   blue: { color: "var(--civic-blue)", soft: "var(--civic-blue-soft)" },
   teal: { color: "var(--system-teal)", soft: "var(--system-teal-soft)" },
@@ -277,7 +290,7 @@ function getWorkAccentStyle(accent: WorkAccent = "blue"): WorkAccentStyle {
 export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeMobileFilter, setActiveMobileFilter] = useState("Featured");
-  const desktopListRef = useRef<HTMLDivElement | null>(null);
+  const [openWorkIds, setOpenWorkIds] = useState<Set<string>>(() => new Set());
 
   const desktopRevealSkills = useMemo(() => {
     const all = experiences
@@ -302,109 +315,6 @@ export function WorkSection() {
   const mobileHiddenExperiences = filteredExperiences.slice(mobileVisibleExperiences.length);
   const filterMotionKey = activeFilter ?? activeMobileFilter;
 
-  useEffect(() => {
-    const list = desktopListRef.current;
-    if (!list) return;
-
-    const desktopMedia = window.matchMedia("(min-width: 901px)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!desktopMedia.matches || reducedMotion.matches) return;
-
-    type CardMetric = {
-      card: HTMLElement;
-      fitsViewport: boolean;
-      top: number;
-    };
-
-    let frame = 0;
-    let resizeTimer = 0;
-    let metrics: CardMetric[] = [];
-
-    const setVar = (card: HTMLElement, name: string, value: string) => {
-      if (card.style.getPropertyValue(name) !== value) {
-        card.style.setProperty(name, value);
-      }
-    };
-
-    const measureCards = () => {
-      const cards = Array.from(list.querySelectorAll<HTMLElement>(".work-card"));
-      const viewportHeight = window.innerHeight;
-      const stackTop = 74;
-      const listTop = list.getBoundingClientRect().top + window.scrollY;
-
-      metrics = cards.map((card) => {
-        const fitsViewport = card.offsetHeight < viewportHeight - stackTop - 42;
-        card.classList.toggle("work-card-stackable", fitsViewport);
-
-        return {
-          card,
-          fitsViewport,
-          top: listTop + card.offsetTop,
-        };
-      });
-    };
-
-    const updateWorkStack = () => {
-      frame = 0;
-      const stackTop = 74;
-      const passedCards: HTMLElement[] = [];
-      const scrollY = window.scrollY;
-
-      metrics.forEach(({ card, fitsViewport, top }) => {
-        // Only cards short enough to fit below the sticky nav join the stack;
-        // taller cards stay in normal document flow to avoid clipped content.
-        const progress = fitsViewport ? Math.min(Math.max((scrollY + stackTop - top) / 180, 0), 1) : 0;
-
-        setVar(card, "--work-stack-progress", progress.toFixed(3));
-        setVar(card, "--work-stack-depth", "0");
-        setVar(card, "--work-stack-opacity", "1");
-        setVar(card, "--work-stack-offset", "0px");
-        setVar(card, "--work-stack-shade", "0");
-
-        if (fitsViewport && progress > 0) {
-          passedCards.push(card);
-        }
-      });
-
-      passedCards.forEach((card, passedIndex) => {
-        const depth = passedCards.length - 1 - passedIndex;
-        const visibleDepth = Math.min(depth, 4);
-        const opacity = depth > 3 ? 0 : 1 - visibleDepth * 0.2;
-        const shade = depth > 3 ? 1 : Math.min(visibleDepth * 0.28, 0.84);
-
-        setVar(card, "--work-stack-depth", String(visibleDepth));
-        setVar(card, "--work-stack-offset", `${visibleDepth * 12}px`);
-        setVar(card, "--work-stack-opacity", opacity.toFixed(3));
-        setVar(card, "--work-stack-shade", shade.toFixed(3));
-      });
-    };
-
-    const requestUpdate = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(updateWorkStack);
-    };
-
-    const requestMeasure = () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => {
-        measureCards();
-        requestUpdate();
-      }, 120);
-    };
-
-    measureCards();
-    updateWorkStack();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestMeasure);
-
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.clearTimeout(resizeTimer);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestMeasure);
-    };
-  }, [filterMotionKey]);
-
   return (
     <SectionBand id="work">
       <div className="mx-auto max-w-5xl">
@@ -412,10 +322,19 @@ export function WorkSection() {
           <div className="relative z-10">
             <SectionHeader
               marker="01"
-              title="Professional experience"
-              description="Experience across AI product, engineering, automation, developer tools, service, and community work. Use the filters to focus the list."
+              title="I work across the stack."
+              description="Research, product, engineering, and communication are parts of one practice."
               className="max-w-2xl"
             />
+            <ol className="work-storyline" aria-label="How the work moves">
+              {workStory.map((stage, index) => (
+                <li key={stage}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{stage}</strong>
+                  {index === workStory.length - 1 && <RotateCcw aria-hidden="true" />}
+                </li>
+              ))}
+            </ol>
           </div>
           <img
             src="/images/clip-operator-computing.png"
@@ -499,11 +418,6 @@ export function WorkSection() {
                   <p className="small-label mb-1 text-[var(--work-accent)]">{experience.company}</p>
                   <h3 className="text-lg leading-tight text-[var(--ink)]">{experience.role}</h3>
                 </div>
-                {experience.featured && (
-                  <StampBadge tone="muted" className="shrink-0 border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
-                    Featured
-                  </StampBadge>
-                )}
               </div>
 
               <div className="mb-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-[var(--ink-muted)]">
@@ -511,21 +425,9 @@ export function WorkSection() {
                 <span>{experience.location}</span>
               </div>
 
-              <p className="text-sm leading-6 text-[var(--ink-muted)]">{experience.description}</p>
-
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {experience.skills.slice(0, 3).map((skill) => (
-                  <span key={skill} className="stamp-tag text-[var(--ink-muted)]">
-                    {skill}
-                  </span>
-                ))}
-                {experience.skills.length > 3 && (
-                  <span className="stamp-tag text-[var(--ink-faint)]">+{experience.skills.length - 3}</span>
-                )}
-              </div>
-
               <details className="mobile-card-disclosure mt-4">
-                <summary>View details</summary>
+                <summary>Open case notes</summary>
+                <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">{experience.description}</p>
                 <ol className="mt-3 space-y-2 text-sm leading-6 text-[var(--ink-muted)]">
                   {experience.impact.map((item) => (
                     <li key={item}>{item}</li>
@@ -571,8 +473,11 @@ export function WorkSection() {
           )}
         </div>
 
-        <div className="work-desktop-list space-y-10" key={`desktop-${filterMotionKey}`} ref={desktopListRef}>
-          {filteredExperiences.map((experience, index) => (
+        <div className="work-desktop-list space-y-3" key={`desktop-${filterMotionKey}`}>
+          {filteredExperiences.map((experience, index) => {
+            const isOpen = openWorkIds.has(experience.id);
+
+            return (
             <EditorialCard
               key={experience.id}
               important={experience.featured}
@@ -587,39 +492,33 @@ export function WorkSection() {
               )}
             >
               <div className="work-punch-strip" aria-hidden="true" />
-
-              <div className="relative z-10 p-5 md:p-7">
-                <div className="mb-6 flex flex-col gap-5 border-b border-[var(--rule)] pb-5 md:flex-row md:items-start md:justify-between">
-                  <div className="min-w-0">
-                    <div className="mb-3 flex flex-wrap items-center gap-2">
-                      <span className="small-label text-[var(--work-accent)]">{experience.company}</span>
-                      {experience.featured && (
-                        <StampBadge tone="muted" className="border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
-                          Featured
-                        </StampBadge>
-                      )}
-                      {experience.type === "secondary" && (
-                        <StampBadge tone="muted" className="bg-[var(--work-accent-soft)] text-[var(--work-accent)]">
-                          Earlier work
-                        </StampBadge>
-                      )}
-                    </div>
-                    <h3 className="text-2xl leading-tight transition-[transform,text-shadow] duration-200 group-hover:-translate-y-px group-hover:[text-shadow:1px_1px_0_var(--paper-soft)] md:text-3xl">
-                      {experience.role}
-                    </h3>
+              <details
+                className="work-record-disclosure relative z-10"
+                open={isOpen}
+                onToggle={(event) => {
+                  const open = event.currentTarget.open;
+                  setOpenWorkIds((current) => {
+                    const next = new Set(current);
+                    if (open) next.add(experience.id);
+                    else next.delete(experience.id);
+                    return next;
+                  });
+                }}
+              >
+                <summary className="work-record-summary">
+                  <div className="work-record-identity">
+                    <span className="small-label text-[var(--work-accent)]">{experience.company}</span>
+                    <h3>{experience.role}</h3>
                   </div>
-
-                  <div className="grid min-w-[210px] gap-2 border border-[var(--rule)] bg-[var(--paper)] p-3">
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
-                        <Calendar className="h-3.5 w-3.5" /> {experience.duration}
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-muted)]">
-                        <MapPin className="h-3.5 w-3.5" /> {experience.location}
-                      </div>
+                  <div className="work-record-meta">
+                    <span><Calendar aria-hidden="true" />{experience.duration}</span>
+                    <span><MapPin aria-hidden="true" />{experience.location}</span>
                   </div>
-                </div>
+                  <span className="work-record-open">{isOpen ? "Close" : "Case notes"}</span>
+                </summary>
 
-                <div className="work-ad-body flow-root">
+                {isOpen && <div className="work-record-expanded">
+                  <div className="work-ad-body flow-root">
                   {experience.video && (
                     <figure className="work-ad-media notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
                       <div className="relative aspect-video overflow-hidden bg-black">
@@ -695,29 +594,36 @@ export function WorkSection() {
                       </cite>
                     </blockquote>
                   )}
-                </div>
-
-                <div className="mt-7 border-t border-[rgba(213,198,177,0.85)] pt-4">
-                  <div className="flex flex-wrap gap-1.5">
-                  {experience.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className={cn(
-                        "stamp-tag work-card-skill-tag",
-                        activeFilter === skill
-                          ? "border-[var(--work-accent)] bg-[var(--work-accent-soft)] text-[var(--work-accent)]"
-                          : ""
-                      )}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              </div>
+                  </div>
+                </div>}
+              </details>
             </EditorialCard>
-          ))}
+            );
+          })}
         </div>
+
+        <aside id="resume" className="work-career-tools notched" aria-label="Résumé and credentials">
+          <details className="resume-credentials-disclosure">
+            <summary>Education & selected credentials <span>{credentials.length} records</span></summary>
+            <div className="resume-credentials-grid">
+              {credentials.map((credential) => (
+                <div key={`${credential.title}-${credential.org}`} className="resume-credential-row">
+                  <p className="resume-credential-title">{credential.title}</p>
+                  <p className="resume-credential-org">{credential.org}</p>
+                </div>
+              ))}
+            </div>
+          </details>
+          <div className="work-career-actions">
+            <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <DossierLink href="#contact" className="work-career-resume-link">
+              Request résumé PDF
+            </DossierLink>
+            <a href="https://linkedin.com/in/alexathoennes" target="_blank" rel="noopener noreferrer">
+              LinkedIn <ExternalLink aria-hidden="true" />
+            </a>
+          </div>
+        </aside>
       </div>
     </SectionBand>
   );

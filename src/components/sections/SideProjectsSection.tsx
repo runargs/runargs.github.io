@@ -51,7 +51,6 @@ export function SideProjectsSection() {
         <SectionHeader
           marker="05"
           title="Marginalia"
-          description="If you searched my desk, you'd find scraps of paper with scattered thoughts and collages."
           className="mb-5"
         />
 

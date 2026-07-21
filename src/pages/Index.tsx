@@ -4,14 +4,12 @@ import { MobileNav } from "@/components/layout/MobileNav";
 import { LightsOffToggle } from "@/components/design-system/Dossier";
 import { BioSection } from "@/components/sections/BioSection";
 import { WorkSection } from "@/components/sections/WorkSection";
-import { MentorshipSection } from "@/components/sections/MentorshipSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { TalksSection } from "@/components/sections/TalksSection";
 import { SideProjectsSection } from "@/components/sections/SideProjectsSection";
 import { ArtSection } from "@/components/sections/ArtSection";
-import { ResumeSection } from "@/components/sections/ResumeSection";
 import { ProfessionalContactForm } from "@/components/contact/ProfessionalContactForm";
-import { Guestbook } from "@/components/feedback/Guestbook";
+import { PortfolioFooter } from "@/components/layout/PortfolioFooter";
 
 const sectionIds = [
   "bio",
@@ -20,8 +18,7 @@ const sectionIds = [
   "community-building",
   "art",
   "side-projects",
-  "resume",
-  "mentorship",
+  "contact",
 ];
 
 /*
@@ -222,52 +219,15 @@ const Index = () => {
           <CommunitySection />
           <ArtSection />
           <SideProjectsSection />
-          <ResumeSection />
-          <MentorshipSection />
-
           <section id="contact" className="main-contact-section notched" aria-labelledby="main-contact-title">
             <div className="main-contact-intro">
               <p className="font-pixel">contact.txt</p>
-              <h2 id="main-contact-title">Ways to get in touch</h2>
+              <h2 id="main-contact-title">Let’s work together</h2>
             </div>
             <ProfessionalContactForm />
           </section>
 
-          <Guestbook id="guestbook" page="main" />
-
-          <footer className="portfolio-footer">
-            <div className="portfolio-footer-mark">
-              <img
-                src="/images/footer-miso-full.png"
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                decoding="async"
-                className="portfolio-footer-image"
-              />
-            </div>
-            <div className="portfolio-footer-copy">
-              <p className="font-serif text-2xl leading-none text-[var(--ink)]">Alexa Thoennes</p>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--ink-muted)]">
-                You made it to the end. Stay curious.
-              </p>
-              <p className="portfolio-footer-legal mt-4 max-w-xl text-[0.62rem] font-extrabold uppercase leading-5 tracking-[0.075em] text-[var(--ink-faint)]">
-                Systems, rituals, and technology should help life flourish, preserve culture and craft, and treat intelligence, care, and beauty as rare responsibilities in a vast universe.
-              </p>
-            </div>
-            <div className="portfolio-footer-meta">
-              <p>
-                Built with a crew of AI agents. {" "}
-                <a
-                  href="https://github.com/runargs/runargs.github.io/tree/main"
-                  className="text-[var(--civic-blue)] underline decoration-[var(--rule-strong)] underline-offset-[0.18em] transition-colors hover:decoration-[var(--civic-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]"
-                >
-                  View the README.
-                </a>
-              </p>
-              <p>© 2026</p>
-            </div>
-          </footer>
+          <PortfolioFooter page="main" guestbookId="guestbook" />
         </div>
       </main>
 
@@ -288,7 +248,7 @@ const Index = () => {
             </button>
 
             <p className="pr-2">
-              It looks like you're enjoying exploring this portfolio. Would you like to get in touch?
+              Want to talk about the work?
             </p>
             <a 
               href="#contact"

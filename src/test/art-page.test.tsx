@@ -51,7 +51,7 @@ describe("ArtPage", () => {
     expect(screen.getByRole("button", { name: "Start an inquiry" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /follow haruhay studio/i })).toHaveAttribute("href", "https://www.instagram.com/haruhay.studio/");
     expect(screen.getByRole("group", { name: "Inquiry type" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("radio", { name: /speaking & workshops/i }));
+    fireEvent.click(screen.getByRole("checkbox", { name: /speaking & workshops/i }));
     fireEvent.click(screen.getByRole("button", { name: /continue/i }));
     expect(screen.getByRole("textbox", { name: "Organization or project" })).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: "Location or venue" })).toBeInTheDocument();

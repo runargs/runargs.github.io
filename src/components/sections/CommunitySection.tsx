@@ -1,11 +1,10 @@
 import { Link as LinkIcon, Users } from "lucide-react";
-import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader, StampBadge } from "@/components/design-system/Dossier";
+import { EditorialCard, EvidenceMeta, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 interface Community {
   id: string;
   name: string;
   role: string;
-  description: string;
   period?: string;
   url?: string;
   companyLinks?: Array<{
@@ -19,8 +18,6 @@ const communities: Community[] = [
     id: "product-research",
     name: "Product research participation",
     role: "Beta testing and research participation",
-    description:
-      "Product research participation across consumer wellness hardware, productivity software, AI tools, and finance products. There's no better way to have user empathy than to be one :)",
     period: "2022–Present",
     companyLinks: [
       { name: "Ōura", url: "https://ouraring.com/" },
@@ -37,8 +34,6 @@ const communities: Community[] = [
     id: "moral-ambition",
     name: "Moral Ambition Community",
     role: "Member",
-    description:
-      "A community for people applying ambition to high-stakes problems. Recognizing that we’re among the most privileged people in the history of humanity. That means we have an enormous opportunity to make a difference.",
     period: "2026–Present",
     url: "https://www.moralambition.org/",
   },
@@ -46,17 +41,13 @@ const communities: Community[] = [
     id: "chef",
     name: "Private dining & hosted culinary experiences",
     role: "Advisory consultant and private chef",
-    description:
-      "Independent and collaborative culinary work (I Know a Place Culinary Agency) across menus, event concepts, operations, and hosting.",
     period: "2024–Present",
-    url: "https://iknowaplace.agency/",
+    url: "https://www.instagram.com/haruhay.studio/",
   },
   {
     id: "mentorship-volunteerism",
     name: "Mentorship and volunteerism",
     role: "Independent mentor and community volunteer",
-    description:
-      "Career mentorship for emerging technical talent, as well as providing meals, grants, and serving as a Grand Champion fundraiser for Alzheimer’s research.",
     period: "2015–Present",
     url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/",
   },
@@ -69,7 +60,6 @@ export function CommunitySection() {
         <SectionHeader
           marker="03"
           title="Service keeps me grounded."
-          description="Wellness tools, public-interest work, food culture, service, and community contexts that give me broader perspectives."
           className="mb-10"
         />
 
@@ -98,14 +88,8 @@ export function CommunitySection() {
                       community.name
                     )}
                   </h3>
-                  <StampBadge tone="ochre" className="service-work-role">
-                    {community.role}
-                  </StampBadge>
+                  <p className="service-work-role small-label text-[var(--field-ochre)]">{community.role}</p>
                 </div>
-
-                <p className="mobile-digest-copy mt-5 flex-grow text-sm leading-7 text-[var(--ink-muted)]">
-                  {community.description}
-                </p>
 
                 <EvidenceMeta className="service-work-meta mt-auto">
                   <div className="space-y-3">

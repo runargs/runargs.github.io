@@ -60,7 +60,7 @@ export function BioSection() {
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
               <p className="text-lg text-[var(--ink-soft)] leading-8">
-                I’m a product manager building AI tools that help people understand complex information and make thoughtful decisions.
+                I work broadly, test what I learn, and build AI that gives people more agency.
               </p>
 
               <blockquote className="mt-4 border-l-2 border-[var(--civic-blue)] pl-4">
@@ -76,7 +76,7 @@ export function BioSection() {
                 <DossierLink href="#contact" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
                   Contact <ArrowRight className="ml-2 h-4 w-4" />
                 </DossierLink>
-                <DossierLink href="#contact">
+                <DossierLink href="#resume">
                   <FileText className="mr-2 h-4 w-4" /> Résumé PDF
                 </DossierLink>
                 <Link

@@ -15,7 +15,7 @@ import {
   type ArtProject,
 } from "@/data/artPortfolio";
 import { cn } from "@/lib/utils";
-import { Guestbook } from "@/components/feedback/Guestbook";
+import { PortfolioFooter } from "@/components/layout/PortfolioFooter";
 
 type Filter = ArtPractice;
 
@@ -457,12 +457,17 @@ function ContactForm({ idPrefix = "footer", title }: { idPrefix?: string; title?
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [receipt, setReceipt] = useState({ name: "", email: "" });
   const [step, setStep] = useState(0);
-  const [inquiryType, setInquiryType] = useState("");
+  const [inquiryTypesSelected, setInquiryTypesSelected] = useState<string[]>([]);
+  const [selectionError, setSelectionError] = useState(false);
   const [briefPreview, setBriefPreview] = useState<InquiryPreview>({ message: "", organization: "", timeframe: "", location: "", budget: "", stages: [] });
   const formRef = useRef<HTMLFormElement>(null);
   const id = (field: string) => `${idPrefix}-art-contact-${field}`;
 
   const moveForward = () => {
+    if (step === 0 && inquiryTypesSelected.length === 0) {
+      setSelectionError(true);
+      return;
+    }
     const panel = formRef.current?.querySelector<HTMLElement>(`[data-contact-step="${step}"]`);
     const controls = Array.from(panel?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea") ?? []);
     const invalid = controls.find((control) => !control.checkValidity());
@@ -521,11 +526,22 @@ function ContactForm({ idPrefix = "footer", title }: { idPrefix?: string; title?
             <legend className="sr-only">Inquiry type</legend>
             {inquiryTypes.map(([type, tone, Icon], index) => (
               <label key={type}>
-                <input type="radio" name="inquiry_type" value={type} required disabled={status === "sent"} checked={inquiryType === type} onChange={() => setInquiryType(type)} />
+                <input
+                  type="checkbox"
+                  name="inquiry_type[]"
+                  value={type}
+                  disabled={status === "sent"}
+                  checked={inquiryTypesSelected.includes(type)}
+                  onChange={() => {
+                    setInquiryTypesSelected((current) => current.includes(type) ? current.filter((item) => item !== type) : [...current, type]);
+                    setSelectionError(false);
+                  }}
+                />
                 <span className={cn("evidence-link-badge", tone)}><small>0{index + 1}</small><Icon aria-hidden="true" /><strong>{type}</strong></span>
               </label>
             ))}
           </fieldset>
+          {selectionError && <p className="art-contact-choice-error" role="alert">Select at least one.</p>}
         </section>
 
         <section className="art-contact-step" data-contact-step="1" hidden={step !== 1}>
@@ -571,7 +587,7 @@ function ContactForm({ idPrefix = "footer", title }: { idPrefix?: string; title?
             </div>
           </div>
           <div className="art-contact-summary">
-            <p><strong>{inquiryType}</strong></p>
+            <p><strong>{inquiryTypesSelected.join(", ")}</strong></p>
             <blockquote>{briefPreview.message}</blockquote>
             <dl>
               {briefPreview.organization && <div><dt>Organization or project</dt><dd>{briefPreview.organization}</dd></div>}
@@ -754,7 +770,6 @@ export default function ArtPage() {
                 <p className="font-pixel">the work / growing</p>
                 <h2 id="work-index-title">Browse the work</h2>
               </div>
-              <p>Images, meals, objects, collaborations, and moving work live together here.</p>
             </header>
 
             <div className="art-archive-scroll-region">
@@ -778,14 +793,13 @@ export default function ArtPage() {
             </div>
           </section>
 
-          <footer id="art-inquiry" className="art-motion-footer" tabIndex={-1}>
+          <section id="art-inquiry" className="art-motion-footer" tabIndex={-1}>
             <div>
-              <p className="font-pixel">commissions / private dining / collaborations</p>
               <h2>Interested in working together?</h2>
             </div>
             <ContactForm />
-          </footer>
-          <Guestbook id="art-guestbook" page="art" className="art-guestbook" />
+          </section>
+          <PortfolioFooter page="art" guestbookId="art-guestbook" />
         </main>
 
         <ProjectViewer project={selectedProject} projects={filteredProjects} onSelect={setSelectedProject} />

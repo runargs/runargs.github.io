@@ -116,16 +116,13 @@ const artifactTypeTone: Record<ArtifactType, string> = {
   video: "green",
 };
 
-const topicToneByIndex = ["blue", "violet", "green", "ochre"] as const;
-
 export function TalksSection() {
   return (
     <SectionBand id="talks">
       <div className="mx-auto max-w-5xl">
         <SectionHeader
           marker="02"
-          title="Engagements"
-          description="Posts, talks, education, earlier technical work, and selected honors."
+          title="Public work and invited engagements."
           className="mb-8"
         />
 
@@ -167,15 +164,6 @@ export function TalksSection() {
                   </td>
                   <td className="evidence-proof-cell" data-label="Evidence">
                     <p>{item.summary}</p>
-                    {item.topics && (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {item.topics.map((topic, topicIndex) => (
-                          <span key={topic} className={`evidence-mini-badge ${topicToneByIndex[topicIndex % topicToneByIndex.length]}`}>
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </td>
                   <td className="evidence-link-cell" data-label="Link">
                     <a
@@ -194,12 +182,9 @@ export function TalksSection() {
           </table>
         </div>
 
-        <div className="mt-8 border-t border-[var(--rule)] pt-6">
-          <div className="mb-3 flex items-baseline justify-between gap-4">
-            <h3 className="text-lg leading-tight text-[var(--ink)]">Honors</h3>
-            <span className="data-text text-[var(--ink-faint)]">{honors.length}</span>
-          </div>
-          <div className="honors-grid grid gap-x-5 md:grid-cols-2">
+        <details className="honors-disclosure mt-8 border-t border-[var(--rule)] pt-4">
+          <summary><span>Selected honors</span><small>{honors.length} records</small></summary>
+          <div className="honors-grid mt-4 grid gap-x-5 md:grid-cols-2">
             {honors.map((honor) => (
               <div key={`${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-2.5 border-b border-[rgba(213,198,177,0.55)] py-1.5">
                 <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
@@ -210,21 +195,7 @@ export function TalksSection() {
               </div>
             ))}
           </div>
-          <details className="mobile-more-details mobile-only-block mt-4">
-            <summary>More honors ({honors.length - 5})</summary>
-            <div className="mt-3 space-y-2">
-              {honors.slice(5).map((honor) => (
-                <div key={`mobile-more-${honor.title}-${honor.year}`} className="grid grid-cols-[48px_minmax(0,1fr)] gap-2.5 border-b border-[rgba(213,198,177,0.55)] py-1.5">
-                  <span className="data-text text-[var(--ink-faint)]">{honor.year}</span>
-                  <p className="text-xs leading-5 text-[var(--ink-muted)]">
-                    <span className="font-semibold text-[var(--ink-soft)]">{honor.title}</span>
-                    <OrganizationTooltip organization={honor.organization} title={honor.title} />
-                  </p>
-                </div>
-              ))}
-            </div>
-          </details>
-        </div>
+        </details>
       </div>
     </SectionBand>
   );

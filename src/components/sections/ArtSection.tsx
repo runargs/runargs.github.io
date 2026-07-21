@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { DossierLink, ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 const practices = [
   { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg" },
@@ -40,7 +40,7 @@ export function ArtSection() {
   return (
     <SectionBand id="art">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader marker="04" eyebrow="Creative practice" title="Haruhay Studio" description="My renaissance atelier for ceramics, food, modeling, fashion, and flow arts." className="mb-10" />
+        <SectionHeader marker="04" title="Haruhay Studio" className="mb-10" />
         <div className="art-home-practice-strip notched">
           {practices.map((practice) => (
             <Link key={practice.title} to="/art" className={`art-home-practice-card group ${practice.dark ? "is-flow" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]`}>
@@ -59,9 +59,6 @@ export function ArtSection() {
           <Link to="/art" className="inline-flex min-h-[44px] items-center gap-2 border border-[var(--ink-soft)] bg-[var(--ink-soft)] px-5 py-2 text-xs font-extrabold uppercase tracking-[0.07em] text-[var(--paper)] shadow-[2px_2px_0_rgba(45,40,31,0.10)] transition hover:-translate-y-0.5 hover:bg-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]">
             Explore the creative portfolio <ArrowRight className="h-4 w-4" />
           </Link>
-          <DossierLink href="#contact" className="min-h-[44px] gap-2">
-            Ask about commissions & private dining <Mail className="h-4 w-4" />
-          </DossierLink>
         </div>
       </div>
     </SectionBand>
