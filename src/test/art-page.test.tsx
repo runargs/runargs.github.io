@@ -34,7 +34,7 @@ describe("ArtPage", () => {
     Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
   });
 
-  it("renders the motion story in order with persistent shortcuts", () => {
+  it("renders the motion story and guides a visitor through the inquiry brief", () => {
     renderPage();
     expect(screen.getByRole("heading", { level: 1, name: /haruhay studio/i })).toBeInTheDocument();
     expect(screen.getByText(/this is my renaissance atelier; of/i)).toBeInTheDocument();
@@ -48,8 +48,21 @@ describe("ArtPage", () => {
       "Browse the work",
     ]);
     expect(screen.getByRole("button", { name: "Browse gallery" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Work with me" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /follow on instagram/i })).toHaveAttribute("href", "https://www.instagram.com/haruhay.studio/");
+    expect(screen.getByRole("button", { name: "Start an inquiry" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /follow haruhay studio/i })).toHaveAttribute("href", "https://www.instagram.com/haruhay.studio/");
+    expect(screen.getByRole("group", { name: "Inquiry type" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("radio", { name: /speaking & workshops/i }));
+    fireEvent.click(screen.getByRole("button", { name: /continue/i }));
+    expect(screen.getByRole("textbox", { name: "Organization or project" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Location or venue" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /budget range/i })).toBeInTheDocument();
+    const details = screen.getByRole("textbox", { name: "Project details" });
+    expect(details).toBeRequired();
+    fireEvent.change(details, { target: { value: "A product leadership talk for our annual gathering." } });
+    fireEvent.click(screen.getByRole("button", { name: /continue/i }));
+    expect(screen.getByRole("textbox", { name: "Name" })).toBeRequired();
+    expect(screen.getByRole("textbox", { name: "Email" })).toBeRequired();
+    expect(screen.getByText("Speaking & workshops", { selector: ".art-contact-summary strong" })).toBeInTheDocument();
   });
 
   it("derives filters from project data and starts with a single practice selected", async () => {

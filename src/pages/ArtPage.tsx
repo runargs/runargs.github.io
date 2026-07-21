@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowDown, ArrowLeft, ArrowRight, ExternalLink, GripHorizontal, Instagram, LayoutGrid, Mail, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, Camera, CookingPot, ExternalLink, Flame, GripHorizontal, Instagram, LayoutGrid, Mail, Mic2, Palette, Scissors, Sparkles, RotateCcw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
@@ -435,6 +435,189 @@ interface ProjectViewerProps {
   onSelect: (project: ArtProject | null) => void;
 }
 
+const inquiryTypes = [
+  ["Custom ceramics", "blue", Palette],
+  ["Private dining & catering", "ochre", CookingPot],
+  ["Modeling & creative shoots", "violet", Camera],
+  ["Custom clothing & styling", "green", Scissors],
+  ["Flow arts booking", "blue", Flame],
+  ["Speaking & workshops", "ochre", Mic2],
+  ["Creative collaboration", "violet", Sparkles],
+] as const;
+
+const projectStages = ["Exploring an idea", "Brief ready", "Date confirmed", "Venue confirmed"];
+type InquiryPreview = { message: string; organization: string; timeframe: string; location: string; budget: string; stages: string[] };
+
+function ContactForm({ idPrefix = "footer", title }: { idPrefix?: string; title?: string }) {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [receipt, setReceipt] = useState({ name: "", email: "" });
+  const [step, setStep] = useState(0);
+  const [inquiryType, setInquiryType] = useState("");
+  const [briefPreview, setBriefPreview] = useState<InquiryPreview>({ message: "", organization: "", timeframe: "", location: "", budget: "", stages: [] });
+  const formRef = useRef<HTMLFormElement>(null);
+  const id = (field: string) => `${idPrefix}-art-contact-${field}`;
+
+  const moveForward = () => {
+    const panel = formRef.current?.querySelector<HTMLElement>(`[data-contact-step="${step}"]`);
+    const controls = Array.from(panel?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea") ?? []);
+    const invalid = controls.find((control) => !control.checkValidity());
+    if (invalid) {
+      invalid.reportValidity();
+      return;
+    }
+    if (step === 1 && formRef.current) {
+      const data = new FormData(formRef.current);
+      setBriefPreview({
+        message: String(data.get("message") ?? ""),
+        organization: String(data.get("organization") ?? ""),
+        timeframe: String(data.get("timeframe") ?? ""),
+        location: String(data.get("location") ?? ""),
+        budget: String(data.get("budget") ?? ""),
+        stages: data.getAll("project_stage[]").map(String),
+      });
+    }
+    setStep((current) => Math.min(2, current + 1));
+  };
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setStatus("sending");
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/alexa.thoennes@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      if (!response.ok) throw new Error("Form submission failed");
+      setReceipt({ name: String(data.get("name") ?? ""), email: String(data.get("email") ?? "") });
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <form ref={formRef} className="art-contact-form notched" onSubmit={submit}>
+      <input type="hidden" name="_subject" value="New Haruhay Studio inquiry" />
+      <input type="hidden" name="_template" value="table" />
+      <input className="art-contact-honey" type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      {title && <h2 className="art-contact-form-title">{title}</h2>}
+      {status === "sent" && <div className="art-contact-sent-note" role="status"><strong>Thanks{receipt.name ? `, ${receipt.name}` : ""}.</strong> Your inquiry was sent. I’ll reply to {receipt.email}.</div>}
+        <ol className="art-contact-progress" aria-label="Inquiry progress">
+          {["Choose", "Shape", "Connect"].map((label, index) => <li key={label} aria-current={step === index ? "step" : undefined}><span>0{index + 1}</span>{label}</li>)}
+        </ol>
+
+        <section className="art-contact-step" data-contact-step="0" hidden={step !== 0}>
+          <div className="art-contact-prompt"><p className="font-pixel">Let’s start here.</p><h3>What are you planning?</h3></div>
+          <fieldset className="art-inquiry-cards">
+            <legend className="sr-only">Inquiry type</legend>
+            {inquiryTypes.map(([type, tone, Icon], index) => (
+              <label key={type}>
+                <input type="radio" name="inquiry_type" value={type} required disabled={status === "sent"} checked={inquiryType === type} onChange={() => setInquiryType(type)} />
+                <span className={cn("evidence-link-badge", tone)}><small>0{index + 1}</small><Icon aria-hidden="true" /><strong>{type}</strong></span>
+              </label>
+            ))}
+          </fieldset>
+        </section>
+
+        <section className="art-contact-step" data-contact-step="1" hidden={step !== 1}>
+          <div className="art-contact-prompt"><p className="font-pixel">A rough brief is enough.</p><h3>Give me the shape of it.</h3></div>
+          <div className="art-contact-field art-contact-message">
+            <label htmlFor={id("message")}>Project details</label>
+            <textarea id={id("message")} name="message" rows={5} placeholder="What are you imagining? Include scale, quantity, guests, or deliverables." required disabled={status === "sent"} />
+          </div>
+          <div className="art-contact-fields-grid">
+            <div className="art-contact-field">
+              <label htmlFor={id("organization")}>Organization or project</label>
+              <input id={id("organization")} name="organization" type="text" autoComplete="organization" placeholder="Studio, company, or personal project" disabled={status === "sent"} />
+            </div>
+            <div className="art-contact-field">
+              <label htmlFor={id("timeframe")}>Date or timeframe</label>
+              <input id={id("timeframe")} name="timeframe" type="text" placeholder="Specific date or flexible window" disabled={status === "sent"} />
+            </div>
+            <div className="art-contact-field">
+              <label htmlFor={id("location")}>Location or venue</label>
+              <input id={id("location")} name="location" type="text" autoComplete="street-address" placeholder="City, venue, or remote" disabled={status === "sent"} />
+            </div>
+            <div className="art-contact-field">
+              <label htmlFor={id("budget")}>Budget range <span>(optional)</span></label>
+              <input id={id("budget")} name="budget" type="text" inputMode="decimal" placeholder="Approximate range" disabled={status === "sent"} />
+            </div>
+          </div>
+          <fieldset className="art-contact-stage-tags">
+            <legend>Project stage <span>(select any)</span></legend>
+            <div>{projectStages.map((stage) => <label key={stage}><input type="checkbox" name="project_stage[]" value={stage} disabled={status === "sent"} /><span className="evidence-link-badge blue">{stage}</span></label>)}</div>
+          </fieldset>
+        </section>
+
+        <section className="art-contact-step" data-contact-step="2" hidden={step !== 2}>
+          <div className="art-contact-prompt"><p className="font-pixel">Last thing.</p><h3>Where should I reply?</h3></div>
+          <div className="art-contact-fields-grid">
+            <div className="art-contact-field">
+              <label htmlFor={id("name")}>Name</label>
+              <input id={id("name")} name="name" type="text" autoComplete="name" placeholder="Your name" required disabled={status === "sent"} />
+            </div>
+            <div className="art-contact-field">
+              <label htmlFor={id("email")}>Email</label>
+              <input id={id("email")} name="email" type="email" autoComplete="email" placeholder="you@example.com" required disabled={status === "sent"} />
+            </div>
+          </div>
+          <div className="art-contact-summary">
+            <p><strong>{inquiryType}</strong></p>
+            <blockquote>{briefPreview.message}</blockquote>
+            <dl>
+              {briefPreview.organization && <div><dt>Organization or project</dt><dd>{briefPreview.organization}</dd></div>}
+              {briefPreview.timeframe && <div><dt>Date or timeframe</dt><dd>{briefPreview.timeframe}</dd></div>}
+              {briefPreview.location && <div><dt>Location or venue</dt><dd>{briefPreview.location}</dd></div>}
+              {briefPreview.budget && <div><dt>Budget range</dt><dd>{briefPreview.budget}</dd></div>}
+              {briefPreview.stages.length > 0 && <div><dt>Project stage</dt><dd>{briefPreview.stages.join(", ")}</dd></div>}
+            </dl>
+          </div>
+        </section>
+
+        <div className="art-contact-actions">
+          {step > 0 && <button className="art-contact-back" type="button" disabled={status === "sent"} onClick={() => setStep((current) => current - 1)}><ArrowLeft aria-hidden="true" /> Back</button>}
+          {step < 2 ? (
+            <button type="button" onClick={moveForward}>Continue <ArrowRight aria-hidden="true" /></button>
+          ) : (
+            <button type="submit" disabled={status === "sending" || status === "sent"}><Mail aria-hidden="true" /> {status === "sending" ? "Sending…" : status === "sent" ? "Inquiry sent" : "Send inquiry"}</button>
+          )}
+          <DossierLink className="art-contact-follow" href="https://www.instagram.com/haruhay.studio/" target="_blank" rel="noopener noreferrer"><Instagram /> Follow Haruhay Studio</DossierLink>
+        </div>
+        <p className="art-contact-status" role="status" aria-live="polite">{status === "error" && "Could not send. Please try again."}</p>
+    </form>
+  );
+}
+
+function ContactDock() {
+  const [open, setOpen] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const footer = document.getElementById("art-inquiry");
+    if (!footer || !("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver(([entry]) => setFooterVisible(entry.isIntersecting), { threshold: 0.08 });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <button className={cn("art-contact-nav-trigger", footerVisible && "is-hidden")} type="button" onClick={() => setOpen(true)} aria-hidden={footerVisible} tabIndex={footerVisible ? -1 : 0}><Mail aria-hidden="true" /><span className="art-nav-label">Start an inquiry</span></button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="art-contact-drawer">
+          <DialogTitle className="sr-only">Start an inquiry</DialogTitle>
+          <DialogDescription className="sr-only">Tell me about a commission, booking, speaking engagement, or collaboration.</DialogDescription>
+          <ContactForm idPrefix="drawer" title="Start an inquiry" />
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
 function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
   const [mediaIndex, setMediaIndex] = useState(0);
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
@@ -550,7 +733,7 @@ export default function ArtPage() {
           <Link to="/" aria-label="Back to Alexa Thoennes"><ArrowLeft aria-hidden="true" /><span className="art-nav-label">Alexa</span></Link>
           <div>
             <button type="button" aria-label="Browse gallery" onClick={() => scrollToId("work-index")}><LayoutGrid aria-hidden="true" /><span className="art-nav-label">Browse gallery</span></button>
-            <button type="button" aria-label="Work with me" onClick={() => scrollToId("art-inquiry")}><Mail aria-hidden="true" /><span className="art-nav-label">Inquiry</span></button>
+            <ContactDock />
             <LightsOffToggle />
           </div>
         </nav>
@@ -594,10 +777,7 @@ export default function ArtPage() {
               <p className="font-pixel">commissions / private dining / collaborations</p>
               <h2>Interested in working together?</h2>
             </div>
-            <div>
-              <DossierLink href={`${inquiryBase}?subject=Creative%20work%20inquiry`} className="art-footer-primary"><Mail /> Send an email</DossierLink>
-              <DossierLink href="https://www.instagram.com/haruhay.studio/" target="_blank" rel="noopener noreferrer"><Instagram /> Follow on Instagram</DossierLink>
-            </div>
+            <ContactForm />
           </footer>
         </main>
 
