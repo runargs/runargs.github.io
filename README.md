@@ -31,6 +31,19 @@ The site is a Vite, React, and TypeScript application styled with Tailwind CSS a
 
 Both contact experiences use progressive, in-page forms with a final review state. The static site sends submissions through FormSubmit's AJAX endpoint, so visitors remain on the page and submitted fields stay visible but locked. Local images and videos live under `public/media/art/`; Instagram projects use local posters or video previews and retain their canonical external links.
 
+The main and creative-practice pages also share a lightweight guestbook. A visitor can leave a bare kudos in one click or optionally add their reason for visiting, whether they found what they needed, and a short note. Raw entries are delivered to Gmail through the same accountless FormSubmit path as contact inquiries. Each submission includes a stable schema version, page identifier, path, timestamp, and build commit when available.
+
+Public guestbook totals and approved notes are deliberately separate from raw submissions. [`src/data/guestbook.ts`](./src/data/guestbook.ts) is the curated, version-controlled snapshot used by the site. This keeps private feedback out of the bundle, prevents deployments from erasing entries, and allows published metrics to be reviewed before they appear. Until the snapshot contains data, no empty counter is rendered. Percentages should be published only once the snapshot has at least 20 structured responses; smaller samples should use raw counts.
+
+To publish a guestbook update:
+
+1. Review or summarize guestbook emails in Gmail.
+2. Approve any quote before making it public.
+3. Update the totals, date, and approved notes in `src/data/guestbook.ts`.
+4. Run the normal lint, test, and production build checks before publishing.
+
+Future pages should reuse [`src/components/feedback/Guestbook.tsx`](./src/components/feedback/Guestbook.tsx) with a new stable `page` value rather than creating another submission flow. If live aggregation is added later, the curated snapshot can be replaced by a read-only endpoint without changing the visitor-facing form or its field names.
+
 That separation reflects product boundaries as much as code boundaries: page-level orchestration, reusable interaction patterns, content modules, and visual primitives can evolve independently while preserving a consistent visitor experience. Shared utilities handle behavior such as reduced-motion-aware scrolling, and the repository includes linting, tests, and a production build as separate validation signals.
 
 ## Agentic development workflow

@@ -11,6 +11,7 @@ import { SideProjectsSection } from "@/components/sections/SideProjectsSection";
 import { ArtSection } from "@/components/sections/ArtSection";
 import { ResumeSection } from "@/components/sections/ResumeSection";
 import { ProfessionalContactForm } from "@/components/contact/ProfessionalContactForm";
+import { Guestbook } from "@/components/feedback/Guestbook";
 
 const sectionIds = [
   "bio",
@@ -232,12 +233,16 @@ const Index = () => {
             <ProfessionalContactForm />
           </section>
 
+          <Guestbook id="guestbook" page="main" />
+
           <footer className="portfolio-footer">
             <div className="portfolio-footer-mark">
               <img
                 src="/images/footer-miso-full.png"
                 alt=""
                 aria-hidden="true"
+                loading="lazy"
+                decoding="async"
                 className="portfolio-footer-image"
               />
             </div>

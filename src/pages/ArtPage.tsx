@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowDown, ArrowLeft, ArrowRight, Camera, CookingPot, ExternalLink, Flame, GripHorizontal, Instagram, LayoutGrid, Mail, Mic2, Palette, Scissors, Sparkles, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, BookHeart, Camera, CookingPot, ExternalLink, Flame, GripHorizontal, Instagram, LayoutGrid, Mail, Mic2, Palette, Scissors, Sparkles, RotateCcw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
@@ -15,6 +15,7 @@ import {
   type ArtProject,
 } from "@/data/artPortfolio";
 import { cn } from "@/lib/utils";
+import { Guestbook } from "@/components/feedback/Guestbook";
 
 type Filter = ArtPractice;
 
@@ -737,6 +738,7 @@ export default function ArtPage() {
           <Link to="/" aria-label="Back to Alexa Thoennes"><ArrowLeft aria-hidden="true" /><span className="art-nav-label">Alexa</span></Link>
           <div>
             <button type="button" aria-label="Browse gallery" onClick={() => scrollToId("work-index")}><LayoutGrid aria-hidden="true" /><span className="art-nav-label">Browse gallery</span></button>
+            <button type="button" aria-label="Guestbook" onClick={() => scrollToId("art-guestbook")}><BookHeart aria-hidden="true" /><span className="art-nav-label">Guestbook</span></button>
             <ContactDock />
             <LightsOffToggle />
           </div>
@@ -783,6 +785,7 @@ export default function ArtPage() {
             </div>
             <ContactForm />
           </footer>
+          <Guestbook id="art-guestbook" page="art" className="art-guestbook" />
         </main>
 
         <ProjectViewer project={selectedProject} projects={filteredProjects} onSelect={setSelectedProject} />
