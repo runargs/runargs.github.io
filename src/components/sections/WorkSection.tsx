@@ -421,6 +421,8 @@ export function WorkSection() {
             src="/images/clip-operator-computing.png"
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="work-operator-figure"
           />
         </div>

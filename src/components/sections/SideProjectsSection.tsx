@@ -56,7 +56,7 @@ export function SideProjectsSection() {
         />
 
         <div className="marginalia-field">
-          <img src="/images/clip-robot-scribe.png" alt="" aria-hidden="true" className="marginalia-scribe" />
+          <img src="/images/clip-robot-scribe.png" alt="" aria-hidden="true" loading="lazy" decoding="async" className="marginalia-scribe" />
           <div className="marginalia-grid">
             {notesAndProjects.map((item, index) => {
               return (

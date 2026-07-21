@@ -39,7 +39,7 @@ export function ResumeSection() {
               <span className="font-serif text-xl text-[var(--ink)]">Alexa Thoennes</span>
             </div>
             <div className="resume-file-actions flex w-full items-center justify-end gap-3 md:w-auto">
-              <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" className="resume-disk-icon" />
+              <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" loading="lazy" decoding="async" className="resume-disk-icon" />
               <DossierLink href="#contact" className="w-full bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)] md:w-auto">
                 Request résumé PDF
               </DossierLink>

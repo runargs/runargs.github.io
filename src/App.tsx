@@ -1,17 +1,21 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { lazy, Suspense } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import ArtPage from "./pages/ArtPage";
+
+const ArtPage = lazy(() => import("./pages/ArtPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => (
   <TooltipProvider>
     <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/art" element={<ArtPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/art" element={<ArtPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </Router>
   </TooltipProvider>
 );
