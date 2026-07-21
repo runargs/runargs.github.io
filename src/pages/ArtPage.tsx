@@ -45,10 +45,11 @@ function scrollToId(id: string) {
 }
 
 function MovingMediaPreview({ media, reduced, alt = "" }: { media: ArtMedia; reduced: boolean; alt?: string }) {
-  if (media.kind === "video") {
+  const sources = media.kind === "video" ? media.sources : media.kind === "instagram" ? media.sources : undefined;
+  if (sources?.length) {
     return (
       <video aria-label={alt || undefined} autoPlay={!reduced} muted loop playsInline preload="metadata" poster={media.poster}>
-        {media.sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
+        {sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
       </video>
     );
   }
@@ -324,6 +325,15 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
     const handleListWheel = (event: WheelEvent) => {
       const normalizedDelta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? 120 : 1);
       if (normalizedDelta === 0) return;
+
+      const archiveWindow = layout.closest<HTMLElement>(".art-archive-window");
+      const navigation = document.querySelector<HTMLElement>(".art-motion-nav");
+      if (!archiveWindow || window.innerWidth <= 900) return;
+      const stickyTop = (navigation?.getBoundingClientRect().bottom ?? 0) + 12;
+      if (archiveWindow.getBoundingClientRect().top > stickyTop + 2) {
+        wheelDeltaRef.current = 0;
+        return;
+      }
 
       const direction = normalizedDelta > 0 ? 1 : -1;
       const currentIndex = Math.max(0, projects.findIndex((project) => project.id === previewId));

@@ -38,6 +38,37 @@ interface ProjectMediaDetailProps {
 
 export function ProjectMediaDetail({ media, activeVideoId, mediaId, onActivateVideo }: ProjectMediaDetailProps) {
   if (media.kind === "instagram" && media.postType === "reel") {
+    if (media.sources?.length && activeVideoId === mediaId) {
+      return (
+        <video
+          aria-label={media.alt}
+          controls
+          autoPlay
+          playsInline
+          preload="metadata"
+          poster={media.poster}
+          className="art-viewer-video"
+        >
+          {media.sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
+          Your browser does not support embedded video.
+        </video>
+      );
+    }
+
+    if (media.sources?.length) {
+      return (
+        <button
+          type="button"
+          className="art-video-poster"
+          onClick={() => onActivateVideo(mediaId)}
+          aria-label={`Play reel: ${media.alt}`}
+        >
+          <img src={media.poster} alt={media.alt} width={media.width} height={media.height} />
+          <span><Play fill="currentColor" /> Play reel</span>
+        </button>
+      );
+    }
+
     return (
       <a
         href={media.url}

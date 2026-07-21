@@ -17,6 +17,7 @@ export type ArtMedia =
       url: string;
       poster: string;
       postType: "post" | "reel";
+      sources?: Array<{ src: string; type: "video/mp4" | "video/webm" }>;
       alt: string;
       width: number;
       height: number;
@@ -56,7 +57,17 @@ const instagram = (
   width: number,
   height: number,
   postType: "post" | "reel" = "post",
-): ArtMedia => ({ kind: "instagram", url, poster, alt, width, height, postType });
+  previewSrc?: string,
+): ArtMedia => ({
+  kind: "instagram",
+  url,
+  poster,
+  alt,
+  width,
+  height,
+  postType,
+  sources: previewSrc ? [{ src: previewSrc, type: "video/mp4" }] : undefined,
+});
 
 export const artProjects: ArtProject[] = [
   {
@@ -139,7 +150,7 @@ export const artProjects: ArtProject[] = [
     title: "Siopao-shaped salt jar",
     practice: "ceramics",
     medium: "Ceramic salt jar",
-    media: [instagram("https://www.instagram.com/reel/DDZ-xGbPUJ6/", "/media/art/instagram-siopao-salt-jar.jpg", "Handmade siopao-shaped ceramic salt jar", 360, 640, "reel")],
+    media: [instagram("https://www.instagram.com/reel/DDZ-xGbPUJ6/", "/media/art/instagram-siopao-salt-jar.jpg", "Handmade siopao-shaped ceramic salt jar", 360, 640, "reel", "/media/art/instagram-reel-DDZ-xGbPUJ6.mp4")],
     layout: "tall",
   },
   {
@@ -147,7 +158,7 @@ export const artProjects: ArtProject[] = [
     title: "Dog charm",
     practice: "ceramics",
     medium: "Ceramic charm",
-    media: [instagram("https://www.instagram.com/reel/DApRi9kAzI3/", "/media/art/instagram-dog-charm.jpg", "Handmade ceramic dog charm", 360, 640, "reel")],
+    media: [instagram("https://www.instagram.com/reel/DApRi9kAzI3/", "/media/art/instagram-dog-charm.jpg", "Handmade ceramic dog charm", 360, 640, "reel", "/media/art/instagram-reel-DApRi9kAzI3.mp4")],
     layout: "tall",
   },
   {
@@ -155,7 +166,7 @@ export const artProjects: ArtProject[] = [
     title: "Farm supper club",
     practice: "food",
     medium: "Private dining",
-    media: [instagram("https://www.instagram.com/reel/DbAEJ64unUR/", "/media/art/instagram-farm-supper-club.jpg", "Farm supper club dinner service", 360, 640, "reel")],
+    media: [instagram("https://www.instagram.com/reel/DbAEJ64unUR/", "/media/art/instagram-farm-supper-club.jpg", "Farm supper club dinner service", 360, 640, "reel", "/media/art/instagram-reel-DbAEJ64unUR.mp4")],
     layout: "tall",
   },
   {
@@ -171,7 +182,7 @@ export const artProjects: ArtProject[] = [
     title: "Art gallery catering",
     practice: "food",
     medium: "Event catering",
-    media: [instagram("https://www.instagram.com/reel/C-QerP7A8tI/", "/media/art/instagram-art-gallery-catering.jpg", "Catering for an art gallery event", 360, 640, "reel")],
+    media: [instagram("https://www.instagram.com/reel/C-QerP7A8tI/", "/media/art/instagram-art-gallery-catering.jpg", "Catering for an art gallery event", 360, 640, "reel", "/media/art/instagram-reel-C-QerP7A8tI.mp4")],
     layout: "tall",
   },
   {
@@ -180,7 +191,7 @@ export const artProjects: ArtProject[] = [
     practice: "food",
     medium: "Limited baking drop",
     description: "Chocolate sesame cookies made with roasted sesame oil.",
-    media: [instagram("https://www.instagram.com/reel/DJP0syfA4RF/", "/media/art/instagram-sesame-cookies.jpg", "Chocolate sesame and roasted sesame oil cookies", 360, 640, "reel")],
+    media: [instagram("https://www.instagram.com/reel/DJP0syfA4RF/", "/media/art/instagram-sesame-cookies.jpg", "Chocolate sesame and roasted sesame oil cookies", 360, 640, "reel", "/media/art/instagram-reel-DJP0syfA4RF.mp4")],
     layout: "tall",
   },
   {
@@ -188,7 +199,7 @@ export const artProjects: ArtProject[] = [
     title: "Catering prep",
     practice: "food",
     medium: "Event catering",
-    media: [instagram("https://www.instagram.com/reel/DCKn0USvSJb/", "/media/art/instagram-catering-prep.jpg", "Food being prepared for a catered event", 360, 640, "reel")],
+    media: [instagram("https://www.instagram.com/reel/DCKn0USvSJb/", "/media/art/instagram-catering-prep.jpg", "Food being prepared for a catered event", 360, 640, "reel", "/media/art/instagram-reel-DCKn0USvSJb.mp4")],
     layout: "tall",
   },
   {

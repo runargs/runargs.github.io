@@ -78,7 +78,13 @@ describe("ArtPage", () => {
   it("steps through archive previews when the project listing is wheeled", async () => {
     const { container } = renderPage();
     const listing = container.querySelector(".art-archive-layout");
+    const archiveWindow = container.querySelector<HTMLElement>(".art-archive-window");
     expect(listing).not.toBeNull();
+    expect(archiveWindow).not.toBeNull();
+    vi.spyOn(archiveWindow!, "getBoundingClientRect").mockReturnValue({ top: 240 } as DOMRect);
+    fireEvent.wheel(listing!, { deltaY: 80, deltaMode: 0 });
+    expect(screen.queryByRole("img", { name: "Handmade Appa ceramic mug" })).not.toBeInTheDocument();
+    vi.spyOn(archiveWindow!, "getBoundingClientRect").mockReturnValue({ top: 0 } as DOMRect);
     fireEvent.wheel(listing!, { deltaY: 80, deltaMode: 0 });
     await waitFor(() => expect(screen.getByRole("img", { name: "Handmade Appa ceramic mug" })).toBeInTheDocument());
     fireEvent.mouseLeave(listing!);
@@ -104,15 +110,16 @@ describe("ArtPage", () => {
     expect(within(dialog).queryByText(/undated/i)).not.toBeInTheDocument();
   });
 
-  it("keeps an Instagram reel poster visible and opens the canonical post", () => {
+  it("plays an Instagram reel locally and keeps the canonical source link", () => {
     renderPage();
     fireEvent.click(screen.getByRole("button", { name: /open siopao-shaped salt jar/i }));
     const dialog = screen.getByRole("dialog");
     expect(within(dialog).queryByRole("iframe")).not.toBeInTheDocument();
-    const reelLink = within(dialog).getByRole("link", { name: /play reel/i });
-    expect(reelLink).toHaveAttribute("href", "https://www.instagram.com/reel/DDZ-xGbPUJ6/");
-    expect(reelLink).toHaveAttribute("target", "_blank");
-    expect(within(dialog).getByRole("img", { name: /siopao-shaped ceramic salt jar/i })).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole("button", { name: /play reel/i }));
+    const reel = within(dialog).getByLabelText(/siopao-shaped ceramic salt jar/i);
+    expect(reel.tagName).toBe("VIDEO");
+    expect(reel.querySelector("source")).toHaveAttribute("src", "/media/art/instagram-reel-DDZ-xGbPUJ6.mp4");
+    expect(within(dialog).getByRole("link", { name: /watch on instagram/i })).toHaveAttribute("href", "https://www.instagram.com/reel/DDZ-xGbPUJ6/");
   });
 
   it("omits generic metadata and uses a piece-specific inquiry action", () => {
