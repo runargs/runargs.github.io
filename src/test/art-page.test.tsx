@@ -78,7 +78,7 @@ describe("ArtPage", () => {
   it("steps through archive previews when the project listing is wheeled", async () => {
     const { container } = renderPage();
     const listing = container.querySelector(".art-archive-layout");
-    const archiveWindow = container.querySelector<HTMLElement>(".art-archive-window");
+    const archiveWindow = container.querySelector<HTMLElement>(".art-archive-sticky");
     expect(listing).not.toBeNull();
     expect(archiveWindow).not.toBeNull();
     vi.spyOn(archiveWindow!, "getBoundingClientRect").mockReturnValue({ top: 240 } as DOMRect);

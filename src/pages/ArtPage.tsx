@@ -326,7 +326,7 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
       const normalizedDelta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? 120 : 1);
       if (normalizedDelta === 0) return;
 
-      const archiveWindow = layout.closest<HTMLElement>(".art-archive-window");
+      const archiveWindow = layout.closest<HTMLElement>(".art-archive-sticky");
       const navigation = document.querySelector<HTMLElement>(".art-motion-nav");
       if (!archiveWindow || window.innerWidth <= 900) return;
       const stickyTop = (navigation?.getBoundingClientRect().bottom ?? 0) + 12;
@@ -568,23 +568,24 @@ export default function ArtPage() {
               <p>Images, meals, objects, collaborations, and moving work live together here.</p>
             </header>
 
-            <div className="art-filter-row" role="group" aria-label="Filter creative work">
-              {practices.map((practice) => (
-                <button
-                  key={practice}
-                  type="button"
-                  aria-pressed={filter === practice}
-                  className={cn("evidence-link-badge", practiceTagTone[practice], filter === practice && "is-active")}
-                  onClick={() => setFilter(practice)}
-                >
-                  {practiceLabels[practice]}
-                </button>
-              ))}
-              <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
-            </div>
-
             <div className="art-archive-scroll-region">
-              <ArchiveBrowser projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
+              <div className="art-archive-sticky">
+                <div className="art-filter-row" role="group" aria-label="Filter creative work">
+                  {practices.map((practice) => (
+                    <button
+                      key={practice}
+                      type="button"
+                      aria-pressed={filter === practice}
+                      className={cn("evidence-link-badge", practiceTagTone[practice], filter === practice && "is-active")}
+                      onClick={() => setFilter(practice)}
+                    >
+                      {practiceLabels[practice]}
+                    </button>
+                  ))}
+                  <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
+                </div>
+                <ArchiveBrowser projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
+              </div>
             </div>
           </section>
 

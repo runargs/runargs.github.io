@@ -719,13 +719,13 @@
   .art-index-header h2 { margin-top: 0.7rem; font-family: var(--font-pixel); font-weight: 400; font-size: clamp(3.4rem, 7vw, 7rem); line-height: 0.84; letter-spacing: -0.02em; }
   .art-index-header > p { max-width: 38ch; color: var(--ink-muted); line-height: 1.75; }
 
-  .art-filter-row { display: flex; max-width: 1240px; margin: 1.4rem auto 2.5rem; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .art-filter-row { display: flex; max-width: 1240px; margin: 0 auto 0.7rem; flex-wrap: wrap; align-items: center; gap: 0.5rem; background: var(--paper); padding: 0.7rem 0 0.35rem; }
   .art-filter-row .evidence-link-badge { min-height: 30px; font-family: var(--font-body); cursor: pointer; }
   .art-filter-row .evidence-link-badge.is-active { transform: rotate(-0.5deg) translateY(-1px); box-shadow: inset 2px 2px 0 rgba(45, 40, 31, 0.08), 1px 1px 0 rgba(45, 40, 31, 0.06); }
   .art-filter-row > span { margin-left: auto; color: var(--ink-faint); font-family: var(--font-pixel); font-size: 0.72rem; }
 
   .art-archive-scroll-region { min-height: calc(min(78vh, 780px) + min(38vh, 320px)); }
-  .art-archive-scroll-region > .art-archive-window { position: sticky; top: 4.7rem; }
+  .art-archive-sticky { position: sticky; top: 4.7rem; }
 
   .art-project-grid {
     display: block;
@@ -877,7 +877,7 @@
     .art-desktop-hero > .art-scroll-cue { position: relative; bottom: auto; left: auto; width: fit-content; margin: 2rem auto 0; transform: none; }
     .art-archive-layout { min-height: 0; display: block; }
     .art-archive-scroll-region { min-height: 0; }
-    .art-archive-scroll-region > .art-archive-window { position: relative; top: auto; }
+    .art-archive-sticky { position: relative; top: auto; }
     .art-archive-list { columns: 2; column-gap: 0.65rem; border-right: 0; padding: 0.65rem; }
     .art-archive-row { display: inline-grid; min-height: 0; margin-bottom: 0.65rem; break-inside: avoid; grid-template-columns: 2rem minmax(0, 1fr); border: 1px solid var(--rule); background: var(--paper-card); padding: 0; box-shadow: 3px 4px 0 var(--shadow-quiet); }
     .art-archive-row:hover,
