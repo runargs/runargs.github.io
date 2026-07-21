@@ -40,7 +40,7 @@ export function ResumeSection() {
             </div>
             <div className="resume-file-actions flex w-full items-center justify-end gap-3 md:w-auto">
               <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" className="resume-disk-icon" />
-              <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request" className="w-full bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)] md:w-auto">
+              <DossierLink href="#contact" className="w-full bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)] md:w-auto">
                 Request résumé PDF
               </DossierLink>
             </div>
@@ -83,7 +83,7 @@ export function ResumeSection() {
         </div>
 
         <div className="flex flex-col items-start gap-3 text-sm text-[var(--ink-muted)] sm:flex-row sm:items-center">
-          <a href="mailto:alexa.thoennes@gmail.com" className="inline-flex items-center gap-1.5 font-semibold text-[var(--civic-blue)] hover:underline">
+          <a href="#contact" className="inline-flex items-center gap-1.5 font-semibold text-[var(--civic-blue)] hover:underline">
             <Mail className="h-4 w-4" />
             Email
           </a>

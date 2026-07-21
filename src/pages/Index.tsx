@@ -10,6 +10,7 @@ import { TalksSection } from "@/components/sections/TalksSection";
 import { SideProjectsSection } from "@/components/sections/SideProjectsSection";
 import { ArtSection } from "@/components/sections/ArtSection";
 import { ResumeSection } from "@/components/sections/ResumeSection";
+import { ProfessionalContactForm } from "@/components/contact/ProfessionalContactForm";
 
 const sectionIds = [
   "bio",
@@ -223,6 +224,14 @@ const Index = () => {
           <ResumeSection />
           <MentorshipSection />
 
+          <section id="contact" className="main-contact-section notched" aria-labelledby="main-contact-title">
+            <div className="main-contact-intro">
+              <p className="font-pixel">contact.txt</p>
+              <h2 id="main-contact-title">Ways to get in touch</h2>
+            </div>
+            <ProfessionalContactForm />
+          </section>
+
           <footer className="portfolio-footer">
             <div className="portfolio-footer-mark">
               <img
@@ -277,7 +286,7 @@ const Index = () => {
               It looks like you're enjoying exploring this portfolio. Would you like to get in touch?
             </p>
             <a 
-              href="mailto:alexa.thoennes@gmail.com" 
+              href="#contact"
               className="mt-2 block font-bold text-[var(--civic-blue)] underline hover:text-[var(--ink)]"
             >
               Click here to contact.

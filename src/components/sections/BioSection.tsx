@@ -73,10 +73,10 @@ export function BioSection() {
               </blockquote>
 
               <div className="mt-4 flex flex-wrap gap-3">
-                <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Website%20Inquiry" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
+                <DossierLink href="#contact" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
                   Contact <ArrowRight className="ml-2 h-4 w-4" />
                 </DossierLink>
-                <DossierLink href="mailto:alexa.thoennes@gmail.com?subject=Resume%20PDF%20Request">
+                <DossierLink href="#contact">
                   <FileText className="mr-2 h-4 w-4" /> Résumé PDF
                 </DossierLink>
                 <Link

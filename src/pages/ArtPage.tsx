@@ -45,10 +45,14 @@ function scrollToId(id: string) {
 }
 
 function MovingMediaPreview({ media, reduced, alt = "" }: { media: ArtMedia; reduced: boolean; alt?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const sources = media.kind === "video" ? media.sources : media.kind === "instagram" ? media.sources : undefined;
+
   if (sources?.length) {
     return (
-      <video aria-label={alt || undefined} autoPlay={!reduced} muted loop playsInline preload="metadata" poster={media.poster}>
+      <video ref={videoRef} aria-label={alt || undefined} autoPlay={!reduced} muted loop playsInline preload="auto" poster={media.poster} onCanPlay={() => {
+        if (!reduced) videoRef.current?.play()?.catch(() => undefined);
+      }}>
         {sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
       </video>
     );
@@ -524,19 +528,19 @@ function ContactForm({ idPrefix = "footer", title }: { idPrefix?: string; title?
         </section>
 
         <section className="art-contact-step" data-contact-step="1" hidden={step !== 1}>
-          <div className="art-contact-prompt"><p className="font-pixel">A rough brief is enough.</p><h3>Give me the shape of it.</h3></div>
+          <div className="art-contact-prompt"><p className="font-pixel">A rough brief works.</p><h3>What should I know?</h3></div>
           <div className="art-contact-field art-contact-message">
             <label htmlFor={id("message")}>Project details</label>
-            <textarea id={id("message")} name="message" rows={5} placeholder="What are you imagining? Include scale, quantity, guests, or deliverables." required disabled={status === "sent"} />
+            <textarea id={id("message")} name="message" rows={5} placeholder="Scale, quantity, guests, or deliverables" required disabled={status === "sent"} />
           </div>
           <div className="art-contact-fields-grid">
             <div className="art-contact-field">
               <label htmlFor={id("organization")}>Organization or project</label>
-              <input id={id("organization")} name="organization" type="text" autoComplete="organization" placeholder="Studio, company, or personal project" disabled={status === "sent"} />
+              <input id={id("organization")} name="organization" type="text" autoComplete="organization" placeholder="Studio, company, or personal" disabled={status === "sent"} />
             </div>
             <div className="art-contact-field">
               <label htmlFor={id("timeframe")}>Date or timeframe</label>
-              <input id={id("timeframe")} name="timeframe" type="text" placeholder="Specific date or flexible window" disabled={status === "sent"} />
+              <input id={id("timeframe")} name="timeframe" type="text" placeholder="Date or flexible window" disabled={status === "sent"} />
             </div>
             <div className="art-contact-field">
               <label htmlFor={id("location")}>Location or venue</label>

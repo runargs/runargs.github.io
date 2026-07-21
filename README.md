@@ -19,7 +19,7 @@ That led to a few guiding decisions:
 
 ## Product and design decisions
 
-The information architecture moves from introduction and professional work into talks, community building, art, side projects, resume access, and mentorship. The sequence is intentional: it establishes professional context first, then expands the definition of the work through public contribution, creative practice, and support for others.
+The main page moves from introduction and professional work into talks, community building, art, side projects, resume access, mentorship, and a guided contact flow. The sequence establishes professional context first, then expands the definition of the work through public contribution, creative practice, and support for others. A separate creative-practice route at `/art` provides a motion-led Haruhay Studio story, project browser, media viewer, and commission or booking inquiry flow.
 
 Desktop and mobile navigation use distinct interaction patterns rather than forcing one layout across screen sizes. Active-section tracking is coordinated at the page level, while section content remains modular. This keeps the experience continuous for visitors and the implementation legible for future changes.
 
@@ -27,7 +27,9 @@ The visual system is similarly structured. Shared editorial primitives, typograp
 
 ## Technical shape
 
-The site is a Vite, React, and TypeScript application styled with Tailwind CSS and selected shadcn/Radix primitives. [`src/pages/Index.tsx`](./src/pages/Index.tsx) owns the one-page document shell, active-section state, and scroll-fed behavior. Major content bands live in [`src/components/sections/`](./src/components/sections/); navigation lives in [`src/components/layout/`](./src/components/layout/); reusable editorial elements live in [`src/components/design-system/`](./src/components/design-system/).
+The site is a Vite, React, and TypeScript application styled with Tailwind CSS and selected shadcn/Radix primitives. [`src/pages/Index.tsx`](./src/pages/Index.tsx) owns the main one-page document shell, active-section state, and scroll-fed behavior; [`src/pages/ArtPage.tsx`](./src/pages/ArtPage.tsx) owns the creative-practice experience. Major content bands live in [`src/components/sections/`](./src/components/sections/); navigation lives in [`src/components/layout/`](./src/components/layout/); reusable editorial and contact elements live in [`src/components/design-system/`](./src/components/design-system/) and [`src/components/contact/`](./src/components/contact/).
+
+Both contact experiences use progressive, in-page forms with a final review state. The static site sends submissions through FormSubmit's AJAX endpoint, so visitors remain on the page and submitted fields stay visible but locked. Local images and videos live under `public/media/art/`; Instagram projects use local posters or video previews and retain their canonical external links.
 
 That separation reflects product boundaries as much as code boundaries: page-level orchestration, reusable interaction patterns, content modules, and visual primitives can evolve independently while preserving a consistent visitor experience. Shared utilities handle behavior such as reduced-motion-aware scrolling, and the repository includes linting, tests, and a production build as separate validation signals.
 
