@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowDown, ArrowLeft, ArrowRight, ExternalLink, GripHorizontal, Instagram, Mail, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ExternalLink, GripHorizontal, Instagram, LayoutGrid, Mail, RotateCcw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
@@ -114,7 +114,6 @@ function OpeningScene({ reduced }: { reduced: boolean }) {
 
   return (
     <section className={cn("art-desktop-hero", `hero-practice-${activePractice}`)} aria-labelledby="art-page-title">
-      <div className="art-desktop-register" aria-hidden="true"><span>creative practice</span><span>ongoing</span><span>01 / 05</span></div>
       <div className="art-desktop-title">
         <p>This is my renaissance atelier; of</p>
         <h1 id="art-page-title">Haruhay <span>Studio</span></h1>
@@ -211,11 +210,15 @@ interface ChapterTrackProps {
 }
 
 function ChapterTrack({ projects, progress, reduced }: ChapterTrackProps) {
-  const x = useTransform(progress, [0.08, 0.88], reduced ? ["0%", "0%"] : ["7%", projects.length > 3 ? "-58%" : "-36%"]);
+  const x = useTransform(
+    progress,
+    [0.08, 0.88],
+    projects.length === 1 ? ["-50%", "-50%"] : reduced ? ["0%", "0%"] : ["7%", projects.length > 3 ? "-58%" : "-36%"],
+  );
   const reveal = useTransform(progress, [0, 0.18, 0.82, 1], reduced ? [1, 1, 1, 1] : [0, 1, 1, 0]);
 
   return (
-    <motion.div className="art-chapter-track" style={{ x, y: "-50%", opacity: reveal }}>
+    <motion.div className={cn("art-chapter-track", projects.length === 1 && "is-single")} style={{ x, y: "-50%", opacity: reveal }}>
       {projects.map((project, index) => {
         const media = project.media[0];
         return (
@@ -304,6 +307,8 @@ function projectAction(project: ArtProject, activeMedia: ArtMedia) {
 
 function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[]; onSelect: (project: ArtProject) => void; reduced: boolean }) {
   const [previewId, setPreviewId] = useState(projects[0]?.id ?? "");
+  const wheelDeltaRef = useRef(0);
+  const archiveLayoutRef = useRef<HTMLDivElement>(null);
   const preview = projects.find((project) => project.id === previewId) ?? projects[0];
 
   useEffect(() => {
@@ -311,6 +316,39 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
   }, [previewId, projects]);
 
   const previewMedia = preview?.media[0];
+
+  useEffect(() => {
+    const layout = archiveLayoutRef.current;
+    if (!layout || projects.length < 2) return;
+
+    const handleListWheel = (event: WheelEvent) => {
+      const normalizedDelta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? 120 : 1);
+      if (normalizedDelta === 0) return;
+
+      const direction = normalizedDelta > 0 ? 1 : -1;
+      const currentIndex = Math.max(0, projects.findIndex((project) => project.id === previewId));
+      const atBoundary = (direction > 0 && currentIndex === projects.length - 1) || (direction < 0 && currentIndex === 0);
+      if (atBoundary) {
+        wheelDeltaRef.current = 0;
+        return;
+      }
+
+      event.preventDefault();
+      wheelDeltaRef.current += normalizedDelta;
+      if (Math.abs(wheelDeltaRef.current) < 32) return;
+
+      const nextIndex = Math.min(projects.length - 1, Math.max(0, currentIndex + direction));
+      wheelDeltaRef.current = 0;
+      setPreviewId(projects[nextIndex].id);
+    };
+
+    layout.addEventListener("wheel", handleListWheel, { passive: false });
+    return () => layout.removeEventListener("wheel", handleListWheel);
+  }, [previewId, projects]);
+
+  const resetWheelGesture = () => {
+    wheelDeltaRef.current = 0;
+  };
 
   return (
     <section className="art-archive-window notched" aria-label="Creative projects">
@@ -321,7 +359,7 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
           <div><p className="font-pixel">Fashion</p><h3>Photos are coming.</h3></div>
         </div>
       ) : (
-      <div className="art-archive-layout">
+      <div ref={archiveLayoutRef} className="art-archive-layout" onMouseLeave={resetWheelGesture}>
         <div className="art-archive-list">
           {projects.map((project, index) => {
             const itemMedia = project.media[0];
@@ -468,6 +506,7 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
 export default function ArtPage() {
   const [filter, setFilter] = useState<Filter>("ceramics");
   const [selectedProject, setSelectedProject] = useState<ArtProject | null>(null);
+  const [navCompact, setNavCompact] = useState(false);
   const reduced = Boolean(useReducedMotion());
   const filteredProjects = useMemo(
     () => artProjects.filter((project) => project.practice === filter),
@@ -487,14 +526,21 @@ export default function ArtPage() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateNavigation = () => setNavCompact(window.scrollY > 96);
+    updateNavigation();
+    window.addEventListener("scroll", updateNavigation, { passive: true });
+    return () => window.removeEventListener("scroll", updateNavigation);
+  }, []);
+
   return (
     <LayoutGroup>
       <div className="art-motion-page">
-        <nav className="art-motion-nav" aria-label="Creative work navigation">
-          <Link to="/"><ArrowLeft aria-hidden="true" /> Alexa Thoennes</Link>
+        <nav className={cn("art-motion-nav", navCompact && "is-compact")} aria-label="Creative work navigation">
+          <Link to="/" aria-label="Back to Alexa Thoennes"><ArrowLeft aria-hidden="true" /><span className="art-nav-label">Alexa</span></Link>
           <div>
-            <button type="button" onClick={() => scrollToId("work-index")}>Browse work</button>
-            <button type="button" onClick={() => scrollToId("art-inquiry")}>Work with me</button>
+            <button type="button" aria-label="Browse gallery" onClick={() => scrollToId("work-index")}><LayoutGrid aria-hidden="true" /><span className="art-nav-label">Browse gallery</span></button>
+            <button type="button" aria-label="Work with me" onClick={() => scrollToId("art-inquiry")}><Mail aria-hidden="true" /><span className="art-nav-label">Inquiry</span></button>
             <LightsOffToggle />
           </div>
         </nav>
@@ -527,7 +573,9 @@ export default function ArtPage() {
               <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
             </div>
 
-            <ArchiveBrowser projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
+            <div className="art-archive-scroll-region">
+              <ArchiveBrowser projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
+            </div>
           </section>
 
           <footer id="art-inquiry" className="art-motion-footer" tabIndex={-1}>

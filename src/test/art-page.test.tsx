@@ -47,7 +47,7 @@ describe("ArtPage", () => {
       "Flow arts",
       "Browse the work",
     ]);
-    expect(screen.getByRole("button", { name: "Browse work" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Browse gallery" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Work with me" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /follow on instagram/i })).toHaveAttribute("href", "https://www.instagram.com/haruhay.studio/");
   });
@@ -73,6 +73,16 @@ describe("ArtPage", () => {
       "src",
       "/media/art/instagram-ceramic-bangles-full.jpg",
     ));
+  });
+
+  it("steps through archive previews when the project listing is wheeled", async () => {
+    const { container } = renderPage();
+    const listing = container.querySelector(".art-archive-layout");
+    expect(listing).not.toBeNull();
+    fireEvent.wheel(listing!, { deltaY: 80, deltaMode: 0 });
+    await waitFor(() => expect(screen.getByRole("img", { name: "Handmade Appa ceramic mug" })).toBeInTheDocument());
+    fireEvent.mouseLeave(listing!);
+    expect(screen.getByRole("img", { name: "Handmade Appa ceramic mug" })).toBeInTheDocument();
   });
 
   it("opens the previewed project from the Open project control", () => {
