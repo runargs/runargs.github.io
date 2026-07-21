@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { DossierLink, ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 const practices = [
-  { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg", note: "Menus, gatherings, and tables shaped around place, memory, and how people feel together." },
-  { title: "Ceramics", image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg", note: "Wheel-thrown vessels, carved surfaces, and useful objects made for everyday ritual." },
-  { title: "Fashion", image: "/media/art/linen-top-hair-stick.jpg", video: "/media/art/linen-top-hair-stick.mp4", note: "I enjoy styling and I sew my own clothes." },
-  { title: "Flow arts", image: "/media/art/flow-arts-fire.jpg", note: "A growing flow arts practice, with space being made for film and performance studies.", dark: true },
-  { title: "Modeling & image-making", image: "/images/portrait-study-red-light.jpg", note: "I collaborate on portraits and editorial images, sometimes behind the idea and sometimes in front of the camera." },
+  { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg" },
+  { title: "Ceramics", image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg" },
+  { title: "Fashion", image: "/media/art/linen-top-hair-stick.jpg", video: "/media/art/linen-top-hair-stick.mp4" },
+  { title: "Flow arts", image: "/media/art/flow-arts-fire.jpg", dark: true },
+  { title: "Modeling & image-making", image: "/images/portrait-study-red-light.jpg" },
 ];
 
 export function ArtSection() {
@@ -20,7 +20,7 @@ export function ArtSection() {
             <Link key={practice.title} to="/art" className={`art-home-practice-card group ${practice.dark ? "is-flow" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]`}>
               {practice.video ? (
                 <figure className="notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
-                  <div className="aspect-[4/3] overflow-hidden bg-[var(--paper-soft)]">
+                  <div className="aspect-[4/5] overflow-hidden bg-[var(--paper-soft)]">
                     <video className="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" autoPlay muted loop playsInline preload="metadata">
                       <source src={practice.video} type="video/mp4" />
                     </video>
@@ -28,9 +28,8 @@ export function ArtSection() {
                   <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">{practice.title}</figcaption>
                 </figure>
               ) : (
-                <ImageFrame src={practice.image} alt="" caption={practice.title} mediaClassName="aspect-[4/3]" imgClassName="transition-transform duration-300 group-hover:scale-[1.03]" grayscale={false} />
+                <ImageFrame src={practice.image} alt="" caption={practice.title} mediaClassName="aspect-[4/5]" imgClassName="transition-transform duration-300 group-hover:scale-[1.03]" grayscale={false} />
               )}
-              <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">{practice.note}</p>
             </Link>
           ))}
         </div>

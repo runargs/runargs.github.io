@@ -65,6 +65,23 @@ describe("ArtPage", () => {
     await waitFor(() => expect(screen.queryByRole("button", { name: /open gallery tasting series/i })).not.toBeInTheDocument());
   });
 
+  it("updates the archive preview media when a Fashion project is hovered", async () => {
+    renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Fashion" }));
+    fireEvent.mouseEnter(screen.getByRole("button", { name: /open ceramic bangles/i }));
+    await waitFor(() => expect(screen.getByRole("img", { name: "Handmade ceramic bangles" })).toHaveAttribute(
+      "src",
+      "/media/art/instagram-ceramic-bangles-full.jpg",
+    ));
+  });
+
+  it("opens the previewed project from the Open project control", () => {
+    renderPage();
+    fireEvent.click(screen.getByRole("button", { name: /open project/i }));
+    const dialog = screen.getByRole("dialog");
+    expect(within(dialog).getByRole("heading", { name: /albay mug/i })).toBeInTheDocument();
+  });
+
   it("uses a local Instagram poster and a contextual link instead of an iframe", () => {
     renderPage();
     expect(screen.queryByRole("iframe")).not.toBeInTheDocument();
@@ -75,6 +92,18 @@ describe("ArtPage", () => {
     expect(within(dialog).getByRole("link", { name: /view post on instagram/i })).toHaveAttribute("href", "https://www.instagram.com/p/CNAOVNKn4DJ/");
     expect(within(dialog).queryByRole("iframe")).not.toBeInTheDocument();
     expect(within(dialog).queryByText(/undated/i)).not.toBeInTheDocument();
+  });
+
+  it("loads an Instagram reel only after the visitor chooses to play it", () => {
+    renderPage();
+    fireEvent.click(screen.getByRole("button", { name: /open siopao-shaped salt jar/i }));
+    const dialog = screen.getByRole("dialog");
+    expect(within(dialog).queryByRole("iframe")).not.toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole("button", { name: /play reel/i }));
+    expect(within(dialog).getByTitle(/siopao-shaped ceramic salt jar/i)).toHaveAttribute(
+      "src",
+      "https://www.instagram.com/p/DDZ-xGbPUJ6/embed/",
+    );
   });
 
   it("omits generic metadata and uses a piece-specific inquiry action", () => {

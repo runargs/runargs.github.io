@@ -37,6 +37,35 @@ interface ProjectMediaDetailProps {
 }
 
 export function ProjectMediaDetail({ media, activeVideoId, mediaId, onActivateVideo }: ProjectMediaDetailProps) {
+  if (media.kind === "instagram" && media.postType === "reel" && activeVideoId === mediaId) {
+    const reelCode = media.url.match(/\/reel\/([^/?]+)/)?.[1];
+    if (reelCode) {
+      return (
+        <iframe
+          className="art-viewer-instagram-reel"
+          src={`https://www.instagram.com/p/${reelCode}/embed/`}
+          title={media.alt}
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+        />
+      );
+    }
+  }
+
+  if (media.kind === "instagram" && media.postType === "reel") {
+    return (
+      <button
+        type="button"
+        className="art-video-poster"
+        onClick={() => onActivateVideo(mediaId)}
+        aria-label={`Play reel: ${media.alt}`}
+      >
+        <img src={media.poster} alt={media.alt} width={media.width} height={media.height} />
+        <span><Play fill="currentColor" /> Play reel</span>
+      </button>
+    );
+  }
+
   if (media.kind === "video" && activeVideoId === mediaId) {
     return (
       <video

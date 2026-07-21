@@ -20,14 +20,21 @@ type Filter = ArtPractice;
 
 const inquiryBase = "mailto:alexa.thoennes@gmail.com";
 const chapterCopy: Record<ArtPractice, string> = {
-  ceramics: "I make wheel-thrown and hand-finished pieces for tables, rituals, and daily use.",
-  food: "I cook for galleries, private homes, and events. The work includes the menu, the pacing, and the room around it.",
-  collaboration: "I collaborate on portraits and editorial images, sometimes behind the idea and sometimes in front of the camera.",
-  fashion: "I enjoy styling and I sew my own clothes.",
-  movement: "I recently began practicing flow arts. This chapter will grow as the practice is documented.",
+  ceramics: "I make ceramics for everyday use, including homeware, culinary vessels, experimental jewelry, and hair accessories.",
+  food: "I cook for galleries, events, and supper clubs.",
+  collaboration: "I model and sometimes make images of my own.",
+  fashion: "I style, sew, and refashion clothes, often using thrifted pieces and deadstock fabric.",
+  movement: "I practice flow arts and aerial movement.",
 };
 
 const storyPractices: ArtPractice[] = ["ceramics", "food", "collaboration", "fashion", "movement"];
+const practiceTagTone: Record<ArtPractice, string> = {
+  ceramics: "blue",
+  food: "ochre",
+  collaboration: "violet",
+  fashion: "green",
+  movement: "blue",
+};
 
 function scrollToId(id: string) {
   const target = document.getElementById(id);
@@ -113,6 +120,15 @@ function OpeningScene({ reduced }: { reduced: boolean }) {
         <h1 id="art-page-title">Haruhay <span>Studio</span></h1>
       </div>
 
+      <img
+        className="art-hero-pixel-model"
+        src="/images/pixel-art-model-transparent.png"
+        alt=""
+        aria-hidden="true"
+        width="821"
+        height="1915"
+      />
+
       <div ref={stageRef} className="art-desktop-stage">
         <PaperWindow key={`media-${resetKey}`} className="art-media-window" label={`${practiceLabels[activePractice]} // open`} dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.media} onRaise={() => raise("media")}>
           <div className="art-hero-media-stage">
@@ -174,7 +190,7 @@ function OpeningScene({ reduced }: { reduced: boolean }) {
 
         <PaperWindow key={`note-${resetKey}`} className="art-note-window" label="read-me.txt" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.note} onRaise={() => raise("note")}>
           <div className="art-hero-note-copy">
-            <p>I make ceramics, create meals and gatherings, collaborate on images, and recently began practicing flow arts.</p>
+            <p>I make ceramics, cook for gatherings, sew and refashion clothes, model, and practice flow arts.</p>
             <p>This is a growing collection of finished work, experiments, and moments from the process.</p>
             {desktopDrag && <button type="button" onClick={() => { setResetKey((key) => key + 1); setLayerOrder({ media: 4, practices: 3, note: 2 }); }}><RotateCcw aria-hidden="true" /> Reset windows</button>}
           </div>
@@ -350,7 +366,14 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
               )}
             </AnimatePresence>
           </div>
-          {preview && <footer><div><h3>{preview.title}</h3><p>{preview.medium}</p></div><span>Open project <ArrowRight aria-hidden="true" /></span></footer>}
+          {preview && (
+            <footer>
+              <div><h3>{preview.title}</h3><p>{preview.medium}</p></div>
+              <button type="button" onClick={() => onSelect(preview)}>
+                Open project <ArrowRight aria-hidden="true" />
+              </button>
+            </footer>
+          )}
         </div>
       </div>
       )}
@@ -491,7 +514,15 @@ export default function ArtPage() {
 
             <div className="art-filter-row" role="group" aria-label="Filter creative work">
               {practices.map((practice) => (
-                <button key={practice} type="button" aria-pressed={filter === practice} onClick={() => setFilter(practice)}>{practiceLabels[practice]}</button>
+                <button
+                  key={practice}
+                  type="button"
+                  aria-pressed={filter === practice}
+                  className={cn("evidence-link-badge", practiceTagTone[practice], filter === practice && "is-active")}
+                  onClick={() => setFilter(practice)}
+                >
+                  {practiceLabels[practice]}
+                </button>
               ))}
               <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
             </div>

@@ -24,7 +24,7 @@ export function SectionHeader({ marker, title, description, eyebrow, className }
       </div>
       <div className="max-w-3xl">
         {eyebrow && <p className="small-label mb-3">{eyebrow}</p>}
-        <h2 className="text-[1.75rem] leading-tight text-[var(--ink)] md:text-[2.45rem]">{title}</h2>
+        <h2 className="font-display text-[1.75rem] leading-tight text-[var(--ink)] md:text-[2.45rem]">{title}</h2>
         {description && <p className="mt-3 max-w-[var(--measure)] text-sm leading-7 text-[var(--ink-muted)]">{description}</p>}
       </div>
     </header>
