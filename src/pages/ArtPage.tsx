@@ -47,7 +47,7 @@ function scrollToId(id: string) {
 function MovingMediaPreview({ media, reduced, alt = "" }: { media: ArtMedia; reduced: boolean; alt?: string }) {
   if (media.kind === "video") {
     return (
-      <video aria-label={alt || undefined} autoPlay={!reduced} muted loop playsInline preload="metadata">
+      <video aria-label={alt || undefined} autoPlay={!reduced} muted loop playsInline preload="metadata" poster={media.poster}>
         {media.sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
       </video>
     );
@@ -395,7 +395,7 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
 
   useEffect(() => {
     setMediaIndex(0);
-    setActiveVideoId(project?.media[0]?.kind === "video" ? `${project.id}-0` : null);
+    setActiveVideoId(null);
   }, [project?.id]);
 
   useEffect(() => {
@@ -413,7 +413,7 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
 
   return (
     <Dialog open={Boolean(project)} onOpenChange={(open) => !open && onSelect(null)}>
-      <DialogContent className="art-project-viewer">
+      <DialogContent className="art-project-viewer notched">
         {project && media && (
           <div className="art-viewer-grid">
             <div className="art-viewer-media-column">

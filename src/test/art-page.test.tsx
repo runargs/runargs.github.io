@@ -94,16 +94,15 @@ describe("ArtPage", () => {
     expect(within(dialog).queryByText(/undated/i)).not.toBeInTheDocument();
   });
 
-  it("loads an Instagram reel only after the visitor chooses to play it", () => {
+  it("keeps an Instagram reel poster visible and opens the canonical post", () => {
     renderPage();
     fireEvent.click(screen.getByRole("button", { name: /open siopao-shaped salt jar/i }));
     const dialog = screen.getByRole("dialog");
     expect(within(dialog).queryByRole("iframe")).not.toBeInTheDocument();
-    fireEvent.click(within(dialog).getByRole("button", { name: /play reel/i }));
-    expect(within(dialog).getByTitle(/siopao-shaped ceramic salt jar/i)).toHaveAttribute(
-      "src",
-      "https://www.instagram.com/p/DDZ-xGbPUJ6/embed/",
-    );
+    const reelLink = within(dialog).getByRole("link", { name: /play reel/i });
+    expect(reelLink).toHaveAttribute("href", "https://www.instagram.com/reel/DDZ-xGbPUJ6/");
+    expect(reelLink).toHaveAttribute("target", "_blank");
+    expect(within(dialog).getByRole("img", { name: /siopao-shaped ceramic salt jar/i })).toBeInTheDocument();
   });
 
   it("omits generic metadata and uses a piece-specific inquiry action", () => {
