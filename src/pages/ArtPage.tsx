@@ -1,31 +1,33 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowDown, ArrowLeft, ArrowRight, ExternalLink, Instagram, Mail } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ExternalLink, GripHorizontal, Instagram, Mail, RotateCcw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { ProjectMediaDetail, ProjectMediaPreview } from "@/components/art/ArtMedia";
+import { ProjectMediaDetail } from "@/components/art/ArtMedia";
 import { DossierLink, LightsOffToggle } from "@/components/design-system/Dossier";
 import {
   artProjects,
   practiceLabels,
   practices,
   projectsForStory,
+  type ArtMedia,
   type ArtPractice,
   type ArtProject,
 } from "@/data/artPortfolio";
 import { cn } from "@/lib/utils";
 
-type Filter = "all" | ArtPractice;
+type Filter = ArtPractice;
 
 const inquiryBase = "mailto:alexa.thoennes@gmail.com";
 const chapterCopy: Record<ArtPractice, string> = {
   ceramics: "I make wheel-thrown and hand-finished pieces for tables, rituals, and daily use.",
   food: "I cook for galleries, private homes, and events. The work includes the menu, the pacing, and the room around it.",
   collaboration: "I collaborate on portraits and editorial images, sometimes behind the idea and sometimes in front of the camera.",
-  movement: "I recently began practicing flow arts. This chapter will grow as the movement is documented.",
+  fashion: "I enjoy styling and I sew my own clothes.",
+  movement: "I recently began practicing flow arts. This chapter will grow as the practice is documented.",
 };
 
-const storyPractices: ArtPractice[] = ["ceramics", "food", "collaboration", "movement"];
+const storyPractices: ArtPractice[] = ["ceramics", "food", "collaboration", "fashion", "movement"];
 
 function scrollToId(id: string) {
   const target = document.getElementById(id);
@@ -35,62 +37,153 @@ function scrollToId(id: string) {
   target.focus({ preventScroll: true });
 }
 
-interface FloatingLayerProps {
-  progress: MotionValue<number>;
-  src: string;
-  alt: string;
-  className: string;
-  index: number;
-  reduced: boolean;
+function MovingMediaPreview({ media, reduced, alt = "" }: { media: ArtMedia; reduced: boolean; alt?: string }) {
+  if (media.kind === "video") {
+    return (
+      <video aria-label={alt || undefined} autoPlay={!reduced} muted loop playsInline preload="metadata">
+        {media.sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
+      </video>
+    );
+  }
+  const source = media.kind === "image" ? media.src : media.poster;
+  return <img src={source} alt={alt} width={media.width} height={media.height} loading="lazy" decoding="async" />;
 }
 
-function FloatingLayer({ progress, src, alt, className, index, reduced }: FloatingLayerProps) {
-  const directions = [
-    { x: -120, y: 80 },
-    { x: 130, y: -60 },
-    { x: -70, y: -110 },
-    { x: 90, y: 110 },
-  ];
-  const direction = directions[index % directions.length];
-  const x = useTransform(progress, [0, 0.62, 1], reduced ? [0, 0, 0] : [direction.x, 0, direction.x * -0.16]);
-  const y = useTransform(progress, [0, 0.62, 1], reduced ? [0, 0, 0] : [direction.y, 0, direction.y * -0.12]);
-  const scale = useTransform(progress, [0, 0.62, 1], reduced ? [1, 1, 1] : [0.72, 1, 1.04]);
-  const opacity = useTransform(progress, [0, 0.14, 0.84, 1], reduced ? [1, 1, 1, 1] : [0, 1, 1, 0.2]);
-  const clipPath = useTransform(progress, [0, 0.42, 0.7], reduced ? ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"] : ["inset(48% 48% 48% 48%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]);
+function useDesktopDrag() {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 901px) and (pointer: fine)");
+    const update = () => setEnabled(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+  return enabled;
+}
 
+interface PaperWindowProps {
+  children: React.ReactNode;
+  className: string;
+  label: string;
+  dragEnabled: boolean;
+  constraints: React.RefObject<HTMLDivElement>;
+  zIndex: number;
+  onRaise: () => void;
+}
+
+function PaperWindow({ children, className, label, dragEnabled, constraints, zIndex, onRaise }: PaperWindowProps) {
   return (
-    <motion.figure className={cn("art-floating-layer", className)} style={{ x, y, scale, opacity, clipPath }}>
-      <img src={src} alt={alt} decoding="async" />
-    </motion.figure>
+    <motion.section
+      className={cn("art-paper-window", className)}
+      drag={dragEnabled}
+      dragConstraints={constraints}
+      dragMomentum={false}
+      onPointerDown={onRaise}
+      onFocusCapture={onRaise}
+      style={{ zIndex }}
+      initial={{ opacity: 0, clipPath: "inset(48% 48% 48% 48%)" }}
+      animate={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)" }}
+      transition={{ duration: 0.58, ease: [0.2, 0.8, 0.2, 1] }}
+      aria-label={label}
+    >
+      <header className="art-window-bar">
+        <span>{label}</span>
+        <GripHorizontal aria-hidden="true" />
+      </header>
+      {children}
+    </motion.section>
   );
 }
 
 function OpeningScene({ reduced }: { reduced: boolean }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const titleY = useTransform(scrollYProgress, [0, 0.75, 1], reduced ? [0, 0, 0] : [0, -34, -90]);
-  const titleScale = useTransform(scrollYProgress, [0, 0.65], reduced ? [1, 1] : [1, 0.92]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.78, 1], reduced ? [1, 1, 1] : [1, 1, 0]);
+  const [activePractice, setActivePractice] = useState<ArtPractice>("ceramics");
+  const [resetKey, setResetKey] = useState(0);
+  const [layerOrder, setLayerOrder] = useState({ media: 4, practices: 3, note: 2 });
+  const stageRef = useRef<HTMLDivElement>(null);
+  const desktopDrag = useDesktopDrag() && !reduced;
+  const featured = projectsForStory(activePractice)[0];
+  const media = featured?.media[0];
+  const raise = (windowName: keyof typeof layerOrder) => setLayerOrder((current) => ({ ...current, [windowName]: Math.max(...Object.values(current)) + 1 }));
 
   return (
-    <section ref={sectionRef} className="art-opening" aria-labelledby="art-page-title">
-      <div className="art-scene-sticky art-opening-stage">
-        <div className="art-opening-grid" aria-hidden="true" />
-        <FloatingLayer progress={scrollYProgress} index={0} className="opening-layer-one" src="/images/ceramic-ginkgo-sgraffito-bowl.jpg" alt="" reduced={reduced} />
-        <FloatingLayer progress={scrollYProgress} index={1} className="opening-layer-two" src="/images/flavors-of-iloilo-plate.jpg" alt="" reduced={reduced} />
-        <FloatingLayer progress={scrollYProgress} index={2} className="opening-layer-three" src="/images/portrait-study-red-light.jpg" alt="" reduced={reduced} />
-        <FloatingLayer progress={scrollYProgress} index={3} className="opening-layer-four art-engraving-layer" src="/images/clip-operator-computing.png" alt="" reduced={reduced} />
-
-        <motion.div className="art-opening-copy" style={{ y: titleY, scale: titleScale, opacity: titleOpacity }}>
-          <p className="font-pixel text-sm text-[var(--civic-blue)]">creative practice / ongoing</p>
-          <h1 id="art-page-title">Art, food <span>& movement</span></h1>
-          <p>I make ceramics, create meals and gatherings, collaborate on images, and recently began practicing flow arts. This is a growing collection of finished work, experiments, and moments from the process.</p>
-        </motion.div>
-
-        <button type="button" onClick={() => scrollToId("story-ceramics")} className="art-scroll-cue">
-          Scroll through the practice <ArrowDown aria-hidden="true" />
-        </button>
+    <section className={cn("art-desktop-hero", `hero-practice-${activePractice}`)} aria-labelledby="art-page-title">
+      <div className="art-desktop-register" aria-hidden="true"><span>creative practice</span><span>ongoing</span><span>01 / 05</span></div>
+      <div className="art-desktop-title">
+        <p>This is my renaissance atelier; of</p>
+        <h1 id="art-page-title">Haruhay <span>Studio</span></h1>
       </div>
+
+      <div ref={stageRef} className="art-desktop-stage">
+        <PaperWindow key={`media-${resetKey}`} className="art-media-window" label={`${practiceLabels[activePractice]} // open`} dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.media} onRaise={() => raise("media")}>
+          <div className="art-hero-media-stage">
+            <AnimatePresence mode="wait" initial={false}>
+              {media?.kind === "video" ? (
+                <motion.video
+                  key={featured.id}
+                  aria-label={media.alt}
+                  autoPlay={!reduced}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  initial={{ clipPath: "inset(0 50% 0 50%)", scale: 1.08 }}
+                  animate={{ clipPath: "inset(0 0% 0 0%)", scale: 1 }}
+                  exit={{ clipPath: "inset(50% 0 50% 0)", scale: 1.03 }}
+                  transition={{ duration: reduced ? 0 : 0.48, ease: [0.22, 0.78, 0.2, 1] }}
+                >
+                  {media.sources.map((source) => <source key={source.src} src={source.src} type={source.type} />)}
+                </motion.video>
+              ) : media ? (
+                <motion.img
+                  key={featured.id}
+                  src={media.kind === "image" ? media.src : media.poster}
+                  alt={media.alt}
+                  width={media.width}
+                  height={media.height}
+                  initial={{ clipPath: "inset(0 50% 0 50%)", scale: 1.08 }}
+                  animate={{ clipPath: "inset(0 0% 0 0%)", scale: 1 }}
+                  exit={{ clipPath: "inset(50% 0 50% 0)", scale: 1.03 }}
+                  transition={{ duration: reduced ? 0 : 0.48, ease: [0.22, 0.78, 0.2, 1] }}
+                />
+              ) : activePractice === "fashion" ? (
+                <motion.div key="fashion-field" className="art-fashion-field" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <img src="/images/atelier-diagram-texture.jpg" alt="" />
+                  <span className="fashion-pattern fashion-pattern-one" />
+                  <span className="fashion-pattern fashion-pattern-two" />
+                </motion.div>
+              ) : (
+                <motion.div key="movement-field" className="art-hero-movement" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <span /><span /><span />
+                  <img src="/images/clip-circuit-board-engraving.png" alt="" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <footer><span>{featured?.title ?? "Flow arts in progress"}</span><span>{featured?.year ?? "new practice"}</span></footer>
+        </PaperWindow>
+
+        <PaperWindow key={`practices-${resetKey}`} className="art-practice-window" label="practice.select" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.practices} onRaise={() => raise("practices")}>
+          <div className="art-practice-menu" role="group" aria-label="Choose a creative practice">
+            {storyPractices.map((practice, index) => (
+              <button key={practice} type="button" aria-pressed={activePractice === practice} onClick={() => setActivePractice(practice)}>
+                <span>0{index + 1}</span>{practiceLabels[practice]}
+              </button>
+            ))}
+          </div>
+        </PaperWindow>
+
+        <PaperWindow key={`note-${resetKey}`} className="art-note-window" label="read-me.txt" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.note} onRaise={() => raise("note")}>
+          <div className="art-hero-note-copy">
+            <p>I make ceramics, create meals and gatherings, collaborate on images, and recently began practicing flow arts.</p>
+            <p>This is a growing collection of finished work, experiments, and moments from the process.</p>
+            {desktopDrag && <button type="button" onClick={() => { setResetKey((key) => key + 1); setLayerOrder({ media: 4, practices: 3, note: 2 }); }}><RotateCcw aria-hidden="true" /> Reset windows</button>}
+          </div>
+        </PaperWindow>
+      </div>
+
+      <button type="button" onClick={() => scrollToId("story-ceramics")} className="art-scroll-cue">
+        Enter the work <ArrowDown aria-hidden="true" />
+      </button>
     </section>
   );
 }
@@ -109,11 +202,10 @@ function ChapterTrack({ projects, progress, reduced }: ChapterTrackProps) {
     <motion.div className="art-chapter-track" style={{ x, y: "-50%", opacity: reveal }}>
       {projects.map((project, index) => {
         const media = project.media[0];
-        const source = media.kind === "image" ? media.src : media.poster;
         return (
-          <figure className={cn("art-track-frame", index % 2 === 1 && "is-lower")} key={project.id}>
+          <figure className={cn("art-track-frame", "notched", index % 2 === 1 && "is-lower")} key={project.id}>
             <div className="art-track-image-wrap">
-              <img src={source} alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" />
+              <MovingMediaPreview media={media} reduced={reduced} alt={media.alt} />
             </div>
             <figcaption><span>{String(index + 1).padStart(2, "0")}</span>{project.title}</figcaption>
           </figure>
@@ -138,6 +230,17 @@ function MovementField({ progress, reduced }: { progress: MotionValue<number>; r
   );
 }
 
+function FashionField() {
+  return (
+    <div className="art-fashion-story-field" aria-hidden="true">
+      <img src="/images/atelier-diagram-texture.jpg" alt="" />
+      <span className="fashion-pattern fashion-pattern-one" />
+      <span className="fashion-pattern fashion-pattern-two" />
+      <span className="fashion-stitch-line" />
+    </div>
+  );
+}
+
 function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; index: number; reduced: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const projects = projectsForStory(practice).slice(0, 4);
@@ -148,7 +251,7 @@ function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; ind
   return (
     <section ref={sectionRef} id={`story-${practice}`} className={cn("art-story-chapter", `chapter-${practice}`)} aria-labelledby={`story-title-${practice}`} tabIndex={-1}>
       <div className="art-scene-sticky art-chapter-stage">
-        <motion.div className="art-chapter-copy" style={{ y: copyY, opacity: copyOpacity }}>
+        <motion.div className="art-chapter-copy notched" style={{ y: copyY, opacity: copyOpacity }}>
           <span className="font-pixel">0{index + 1}</span>
           <h2 id={`story-title-${practice}`}>{practiceLabels[practice]}</h2>
           <p>{chapterCopy[practice]}</p>
@@ -156,7 +259,8 @@ function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; ind
 
         <div className="art-chapter-composition">
           {projects.length > 0 && <ChapterTrack projects={projects} progress={scrollYProgress} reduced={reduced} />}
-          {practice === "movement" && <MovementField progress={scrollYProgress} reduced={reduced} />}
+          {projects.length === 0 && practice === "fashion" && <FashionField />}
+          {projects.length === 0 && practice === "movement" && <MovementField progress={scrollYProgress} reduced={reduced} />}
         </div>
         <div className="art-chapter-rule" aria-hidden="true"><span>{String(index + 1).padStart(2, "0")}</span></div>
       </div>
@@ -164,8 +268,8 @@ function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; ind
   );
 }
 
-function projectAction(project: ArtProject) {
-  const instagram = project.media.find((media) => media.kind === "instagram");
+function projectAction(project: ArtProject, activeMedia: ArtMedia) {
+  const instagram = activeMedia.kind === "instagram" ? activeMedia : undefined;
   if (instagram?.kind === "instagram") {
     return {
       label: instagram.postType === "reel" ? "Watch on Instagram" : "View post on Instagram",
@@ -182,20 +286,75 @@ function projectAction(project: ArtProject) {
   return null;
 }
 
-function ProjectCard({ project, onSelect }: { project: ArtProject; onSelect: (project: ArtProject) => void }) {
-  const context = project.year ?? project.medium;
+function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[]; onSelect: (project: ArtProject) => void; reduced: boolean }) {
+  const [previewId, setPreviewId] = useState(projects[0]?.id ?? "");
+  const preview = projects.find((project) => project.id === previewId) ?? projects[0];
+
+  useEffect(() => {
+    if (!projects.some((project) => project.id === previewId)) setPreviewId(projects[0]?.id ?? "");
+  }, [previewId, projects]);
+
+  const previewMedia = preview?.media[0];
+
   return (
-    <motion.article layout className={cn("art-project-card", `layout-${project.layout}`)} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.24 }}>
-      <button type="button" onClick={() => onSelect(project)} aria-label={`Open ${project.title}`}>
-        <motion.div className="art-project-media" layoutId={`art-project-${project.id}`}>
-          <ProjectMediaPreview project={project} />
-        </motion.div>
-        <div className="art-project-caption">
-          <h3>{project.title}</h3>
-          <p>{context}</p>
+    <section className="art-archive-window notched" aria-label="Creative projects">
+      <header className="art-window-bar"><span>creative-work.db</span><span>{projects.length} records</span></header>
+      {projects.length === 0 ? (
+        <div className="art-archive-empty">
+          <img src="/images/atelier-diagram-texture.jpg" alt="" />
+          <div><p className="font-pixel">Fashion</p><h3>Photos are coming.</h3></div>
         </div>
-      </button>
-    </motion.article>
+      ) : (
+      <div className="art-archive-layout">
+        <div className="art-archive-list">
+          {projects.map((project, index) => {
+            const itemMedia = project.media[0];
+            return (
+              <motion.button
+                layout
+                key={project.id}
+                type="button"
+                className="art-archive-row"
+                aria-label={`Open ${project.title}`}
+                aria-current={preview?.id === project.id ? "true" : undefined}
+                onMouseEnter={() => setPreviewId(project.id)}
+                onFocus={() => setPreviewId(project.id)}
+                onClick={() => onSelect(project)}
+              >
+                <span className="art-archive-mobile-media"><MovingMediaPreview media={itemMedia} reduced={reduced} /></span>
+                <span className="art-archive-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="art-archive-title">{project.title}</span>
+                <span className="art-archive-practice">{practiceLabels[project.practice]}</span>
+                <span className="art-archive-year">{project.year ?? ""}</span>
+              </motion.button>
+            );
+          })}
+        </div>
+
+        <div className="art-archive-preview" aria-live="polite">
+          <div className="art-archive-preview-stage">
+            <AnimatePresence mode="wait" initial={false}>
+              {preview && previewMedia && (
+                <motion.button
+                  key={preview.id}
+                  type="button"
+                  onClick={() => onSelect(preview)}
+                  aria-label={`Open ${preview.title}`}
+                  initial={{ clipPath: "inset(0 50% 0 50%)", opacity: 0.4 }}
+                  animate={{ clipPath: "inset(0 0% 0 0%)", opacity: 1 }}
+                  exit={{ clipPath: "inset(50% 0 50% 0)", opacity: 0.2 }}
+                  transition={{ duration: reduced ? 0 : 0.34, ease: [0.2, 0.76, 0.2, 1] }}
+                >
+                  <MovingMediaPreview media={previewMedia} reduced={reduced} alt={previewMedia.alt} />
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </div>
+          {preview && <footer><div><h3>{preview.title}</h3><p>{preview.medium}</p></div><span>Open project <ArrowRight aria-hidden="true" /></span></footer>}
+        </div>
+      </div>
+      )}
+    </section>
   );
 }
 
@@ -213,7 +372,7 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
 
   useEffect(() => {
     setMediaIndex(0);
-    setActiveVideoId(null);
+    setActiveVideoId(project?.media[0]?.kind === "video" ? `${project.id}-0` : null);
   }, [project?.id]);
 
   useEffect(() => {
@@ -226,8 +385,8 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [onSelect, project, projectIndex, projects]);
 
-  const action = project ? projectAction(project) : null;
   const media = project?.media[mediaIndex];
+  const action = project && media ? projectAction(project, media) : null;
 
   return (
     <Dialog open={Boolean(project)} onOpenChange={(open) => !open && onSelect(null)}>
@@ -284,11 +443,11 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
 }
 
 export default function ArtPage() {
-  const [filter, setFilter] = useState<Filter>("all");
+  const [filter, setFilter] = useState<Filter>("ceramics");
   const [selectedProject, setSelectedProject] = useState<ArtProject | null>(null);
   const reduced = Boolean(useReducedMotion());
   const filteredProjects = useMemo(
-    () => filter === "all" ? artProjects : artProjects.filter((project) => project.practice === filter),
+    () => artProjects.filter((project) => project.practice === filter),
     [filter],
   );
 
@@ -308,12 +467,12 @@ export default function ArtPage() {
   return (
     <LayoutGroup>
       <div className="art-motion-page">
-        <LightsOffToggle />
         <nav className="art-motion-nav" aria-label="Creative work navigation">
           <Link to="/"><ArrowLeft aria-hidden="true" /> Alexa Thoennes</Link>
           <div>
             <button type="button" onClick={() => scrollToId("work-index")}>Browse work</button>
             <button type="button" onClick={() => scrollToId("art-inquiry")}>Work with me</button>
+            <LightsOffToggle />
           </div>
         </nav>
 
@@ -331,18 +490,13 @@ export default function ArtPage() {
             </header>
 
             <div className="art-filter-row" role="group" aria-label="Filter creative work">
-              <button type="button" aria-pressed={filter === "all"} onClick={() => setFilter("all")}>All work</button>
               {practices.map((practice) => (
                 <button key={practice} type="button" aria-pressed={filter === practice} onClick={() => setFilter(practice)}>{practiceLabels[practice]}</button>
               ))}
-              {filter !== "all" && <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>}
+              <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
             </div>
 
-            <motion.section layout className="art-project-grid" aria-label="Creative projects">
-              <AnimatePresence initial={false}>
-                {filteredProjects.map((project) => <ProjectCard key={project.id} project={project} onSelect={setSelectedProject} />)}
-              </AnimatePresence>
-            </motion.section>
+            <ArchiveBrowser projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
           </section>
 
           <footer id="art-inquiry" className="art-motion-footer" tabIndex={-1}>
@@ -352,7 +506,7 @@ export default function ArtPage() {
             </div>
             <div>
               <DossierLink href={`${inquiryBase}?subject=Creative%20work%20inquiry`} className="art-footer-primary"><Mail /> Send an email</DossierLink>
-              <DossierLink href="https://www.instagram.com/haruhay_studio/" target="_blank" rel="noopener noreferrer"><Instagram /> Follow on Instagram</DossierLink>
+              <DossierLink href="https://www.instagram.com/haruhay.studio/" target="_blank" rel="noopener noreferrer"><Instagram /> Follow on Instagram</DossierLink>
             </div>
           </footer>
         </main>

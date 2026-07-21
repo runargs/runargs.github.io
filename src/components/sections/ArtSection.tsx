@@ -5,18 +5,31 @@ import { DossierLink, ImageFrame, SectionBand, SectionHeader } from "@/component
 const practices = [
   { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg", note: "Menus, gatherings, and tables shaped around place, memory, and how people feel together." },
   { title: "Ceramics", image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg", note: "Wheel-thrown vessels, carved surfaces, and useful objects made for everyday ritual." },
-  { title: "Flow arts", image: "/images/portrait-study-red-light.jpg", note: "A growing movement practice, with space being made for film and performance studies." },
+  { title: "Fashion", image: "/media/art/linen-top-hair-stick.jpg", video: "/media/art/linen-top-hair-stick.mp4", note: "I enjoy styling and I sew my own clothes." },
+  { title: "Flow arts", image: "/media/art/flow-arts-fire.jpg", note: "A growing flow arts practice, with space being made for film and performance studies.", dark: true },
+  { title: "Modeling & image-making", image: "/images/portrait-study-red-light.jpg", note: "I collaborate on portraits and editorial images, sometimes behind the idea and sometimes in front of the camera." },
 ];
 
 export function ArtSection() {
   return (
     <SectionBand id="art">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader marker="04" eyebrow="Creative practice" title="Art, food & movement" description="A working studio practice spanning private dining, ceramics, visual collaborations, and a new exploration of flow arts." className="mb-10" />
-        <div className="grid gap-4 md:grid-cols-3">
+        <SectionHeader marker="04" eyebrow="Creative practice" title="Haruhay Studio" description="My renaissance atelier for ceramics, food, modeling, fashion, and flow arts." className="mb-10" />
+        <div className="art-home-practice-strip notched">
           {practices.map((practice) => (
-            <Link key={practice.title} to="/art" className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]">
-              <ImageFrame src={practice.image} alt="" caption={practice.title} mediaClassName="aspect-[4/3]" imgClassName="transition-transform duration-300 group-hover:scale-[1.03]" grayscale={false} />
+            <Link key={practice.title} to="/art" className={`art-home-practice-card group ${practice.dark ? "is-flow" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]`}>
+              {practice.video ? (
+                <figure className="notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
+                  <div className="aspect-[4/3] overflow-hidden bg-[var(--paper-soft)]">
+                    <video className="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" autoPlay muted loop playsInline preload="metadata">
+                      <source src={practice.video} type="video/mp4" />
+                    </video>
+                  </div>
+                  <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">{practice.title}</figcaption>
+                </figure>
+              ) : (
+                <ImageFrame src={practice.image} alt="" caption={practice.title} mediaClassName="aspect-[4/3]" imgClassName="transition-transform duration-300 group-hover:scale-[1.03]" grayscale={false} />
+              )}
               <p className="mt-3 text-sm leading-6 text-[var(--ink-muted)]">{practice.note}</p>
             </Link>
           ))}
