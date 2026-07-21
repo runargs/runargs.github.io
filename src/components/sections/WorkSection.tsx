@@ -291,6 +291,7 @@ export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeMobileFilter, setActiveMobileFilter] = useState("Featured");
   const [openWorkIds, setOpenWorkIds] = useState<Set<string>>(() => new Set());
+  const [credentialsOpen, setCredentialsOpen] = useState(false);
 
   const desktopRevealSkills = useMemo(() => {
     const all = experiences
@@ -603,17 +604,15 @@ export function WorkSection() {
         </div>
 
         <aside id="resume" className="work-career-tools notched" aria-label="Résumé and credentials">
-          <details className="resume-credentials-disclosure">
-            <summary>Education & selected credentials <span>{credentials.length} records</span></summary>
-            <div className="resume-credentials-grid">
-              {credentials.map((credential) => (
-                <div key={`${credential.title}-${credential.org}`} className="resume-credential-row">
-                  <p className="resume-credential-title">{credential.title}</p>
-                  <p className="resume-credential-org">{credential.org}</p>
-                </div>
-              ))}
-            </div>
-          </details>
+          <button
+            type="button"
+            className="work-credentials-toggle"
+            aria-expanded={credentialsOpen}
+            aria-controls="work-credentials-list"
+            onClick={() => setCredentialsOpen((current) => !current)}
+          >
+            Education & selected credentials <span>{credentials.length} records</span>
+          </button>
           <div className="work-career-actions">
             <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             <DossierLink href="#contact" className="work-career-resume-link">
@@ -623,6 +622,16 @@ export function WorkSection() {
               LinkedIn <ExternalLink aria-hidden="true" />
             </a>
           </div>
+          {credentialsOpen && (
+            <div id="work-credentials-list" className="resume-credentials-grid">
+              {credentials.map((credential) => (
+                <div key={`${credential.title}-${credential.org}`} className="resume-credential-row">
+                  <p className="resume-credential-title">{credential.title}</p>
+                  <p className="resume-credential-org">{credential.org}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </aside>
       </div>
     </SectionBand>

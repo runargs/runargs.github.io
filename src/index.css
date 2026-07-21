@@ -1625,6 +1625,16 @@
   .guestbook-quick-actions svg,
   .guestbook-sign svg { width: 18px; height: 18px; }
   .guestbook-quick-actions .guestbook-expand { border-color: var(--rule-strong); background: var(--paper-soft); color: var(--ink); box-shadow: none; }
+  .guestbook-kudos-count {
+    margin-top: 0.45rem;
+    color: var(--ink-faint);
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
 
   .guestbook-details { display: grid; width: min(680px, calc(100vw - 3rem)); gap: 1rem; margin-top: 1rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
   .guestbook-details[hidden] { display: none; }
@@ -1822,8 +1832,8 @@
   }
 
   .portfolio-footer-image {
-    width: 60px;
-    height: 60px;
+    width: 84px;
+    height: 84px;
     object-fit: contain;
     image-rendering: pixelated;
   }
@@ -3002,16 +3012,33 @@
     background: var(--paper-card);
   }
 
-  .work-career-tools .resume-credentials-disclosure {
-    display: contents;
-  }
-
-  .work-career-tools .resume-credentials-disclosure > summary {
+  .work-credentials-toggle {
     grid-column: 1;
+    display: flex;
     min-height: 58px;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: left;
     padding: 0.8rem 1rem;
+    color: var(--ink);
+    font-family: var(--font-editorial);
     font-size: 1rem;
   }
+
+  .work-credentials-toggle::before {
+    color: var(--civic-blue);
+    font-family: var(--font-pixel);
+    content: "+";
+  }
+
+  .work-credentials-toggle[aria-expanded="true"]::before { content: "−"; }
+  .work-credentials-toggle span {
+    margin-left: auto;
+    color: var(--ink-faint);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+  }
+  .work-credentials-toggle:focus-visible { outline: 2px solid var(--civic-blue); outline-offset: -4px; }
 
   .work-career-actions {
     display: flex;
@@ -3032,21 +3059,42 @@
 
   .work-career-actions > a:not(.dossier-link) {
     display: inline-flex;
+    min-height: 36px;
     align-items: center;
     gap: 0.35rem;
+    border: 0;
+    background: transparent;
+    padding: 0.45rem 0.5rem;
     color: var(--civic-blue);
-    font-family: var(--font-pixel);
-    font-size: 0.95rem;
-    text-decoration: underline;
-    text-underline-offset: 0.22em;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.065em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: none;
   }
 
   .work-career-actions .work-career-resume-link {
     min-height: 36px;
-    border-color: var(--rule-strong);
+    border: 0;
     background: transparent;
-    padding: 0.45rem 0.65rem;
+    padding: 0.45rem 0.5rem;
     color: var(--civic-blue);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.065em;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: none;
+  }
+
+  .work-career-actions > a:hover,
+  .work-career-actions .work-career-resume-link:hover {
+    transform: none;
+    background: color-mix(in srgb, var(--civic-blue) 7%, transparent);
     box-shadow: none;
   }
 
@@ -3088,7 +3136,7 @@
 
   @media (max-width: 760px) {
     .work-career-tools { grid-template-columns: 1fr; }
-    .work-career-tools .resume-credentials-disclosure > summary { grid-column: 1; }
+    .work-credentials-toggle { grid-column: 1; }
     .work-career-actions { grid-row: 2; justify-content: flex-start; border-top: 1px solid var(--rule); border-left: 0; }
     .work-career-tools .resume-credentials-grid { grid-template-columns: 1fr; }
   }

@@ -10,9 +10,12 @@ describe("Guestbook", () => {
     vi.stubGlobal("fetch", fetchMock);
 
     render(<Guestbook id="guestbook" page="main" />);
+    expect(screen.getByText("0 kudos")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Leave kudos" }));
 
-    await waitFor(() => expect(screen.getByText("Thank you for leaving a mark.")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("Kudos received.")).toBeInTheDocument());
+    expect(screen.getByText("1 kudos")).toBeInTheDocument();
+    expect(window.localStorage.getItem("portfolio-guestbook-kudos:main")).toBe("0");
     const body = fetchMock.mock.calls[0][1].body as FormData;
     expect(body.get("signal")).toBe("kudos");
     expect(body.get("page")).toBe("main");

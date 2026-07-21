@@ -16,6 +16,12 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
   const fieldId = useId();
   const [expanded, setExpanded] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const kudosStorageKey = `portfolio-guestbook-kudos:${page}`;
+  const [localKudosBaseline, setLocalKudosBaseline] = useState<number | null>(() => {
+    if (typeof window === "undefined") return null;
+    const stored = window.localStorage.getItem(kudosStorageKey);
+    return stored === null ? null : Number(stored);
+  });
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,6 +39,8 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
         body: data,
       });
       if (!response.ok) throw new Error("Guestbook submission failed");
+      window.localStorage.setItem(kudosStorageKey, String(guestbookSnapshot.totalKudos));
+      setLocalKudosBaseline(guestbookSnapshot.totalKudos);
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -40,6 +48,8 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
   };
 
   const hasPublishedSnapshot = guestbookSnapshot.totalKudos > 0;
+  const pendingLocalKudos = localKudosBaseline !== null && guestbookSnapshot.totalKudos <= localKudosBaseline ? 1 : 0;
+  const visibleKudos = guestbookSnapshot.totalKudos + pendingLocalKudos;
 
   return (
     <section id={id} className={cn("guestbook-section notched", className)} aria-labelledby={`${fieldId}-title`}>
@@ -59,7 +69,7 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
         {status === "sent" ? (
           <div className="guestbook-receipt" role="status">
             <Sparkles aria-hidden="true" />
-            <div><strong>Thank you for leaving a mark.</strong><span>Your kudos is in the guestbook.</span></div>
+            <div><strong>Kudos received.</strong></div>
           </div>
         ) : (
           <>
@@ -108,6 +118,8 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
             </div>
           </>
         )}
+
+        <p className="guestbook-kudos-count" aria-live="polite">{visibleKudos} kudos</p>
 
         <p className="guestbook-status" role="status" aria-live="polite">
           {status === "error" && "That did not go through. Please try once more."}

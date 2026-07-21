@@ -58,6 +58,15 @@ const Index = () => {
     }, 920);
   };
 
+  const openInquiry = () => {
+    handleSectionChange("contact");
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setIsVisible(false);
+    window.setTimeout(() => {
+      document.querySelector<HTMLElement>("#contact .art-inquiry-cards input")?.focus();
+    }, 650);
+  };
+
   useEffect(() => {
     let frame = 0;
     let resizeTimer = 0;
@@ -250,12 +259,13 @@ const Index = () => {
             <p className="pr-2">
               Want to talk about the work?
             </p>
-            <a 
-              href="#contact"
+            <button
+              type="button"
+              onClick={openInquiry}
               className="mt-2 block font-bold text-[var(--civic-blue)] underline hover:text-[var(--ink)]"
             >
               Click here to contact.
-            </a>
+            </button>
             
             <div className="absolute -bottom-[9px] right-6 h-0 w-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-[var(--ink)]">
                <div className="absolute -left-[7px] -top-[9px] h-0 w-0 border-l-[7px] border-r-[7px] border-t-[7px] border-l-transparent border-r-transparent border-t-[var(--paper-card)]" />
