@@ -28,10 +28,22 @@ function renderPage() {
 
 describe("ArtPage", () => {
   beforeEach(() => {
+    window.sessionStorage.clear();
     vi.stubGlobal("scrollTo", vi.fn());
     vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => { callback(0); return 1; });
     Object.defineProperty(HTMLElement.prototype, "scrollIntoView", { configurable: true, value: vi.fn() });
     Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
+  });
+
+  it("keeps media muted until sound is explicitly enabled", () => {
+    renderPage();
+    const practiceMenu = screen.getByRole("group", { name: "Choose a creative practice" });
+    fireEvent.click(within(practiceMenu).getByRole("button", { name: /flow arts/i }));
+    const soundToggle = screen.getByRole("button", { name: "Sound off" });
+    expect(soundToggle).toHaveAttribute("aria-pressed", "false");
+    fireEvent.click(soundToggle);
+    expect(screen.getByRole("button", { name: "Sound on" })).toHaveAttribute("aria-pressed", "true");
+    expect(window.sessionStorage.getItem("haruhay-media-sound")).toBe("on");
   });
 
   it("renders the motion story and guides a visitor through the inquiry brief", () => {

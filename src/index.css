@@ -408,6 +408,26 @@
   }
   .art-window-bar:active { cursor: grabbing; }
   .art-window-bar svg { width: 16px; height: 16px; }
+  .art-window-tools { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .art-sound-toggle {
+    display: inline-flex;
+    min-height: 25px;
+    align-items: center;
+    gap: 0.3rem;
+    border: 1px solid color-mix(in srgb, currentColor 36%, transparent);
+    background: color-mix(in srgb, var(--paper-card) 44%, transparent);
+    padding: 0.18rem 0.38rem;
+    color: inherit;
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .art-sound-toggle:hover { border-color: var(--civic-blue); color: var(--civic-blue); }
+  .art-sound-toggle:focus-visible { outline: 2px solid var(--civic-blue); outline-offset: 2px; }
+  .art-sound-toggle svg { width: 13px; height: 13px; }
 
   .art-media-window {
     grid-column: 1;

@@ -34,9 +34,10 @@ interface ProjectMediaDetailProps {
   activeVideoId: string | null;
   mediaId: string;
   onActivateVideo: (id: string) => void;
+  soundEnabled?: boolean;
 }
 
-export function ProjectMediaDetail({ media, activeVideoId, mediaId, onActivateVideo }: ProjectMediaDetailProps) {
+export function ProjectMediaDetail({ media, activeVideoId, mediaId, onActivateVideo, soundEnabled = false }: ProjectMediaDetailProps) {
   if (media.kind === "instagram" && media.postType === "reel") {
     if (media.sources?.length && activeVideoId === mediaId) {
       return (
@@ -44,6 +45,7 @@ export function ProjectMediaDetail({ media, activeVideoId, mediaId, onActivateVi
           aria-label={media.alt}
           controls
           autoPlay
+          muted={!soundEnabled}
           playsInline
           preload="metadata"
           poster={media.poster}
@@ -89,6 +91,7 @@ export function ProjectMediaDetail({ media, activeVideoId, mediaId, onActivateVi
         aria-label={media.alt}
         controls
         autoPlay
+        muted={!soundEnabled}
         playsInline
         preload="metadata"
         poster={media.poster}

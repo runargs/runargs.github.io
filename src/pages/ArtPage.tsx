@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowDown, ArrowLeft, ArrowRight, BookHeart, Camera, CookingPot, ExternalLink, Flame, GripHorizontal, Instagram, LayoutGrid, Mail, Mic2, Palette, Scissors, Sparkles, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, BookHeart, Camera, CookingPot, ExternalLink, Flame, GripHorizontal, Instagram, LayoutGrid, Mail, Mic2, Palette, Scissors, Sparkles, RotateCcw, Volume2, VolumeX } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
@@ -82,9 +82,10 @@ interface PaperWindowProps {
   constraints: React.RefObject<HTMLDivElement>;
   zIndex: number;
   onRaise: () => void;
+  headerAction?: React.ReactNode;
 }
 
-function PaperWindow({ children, className, label, dragEnabled, constraints, zIndex, onRaise }: PaperWindowProps) {
+function PaperWindow({ children, className, label, dragEnabled, constraints, zIndex, onRaise, headerAction }: PaperWindowProps) {
   return (
     <motion.section
       className={cn("art-paper-window", className)}
@@ -101,18 +102,22 @@ function PaperWindow({ children, className, label, dragEnabled, constraints, zIn
     >
       <header className="art-window-bar">
         <span>{label}</span>
-        <GripHorizontal aria-hidden="true" />
+        <span className="art-window-tools">
+          {headerAction}
+          <GripHorizontal aria-hidden="true" />
+        </span>
       </header>
       {children}
     </motion.section>
   );
 }
 
-function OpeningScene({ reduced }: { reduced: boolean }) {
+function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boolean; soundEnabled: boolean; onSoundChange: (enabled: boolean) => void }) {
   const [activePractice, setActivePractice] = useState<ArtPractice>("ceramics");
   const [resetKey, setResetKey] = useState(0);
   const [layerOrder, setLayerOrder] = useState({ media: 4, practices: 3, note: 2 });
   const stageRef = useRef<HTMLDivElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const desktopDrag = useDesktopDrag() && !reduced;
   const featured = projectsForStory(activePractice)[0];
   const media = featured?.media[0];
@@ -135,15 +140,43 @@ function OpeningScene({ reduced }: { reduced: boolean }) {
       />
 
       <div ref={stageRef} className="art-desktop-stage">
-        <PaperWindow key={`media-${resetKey}`} className="art-media-window" label={`${practiceLabels[activePractice]} // open`} dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.media} onRaise={() => raise("media")}>
+        <PaperWindow
+          key={`media-${resetKey}`}
+          className="art-media-window"
+          label={`${practiceLabels[activePractice]} // open`}
+          dragEnabled={desktopDrag}
+          constraints={stageRef}
+          zIndex={layerOrder.media}
+          onRaise={() => raise("media")}
+          headerAction={media?.kind === "video" ? (
+            <button
+              type="button"
+              className="art-sound-toggle"
+              aria-pressed={soundEnabled}
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => {
+                const next = !soundEnabled;
+                onSoundChange(next);
+                if (heroVideoRef.current) {
+                  heroVideoRef.current.muted = !next;
+                  if (next) heroVideoRef.current.play()?.catch(() => undefined);
+                }
+              }}
+            >
+              {soundEnabled ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
+              {soundEnabled ? "Sound on" : "Sound off"}
+            </button>
+          ) : undefined}
+        >
           <div className="art-hero-media-stage">
             <AnimatePresence mode="wait" initial={false}>
               {media?.kind === "video" ? (
                 <motion.video
+                  ref={heroVideoRef}
                   key={featured.id}
                   aria-label={media.alt}
                   autoPlay={!reduced}
-                  muted
+                  muted={!soundEnabled}
                   loop
                   playsInline
                   preload="metadata"
@@ -438,6 +471,7 @@ interface ProjectViewerProps {
   project: ArtProject | null;
   projects: ArtProject[];
   onSelect: (project: ArtProject | null) => void;
+  soundEnabled: boolean;
 }
 
 const inquiryTypes = [
@@ -639,7 +673,7 @@ function ContactDock() {
   );
 }
 
-function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
+function ProjectViewer({ project, projects, onSelect, soundEnabled }: ProjectViewerProps) {
   const [mediaIndex, setMediaIndex] = useState(0);
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const reduced = useReducedMotion();
@@ -675,6 +709,7 @@ function ProjectViewer({ project, projects, onSelect }: ProjectViewerProps) {
                   mediaId={`${project.id}-${mediaIndex}`}
                   activeVideoId={activeVideoId}
                   onActivateVideo={setActiveVideoId}
+                  soundEnabled={soundEnabled}
                 />
               </motion.div>
               {project.media.length > 1 && (
@@ -721,11 +756,17 @@ export default function ArtPage() {
   const [filter, setFilter] = useState<Filter>("ceramics");
   const [selectedProject, setSelectedProject] = useState<ArtProject | null>(null);
   const [navCompact, setNavCompact] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => typeof window !== "undefined" && window.sessionStorage.getItem("haruhay-media-sound") === "on");
   const reduced = Boolean(useReducedMotion());
   const filteredProjects = useMemo(
     () => artProjects.filter((project) => project.practice === filter),
     [filter],
   );
+
+  const updateSound = (enabled: boolean) => {
+    setSoundEnabled(enabled);
+    window.sessionStorage.setItem("haruhay-media-sound", enabled ? "on" : "off");
+  };
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -761,7 +802,7 @@ export default function ArtPage() {
         </nav>
 
         <main>
-          <OpeningScene reduced={reduced} />
+          <OpeningScene reduced={reduced} soundEnabled={soundEnabled && !selectedProject} onSoundChange={updateSound} />
           {storyPractices.map((practice, index) => <StoryChapter key={practice} practice={practice} index={index} reduced={reduced} />)}
 
           <section id="work-index" className="art-work-index" aria-labelledby="work-index-title" tabIndex={-1}>
@@ -802,7 +843,7 @@ export default function ArtPage() {
           <PortfolioFooter page="art" guestbookId="art-guestbook" />
         </main>
 
-        <ProjectViewer project={selectedProject} projects={filteredProjects} onSelect={setSelectedProject} />
+        <ProjectViewer project={selectedProject} projects={filteredProjects} onSelect={setSelectedProject} soundEnabled={soundEnabled} />
       </div>
     </LayoutGroup>
   );
