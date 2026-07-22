@@ -18,7 +18,7 @@ Keep short videos around 3–8 MB when possible. Use H.264 MP4 for broad support
   id: "silk-fan-flow",
   title: "Silk fan flow",
   practice: "movement",
-  medium: "Flow arts / moving image",
+  medium: "Cirque / moving image",
   year: "2026",
   description: "A silk fan flow sequence.",
   featured: true,

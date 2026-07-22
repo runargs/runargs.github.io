@@ -43,7 +43,7 @@ export const practiceLabels: Record<ArtPractice, string> = {
   food: "Food & gatherings",
   collaboration: "Modeling & image-making",
   fashion: "Fashion",
-  movement: "Flow arts",
+  movement: "Cirque",
 };
 
 const image = (src: string, alt: string, width: number, height: number): ArtMedia => ({
@@ -92,17 +92,17 @@ export const artProjects: ArtProject[] = [
     source: { label: "View the ceramic hair stick set", url: "https://www.instagram.com/p/DYHmGMfDt9U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
   },
   {
-    id: "flow-practice-dusk",
-    title: "Flow practice at dusk",
+    id: "led-poi-practice",
+    title: "LED poi practice",
     practice: "movement",
-    medium: "Fire flow arts",
-    description: "An outdoor fire flow practice at dusk.",
+    medium: "LED poi",
+    description: "An outdoor LED poi practice at dusk.",
     media: [
       {
         kind: "video",
         sources: [{ src: "/media/art/flow-art.mp4", type: "video/mp4" }],
-        poster: "/media/art/flow-arts-fire.jpg",
-        alt: "Flow arts practice in motion",
+        poster: "/media/art/led-poi.jpg",
+        alt: "LED poi practice in motion",
         width: 1080,
         height: 1920,
       },

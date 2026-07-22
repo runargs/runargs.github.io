@@ -25,7 +25,7 @@ const chapterCopy: Record<ArtPractice, string> = {
   food: "I cook for galleries, events, and supper clubs.",
   collaboration: "I model and sometimes make images of my own.",
   fashion: "I style, sew, and refashion clothes, often using thrifted pieces and deadstock fabric.",
-  movement: "I practice flow arts and aerial movement.",
+  movement: "I practice LED poi and aerial silks.",
 };
 
 const storyPractices: ArtPractice[] = ["ceramics", "food", "collaboration", "fashion", "movement"];
@@ -213,7 +213,7 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
               )}
             </AnimatePresence>
           </div>
-          <footer><span>{featured?.title ?? "Flow arts in progress"}</span><span>{featured?.year ?? "new practice"}</span></footer>
+          <footer><span>{featured?.title ?? "Cirque in progress"}</span><span>{featured?.year ?? "new practice"}</span></footer>
         </PaperWindow>
 
         <PaperWindow key={`practices-${resetKey}`} className="art-practice-window" label="practice.select" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.practices} onRaise={() => raise("practices")}>
@@ -228,7 +228,7 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
 
         <PaperWindow key={`note-${resetKey}`} className="art-note-window" label="read-me.txt" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.note} onRaise={() => raise("note")}>
           <div className="art-hero-note-copy">
-            <p>I make ceramics, cook for gatherings, sew and refashion clothes, model, and practice flow arts.</p>
+            <p>I make ceramics, cook for gatherings, sew and refashion clothes, model, and practice cirque.</p>
             <p>This is a growing collection of finished work, experiments, and moments from the process.</p>
             {desktopDrag && <button type="button" onClick={() => { setResetKey((key) => key + 1); setLayerOrder({ media: 4, practices: 3, note: 2 }); }}><RotateCcw aria-hidden="true" /> Reset windows</button>}
           </div>
@@ -479,7 +479,7 @@ const inquiryTypes = [
   ["Private dining & catering", "ochre", CookingPot],
   ["Modeling & creative shoots", "violet", Camera],
   ["Custom clothing & styling", "green", Scissors],
-  ["Flow arts booking", "blue", Flame],
+  ["Cirque booking", "blue", Flame],
   ["Speaking & workshops", "ochre", Mic2],
   ["Creative collaboration", "violet", Sparkles],
 ] as const;

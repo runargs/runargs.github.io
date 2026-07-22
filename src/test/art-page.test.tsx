@@ -38,7 +38,7 @@ describe("ArtPage", () => {
   it("keeps media muted until sound is explicitly enabled", () => {
     renderPage();
     const practiceMenu = screen.getByRole("group", { name: "Choose a creative practice" });
-    fireEvent.click(within(practiceMenu).getByRole("button", { name: /flow arts/i }));
+    fireEvent.click(within(practiceMenu).getByRole("button", { name: /cirque/i }));
     const soundToggle = screen.getByRole("button", { name: "Sound off" });
     expect(soundToggle).toHaveAttribute("aria-pressed", "false");
     fireEvent.click(soundToggle);
@@ -56,7 +56,7 @@ describe("ArtPage", () => {
       "Food & gatherings",
       "Modeling & image-making",
       "Fashion",
-      "Flow arts",
+      "Cirque",
       "Browse the work",
     ]);
     expect(screen.getByRole("button", { name: "Browse gallery" })).toBeInTheDocument();
