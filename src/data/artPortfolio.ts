@@ -97,7 +97,16 @@ export const artProjects: ArtProject[] = [
     practice: "movement",
     medium: "Fire flow arts",
     description: "An outdoor fire flow practice at dusk.",
-    media: [image("/media/art/flow-arts-fire.jpg", "Practicing fire flow arts outdoors at dusk", 831, 1800)],
+    media: [
+      {
+        kind: "video",
+        sources: [{ src: "/media/art/flow-art.mp4", type: "video/mp4" }],
+        poster: "/media/art/flow-arts-fire.jpg",
+        alt: "Flow arts practice in motion",
+        width: 1080,
+        height: 1920,
+      },
+    ],
     layout: "tall",
     featured: true,
     storyOrder: 1,
