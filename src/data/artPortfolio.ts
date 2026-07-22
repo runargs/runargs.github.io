@@ -43,7 +43,7 @@ export const practiceLabels: Record<ArtPractice, string> = {
   food: "Food & gatherings",
   collaboration: "Modeling & image-making",
   fashion: "Fashion",
-  movement: "Cirque",
+  movement: "Cirque arts",
 };
 
 const image = (src: string, alt: string, width: number, height: number): ArtMedia => ({
@@ -113,11 +113,12 @@ export const artProjects: ArtProject[] = [
   },
   {
     id: "aerial-movement",
-    title: "Aerial movement",
+    title: "Aerial silks study",
     practice: "movement",
     medium: "Aerial silks",
     media: [image("/media/art/aerial-movement.jpg", "Aerial silks movement silhouetted against the sky", 720, 1280)],
     layout: "tall",
+    featured: true,
     storyOrder: 2,
   },
   {

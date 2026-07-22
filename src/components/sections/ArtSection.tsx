@@ -7,7 +7,7 @@ const practices = [
   { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg" },
   { title: "Ceramics", image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg" },
   { title: "Fashion", image: "/media/art/linen-top-hair-stick.jpg", video: "/media/art/linen-top-hair-stick.mp4" },
-  { title: "Cirque", image: "/media/art/led-poi.jpg", dark: true },
+  { title: "Cirque arts", image: "/media/art/led-poi.jpg", dark: true },
   { title: "Modeling & image-making", image: "/images/portrait-study-red-light.jpg" },
 ];
 

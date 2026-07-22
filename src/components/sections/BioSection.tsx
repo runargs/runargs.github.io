@@ -33,6 +33,13 @@ export function BioSection() {
                 <div className="hero-kicker small-label mb-5 text-[var(--ink-muted)]">
                   Responsible AI + Human Judgment
                 </div>
+                <button type="button" className="hero-runargs-origin" aria-describedby="runargs-origin-note">
+                  <code>runargs</code>
+                  <span id="runargs-origin-note" role="tooltip">
+                    <code>public static void main(String[] runargs)</code>
+                    <small>where username started</small>
+                  </span>
+                </button>
               </div>
               
             </div>

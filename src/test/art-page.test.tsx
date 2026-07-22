@@ -38,12 +38,18 @@ describe("ArtPage", () => {
   it("keeps media muted until sound is explicitly enabled", () => {
     renderPage();
     const practiceMenu = screen.getByRole("group", { name: "Choose a creative practice" });
-    fireEvent.click(within(practiceMenu).getByRole("button", { name: /cirque/i }));
+    fireEvent.click(within(practiceMenu).getByRole("button", { name: /cirque arts/i }));
     const soundToggle = screen.getByRole("button", { name: "Sound off" });
     expect(soundToggle).toHaveAttribute("aria-pressed", "false");
     fireEvent.click(soundToggle);
     expect(screen.getByRole("button", { name: "Sound on" })).toHaveAttribute("aria-pressed", "true");
     expect(window.sessionStorage.getItem("haruhay-media-sound")).toBe("on");
+  });
+
+  it("includes both Cirque arts projects in the story film roll", () => {
+    renderPage();
+    expect(screen.getAllByLabelText("LED poi practice in motion").length).toBeGreaterThan(0);
+    expect(screen.getByAltText("Aerial silks movement silhouetted against the sky")).toBeInTheDocument();
   });
 
   it("renders the motion story and guides a visitor through the inquiry brief", () => {
@@ -56,7 +62,7 @@ describe("ArtPage", () => {
       "Food & gatherings",
       "Modeling & image-making",
       "Fashion",
-      "Cirque",
+      "Cirque arts",
       "Browse the work",
     ]);
     expect(screen.getByRole("button", { name: "Browse gallery" })).toBeInTheDocument();
