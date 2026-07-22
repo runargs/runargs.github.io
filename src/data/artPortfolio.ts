@@ -112,6 +112,15 @@ export const artProjects: ArtProject[] = [
     storyOrder: 1,
   },
   {
+    id: "aerial-movement",
+    title: "Aerial movement",
+    practice: "movement",
+    medium: "Aerial silks",
+    media: [image("/media/art/aerial-movement.jpg", "Aerial silks movement silhouetted against the sky", 720, 1280)],
+    layout: "tall",
+    storyOrder: 2,
+  },
+  {
     id: "albay-mug",
     title: "Albay mug",
     practice: "ceramics",
