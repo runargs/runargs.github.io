@@ -123,15 +123,23 @@ function CitationLink({ number, href, label }: { number: number; href: string; l
 }
 
 const creativePracticeFlow = [
-  { label: "Cooking", type: "practice" },
-  { label: "responsiveness to materials", type: "attribute", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "The Food Lab: Better Home Cooking Through Science" },
-  { label: "Ceramics", type: "practice" },
-  { label: "shape / connected form", type: "attribute", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
-  { label: "Sewing & fashion", type: "practice" },
-  { label: "expressing identity", type: "attribute" },
-  { label: "Modeling & image-making", type: "practice" },
-  { label: "using the body in the work", type: "attribute", citation: 3, href: "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409", source: "Body Movement as Material: Designing Temporal Expressions" },
-  { label: "Cirque arts", type: "practice" },
+  {
+    label: "Cooking",
+    bridge: { label: "responsiveness to materials", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "The Food Lab: Better Home Cooking Through Science" },
+  },
+  {
+    label: "Ceramics",
+    bridge: { label: "shape / connected form", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
+  },
+  {
+    label: "Sewing & fashion",
+    bridge: { label: "expressing identity" },
+  },
+  {
+    label: "Modeling & image-making",
+    bridge: { label: "using the body in the work", citation: 3, href: "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409", source: "Body Movement as Material: Designing Temporal Expressions" },
+  },
+  { label: "Cirque arts" },
 ] as const;
 
 function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boolean; soundEnabled: boolean; onSoundChange: (enabled: boolean) => void }) {
@@ -252,13 +260,18 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
           <div className="art-hero-note-copy">
             <h3>One thing leads to another.</h3>
             <ol className="art-practice-flow" aria-label="How my creative practices overlap">
-              {creativePracticeFlow.map((step, index) => (
+              {creativePracticeFlow.map((step) => (
                 <li key={step.label}>
-                  <span className={step.type === "practice" ? "is-practice" : "is-attribute"}>
-                    {step.label}
-                    {"citation" in step && <CitationLink number={step.citation} href={step.href} label={step.source} />}
-                  </span>
-                  {index < creativePracticeFlow.length - 1 && <ArrowRight aria-hidden="true" />}
+                  <span className="is-practice">{step.label}</span>
+                  {"bridge" in step && (
+                    <span className="art-practice-bridge">
+                      <ArrowDown aria-hidden="true" />
+                      <span>
+                        {step.bridge.label}
+                        {"citation" in step.bridge && <CitationLink number={step.bridge.citation} href={step.bridge.href} label={step.bridge.source} />}
+                      </span>
+                    </span>
+                  )}
                 </li>
               ))}
             </ol>
