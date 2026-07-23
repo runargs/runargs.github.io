@@ -28,7 +28,7 @@ const chapterCopy: Record<ArtPractice, string> = {
   movement: "I practice LED poi and have trained in aerial silks.",
 };
 
-const storyPractices: ArtPractice[] = ["ceramics", "food", "collaboration", "fashion", "movement"];
+const storyPractices: ArtPractice[] = ["food", "ceramics", "fashion", "movement", "collaboration"];
 const practiceTagTone: Record<ArtPractice, string> = {
   ceramics: "blue",
   food: "ochre",
@@ -112,8 +112,28 @@ function PaperWindow({ children, className, label, dragEnabled, constraints, zIn
   );
 }
 
+function CitationLink({ number, href, label }: { number: number; href: string; label: string }) {
+  return (
+    <sup className="art-readme-citation">
+      <a href={href} target="_blank" rel="noreferrer" aria-label={`Source ${number}: ${label}`} title={label}>
+        [{number}]
+      </a>
+    </sup>
+  );
+}
+
+const creativePracticeFlow = [
+  { label: "Cooking", type: "practice" },
+  { label: "chemistry", type: "attribute", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "The Food Lab: Better Home Cooking Through Science" },
+  { label: "Ceramics", type: "practice" },
+  { label: "form", type: "attribute", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
+  { label: "Sewing & fashion", type: "practice" },
+  { label: "bodily awareness", type: "attribute", citation: 3, href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8085341/", source: "Embodied aesthetics, bodily awareness, and movement creativity" },
+  { label: "Cirque arts", type: "practice" },
+] as const;
+
 function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boolean; soundEnabled: boolean; onSoundChange: (enabled: boolean) => void }) {
-  const [activePractice, setActivePractice] = useState<ArtPractice>("ceramics");
+  const [activePractice, setActivePractice] = useState<ArtPractice>("food");
   const [resetKey, setResetKey] = useState(0);
   const [layerOrder, setLayerOrder] = useState({ media: 4, practices: 3, note: 2 });
   const stageRef = useRef<HTMLDivElement>(null);
@@ -226,16 +246,34 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
           </div>
         </PaperWindow>
 
-        <PaperWindow key={`note-${resetKey}`} className="art-note-window" label="read-me.txt" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.note} onRaise={() => raise("note")}>
+        <PaperWindow key={`note-${resetKey}`} className="art-note-window" label="read-me.md" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.note} onRaise={() => raise("note")}>
           <div className="art-hero-note-copy">
-            <p>I make ceramics, cook for gatherings, sew and refashion clothes, model, and practice cirque arts.</p>
-            <p>This is a growing collection of finished work, experiments, and moments from the process.</p>
+            <h3>One thing leads to another.</h3>
+            <ol className="art-practice-flow" aria-label="How my creative practices overlap">
+              {creativePracticeFlow.map((step, index) => (
+                <li key={step.label}>
+                  <span className={step.type === "practice" ? "is-practice" : "is-attribute"}>
+                    {step.label}
+                    {"citation" in step && <CitationLink number={step.citation} href={step.href} label={step.source} />}
+                  </span>
+                  {index < creativePracticeFlow.length - 1 && <ArrowRight aria-hidden="true" />}
+                </li>
+              ))}
+            </ol>
+            <p>
+              I track parts of daily life to test assumptions against patterns in my own data.
+              <CitationLink number={4} href="https://bearable.app/" label="Bearable personal tracking" />
+              That is my practical version of Quantified Self.
+              <CitationLink number={5} href="https://quantifiedself.com/get-started/" label="Getting started with Quantified Self" />
+              Research on polymathy frames the larger loop as breadth, depth, and integration across domains.
+              <CitationLink number={6} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/" label="Research on breadth, depth, and integration across domains" />
+            </p>
             {desktopDrag && <button type="button" onClick={() => { setResetKey((key) => key + 1); setLayerOrder({ media: 4, practices: 3, note: 2 }); }}><RotateCcw aria-hidden="true" /> Reset windows</button>}
           </div>
         </PaperWindow>
       </div>
 
-      <button type="button" onClick={() => scrollToId("story-ceramics")} className="art-scroll-cue">
+      <button type="button" onClick={() => scrollToId("story-food")} className="art-scroll-cue">
         Enter the work <ArrowDown aria-hidden="true" />
       </button>
     </section>
@@ -249,15 +287,20 @@ interface ChapterTrackProps {
 }
 
 function ChapterTrack({ projects, progress, reduced }: ChapterTrackProps) {
+  const isPair = projects.length === 2;
   const x = useTransform(
     progress,
-    [0.08, 0.88],
-    projects.length === 1 ? ["-50%", "-50%"] : reduced ? ["0%", "0%"] : ["7%", projects.length > 3 ? "-58%" : "-36%"],
+    isPair ? [0.08, 0.35, 0.88] : [0.08, 0.88],
+    projects.length === 1
+      ? ["-50%", "-50%"]
+      : isPair
+        ? reduced ? ["-50%", "-50%", "-50%"] : ["-30%", "-50%", "-70%"]
+        : reduced ? ["0%", "0%"] : ["7%", projects.length > 3 ? "-58%" : "-36%"],
   );
   const reveal = useTransform(progress, [0, 0.18, 0.82, 1], reduced ? [1, 1, 1, 1] : [0, 1, 1, 0]);
 
   return (
-    <motion.div className={cn("art-chapter-track", projects.length === 1 && "is-single")} style={{ x, y: "-50%", opacity: reveal }}>
+    <motion.div className={cn("art-chapter-track", projects.length === 1 && "is-single", isPair && "is-pair")} style={{ x, y: "-50%", opacity: reveal }}>
       {projects.map((project, index) => {
         const media = project.media[0];
         return (

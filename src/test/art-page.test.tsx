@@ -52,17 +52,30 @@ describe("ArtPage", () => {
     expect(screen.getByAltText("Aerial silks movement silhouetted against the sky")).toBeInTheDocument();
   });
 
+  it("renders the creative readme as linked source notes", () => {
+    renderPage();
+    expect(screen.getByText("read-me.md")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Source 3: Embodied aesthetics/i })).toHaveAttribute(
+      "href",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC8085341/",
+    );
+    expect(screen.getByRole("list", { name: /how my creative practices overlap/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /source 1: the food lab/i })).toHaveAttribute("href", "https://www.kenjilopezalt.com/books");
+    expect(screen.getByRole("link", { name: /source 5: getting started with quantified self/i })).toHaveAttribute("href", "https://quantifiedself.com/get-started/");
+    expect(screen.getByRole("link", { name: /source 6: research on breadth/i })).toHaveAttribute("href", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/");
+  });
+
   it("renders the motion story and guides a visitor through the inquiry brief", () => {
     renderPage();
     expect(screen.getByRole("heading", { level: 1, name: /haruhay studio/i })).toBeInTheDocument();
     expect(screen.getByText(/this is my renaissance atelier; of/i)).toBeInTheDocument();
     const chapterHeadings = screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent);
     expect(chapterHeadings.slice(0, 6)).toEqual([
-      "Ceramics",
       "Food & gatherings",
-      "Modeling & image-making",
+      "Ceramics",
       "Fashion",
       "Cirque arts",
+      "Modeling & image-making",
       "Browse the work",
     ]);
     expect(screen.getByRole("button", { name: "Browse gallery" })).toBeInTheDocument();

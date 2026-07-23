@@ -39,11 +39,11 @@ export interface ArtProject {
 }
 
 export const practiceLabels: Record<ArtPractice, string> = {
-  ceramics: "Ceramics",
   food: "Food & gatherings",
-  collaboration: "Modeling & image-making",
+  ceramics: "Ceramics",
   fashion: "Fashion",
   movement: "Cirque arts",
+  collaboration: "Modeling & image-making",
 };
 
 const image = (src: string, alt: string, width: number, height: number): ArtMedia => ({
