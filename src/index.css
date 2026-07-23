@@ -321,7 +321,7 @@
   .art-desktop-hero {
     --hero-stage: color-mix(in srgb, var(--civic-blue) 11%, var(--paper));
     position: relative;
-    min-height: max(100svh, 860px);
+    min-height: max(100svh, 1080px);
     overflow: hidden;
     background:
       linear-gradient(90deg, color-mix(in srgb, var(--rule) 34%, transparent) 1px, transparent 1px) 0 0 / 44px 44px,
@@ -359,8 +359,9 @@
     display: grid;
     min-height: 0;
     grid-template-columns: minmax(18rem, 1.05fr) minmax(19rem, 0.95fr);
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows: max-content max-content;
     gap: clamp(0.9rem, 1.7vw, 1.8rem);
+    align-content: start;
     align-items: start;
   }
   .art-paper-window {

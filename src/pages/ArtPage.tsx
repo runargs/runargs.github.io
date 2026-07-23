@@ -132,11 +132,7 @@ const creativePracticeFlow = [
     bridge: { label: "shape / connected form", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
   },
   {
-    label: "Sewing & fashion",
-    bridge: { label: "expressing identity" },
-  },
-  {
-    label: "Modeling & image-making",
+    label: "Sewing, fashion & modeling",
     bridge: { label: "using the body in the work", citation: 3, href: "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409", source: "Body Movement as Material: Designing Temporal Expressions" },
   },
   { label: "Cirque arts" },
