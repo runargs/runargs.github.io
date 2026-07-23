@@ -28,7 +28,7 @@ const chapterCopy: Record<ArtPractice, string> = {
   movement: "I practice LED poi and have trained in aerial silks.",
 };
 
-const storyPractices: ArtPractice[] = ["food", "ceramics", "fashion", "movement", "collaboration"];
+const storyPractices: ArtPractice[] = ["food", "ceramics", "fashion", "collaboration", "movement"];
 const practiceTagTone: Record<ArtPractice, string> = {
   ceramics: "blue",
   food: "ochre",
@@ -124,11 +124,13 @@ function CitationLink({ number, href, label }: { number: number; href: string; l
 
 const creativePracticeFlow = [
   { label: "Cooking", type: "practice" },
-  { label: "chemistry", type: "attribute", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "The Food Lab: Better Home Cooking Through Science" },
+  { label: "responsiveness to materials", type: "attribute", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "The Food Lab: Better Home Cooking Through Science" },
   { label: "Ceramics", type: "practice" },
-  { label: "form", type: "attribute", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
+  { label: "shape / connected form", type: "attribute", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
   { label: "Sewing & fashion", type: "practice" },
-  { label: "bodily awareness", type: "attribute", citation: 3, href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8085341/", source: "Embodied aesthetics, bodily awareness, and movement creativity" },
+  { label: "expressing identity", type: "attribute" },
+  { label: "Modeling & image-making", type: "practice" },
+  { label: "using the body in the work", type: "attribute", citation: 3, href: "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409", source: "Body Movement as Material: Designing Temporal Expressions" },
   { label: "Cirque arts", type: "practice" },
 ] as const;
 

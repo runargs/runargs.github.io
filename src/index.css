@@ -500,10 +500,14 @@
     .art-practice-flow li:nth-child(4) { grid-area: 1 / 4; }
     .art-practice-flow li:nth-child(5) { grid-area: 2 / 4; flex-direction: row-reverse; }
     .art-practice-flow li:nth-child(6) { grid-area: 2 / 3; flex-direction: row-reverse; }
-    .art-practice-flow li:nth-child(7) { grid-area: 2 / 2; }
+    .art-practice-flow li:nth-child(7) { grid-area: 2 / 2; flex-direction: row-reverse; }
+    .art-practice-flow li:nth-child(8) { grid-area: 2 / 1; flex-direction: row-reverse; }
+    .art-practice-flow li:nth-child(9) { grid-area: 3 / 1; }
     .art-practice-flow li:nth-child(4) > svg { transform: rotate(90deg); }
     .art-practice-flow li:nth-child(5) > svg,
-    .art-practice-flow li:nth-child(6) > svg { transform: rotate(180deg); }
+    .art-practice-flow li:nth-child(6) > svg,
+    .art-practice-flow li:nth-child(7) > svg { transform: rotate(180deg); }
+    .art-practice-flow li:nth-child(8) > svg { transform: rotate(90deg); }
   }
   .hero-practice-movement .art-hero-note-copy h3 { color: #eee7da; }
   .hero-practice-movement .art-practice-flow { border-color: #30332d; }

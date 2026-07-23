@@ -55,9 +55,9 @@ describe("ArtPage", () => {
   it("renders the creative readme as linked source notes", () => {
     renderPage();
     expect(screen.getByText("read-me.md")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Source 3: Embodied aesthetics/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Source 3: Body Movement as Material/i })).toHaveAttribute(
       "href",
-      "https://pmc.ncbi.nlm.nih.gov/articles/PMC8085341/",
+      "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409",
     );
     expect(screen.getByRole("list", { name: /how my creative practices overlap/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /source 1: the food lab/i })).toHaveAttribute("href", "https://www.kenjilopezalt.com/books");
@@ -69,13 +69,21 @@ describe("ArtPage", () => {
     renderPage();
     expect(screen.getByRole("heading", { level: 1, name: /haruhay studio/i })).toBeInTheDocument();
     expect(screen.getByText(/this is my renaissance atelier; of/i)).toBeInTheDocument();
+    const practiceMenu = screen.getByRole("group", { name: "Choose a creative practice" });
+    expect(within(practiceMenu).getAllByRole("button").map((button) => button.textContent)).toEqual([
+      "01Food & gatherings",
+      "02Ceramics",
+      "03Fashion",
+      "04Modeling & image-making",
+      "05Cirque arts",
+    ]);
     const chapterHeadings = screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent);
     expect(chapterHeadings.slice(0, 6)).toEqual([
       "Food & gatherings",
       "Ceramics",
       "Fashion",
-      "Cirque arts",
       "Modeling & image-making",
+      "Cirque arts",
       "Browse the work",
     ]);
     expect(screen.getByRole("button", { name: "Browse gallery" })).toBeInTheDocument();
