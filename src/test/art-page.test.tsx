@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import ArtPage from "@/pages/ArtPage";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { artProjects, practiceLabels, practices, type ArtMedia } from "@/data/artPortfolio";
 
 const localVideo: ArtMedia = {
@@ -20,9 +21,11 @@ const localVideo: ArtMedia = {
 
 function renderPage() {
   return render(
-    <MemoryRouter initialEntries={["/art"]}>
-      <Routes><Route path="/art" element={<ArtPage />} /></Routes>
-    </MemoryRouter>,
+    <TooltipProvider delayDuration={0}>
+      <MemoryRouter initialEntries={["/art"]}>
+        <Routes><Route path="/art" element={<ArtPage />} /></Routes>
+      </MemoryRouter>
+    </TooltipProvider>,
   );
 }
 
@@ -52,17 +55,29 @@ describe("ArtPage", () => {
     expect(screen.getByAltText("Aerial silks movement silhouetted against the sky")).toBeInTheDocument();
   });
 
-  it("renders the creative readme as linked source notes", () => {
+  it("renders the creative readme as linked source notes with full citation tooltips", async () => {
     renderPage();
     expect(screen.getByText("read-me.md")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Source 3: Body Movement as Material/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Source 3:.*Body Movement as Material/i })).toHaveAttribute(
       "href",
       "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409",
     );
     expect(screen.getByRole("list", { name: /how my creative practices overlap/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /source 1: the food lab/i })).toHaveAttribute("href", "https://www.kenjilopezalt.com/books");
-    expect(screen.getByRole("link", { name: /source 5: getting started with quantified self/i })).toHaveAttribute("href", "https://quantifiedself.com/get-started/");
-    expect(screen.getByRole("link", { name: /source 6: research on breadth/i })).toHaveAttribute("href", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/");
+    expect(screen.getByRole("link", { name: /source 1:.*the food lab/i })).toHaveAttribute("href", "https://www.kenjilopezalt.com/books");
+    expect(screen.getByRole("link", { name: /source 5:.*quantified self/i })).toHaveAttribute("href", "https://quantifiedself.com/get-started/");
+    expect(screen.getByRole("link", { name: /source 6: trofimova/i })).toHaveAttribute("href", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/");
+    expect(screen.getByText(/breadth does not replace commitment/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /source 7: duckworth/i })).toHaveAttribute(
+      "href",
+      "https://pubmed.ncbi.nlm.nih.gov/17547490/",
+    );
+    const movementSource = screen.getByRole("link", { name: /source 8: gippert/i });
+    expect(movementSource).toHaveAttribute("href", "https://www.pnas.org/doi/10.1073/pnas.2423642122");
+    fireEvent.focus(movementSource);
+    await waitFor(() => expect(screen.getAllByRole("tooltip").some((tooltip) => (
+      tooltip.textContent?.includes("Motor imagery enhances performance beyond the imagined action")
+    ))).toBe(true));
+    expect(screen.getByText(/movement keeps sequence, timing, and space embodied/i)).toBeInTheDocument();
   });
 
   it("renders the motion story and guides a visitor through the inquiry brief", () => {

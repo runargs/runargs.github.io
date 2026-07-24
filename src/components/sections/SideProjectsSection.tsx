@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { useState, type ReactNode } from "react";
+import { CitationLink, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 interface NoteOrProject {
   id: string;
   title: string;
   description: string;
-  detail: string;
+  detail: ReactNode;
 }
 
 const notesAndProjects: NoteOrProject[] = [
@@ -26,7 +26,7 @@ const notesAndProjects: NoteOrProject[] = [
     id: "behavior",
     title: "Behavior change",
     description: "How can products support durable behavior change, from self-efficacy to agency?",
-    detail: "Durable change is more than a streak, reminder, or moment of motivation. A product can help people build evidence that they are capable, make choices that feel like their own, and gradually turn self-efficacy into agency.",
+    detail: <>Durable change is more than a streak, reminder, or moment of motivation. A product can help people build evidence that they are capable<CitationLink number={4} href="https://doi.org/10.1037/0033-295X.84.2.191" citation="Bandura, A. (1977). Self-efficacy: Toward a unifying theory of behavioral change. Psychological Review, 84(2), 191–215." />, make choices that feel like their own, and gradually turn self-efficacy into agency.</>,
   },
   {
     id: "humangeo",

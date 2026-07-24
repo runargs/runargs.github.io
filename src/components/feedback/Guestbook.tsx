@@ -135,7 +135,7 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
           </div>
           {guestbookSnapshot.notes.length > 0 && (
             <div className="guestbook-notes">
-              {guestbookSnapshot.notes.map((note) => <blockquote key={`${note.quote}-${note.signature ?? "guest"}`}><p>“{note.quote}”</p>{note.signature && <cite>— {note.signature}</cite>}</blockquote>)}
+              {guestbookSnapshot.notes.map((note) => <blockquote key={`${note.quote}-${note.signature ?? "guest"}`}><p>“{note.quote}”</p>{note.signature && <cite>{note.signature}</cite>}</blockquote>)}
             </div>
           )}
         </aside>

@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { Calendar, ExternalLink, MapPin, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
+  CitationLink,
   EditorialCard,
   DossierLink,
   SectionBand,
@@ -324,7 +325,7 @@ export function WorkSection() {
             <SectionHeader
               marker="01"
               title="I work across the stack."
-              description="Research, product, engineering, and communication are parts of one practice."
+              description={<>Research, product, engineering, and communication form one iterative practice. Exploration finds possibilities.<CitationLink number={2} href="https://pubmed.ncbi.nlm.nih.gov/17395573/" citation="Cohen, J. D., McClure, S. M., & Yu, A. J. (2007). Should I stay or should I go? How the human brain manages the trade-off between exploitation and exploration. Philosophical Transactions of the Royal Society B, 362, 933–942." /> Iteration develops them.</>}
               className="max-w-2xl"
             />
             <ol className="work-storyline" aria-label="How the work moves">

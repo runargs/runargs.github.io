@@ -4,7 +4,7 @@ import { ArrowDown, ArrowLeft, ArrowRight, BookHeart, Camera, CookingPot, Extern
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
-import { DossierLink, LightsOffToggle } from "@/components/design-system/Dossier";
+import { CitationLink, DossierLink, LightsOffToggle } from "@/components/design-system/Dossier";
 import {
   artProjects,
   practiceLabels,
@@ -112,28 +112,18 @@ function PaperWindow({ children, className, label, dragEnabled, constraints, zIn
   );
 }
 
-function CitationLink({ number, href, label }: { number: number; href: string; label: string }) {
-  return (
-    <sup className="art-readme-citation">
-      <a href={href} target="_blank" rel="noreferrer" aria-label={`Source ${number}: ${label}`} title={label}>
-        [{number}]
-      </a>
-    </sup>
-  );
-}
-
 const creativePracticeFlow = [
   {
     label: "Cooking",
-    bridge: { label: "responsiveness to materials", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "The Food Lab: Better Home Cooking Through Science" },
+    bridge: { label: "responsiveness to materials", citation: 1, href: "https://www.kenjilopezalt.com/books", source: "López-Alt, J. K. (2015). The Food Lab: Better Home Cooking Through Science. W. W. Norton." },
   },
   {
     label: "Ceramics",
-    bridge: { label: "shape / connected form", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Pattern Magic by Tomoko Nakamichi" },
+    bridge: { label: "shape / connected form", citation: 2, href: "https://www.hachette.co.uk/titles/tomoko-nakamichi/pattern-magic/9781529429909/", source: "Nakamichi, T. (2010). Pattern Magic. Laurence King Publishing." },
   },
   {
     label: "Sewing, fashion & modeling",
-    bridge: { label: "using the body in the work", citation: 3, href: "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409", source: "Body Movement as Material: Designing Temporal Expressions" },
+    bridge: { label: "using the body in the work", citation: 3, href: "https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1510409", source: "Lundström, A. (2020). Body Movement as Material: Designing Temporal Expressions. University of Borås." },
   },
   { label: "Cirque arts" },
 ] as const;
@@ -264,7 +254,7 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
                       <ArrowDown aria-hidden="true" />
                       <span>
                         {step.bridge.label}
-                        {"citation" in step.bridge && <CitationLink number={step.bridge.citation} href={step.bridge.href} label={step.bridge.source} />}
+                        {"citation" in step.bridge && <CitationLink number={step.bridge.citation} href={step.bridge.href} citation={step.bridge.source} />}
                       </span>
                     </span>
                   )}
@@ -273,11 +263,15 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
             </ol>
             <p>
               I track parts of daily life to test assumptions against patterns in my own data.
-              <CitationLink number={4} href="https://bearable.app/" label="Bearable personal tracking" />
+              <CitationLink number={4} href="https://bearable.app/" citation="Bearable Ltd. (n.d.). Bearable: Symptom and mood tracker." />
               That is my practical version of Quantified Self.
-              <CitationLink number={5} href="https://quantifiedself.com/get-started/" label="Getting started with Quantified Self" />
+              <CitationLink number={5} href="https://quantifiedself.com/get-started/" citation="Quantified Self. (n.d.). Getting started with self-tracking." />
+            </p>
+            <p>
               Research on polymathy frames the larger loop as breadth, depth, and integration across domains.
-              <CitationLink number={6} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/" label="Research on breadth, depth, and integration across domains" />
+              <CitationLink number={6} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/" citation="Trofimova, I. N., & Araki, M. E. (2026). Beyond grades: Temperament and interests, but not school grades, highlight distinct polymathic learning abilities. Journal of Intelligence, 14(2), 26." />
+              Breadth does not replace commitment. Depth takes sustained work over time.
+              <CitationLink number={7} href="https://pubmed.ncbi.nlm.nih.gov/17547490/" citation="Duckworth, A. L., Peterson, C., Matthews, M. D., & Kelly, D. R. (2007). Grit: Perseverance and passion for long-term goals. Journal of Personality and Social Psychology, 92(6), 1087–1101." />
             </p>
             {desktopDrag && <button type="button" onClick={() => { setResetKey((key) => key + 1); setLayerOrder({ media: 4, practices: 3, note: 2 }); }}><RotateCcw aria-hidden="true" /> Reset windows</button>}
           </div>
@@ -367,6 +361,12 @@ function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; ind
           <span className="font-pixel">0{index + 1}</span>
           <h2 id={`story-title-${practice}`}>{practiceLabels[practice]}</h2>
           <p>{chapterCopy[practice]}</p>
+          {practice === "movement" && (
+            <p>
+              Movement keeps sequence, timing, and space embodied in the practice. Research on motor imagery gives me a language for how imagined and executed movement inform each other.
+              <CitationLink number={8} href="https://www.pnas.org/doi/10.1073/pnas.2423642122" citation="Gippert, M., Shih, P. C., Heed, T., Howard, I. S., Jamshidi Idaji, M., Villringer, A., Sehm, B., & Nikulin, V. V. (2025). Motor imagery enhances performance beyond the imagined action. Proceedings of the National Academy of Sciences, 122(20), e2423642122." />
+            </p>
+          )}
         </motion.div>
 
         <div className="art-chapter-composition">
@@ -827,7 +827,7 @@ export default function ArtPage() {
     const entryScrollY = window.scrollY;
     document.body.classList.add("art-page-active");
     window.scrollTo(0, 0);
-    document.title = "Creative work — Alexa Thoennes";
+    document.title = "Creative work | Alexa Thoennes";
     return () => {
       document.title = previousTitle;
       document.body.classList.remove("art-page-active");
@@ -864,6 +864,7 @@ export default function ArtPage() {
               <div>
                 <p className="font-pixel">the work / growing</p>
                 <h2 id="work-index-title">Browse the work</h2>
+                <p>Archive keeps experiments visible beside finished work.</p>
               </div>
             </header>
 

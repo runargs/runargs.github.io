@@ -1,6 +1,6 @@
 import { ArrowRight, FileText, Palette } from "lucide-react";
 import { Link } from "react-router-dom";
-import { DossierLink } from "@/components/design-system/Dossier";
+import { CitationLink, DossierLink } from "@/components/design-system/Dossier";
 
 export function BioSection() {
   return (
@@ -68,6 +68,7 @@ export function BioSection() {
             <div className="hero-intro-copy text-[var(--ink-muted)]">
               <p className="text-lg text-[var(--ink-soft)] leading-8">
                 I work broadly, test what I learn, and build AI that gives people more agency.
+                <CitationLink number={1} href="https://doi.org/10.1037/0003-066X.55.1.68" citation="Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. American Psychologist, 55(1), 68–78. Its emphasis on autonomy and competence informs how I think about agency in product design." />
               </p>
 
               <blockquote className="mt-4 border-l-2 border-[var(--civic-blue)] pl-4">

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import { Portal as TooltipPortal } from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -173,6 +174,45 @@ export function DossierLink({
     >
       {children}
     </a>
+  );
+}
+
+export function CitationLink({
+  number,
+  href,
+  citation,
+  className,
+}: {
+  number: number;
+  href: string;
+  citation: string;
+  className?: string;
+}) {
+  return (
+    <sup className={cn("citation-link", className)}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Source ${number}: ${citation}`}
+          >
+            [{number}]
+          </a>
+        </TooltipTrigger>
+        <TooltipPortal>
+          <TooltipContent
+            className="citation-tooltip max-w-[min(24rem,calc(100vw-2rem))] leading-5"
+            collisionPadding={16}
+            sideOffset={7}
+          >
+            <span>{citation}</span>
+            <span className="mt-1 block font-bold text-[var(--civic-blue)]">Open source ↗</span>
+          </TooltipContent>
+        </TooltipPortal>
+      </Tooltip>
+    </sup>
   );
 }
 

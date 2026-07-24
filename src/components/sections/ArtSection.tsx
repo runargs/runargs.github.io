@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
+import { CitationLink, ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 const practices = [
   { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg" },
@@ -40,7 +40,12 @@ export function ArtSection() {
   return (
     <SectionBand id="art">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader marker="04" title="Haruhay Studio" className="mb-10" />
+        <SectionHeader
+          marker="04"
+          title="Haruhay Studio"
+          description={<>Each practice changes what I notice in the others. I treat breadth, depth, and integration as one creative practice.<CitationLink number={3} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/" citation="Trofimova, I. N., & Araki, M. E. (2026). Beyond grades: Temperament and interests, but not school grades, highlight distinct polymathic learning abilities. Journal of Intelligence, 14(2), 26." /></>}
+          className="mb-10"
+        />
         <div className="art-home-practice-strip notched">
           {practices.map((practice) => (
             <Link key={practice.title} to="/art" className={`art-home-practice-card group ${practice.dark ? "is-flow" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]`}>

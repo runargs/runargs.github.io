@@ -434,10 +434,12 @@
     grid-column: 1;
     grid-row: 1 / span 2;
     align-self: stretch;
-    justify-self: start;
-    width: auto;
-    height: min(100%, 760px);
+    justify-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     min-height: 0;
+    min-width: 0;
     aspect-ratio: 3 / 4;
   }
   .art-hero-media-stage { position: relative; height: calc(100% - 68px); overflow: hidden; background: var(--ink-soft); }
@@ -482,10 +484,11 @@
   .art-hero-note-copy h3 { color: var(--ink); font-family: var(--font-pixel); font-size: clamp(1.1rem, 1.45vw, 1.35rem); line-height: 1.15; }
   .art-hero-note-copy p { color: var(--ink-muted); font-size: clamp(0.78rem, 1vw, 0.92rem); line-height: 1.65; }
   .art-hero-note-copy p + p { margin-top: 0.65rem; }
-  .art-readme-citation { margin-left: 0.12em; font-family: var(--font-pixel); font-size: 0.72em; line-height: 0; vertical-align: super; }
-  .art-readme-citation a { color: var(--civic-blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.14em; }
-  .art-readme-citation a:hover { color: var(--field-ochre); }
-  .art-readme-citation a:focus-visible { border-radius: 1px; outline: 2px solid var(--civic-blue); outline-offset: 2px; }
+  .citation-link { margin-left: 0.04em; padding-inline: 0.16em; font-family: var(--font-pixel); font-size: 0.72em; line-height: 0; vertical-align: super; }
+  .citation-link a { color: var(--civic-blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.14em; }
+  .citation-link a:hover { color: var(--field-ochre); }
+  .citation-link a:focus-visible { border-radius: 1px; outline: 2px solid var(--civic-blue); outline-offset: 2px; }
+  .citation-tooltip { border-color: var(--rule); background: var(--paper-card); color: var(--ink-muted); box-shadow: 3px 4px 0 rgba(45, 40, 31, 0.12); }
   .art-practice-flow { display: grid; margin: 0.7rem 0; border-block: 1px solid color-mix(in srgb, var(--rule) 72%, transparent); padding: 0.55rem 0; }
   .art-practice-flow li { display: grid; min-width: 0; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: center; column-gap: clamp(0.65rem, 2vw, 1.15rem); }
   .art-practice-flow .is-practice { width: fit-content; max-width: 100%; border: 1px solid color-mix(in srgb, var(--rule-strong) 78%, transparent); background: color-mix(in srgb, var(--paper-soft) 72%, transparent); padding: 0.25rem 0.38rem; color: var(--ink); font-family: var(--font-pixel); font-size: clamp(0.7rem, 0.8vw, 0.78rem); line-height: 1.15; }
