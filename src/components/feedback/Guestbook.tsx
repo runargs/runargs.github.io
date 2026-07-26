@@ -48,7 +48,6 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
     }
   };
 
-  const hasPublishedSnapshot = guestbookSnapshot.totalKudos > 0;
   const pendingLocalKudos = localKudosBaseline !== null && guestbookSnapshot.totalKudos <= localKudosBaseline ? 1 : 0;
   const visibleKudos = guestbookSnapshot.totalKudos + pendingLocalKudos;
 
@@ -136,20 +135,6 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
         </p>
       </form>
 
-      {hasPublishedSnapshot && (
-        <aside className="guestbook-published" aria-label="Published guestbook snapshot">
-          <div className="guestbook-snapshot">
-            <strong>{guestbookSnapshot.totalKudos} kudos</strong>
-            {guestbookSnapshot.responses >= 20 && guestbookSnapshot.foundWhatTheyNeeded !== null && <span>{guestbookSnapshot.foundWhatTheyNeeded}% found what they came for</span>}
-            {guestbookSnapshot.updatedAt && <small>Updated {guestbookSnapshot.updatedAt}</small>}
-          </div>
-          {guestbookSnapshot.notes.length > 0 && (
-            <div className="guestbook-notes">
-              {guestbookSnapshot.notes.map((note) => <blockquote key={`${note.quote}-${note.signature ?? "guest"}`}><p>“{note.quote}”</p>{note.signature && <cite>{note.signature}</cite>}</blockquote>)}
-            </div>
-          )}
-        </aside>
-      )}
     </section>
   );
 }
