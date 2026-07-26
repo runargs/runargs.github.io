@@ -1,6 +1,15 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { Guestbook } from "@/components/feedback/Guestbook";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+function renderGuestbook(page: string, id: string) {
+  return render(
+    <TooltipProvider delayDuration={0}>
+      <Guestbook id={id} page={page} />
+    </TooltipProvider>,
+  );
+}
 
 describe("Guestbook", () => {
   afterEach(() => vi.unstubAllGlobals());
@@ -9,13 +18,16 @@ describe("Guestbook", () => {
     const fetchMock = vi.fn().mockResolvedValue({ ok: true });
     vi.stubGlobal("fetch", fetchMock);
 
-    render(<Guestbook id="guestbook" page="main" />);
-    expect(screen.getByText("0 kudos")).toBeInTheDocument();
+    renderGuestbook("main", "guestbook");
+    const kudosCount = screen.getByRole("button", { name: "6 kudos" });
+    expect(kudosCount).toBeInTheDocument();
+    fireEvent.focus(kudosCount);
+    await waitFor(() => expect(screen.getByRole("tooltip")).toHaveTextContent("Updated as of: 2026-07-26"));
     fireEvent.click(screen.getByRole("button", { name: "Leave kudos" }));
 
     await waitFor(() => expect(screen.getByText("Kudos received.")).toBeInTheDocument());
-    expect(screen.getByText("1 kudos")).toBeInTheDocument();
-    expect(window.localStorage.getItem("portfolio-guestbook-kudos:main")).toBe("0");
+    expect(screen.getByText("7 kudos")).toBeInTheDocument();
+    expect(window.localStorage.getItem("portfolio-guestbook-kudos:main")).toBe("6");
     const body = fetchMock.mock.calls[0][1].body as FormData;
     expect(body.get("signal")).toBe("kudos");
     expect(body.get("page")).toBe("main");
@@ -27,7 +39,7 @@ describe("Guestbook", () => {
     const fetchMock = vi.fn().mockResolvedValue({ ok: true });
     vi.stubGlobal("fetch", fetchMock);
 
-    render(<Guestbook id="art-guestbook" page="art" />);
+    renderGuestbook("art", "art-guestbook");
     fireEvent.click(screen.getByRole("button", { name: "Add a note" }));
     fireEvent.click(screen.getByRole("radio", { name: "Creative practice" }));
     fireEvent.click(screen.getByRole("radio", { name: "Yes" }));

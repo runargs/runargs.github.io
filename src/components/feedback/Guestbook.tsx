@@ -2,6 +2,7 @@ import { useId, useState, type FormEvent } from "react";
 import { ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import { guestbookSnapshot } from "@/data/guestbook";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const visitorIntents = ["Work", "Creative practice", "Collaboration", "Curiosity"] as const;
 const outcomes = ["Yes", "Partly", "Not yet"] as const;
@@ -119,7 +120,16 @@ export function Guestbook({ page, id, className }: GuestbookProps) {
           </>
         )}
 
-        <p className="guestbook-kudos-count" aria-live="polite">{visibleKudos} kudos</p>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button className="guestbook-kudos-count" type="button" aria-live="polite">
+              {visibleKudos} kudos
+            </button>
+          </TooltipTrigger>
+          <TooltipContent className="citation-tooltip">
+            Updated as of: {guestbookSnapshot.updatedAt}
+          </TooltipContent>
+        </Tooltip>
 
         <p className="guestbook-status" role="status" aria-live="polite">
           {status === "error" && "That did not go through. Please try once more."}

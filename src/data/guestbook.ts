@@ -15,9 +15,9 @@ export interface GuestbookSnapshot {
 // never bundled into the site. Update this snapshot only with approved totals
 // and quotes; keeping it in Git makes every published revision recoverable.
 export const guestbookSnapshot: GuestbookSnapshot = {
-  updatedAt: null,
-  totalKudos: 0,
-  responses: 0,
+  updatedAt: "2026-07-26",
+  totalKudos: 6,
+  responses: 6,
   foundWhatTheyNeeded: null,
   notes: [],
 };
