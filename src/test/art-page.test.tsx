@@ -64,14 +64,8 @@ describe("ArtPage", () => {
     );
     expect(screen.getByRole("list", { name: /how my creative practices overlap/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /source 1:.*the food lab/i })).toHaveAttribute("href", "https://www.kenjilopezalt.com/books");
-    expect(screen.getByRole("link", { name: /source 5:.*quantified self/i })).toHaveAttribute("href", "https://quantifiedself.com/get-started/");
-    expect(screen.getByRole("link", { name: /source 6: trofimova/i })).toHaveAttribute("href", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/");
-    expect(screen.getByText(/breadth does not replace commitment/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /source 7: duckworth/i })).toHaveAttribute(
-      "href",
-      "https://pubmed.ncbi.nlm.nih.gov/17547490/",
-    );
-    const movementSource = screen.getByRole("link", { name: /source 8: gippert/i });
+    expect(screen.getByText(/knowledge networks compound across domains/i)).toBeInTheDocument();
+    const movementSource = screen.getByRole("link", { name: /source 4: gippert/i });
     expect(movementSource).toHaveAttribute("href", "https://www.pnas.org/doi/10.1073/pnas.2423642122");
     fireEvent.focus(movementSource);
     await waitFor(() => expect(screen.getAllByRole("tooltip").some((tooltip) => (

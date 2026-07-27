@@ -245,6 +245,9 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
         <PaperWindow key={`note-${resetKey}`} className="art-note-window" label="read-me.md" dragEnabled={desktopDrag} constraints={stageRef} zIndex={layerOrder.note} onRaise={() => raise("note")}>
           <div className="art-hero-note-copy">
             <h3>One thing leads to another.</h3>
+            <p>
+              Knowledge networks compound across domains. One practice changes what I notice in another, creating a continuous loop of attention, experimentation, and craft.
+            </p>
             <ol className="art-practice-flow" aria-label="How my creative practices overlap">
               {creativePracticeFlow.map((step) => (
                 <li key={step.label}>
@@ -261,18 +264,6 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
                 </li>
               ))}
             </ol>
-            <p>
-              I track parts of daily life to test assumptions against patterns in my own data.
-              <CitationLink number={4} href="https://bearable.app/" citation="Bearable Ltd. (n.d.). Bearable: Symptom and mood tracker." />
-              That is my practical version of Quantified Self.
-              <CitationLink number={5} href="https://quantifiedself.com/get-started/" citation="Quantified Self. (n.d.). Getting started with self-tracking." />
-            </p>
-            <p>
-              Research on polymathy frames the larger loop as breadth, depth, and integration across domains.
-              <CitationLink number={6} href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12941731/" citation="Trofimova, I. N., & Araki, M. E. (2026). Beyond grades: Temperament and interests, but not school grades, highlight distinct polymathic learning abilities. Journal of Intelligence, 14(2), 26." />
-              Breadth does not replace commitment. Depth takes sustained work over time.
-              <CitationLink number={7} href="https://pubmed.ncbi.nlm.nih.gov/17547490/" citation="Duckworth, A. L., Peterson, C., Matthews, M. D., & Kelly, D. R. (2007). Grit: Perseverance and passion for long-term goals. Journal of Personality and Social Psychology, 92(6), 1087–1101." />
-            </p>
             {desktopDrag && <button type="button" onClick={() => { setResetKey((key) => key + 1); setLayerOrder({ media: 4, practices: 3, note: 2 }); }}><RotateCcw aria-hidden="true" /> Reset windows</button>}
           </div>
         </PaperWindow>
@@ -364,7 +355,7 @@ function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; ind
           {practice === "movement" && (
             <p>
               Movement keeps sequence, timing, and space embodied in the practice. Research on motor imagery gives me a language for how imagined and executed movement inform each other.
-              <CitationLink number={8} href="https://www.pnas.org/doi/10.1073/pnas.2423642122" citation="Gippert, M., Shih, P. C., Heed, T., Howard, I. S., Jamshidi Idaji, M., Villringer, A., Sehm, B., & Nikulin, V. V. (2025). Motor imagery enhances performance beyond the imagined action. Proceedings of the National Academy of Sciences, 122(20), e2423642122." />
+              <CitationLink number={4} href="https://www.pnas.org/doi/10.1073/pnas.2423642122" citation="Gippert, M., Shih, P. C., Heed, T., Howard, I. S., Jamshidi Idaji, M., Villringer, A., Sehm, B., & Nikulin, V. V. (2025). Motor imagery enhances performance beyond the imagined action. Proceedings of the National Academy of Sciences, 122(20), e2423642122." />
             </p>
           )}
         </motion.div>

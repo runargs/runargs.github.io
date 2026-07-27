@@ -48,7 +48,7 @@ export function BioSection() {
 
         <article className="hero-article border border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper-card)_88%,var(--paper-soft))] p-5 md:p-7">
           <h1 className="hero-headline max-w-5xl text-[2.55rem] leading-tight text-[var(--ink)] md:text-[4rem]">
-            I build <span className="hero-headline-pixel">AI</span> tools that expand what people can do without outsourcing compassion.
+            Technology should give people <span className="hero-headline-pixel">more room</span> to be human.
           </h1>
 
           <div className="mt-7 flow-root">
@@ -67,7 +67,7 @@ export function BioSection() {
 
             <div className="hero-intro-copy text-[var(--ink-muted)]">
               <p className="text-lg text-[var(--ink-soft)] leading-8">
-                I work broadly, test what I learn, and build AI that gives people more agency.
+                My work crosses disciplines in pursuit of one question: how can technology expand what people are free to do? I see AI as a way to return time, range, and choice to people so more of our attention can go toward discernment, imagination, and care.
                 <CitationLink number={1} href="https://doi.org/10.1037/0003-066X.55.1.68" citation="Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. American Psychologist, 55(1), 68–78. Its emphasis on autonomy and competence informs how I think about agency in product design." />
               </p>
 
