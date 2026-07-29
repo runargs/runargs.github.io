@@ -2,7 +2,11 @@ import { ArrowRight, FileText, Palette } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CitationLink, DossierLink } from "@/components/design-system/Dossier";
 
-export function BioSection() {
+type BioSectionProps = {
+  onOpenInquiry?: () => void;
+};
+
+export function BioSection({ onOpenInquiry }: BioSectionProps) {
   return (
     <section
     id="bio"
@@ -84,7 +88,14 @@ export function BioSection() {
                 <DossierLink href="#contact" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
                   Contact <ArrowRight className="ml-2 h-4 w-4" />
                 </DossierLink>
-                <DossierLink href="#contact">
+                <DossierLink
+                  href="#contact"
+                  onClick={(event) => {
+                    if (!onOpenInquiry) return;
+                    event.preventDefault();
+                    onOpenInquiry();
+                  }}
+                >
                   <FileText className="mr-2 h-4 w-4" /> Résumé PDF
                 </DossierLink>
                 <Link

@@ -217,13 +217,13 @@ const Index = () => {
 
       <main className="page-shell">
         <div className="page-inner">
-          <BioSection />
+          <BioSection onOpenInquiry={openInquiry} />
           <PortfolioSidebar
             activeSection={activeSection}
             onSectionChange={handleSectionChange}
           />
           <div className="hatch-band" aria-hidden="true" />
-          <WorkSection />
+          <WorkSection onOpenInquiry={openInquiry} />
           <TalksSection />
           <CommunitySection />
           <ArtSection />
