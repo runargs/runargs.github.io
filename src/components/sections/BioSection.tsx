@@ -84,7 +84,7 @@ export function BioSection() {
                 <DossierLink href="#contact" className="bg-[var(--ink-soft)] text-[var(--paper)] hover:bg-[var(--ink)]">
                   Contact <ArrowRight className="ml-2 h-4 w-4" />
                 </DossierLink>
-                <DossierLink href="/Alexa_Public_Resume.pdf" download="Alexa_Thoennes_Resume.pdf">
+                <DossierLink href="#contact">
                   <FileText className="mr-2 h-4 w-4" /> Résumé PDF
                 </DossierLink>
                 <Link
