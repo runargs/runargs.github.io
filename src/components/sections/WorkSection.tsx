@@ -73,7 +73,7 @@ const experiences: Experience[] = [
       "GTM Strategy",
       "Data Analysis",
       "Client-facing",
-      "Technical Writing",
+      "Documentation",
       "Globalization",
       "User Research",
       "Enterprise Scale",
@@ -98,7 +98,7 @@ const experiences: Experience[] = [
       "Improved cross-team alignment through standardized documentation.",
       "Crafted automation scripts to support high-availability global services.",
     ],
-    skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Agile", "Technical Writing"],
+    skills: ["Automation", "CI/CD", "Data Analysis", "Enterprise Scale", "Agile", "Documentation"],
     accent: "blue",
   },
   {
@@ -114,7 +114,7 @@ const experiences: Experience[] = [
       "Automated library documentation updates for hundreds of APIs via generated API client tooling.",
       "Practiced the craft of explaining technical systems clearly to developer audiences.",
     ],
-    skills: ["Technical Writing", "Automation", "Open Source", "GitHub", "User Research", "Web Development", "Product Strategy", "Developer Advocacy"],
+    skills: ["Documentation", "Automation", "Open Source", "GitHub", "User Research", "Web Development", "Product Strategy", "Developer Advocacy"],
     testimonial: {
       text: "She is an excellent technical communicator... Alexa was great to have as a team member and I would happily recommend her for any position.",
       author: "Billy J.",
@@ -163,7 +163,7 @@ const experiences: Experience[] = [
       "Designed and launched a STEAM robotics curriculum by translating classroom needs into a product concept.",
       "Received the tecBRIDGE radio Business Plan Award for product strategy work.",
     ],
-    skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Technical Writing", "Robotics Education", "Client-facing"],
+    skills: ["Product Strategy", "UX Design", "User Research", "GTM Strategy", "Stakeholder Management", "Documentation", "Robotics Education", "Client-facing"],
     artifactImage: {
       src: "/images/nexus-valley-robot-cars.jpg",
       alt: "Small colorful educational robots on a workshop table",
@@ -203,7 +203,7 @@ const experiences: Experience[] = [
       "Facilitated empathetic communication between medical staff and patient families.",
       "Built early sensitivity to how confusing systems become human problems at the point of care.",
     ],
-    skills: ["Health", "Service Design", "Human Impact", "Communication", "User Research"],
+    skills: ["Health", "Service Design", "Human Impact", "Communication"],
     type: "secondary",
     accent: "green",
   },
@@ -220,7 +220,7 @@ const experiences: Experience[] = [
       "Served as a regular contributor and Discord community moderator for the tool.",
       "Coded with CSS, JavaScript, and Node.js.",
     ],
-    skills: ["Web Development", "UX Design", "GitHub", "Full Stack", "Open Source", "Developer Advocacy"],
+    skills: ["Web Development", "UX Design", "GitHub", "Full Stack", "Open Source", "Developer Advocacy", "Documentation"],
     type: "secondary",
     accent: "violet",
   },
@@ -235,7 +235,7 @@ const experiences: Experience[] = [
       "Identified stakeholder needs through collaboration on technical research posters.",
       "Translated complex project specifications into clearer visual materials.",
     ],
-    skills: ["UX Design", "Stakeholder Management", "Globalization", "Product Strategy", "Visual Communication"],
+    skills: ["User Research", "Stakeholder Management", "Globalization", "Visual Communication"],
     type: "secondary",
     accent: "ochre",
   },
@@ -270,6 +270,41 @@ const mobileWorkFilters = [
   { label: "Human systems", skills: ["Human Impact", "Health", "Service Design", "User Research"] },
 ];
 
+const desktopSkillGroups = [
+  {
+    label: "Product & AI",
+    skills: [
+      { label: "Product Management", experienceIds: ["mc-pm", "nexus"] },
+      { label: "Applied AI & Agentic Systems", experienceIds: ["mc-pm"] },
+      { label: "Launch Strategy", experienceIds: ["mc-pm", "nexus"] },
+      { label: "User Research & Discovery", experienceIds: ["mc-pm", "google", "nexus", "manila-design"] },
+      { label: "Analytics", experienceIds: ["mc-pm", "mc-devops", "u-scranton"] },
+    ],
+  },
+  {
+    label: "Build & Communicate",
+    skills: [
+      { label: "Automation", experienceIds: ["mc-devops", "google", "u-scranton"] },
+      { label: "Software Engineering", experienceIds: ["mc-devops", "visa", "google", "u-scranton", "notion-enhanced"] },
+      { label: "Developer Relations", experienceIds: ["google", "notion-enhanced"] },
+      { label: "Technical Communication", experienceIds: ["mc-pm", "mc-devops", "google", "notion-enhanced", "nexus"] },
+      { label: "Documentation", experienceIds: ["mc-pm", "mc-devops", "google", "u-scranton", "nexus", "notion-enhanced"] },
+    ],
+  },
+  {
+    label: "Lead & Serve",
+    skills: [
+      { label: "Stakeholder Management", experienceIds: ["mc-pm", "mc-devops", "google", "nexus", "manila-design"] },
+      { label: "Customer-Facing", experienceIds: ["mc-pm", "google", "visa", "nexus", "jefferson-volunteer", "notion-enhanced"] },
+      { label: "Building Trust", experienceIds: ["mc-pm", "mc-devops", "visa", "jefferson-volunteer"] },
+      { label: "Storytelling", experienceIds: ["mc-pm", "google", "nexus", "manila-design"] },
+      { label: "Human-Centered Systems", experienceIds: ["visa", "jefferson-volunteer"] },
+    ],
+  },
+] as const;
+
+const desktopSkills = desktopSkillGroups.flatMap((group) => group.skills);
+
 type WorkAccentStyle = CSSProperties & {
   "--work-accent": string;
   "--work-accent-soft": string;
@@ -298,16 +333,10 @@ export function WorkSection({ onOpenInquiry }: WorkSectionProps) {
   const [openWorkIds, setOpenWorkIds] = useState<Set<string>>(() => new Set());
   const [credentialsOpen, setCredentialsOpen] = useState(false);
 
-  const desktopRevealSkills = useMemo(() => {
-    const all = experiences
-      .filter((experience) => experience.type === "secondary")
-      .flatMap((experience) => experience.skills);
-    return Array.from(new Set(all)).sort();
-  }, []);
-
   const filteredExperiences = useMemo(() => {
     const selectedMobileFilter = mobileWorkFilters.find((filter) => filter.label === activeMobileFilter);
-    if (activeFilter) return experiences.filter((experience) => experience.skills.includes(activeFilter));
+    const selectedSkill = desktopSkills.find((skill) => skill.label === activeFilter);
+    if (selectedSkill) return experiences.filter((experience) => selectedSkill.experienceIds.some((id) => id === experience.id));
     if (selectedMobileFilter && selectedMobileFilter.skills.length > 0) {
       return experiences.filter((experience) =>
         selectedMobileFilter.skills.some((skill) => experience.skills.includes(skill))
@@ -390,21 +419,25 @@ export function WorkSection({ onOpenInquiry }: WorkSectionProps) {
               </button>
             )}
           </div>
-          <div className="flex flex-wrap gap-2">
-            {desktopRevealSkills.map((skill) => (
-              <button
-                key={skill}
-                onClick={() => {
-                  setActiveFilter(activeFilter === skill ? null : skill);
-                  setActiveMobileFilter("Featured");
-                }}
-                className={cn(
-                  "work-filter-tag",
-                  activeFilter === skill && "is-active"
-                )}
-              >
-                {skill}
-              </button>
+          <div className="work-skill-groups">
+            {desktopSkillGroups.map((group) => (
+              <section key={group.label} className="work-skill-group" aria-labelledby={`skill-group-${group.label.replaceAll(" ", "-").toLowerCase()}`}>
+                <h3 id={`skill-group-${group.label.replaceAll(" ", "-").toLowerCase()}`} className="work-skill-group-label">{group.label}</h3>
+                <div className="work-skill-group-options">
+                  {group.skills.map((skill) => (
+                    <button
+                      key={skill.label}
+                      onClick={() => {
+                        setActiveFilter(activeFilter === skill.label ? null : skill.label);
+                        setActiveMobileFilter("Featured");
+                      }}
+                      className={cn("work-filter-tag", activeFilter === skill.label && "is-active")}
+                    >
+                      {skill.label}
+                    </button>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>

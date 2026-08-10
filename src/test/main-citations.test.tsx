@@ -86,4 +86,22 @@ describe("résumé inquiry actions", () => {
 
     expect(onOpenInquiry).toHaveBeenCalledOnce();
   });
+
+  it("groups core skills and reveals mapped secondary experience", () => {
+    render(
+      <TooltipProvider>
+        <WorkSection />
+      </TooltipProvider>,
+    );
+
+    expect(screen.getByRole("heading", { name: "Product & AI" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Build & Communicate" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Lead & Serve" })).toBeInTheDocument();
+    expect(screen.queryByText("Patient Assistance Volunteer")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Customer-Facing" }));
+
+    expect(screen.getAllByText("Patient Assistance Volunteer").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Automation / DevOps Engineer I")).not.toBeInTheDocument();
+  });
 });

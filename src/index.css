@@ -2418,12 +2418,11 @@
       ),
       color-mix(in srgb, var(--paper-card) 86%, var(--paper-soft));
     color: var(--ink-muted);
-    font-size: 0.74rem;
-    font-weight: 900;
-    letter-spacing: 0.085em;
-    line-height: 1;
-    padding: 0.42rem 0.88rem;
-    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.025em;
+    line-height: 1.18;
+    padding: 0.48rem 0.72rem;
     transform: rotate(-0.35deg);
     box-shadow: 2px 2px 0 rgba(45, 40, 31, 0.08);
     transition: border-color var(--ease), color var(--ease), background-color var(--ease), transform var(--ease), box-shadow var(--ease);
@@ -2434,6 +2433,34 @@
     border-color: var(--civic-blue);
     background-color: var(--civic-blue-soft);
     color: var(--civic-blue);
+  }
+
+  .work-skill-groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .work-skill-group {
+    min-width: 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.72rem;
+  }
+
+  .work-skill-group-label {
+    margin-bottom: 0.7rem;
+    color: var(--ink-faint);
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .work-skill-group-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .work-filter-tag:hover {
