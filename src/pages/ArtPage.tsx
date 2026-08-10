@@ -804,7 +804,9 @@ export default function ArtPage() {
   const [soundEnabled, setSoundEnabled] = useState(() => typeof window !== "undefined" && window.sessionStorage.getItem("haruhay-media-sound") === "on");
   const reduced = Boolean(useReducedMotion());
   const filteredProjects = useMemo(
-    () => artProjects.filter((project) => project.practice === filter),
+    () => artProjects
+      .filter((project) => project.practice === filter)
+      .sort((a, b) => (a.galleryOrder ?? 99) - (b.galleryOrder ?? 99)),
     [filter],
   );
 
@@ -875,7 +877,7 @@ export default function ArtPage() {
                   ))}
                   <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
                 </div>
-                <ArchiveBrowser projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
+                <ArchiveBrowser key={filter} projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
               </div>
             </div>
           </section>

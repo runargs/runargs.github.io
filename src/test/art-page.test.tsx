@@ -136,6 +136,30 @@ describe("ArtPage", () => {
     ));
   });
 
+  it("resets and updates the archive preview when a new practice is browsed", async () => {
+    renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Food & gatherings" }));
+    fireEvent.mouseEnter(screen.getByRole("button", { name: /open outdoor dinner experience/i }));
+    await waitFor(() => expect(screen.getByRole("img", { name: /tables and chairs arranged/i })).toHaveAttribute(
+      "src",
+      "/media/art/outdoor-dinner-tables.png",
+    ));
+  });
+
+  it("opens related food media from one hovered gallery record", async () => {
+    renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Food & gatherings" }));
+    const vineyardDinner = screen.getAllByRole("button", { name: /open vineyard dinner/i })
+      .find((button) => button.classList.contains("art-archive-row"))!;
+    fireEvent.mouseEnter(vineyardDinner);
+    await waitFor(() => expect(screen.getByRole("img", { name: /leaf-wrapped fish/i })).toHaveAttribute(
+      "src",
+      "/media/art/vineyard-dinner-leaf-wrapped-fish.jpg",
+    ));
+    fireEvent.click(vineyardDinner);
+    expect(screen.getByRole("dialog").querySelector(".art-media-thumbnails")?.children).toHaveLength(5);
+  });
+
   it("steps through archive previews when the project listing is wheeled", async () => {
     const { container } = renderPage();
     const listing = container.querySelector(".art-archive-layout");
@@ -222,20 +246,15 @@ describe("ArtPage", () => {
     expect(outdoorDinner?.media.find((media) => media.kind === "instagram")).toMatchObject({
       url: "https://www.instagram.com/p/Da-y3pKjvY_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     });
-    expect(outdoorDinner?.media).toHaveLength(2);
-    expect(artProjects.find((project) => project.id === "vineyard-dinner-toast")?.media[0]).toMatchObject({
-      kind: "video",
+    const foodProjects = artProjects.filter((project) => project.practice === "food");
+    const vineyardDinner = artProjects.find((project) => project.id === "vineyard-dinner");
+    expect(foodProjects).toHaveLength(10);
+    expect(new Set(foodProjects.map((project) => project.galleryOrder)).size).toBe(10);
+    expect(outdoorDinner?.media).toHaveLength(4);
+    expect(vineyardDinner?.media).toHaveLength(5);
+    expect(vineyardDinner?.media.find((media) => media.kind === "video")).toMatchObject({
       sources: [{ src: "/media/art/vineyard-dinner-toast.m4v", type: "video/mp4" }],
     });
-    expect([
-      "vineyard-dinner-place-setting",
-      "outdoor-dinner-tables",
-      "vineyard-dinner-leaf-wrapped-fish",
-      "outdoor-dinner-night",
-      "vineyard-dinner-charred-grapes",
-      "vineyard-dinner-toast",
-      "vineyard-dinner-team",
-    ].every((id) => artProjects.find((project) => project.id === id)?.media.length === 1)).toBe(true);
     expect(artProjects.find((project) => project.id === "altered-apron")?.media[0]).toMatchObject({
       kind: "instagram",
       url: "https://www.instagram.com/reel/DbzgxGuuP-d/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
