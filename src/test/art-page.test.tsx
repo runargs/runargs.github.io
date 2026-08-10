@@ -19,10 +19,10 @@ const localVideo: ArtMedia = {
   captions: { src: "/media/art/test-study.vtt", language: "en", label: "English" },
 };
 
-function renderPage() {
+function renderPage(initialEntry = "/art") {
   return render(
     <TooltipProvider delayDuration={0}>
-      <MemoryRouter initialEntries={["/art"]}>
+      <MemoryRouter initialEntries={[initialEntry]}>
         <Routes><Route path="/art" element={<ArtPage />} /></Routes>
       </MemoryRouter>
     </TooltipProvider>,
@@ -47,6 +47,18 @@ describe("ArtPage", () => {
     fireEvent.click(soundToggle);
     expect(screen.getByRole("button", { name: "Sound on" })).toHaveAttribute("aria-pressed", "true");
     expect(window.sessionStorage.getItem("haruhay-media-sound")).toBe("on");
+  });
+
+  it("opens a linked practice at its story section", () => {
+    renderPage("/art?section=fashion");
+    expect(document.getElementById("story-fashion")?.scrollIntoView).toHaveBeenCalledWith({ block: "start" });
+  });
+
+  it("uses the vineyard toast video as the food hero", () => {
+    renderPage();
+    const heroVideo = screen.getByLabelText("Guests raising glasses in a toast across the vineyard dinner table");
+    expect(heroVideo.tagName).toBe("VIDEO");
+    expect(heroVideo.querySelector("source")).toHaveAttribute("src", "/media/art/vineyard-dinner-toast.m4v");
   });
 
   it("includes both Cirque arts projects in the story film roll", () => {
@@ -120,10 +132,8 @@ describe("ArtPage", () => {
       expect(screen.getByRole("button", { name: practiceLabels[practice] })).toBeInTheDocument();
     }
 
-    const ceramicCount = artProjects.filter((project) => project.practice === "ceramics").length;
-    expect(screen.getByText(`${ceramicCount} projects`)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /open ginkgo biloba/i })).toBeInTheDocument();
-    await waitFor(() => expect(screen.queryByRole("button", { name: /open gallery tasting series/i })).not.toBeInTheDocument());
+    expect(screen.getAllByRole("button", { name: /open field and fire/i }).length).toBeGreaterThan(0);
+    await waitFor(() => expect(screen.queryByRole("button", { name: /open ginkgo biloba/i })).not.toBeInTheDocument());
   });
 
   it("updates the archive preview media when a Fashion project is hovered", async () => {
@@ -139,7 +149,7 @@ describe("ArtPage", () => {
   it("resets and updates the archive preview when a new practice is browsed", async () => {
     renderPage();
     fireEvent.click(screen.getByRole("button", { name: "Food & gatherings" }));
-    fireEvent.mouseEnter(screen.getByRole("button", { name: /open outdoor dinner experience/i }));
+    fireEvent.mouseEnter(screen.getByRole("button", { name: /open outdoor dining/i }));
     await waitFor(() => expect(screen.getByRole("img", { name: /tables and chairs arranged/i })).toHaveAttribute(
       "src",
       "/media/art/outdoor-dinner-tables.png",
@@ -149,13 +159,17 @@ describe("ArtPage", () => {
   it("opens related food media from one hovered gallery record", async () => {
     renderPage();
     fireEvent.click(screen.getByRole("button", { name: "Food & gatherings" }));
-    const vineyardDinner = screen.getAllByRole("button", { name: /open vineyard dinner/i })
+    const vineyardDinner = screen.getAllByRole("button", { name: /open field and fire/i })
       .find((button) => button.classList.contains("art-archive-row"))!;
     fireEvent.mouseEnter(vineyardDinner);
-    await waitFor(() => expect(screen.getByRole("img", { name: /leaf-wrapped fish/i })).toHaveAttribute(
-      "src",
-      "/media/art/vineyard-dinner-leaf-wrapped-fish.jpg",
-    ));
+    await waitFor(() => expect(screen.getAllByRole("img", { name: /leaf-wrapped fish/i }).some((image) => (
+      image.getAttribute("src") === "/media/art/vineyard-dinner-leaf-wrapped-fish.jpg"
+    ))).toBe(true));
+    const mosaic = screen.getByLabelText("Field and Fire gallery, 5 items");
+    expect(mosaic.querySelectorAll("img")).toHaveLength(4);
+    expect(within(mosaic).getByRole("img", { name: /three-person culinary team/i })).toHaveClass("is-right-aligned");
+    expect(within(mosaic).queryByRole("img", { name: /raising glasses/i })).not.toBeInTheDocument();
+    expect(within(mosaic).getByText("+1")).toBeInTheDocument();
     fireEvent.click(vineyardDinner);
     expect(screen.getByRole("dialog").querySelector(".art-media-thumbnails")?.children).toHaveLength(5);
   });
@@ -169,6 +183,7 @@ describe("ArtPage", () => {
 
   it("steps through archive previews when the project listing is wheeled", async () => {
     const { container } = renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Ceramics" }));
     const listing = container.querySelector(".art-archive-layout");
     const archiveWindow = container.querySelector<HTMLElement>(".art-archive-sticky");
     expect(listing).not.toBeNull();
@@ -185,6 +200,7 @@ describe("ArtPage", () => {
 
   it("opens the previewed project from the Open project control", () => {
     renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Ceramics" }));
     fireEvent.click(screen.getByRole("button", { name: /open project/i }));
     const dialog = screen.getByRole("dialog");
     expect(within(dialog).getByRole("heading", { name: /albay mug/i })).toBeInTheDocument();
@@ -204,6 +220,7 @@ describe("ArtPage", () => {
 
   it("plays an Instagram reel locally and keeps the canonical source link", () => {
     renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Ceramics" }));
     fireEvent.click(screen.getByRole("button", { name: /open siopao-shaped salt jar/i }));
     const dialog = screen.getByRole("dialog");
     expect(within(dialog).queryByRole("iframe")).not.toBeInTheDocument();
@@ -216,6 +233,7 @@ describe("ArtPage", () => {
 
   it("omits generic metadata and uses a piece-specific inquiry action", () => {
     renderPage();
+    fireEvent.click(screen.getByRole("button", { name: "Ceramics" }));
     fireEvent.click(screen.getByRole("button", { name: /open ginkgo biloba/i }));
     const dialog = screen.getByRole("dialog");
     expect(within(dialog).getByText("2024 · Wheel-thrown stoneware")).toBeInTheDocument();
@@ -255,9 +273,9 @@ describe("ArtPage", () => {
     });
     const foodProjects = artProjects.filter((project) => project.practice === "food");
     const vineyardDinner = artProjects.find((project) => project.id === "vineyard-dinner");
-    expect(foodProjects).toHaveLength(10);
-    expect(new Set(foodProjects.map((project) => project.galleryOrder)).size).toBe(10);
-    expect(outdoorDinner?.media).toHaveLength(4);
+    expect(foodProjects).toHaveLength(9);
+    expect(new Set(foodProjects.map((project) => project.galleryOrder)).size).toBe(9);
+    expect(outdoorDinner?.media).toHaveLength(5);
     expect(vineyardDinner?.media).toHaveLength(5);
     expect(vineyardDinner?.media.find((media) => media.kind === "video")).toMatchObject({
       sources: [{ src: "/media/art/vineyard-dinner-toast.m4v", type: "video/mp4" }],

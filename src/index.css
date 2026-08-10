@@ -522,24 +522,29 @@
   .art-archive-window > .art-window-bar { min-height: 44px; background: var(--paper-soft); color: var(--ink-soft); font-family: var(--font-body); font-size: var(--text-xs); font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; }
   .art-archive-layout { display: grid; min-height: min(78vh, 780px); grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr); overscroll-behavior: contain; }
   .art-archive-list { min-width: 0; border-right: 1px solid var(--rule-strong); }
-  .art-archive-row { display: grid; width: 100%; min-height: 72px; grid-template-columns: 3.4rem 3.25rem minmax(0, 1fr) minmax(110px, 0.48fr) 5.8rem; align-items: center; gap: 0.8rem; border-bottom: 1px solid color-mix(in srgb, var(--rule) 82%, transparent); padding: 0.6rem 0.85rem; color: var(--ink-muted); text-align: left; transition: background-color 150ms ease, color 150ms ease; }
+  .art-archive-row { display: grid; width: 100%; min-height: 72px; grid-template-columns: 3.4rem 2.75rem minmax(0, 1fr) 5.8rem; align-items: center; gap: 0.8rem; border-bottom: 1px solid color-mix(in srgb, var(--rule) 82%, transparent); padding: 0.6rem 0.85rem; color: var(--ink-muted); text-align: left; transition: background-color 150ms ease, color 150ms ease; }
   .art-archive-row:hover,
   .art-archive-row:focus-visible,
   .art-archive-row[aria-current="true"] { background: rgba(53, 111, 128, 0.045); color: var(--ink); outline: none; }
   .art-archive-number,
-  .art-archive-practice,
   .art-archive-year { font-family: var(--font-body); font-size: 0.66rem; font-weight: 800; letter-spacing: 0.055em; text-transform: uppercase; }
   .art-archive-number { display: flex; min-height: 72px; align-self: stretch; align-items: center; margin: -0.6rem 0 -0.6rem -0.85rem; border-right: 1px solid rgba(53, 111, 128, 0.18); background: rgba(53, 111, 128, 0.045); padding-left: 0.85rem; color: var(--civic-blue); font-family: var(--font-pixel); font-size: 1.15rem; }
   .art-archive-title { overflow: hidden; font-family: var(--font-editorial); font-size: 1.02rem; line-height: 1.18; text-overflow: ellipsis; white-space: nowrap; }
-  .art-archive-practice,
   .art-archive-year { overflow: hidden; color: var(--ink-faint); text-overflow: ellipsis; white-space: nowrap; }
-  .art-archive-mobile-media { display: block; width: 3.25rem; height: 3.25rem; overflow: hidden; border: 1px solid var(--rule); background: var(--paper-soft); }
-  .art-archive-mobile-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 180ms ease, filter 180ms ease; }
-  .art-archive-row:is(:hover, :focus-visible, [aria-current="true"]) .art-archive-mobile-media img { transform: scale(1.06); filter: saturate(1.08); }
+  .art-archive-mobile-media { display: block; width: 2.75rem; height: 2.75rem; overflow: hidden; background: var(--paper-card); padding: 2px; box-shadow: 1px 1px 0 color-mix(in srgb, var(--rule-strong) 55%, transparent); }
+  .art-archive-mobile-media img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0.82; filter: saturate(0.72) contrast(0.96); transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease; }
+  .art-archive-row:is(:hover, :focus-visible, [aria-current="true"]) .art-archive-mobile-media img { transform: scale(1.04); filter: saturate(1.04); opacity: 1; }
   .art-archive-preview { position: sticky; top: 0; display: flex; min-width: 0; height: min(78vh, 780px); flex-direction: column; padding: clamp(1rem, 2.5vw, 2rem); }
   .art-archive-preview-stage { min-height: 0; flex: 1; overflow: hidden; border: 1px solid var(--rule); background: var(--paper-soft); }
   .art-archive-preview-stage > button { display: block; width: 100%; height: 100%; }
   .art-archive-preview-stage :is(img, video) { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .art-archive-preview-mosaic { display: grid; width: 100%; height: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 5px; background: var(--rule); padding: 5px; }
+  .art-archive-preview-mosaic > span { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: var(--paper-soft); }
+  .art-archive-preview-stage .art-archive-preview-mosaic img { width: 100%; height: 100%; object-fit: cover; }
+  .art-archive-preview-stage .art-archive-preview-mosaic img.is-right-aligned { object-position: right center; }
+  .art-archive-preview-mosaic.has-2 { grid-template-rows: 1fr; }
+  .art-archive-preview-mosaic.has-3 > span:first-child { grid-row: 1 / -1; }
+  .art-archive-preview-mosaic small { position: absolute; right: 0.65rem; bottom: 0.55rem; display: grid; min-width: 2.4rem; min-height: 2.4rem; place-items: center; border: 1px solid rgba(255, 255, 255, 0.55); background: rgba(18, 28, 29, 0.78); color: #fffdf7; font-family: var(--font-pixel); font-size: 0.72rem; backdrop-filter: blur(6px); }
   .art-archive-preview > footer { display: flex; min-height: 76px; align-items: center; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--rule); padding-top: 0.9rem; }
   .art-archive-preview h3 { font-size: clamp(1.45rem, 2.4vw, 2.4rem); line-height: 0.95; }
   .art-archive-preview p { margin-top: 0.25rem; color: var(--ink-muted); font-size: 0.78rem; }
@@ -1009,11 +1014,12 @@
     .art-archive-row:hover,
     .art-archive-row:focus-visible,
     .art-archive-row[aria-current="true"] { padding-left: 0; }
-    .art-archive-mobile-media { display: block; width: auto; height: auto; grid-column: 1 / -1; overflow: hidden; border: 0; border-bottom: 1px solid var(--rule); }
+    .art-archive-mobile-media { display: block; width: auto; height: auto; grid-column: 1 / -1; grid-row: 1; overflow: hidden; border: 0; border-bottom: 1px solid var(--rule); padding: 0; box-shadow: none; }
+    .art-archive-mobile-media img { opacity: 1; filter: none; }
+    .art-archive-number { grid-row: 2; }
     .art-archive-mobile-media :is(img, video) { display: block; width: 100%; height: auto; }
     .art-archive-number { padding-left: 0.65rem; }
     .art-archive-title { padding: 0.7rem 0.65rem 0.7rem 0; white-space: normal; }
-    .art-archive-practice,
     .art-archive-year { display: none; }
     .art-archive-preview { display: none; }
     .art-scene-sticky { position: relative; height: auto; min-height: 0; }

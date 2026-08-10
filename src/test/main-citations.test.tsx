@@ -41,6 +41,7 @@ describe("main-page citations", () => {
     );
     expect(screen.queryByText(/acceptable option is enough/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/interleaving and serendipitous learning/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Fashion" })).toHaveAttribute("href", "/art?section=fashion");
   });
 
   it("places self-efficacy source inside the behavior change thought", () => {

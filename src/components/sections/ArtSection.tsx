@@ -1,40 +1,14 @@
-import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CitationLink, ImageFrame, SectionBand, SectionHeader } from "@/components/design-system/Dossier";
 
 const practices = [
-  { title: "Food & private dining", image: "/images/flavors-of-iloilo-plate.jpg" },
-  { title: "Ceramics", image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg" },
-  { title: "Fashion", image: "/media/art/linen-top-hair-stick.jpg", video: "/media/art/linen-top-hair-stick.mp4" },
-  { title: "Cirque arts", image: "/media/art/led-poi.jpg", dark: true },
-  { title: "Modeling & image-making", image: "/images/portrait-study-red-light.jpg" },
+  { title: "Food & private dining", image: "/media/art/vineyard-dinner-place-setting.jpg", section: "food" },
+  { title: "Ceramics", image: "/images/ceramic-ginkgo-sgraffito-bowl.jpg", section: "ceramics" },
+  { title: "Fashion", image: "/media/art/linen-top-hair-stick-first-frame.jpg", section: "fashion" },
+  { title: "Cirque arts", image: "/media/art/led-poi.jpg", section: "movement", dark: true },
+  { title: "Modeling & image-making", image: "/images/place-setting-candle-study.jpg", section: "collaboration" },
 ];
-
-function PracticeVideo({ src, poster }: { src: string; poster: string }) {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    const frame = frameRef.current;
-    if (!frame || !("IntersectionObserver" in window)) return setActive(true);
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      setActive(true);
-      observer.disconnect();
-    }, { rootMargin: "180px" });
-    observer.observe(frame);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={frameRef} className="aspect-[4/5] overflow-hidden bg-[var(--paper-soft)]">
-      <video className="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" autoPlay={active} muted loop playsInline preload={active ? "metadata" : "none"} poster={poster}>
-        {active && <source src={src} type="video/mp4" />}
-      </video>
-    </div>
-  );
-}
 
 export function ArtSection() {
   return (
@@ -48,15 +22,8 @@ export function ArtSection() {
         />
         <div className="art-home-practice-strip notched">
           {practices.map((practice) => (
-            <Link key={practice.title} to="/art" className={`art-home-practice-card group ${practice.dark ? "is-flow" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]`}>
-              {practice.video ? (
-                <figure className="notched border border-[var(--rule)] bg-[var(--paper-card)] p-3">
-                  <PracticeVideo src={practice.video} poster={practice.image} />
-                  <figcaption className="mt-2 border-t border-[rgba(213,198,177,0.75)] pt-2 text-xs font-extrabold uppercase leading-snug tracking-[0.07em] text-[var(--ink-muted)]">{practice.title}</figcaption>
-                </figure>
-              ) : (
-                <ImageFrame src={practice.image} alt="" caption={practice.title} mediaClassName="aspect-[4/5]" imgClassName="transition-transform duration-300 group-hover:scale-[1.03]" grayscale={false} />
-              )}
+            <Link key={practice.title} to={`/art?section=${practice.section}`} className={`art-home-practice-card group ${practice.dark ? "is-flow" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--civic-blue)]`}>
+              <ImageFrame src={practice.image} alt="" caption={practice.title} mediaClassName="aspect-[4/5]" imgClassName="transition-transform duration-300 group-hover:scale-[1.03]" grayscale={false} />
             </Link>
           ))}
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { ArrowDown, ArrowLeft, ArrowRight, BookHeart, Camera, CookingPot, ExternalLink, Flame, GripHorizontal, Instagram, LayoutGrid, Mail, Mic2, Palette, Scissors, Sparkles, RotateCcw, Volume2, VolumeX } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ProjectMediaDetail } from "@/components/art/ArtMedia";
 import { CitationLink, DossierLink, LightsOffToggle } from "@/components/design-system/Dossier";
@@ -60,6 +60,35 @@ function MovingMediaPreview({ media, reduced, alt = "" }: { media: ArtMedia; red
   }
   const source = media.kind === "image" ? media.src : media.poster;
   return <img src={source} alt={alt} width={media.width} height={media.height} loading="lazy" decoding="async" />;
+}
+
+function ArchiveMediaPreview({ project, reduced }: { project: ArtProject; reduced: boolean }) {
+  if (project.media.length === 1) {
+    return <MovingMediaPreview media={project.media[0]} reduced={reduced} alt={project.media[0].alt} />;
+  }
+
+  const visibleMedia = project.media.slice(0, 4);
+  return (
+    <div
+      className={cn("art-archive-preview-mosaic", `has-${Math.min(visibleMedia.length, 4)}`)}
+      aria-label={`${project.title} gallery, ${project.media.length} items`}
+    >
+      {visibleMedia.map((media, index) => (
+        <span key={`${project.id}-preview-${index}`}>
+          <img
+            className={media.kind === "image" && media.src.endsWith("vineyard-dinner-team.jpg") ? "is-right-aligned" : undefined}
+            src={media.kind === "image" ? media.src : media.poster}
+            alt={media.alt}
+            width={media.width}
+            height={media.height}
+            loading="lazy"
+            decoding="async"
+          />
+          {index === 3 && project.media.length > 4 && <small>+{project.media.length - 4}</small>}
+        </span>
+      ))}
+    </div>
+  );
 }
 
 function useDesktopDrag() {
@@ -136,7 +165,7 @@ function OpeningScene({ reduced, soundEnabled, onSoundChange }: { reduced: boole
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const desktopDrag = useDesktopDrag() && !reduced;
   const featured = projectsForStory(activePractice)[0];
-  const media = featured?.media[0];
+  const media = featured?.media[featured.heroMediaIndex ?? 0];
   const raise = (windowName: keyof typeof layerOrder) => setLayerOrder((current) => ({ ...current, [windowName]: Math.max(...Object.values(current)) + 1 }));
 
   return (
@@ -293,7 +322,7 @@ function ChapterTrack({ projects, progress, reduced }: ChapterTrackProps) {
         ? reduced ? ["-50%", "-50%", "-50%"] : ["-30%", "-50%", "-70%"]
         : reduced ? ["0%", "0%"] : ["7%", projects.length > 3 ? "-58%" : "-36%"],
   );
-  const reveal = useTransform(progress, [0, 0.18, 0.82, 1], reduced ? [1, 1, 1, 1] : [0, 1, 1, 0]);
+  const reveal = useTransform(progress, [0, 0.18, 0.82, 1], reduced ? [1, 1, 1, 1] : [0.72, 1, 1, 0.72]);
 
   return (
     <motion.div className={cn("art-chapter-track", projects.length === 1 && "is-single", isPair && "is-pair")} style={{ x, y: "-50%", opacity: reveal }}>
@@ -315,7 +344,7 @@ function ChapterTrack({ projects, progress, reduced }: ChapterTrackProps) {
 function MovementField({ progress, reduced }: { progress: MotionValue<number>; reduced: boolean }) {
   const rotate = useTransform(progress, [0, 1], reduced ? [0, 0] : [-18, 42]);
   const scale = useTransform(progress, [0, 0.5, 1], reduced ? [1, 1, 1] : [0.6, 1, 1.25]);
-  const opacity = useTransform(progress, [0, 0.18, 0.86, 1], reduced ? [1, 1, 1, 1] : [0, 1, 1, 0]);
+  const opacity = useTransform(progress, [0, 0.18, 0.86, 1], reduced ? [1, 1, 1, 1] : [0.72, 1, 1, 0.72]);
 
   return (
     <motion.div className="art-flow-field" style={{ rotate, scale, opacity }} aria-hidden="true">
@@ -341,9 +370,9 @@ function FashionField() {
 function StoryChapter({ practice, index, reduced }: { practice: ArtPractice; index: number; reduced: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const projects = projectsForStory(practice).slice(0, 4);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const copyY = useTransform(scrollYProgress, [0, 0.42, 0.72, 1], reduced ? [0, 0, 0, 0] : [70, 0, -10, -90]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.2, 0.78, 1], reduced ? [1, 1, 1, 1] : [0, 1, 1, 0]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.2, 0.78, 1], reduced ? [1, 1, 1, 1] : [0.72, 1, 1, 0.72]);
 
   return (
     <section ref={sectionRef} id={`story-${practice}`} className={cn("art-story-chapter", `chapter-${practice}`)} aria-labelledby={`story-title-${practice}`} tabIndex={-1}>
@@ -468,6 +497,7 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
                 onFocus={() => setPreviewId(project.id)}
                 onClick={() => onSelect(project)}
               >
+                <span className="art-archive-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="art-archive-mobile-media">
                   <img
                     src={itemMedia.kind === "image" ? itemMedia.src : itemMedia.poster}
@@ -478,9 +508,7 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
                     decoding="async"
                   />
                 </span>
-                <span className="art-archive-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="art-archive-title">{project.title}</span>
-                <span className="art-archive-practice">{practiceLabels[project.practice]}</span>
                 <span className="art-archive-year">{project.year ?? ""}</span>
               </motion.button>
             );
@@ -501,7 +529,7 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
                   exit={{ clipPath: "inset(50% 0 50% 0)", opacity: 0.2 }}
                   transition={{ duration: reduced ? 0 : 0.34, ease: [0.2, 0.76, 0.2, 1] }}
                 >
-                  <MovingMediaPreview media={previewMedia} reduced={reduced} alt={previewMedia.alt} />
+                  <ArchiveMediaPreview project={preview} reduced={reduced} />
                 </motion.button>
               )}
             </AnimatePresence>
@@ -807,7 +835,8 @@ function ProjectViewer({ project, projects, onSelect, soundEnabled }: ProjectVie
 }
 
 export default function ArtPage() {
-  const [filter, setFilter] = useState<Filter>("ceramics");
+  const location = useLocation();
+  const [filter, setFilter] = useState<Filter>("food");
   const [selectedProject, setSelectedProject] = useState<ArtProject | null>(null);
   const [navCompact, setNavCompact] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(() => typeof window !== "undefined" && window.sessionStorage.getItem("haruhay-media-sound") === "on");
@@ -836,6 +865,14 @@ export default function ArtPage() {
       window.requestAnimationFrame(() => window.scrollTo(0, entryScrollY));
     };
   }, []);
+
+  useEffect(() => {
+    const section = new URLSearchParams(location.search).get("section") as ArtPractice | null;
+    if (!section || !storyPractices.includes(section)) return;
+    window.requestAnimationFrame(() => {
+      document.getElementById(`story-${section}`)?.scrollIntoView({ block: "start" });
+    });
+  }, [location.search]);
 
   useEffect(() => {
     const updateNavigation = () => setNavCompact(window.scrollY > 96);
@@ -884,7 +921,6 @@ export default function ArtPage() {
                       {practiceLabels[practice]}
                     </button>
                   ))}
-                  <span aria-live="polite">{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</span>
                 </div>
                 <ArchiveBrowser key={filter} projects={filteredProjects} onSelect={setSelectedProject} reduced={reduced} />
               </div>
