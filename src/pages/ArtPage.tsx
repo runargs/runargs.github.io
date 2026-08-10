@@ -468,7 +468,16 @@ function ArchiveBrowser({ projects, onSelect, reduced }: { projects: ArtProject[
                 onFocus={() => setPreviewId(project.id)}
                 onClick={() => onSelect(project)}
               >
-                <span className="art-archive-mobile-media"><MovingMediaPreview media={itemMedia} reduced={reduced} /></span>
+                <span className="art-archive-mobile-media">
+                  <img
+                    src={itemMedia.kind === "image" ? itemMedia.src : itemMedia.poster}
+                    alt=""
+                    width={itemMedia.width}
+                    height={itemMedia.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
                 <span className="art-archive-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="art-archive-title">{project.title}</span>
                 <span className="art-archive-practice">{practiceLabels[project.practice]}</span>

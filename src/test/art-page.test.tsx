@@ -160,6 +160,13 @@ describe("ArtPage", () => {
     expect(screen.getByRole("dialog").querySelector(".art-media-thumbnails")?.children).toHaveLength(5);
   });
 
+  it("shows a thumbnail for every creative DB record", () => {
+    const { container } = renderPage();
+    const rows = Array.from(container.querySelectorAll(".art-archive-row"));
+    expect(rows.length).toBeGreaterThan(0);
+    expect(rows.every((row) => row.querySelector(".art-archive-mobile-media img"))).toBe(true);
+  });
+
   it("steps through archive previews when the project listing is wheeled", async () => {
     const { container } = renderPage();
     const listing = container.querySelector(".art-archive-layout");
