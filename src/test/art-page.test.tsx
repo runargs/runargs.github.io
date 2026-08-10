@@ -222,6 +222,15 @@ describe("ArtPage", () => {
     expect(outdoorDinner?.media.find((media) => media.kind === "instagram")).toMatchObject({
       url: "https://www.instagram.com/p/Da-y3pKjvY_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     });
+    expect(outdoorDinner?.media).toHaveLength(9);
+    expect(outdoorDinner?.media.find((media) => media.kind === "video")).toMatchObject({
+      sources: [{ src: "/media/art/vineyard-dinner-toast.m4v", type: "video/mp4" }],
+    });
+    expect(artProjects.find((project) => project.id === "altered-apron")?.media[0]).toMatchObject({
+      kind: "instagram",
+      url: "https://www.instagram.com/reel/DbzgxGuuP-d/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      postType: "reel",
+    });
     expect(albayMug?.media[0]).toMatchObject({
       kind: "instagram",
       url: "https://www.instagram.com/p/DbBvavGFHb0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
