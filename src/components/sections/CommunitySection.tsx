@@ -22,7 +22,7 @@ const communities: Community[] = [
     companyLinks: [
       { name: "Ōura", url: "https://ouraring.com/" },
       { name: "Manta Sleep", url: "https://mantasleep.com/" },
-      { name: "Bearable", url: "https://bearable.app/science-research/" },
+      { name: "Bearable", url: "https://bearable.app/" },
       { name: "Atlassian", url: "https://www.atlassian.com/" },
       { name: "Canva", url: "https://www.canva.com/" },
       { name: "Dynamo AI", url: "https://dynamo.ai/" },
@@ -39,8 +39,8 @@ const communities: Community[] = [
   },
   {
     id: "chef",
-    name: "Private dining & hosted culinary experiences",
-    role: "Advisory consultant and private chef",
+    name: "Private dining & hosted experiences",
+    role: "Consultant and private chef",
     period: "2024–Present",
     url: "https://www.instagram.com/haruhay.studio/",
   },
@@ -49,7 +49,7 @@ const communities: Community[] = [
     name: "Mentorship and volunteerism",
     role: "Independent mentor and community volunteer",
     period: "2015–Present",
-    url: "https://catholicphilly.com/2017/08/photo-features/st-william-parishs-youths-help-needy-philadelphians/",
+    url: "https://www.yearup.org/",
   },
 ];
 
