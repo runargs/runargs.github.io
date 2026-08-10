@@ -274,7 +274,7 @@ const desktopSkillGroups = [
   {
     label: "Product & AI",
     skills: [
-      { label: "Product Management", experienceIds: ["mc-pm", "nexus"] },
+      { label: "Product Management", experienceIds: ["mc-pm", "google", "nexus"] },
       { label: "Applied AI & Agentic Systems", experienceIds: ["mc-pm"] },
       { label: "Launch Strategy", experienceIds: ["mc-pm", "nexus"] },
       { label: "User Research & Discovery", experienceIds: ["mc-pm", "google", "nexus", "manila-design"] },
@@ -295,7 +295,7 @@ const desktopSkillGroups = [
     label: "Lead & Serve",
     skills: [
       { label: "Stakeholder Management", experienceIds: ["mc-pm", "mc-devops", "google", "nexus", "manila-design"] },
-      { label: "Customer-Facing", experienceIds: ["mc-pm", "google", "visa", "nexus", "jefferson-volunteer", "notion-enhanced"] },
+      { label: "Customer-Facing", experienceIds: ["mc-pm", "google", "nexus", "jefferson-volunteer", "notion-enhanced"] },
       { label: "Building Trust", experienceIds: ["mc-pm", "mc-devops", "visa", "jefferson-volunteer"] },
       { label: "Storytelling", experienceIds: ["mc-pm", "google", "nexus", "manila-design"] },
       { label: "Human-Centered Systems", experienceIds: ["visa", "jefferson-volunteer"] },
