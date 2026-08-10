@@ -222,10 +222,20 @@ describe("ArtPage", () => {
     expect(outdoorDinner?.media.find((media) => media.kind === "instagram")).toMatchObject({
       url: "https://www.instagram.com/p/Da-y3pKjvY_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     });
-    expect(outdoorDinner?.media).toHaveLength(9);
-    expect(outdoorDinner?.media.find((media) => media.kind === "video")).toMatchObject({
+    expect(outdoorDinner?.media).toHaveLength(2);
+    expect(artProjects.find((project) => project.id === "vineyard-dinner-toast")?.media[0]).toMatchObject({
+      kind: "video",
       sources: [{ src: "/media/art/vineyard-dinner-toast.m4v", type: "video/mp4" }],
     });
+    expect([
+      "vineyard-dinner-place-setting",
+      "outdoor-dinner-tables",
+      "vineyard-dinner-leaf-wrapped-fish",
+      "outdoor-dinner-night",
+      "vineyard-dinner-charred-grapes",
+      "vineyard-dinner-toast",
+      "vineyard-dinner-team",
+    ].every((id) => artProjects.find((project) => project.id === id)?.media.length === 1)).toBe(true);
     expect(artProjects.find((project) => project.id === "altered-apron")?.media[0]).toMatchObject({
       kind: "instagram",
       url: "https://www.instagram.com/reel/DbzgxGuuP-d/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
