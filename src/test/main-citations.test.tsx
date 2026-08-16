@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { ArtSection } from "@/components/sections/ArtSection";
 import { BioSection } from "@/components/sections/BioSection";
 import { SideProjectsSection } from "@/components/sections/SideProjectsSection";
@@ -58,35 +58,7 @@ describe("main-page citations", () => {
   });
 });
 
-describe("résumé inquiry actions", () => {
-  it("opens inquiry from intro résumé link", () => {
-    const onOpenInquiry = vi.fn();
-    render(
-      <TooltipProvider>
-        <MemoryRouter>
-          <BioSection onOpenInquiry={onOpenInquiry} />
-        </MemoryRouter>
-      </TooltipProvider>,
-    );
-
-    fireEvent.click(screen.getByRole("link", { name: "Résumé PDF" }));
-
-    expect(onOpenInquiry).toHaveBeenCalledOnce();
-  });
-
-  it("opens inquiry from work résumé link", () => {
-    const onOpenInquiry = vi.fn();
-    render(
-      <TooltipProvider>
-        <WorkSection onOpenInquiry={onOpenInquiry} />
-      </TooltipProvider>,
-    );
-
-    fireEvent.click(screen.getByRole("link", { name: "Request résumé PDF" }));
-
-    expect(onOpenInquiry).toHaveBeenCalledOnce();
-  });
-
+describe("work interactions", () => {
   it("groups core skills and reveals mapped secondary experience", () => {
     render(
       <TooltipProvider>

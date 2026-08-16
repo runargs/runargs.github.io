@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import {
   CitationLink,
   EditorialCard,
-  DossierLink,
   SectionBand,
   SectionHeader,
 } from "@/components/design-system/Dossier";
@@ -323,11 +322,7 @@ function getWorkAccentStyle(accent: WorkAccent = "blue"): WorkAccentStyle {
   };
 }
 
-type WorkSectionProps = {
-  onOpenInquiry?: () => void;
-};
-
-export function WorkSection({ onOpenInquiry }: WorkSectionProps) {
+export function WorkSection() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [activeMobileFilter, setActiveMobileFilter] = useState("Featured");
   const [openWorkIds, setOpenWorkIds] = useState<Set<string>>(() => new Set());
@@ -641,7 +636,7 @@ export function WorkSection({ onOpenInquiry }: WorkSectionProps) {
           })}
         </div>
 
-        <aside id="resume" className="work-career-tools notched" aria-label="Résumé and credentials">
+        <aside className="work-career-tools notched" aria-label="Education and credentials">
           <button
             type="button"
             className="work-credentials-toggle"
@@ -652,18 +647,6 @@ export function WorkSection({ onOpenInquiry }: WorkSectionProps) {
             Education & selected credentials <span>{credentials.length} records</span>
           </button>
           <div className="work-career-actions">
-            <img src="/images/clip-floppy-disk.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            <DossierLink
-              href="#contact"
-              className="work-career-resume-link"
-              onClick={(event) => {
-                if (!onOpenInquiry) return;
-                event.preventDefault();
-                onOpenInquiry();
-              }}
-            >
-              Request résumé PDF
-            </DossierLink>
             <a href="https://linkedin.com/in/alexathoennes" target="_blank" rel="noopener noreferrer">
               LinkedIn <ExternalLink aria-hidden="true" />
             </a>

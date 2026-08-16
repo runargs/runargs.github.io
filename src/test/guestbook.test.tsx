@@ -19,15 +19,15 @@ describe("Guestbook", () => {
     vi.stubGlobal("fetch", fetchMock);
 
     renderGuestbook("main", "guestbook");
-    const kudosCount = screen.getByRole("button", { name: "6 kudos" });
+    const kudosCount = screen.getByRole("button", { name: "7 kudos" });
     expect(kudosCount).toBeInTheDocument();
     fireEvent.focus(kudosCount);
-    await waitFor(() => expect(screen.getByRole("tooltip")).toHaveTextContent("Updated as of: 2026-07-26"));
+    await waitFor(() => expect(screen.getByRole("tooltip")).toHaveTextContent("Updated as of: 2026-08-11"));
     fireEvent.click(screen.getByRole("button", { name: "Leave kudos" }));
 
     await waitFor(() => expect(screen.getByText("Kudos received.")).toBeInTheDocument());
-    expect(screen.getByText("7 kudos")).toBeInTheDocument();
-    expect(window.localStorage.getItem("portfolio-guestbook-kudos:main")).toBe("6");
+    expect(screen.getByText("8 kudos")).toBeInTheDocument();
+    expect(window.localStorage.getItem("portfolio-guestbook-kudos:main")).toBe("7");
     const body = fetchMock.mock.calls[0][1].body as FormData;
     expect(body.get("signal")).toBe("kudos");
     expect(body.get("page")).toBe("main");

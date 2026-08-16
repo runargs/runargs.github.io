@@ -6,7 +6,7 @@ The repository also documents how the site was made: through a human-directed, r
 
 ## Project intent
 
-The central product challenge was not simply to place a resume on the web. It was to make a wide range of work feel coherent without flattening it into a generic portfolio template.
+The central product challenge was to make a wide range of work feel coherent without flattening it into a generic portfolio template.
 
 The narrative spine is a working method: sample broadly, test in practice, follow evidence, and use AI to expand human agency. Professional work shows that method across research, product, engineering, and communication; public engagements, service, creative practice, and marginalia show where it travels next.
 
@@ -21,7 +21,7 @@ That led to a few guiding decisions:
 
 ## Product and design decisions
 
-The main page moves from a statement of method into work across the stack, public engagements, service, creative practice, marginalia, and a guided contact flow. Résumé access and credentials sit inside the work chapter instead of creating a second résumé-like section. A separate creative-practice route at `/art` provides a motion-led Haruhay Studio story, project browser, media viewer, and commission or booking inquiry flow.
+The main page moves from a statement of method into work across the stack, public engagements, service, creative practice, marginalia, and a guided contact flow. Education and credentials sit inside the work chapter. A separate creative-practice route at `/art` provides a motion-led Haruhay Studio story, project browser, media viewer, and commission or booking inquiry flow.
 
 Desktop and mobile navigation use distinct interaction patterns rather than forcing one layout across screen sizes. Active-section tracking is coordinated at the page level, while section content remains modular. This keeps the experience continuous for visitors and the implementation legible for future changes.
 
